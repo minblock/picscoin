@@ -1,0 +1,9 @@
+Building Picscoin
+
+See doc/readme-qt.rst for instructions on building Picscoin-Qt,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of Picscoin.
+
+See doc/build-*.txt for instructions on building picscoind,
+the intended-for-services, no-graphical-interface, reference
+implementation of Picscoin.
