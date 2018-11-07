@@ -1,11 +1,10 @@
 Picscoin integration/staging tree
 ================================
 
-https://pix.bitwall.ca
+http://www.picscoin.org
 
 Copyright (c) 2009-2014 Bitcoin Developers
-Copyright (c) 2011-2014 Litecoin Developers
-Copyright (c) 2018 Picscoin Developers
+Copyright (c) 2011-2014 Picscoin Developers
 
 What is Picscoin?
 ----------------
@@ -20,7 +19,7 @@ The rest is the same as Bitcoin.
  - 2016 blocks to retarget difficulty
 
 For more information, as well as an immediately useable, binary version of
-the Picscoin client sofware, see https://pix.bitwall.ca.
+the Picscoin client sofware, see http://www.picscoin.org.
 
 License
 -------
