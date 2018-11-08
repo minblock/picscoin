@@ -13,12 +13,11 @@ packages:
 - "faketime"
 reference_datetime: "2011-01-30 00:00:00"
 remotes:
-- "url": "https://github.com/minblock/picscoin.git"
-  "dir": "picscoin"
 files:
 - "qt-win32-4.8.5-gitian-r8.zip"
 - "boost-win32-1.55.0-gitian-r6.zip"
 - "bitcoin08-deps-win32-gitian-r13.zip"
+- "picscoin.zip"
 script: |
   #
   STAGING=$HOME/staging
@@ -31,10 +30,12 @@ script: |
   unzip ../build/bitcoin08-deps-win32-gitian-r13.zip
   cd $HOME/build/
   #
+  unzip picscoin.zip
+  cp -r picscoin $OUTDIR/src
+  cp -r picscoin nsis
   cd picscoin
   export PATH=$STAGING/host/bin:$PATH
   mkdir -p $OUTDIR/src
-  git archive HEAD | tar -x -C $OUTDIR/src
   cp $OUTDIR/src/doc/README_windows.txt $OUTDIR/readme.txt
   cp $OUTDIR/src/COPYING $OUTDIR/COPYING.txt
   export LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1
@@ -56,7 +57,6 @@ script: |
   cp picscoind.exe $OUTDIR/daemon
   cd ..
   mkdir nsis
-  git archive HEAD | tar -x -C nsis
   cd nsis/src
   mkdir ../release
   cp ../../release/* ../release/
