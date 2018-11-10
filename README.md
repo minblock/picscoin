@@ -1,7 +1,7 @@
 Picscoin integration/staging tree
 ================================
 
-http://www.picscoin.org
+http://www.picscoins.org
 
 Copyright (c) 2009-2014 Bitcoin Developers
 Copyright (c) 2011-2014 Picscoin Developers
