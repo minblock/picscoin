@@ -1,7 +1,7 @@
 Picscoin integration/staging tree
 ================================
 
-http://www.picscoin.org
+http://www.picscoins.org
 
 Copyright (c) 2009-2014 Bitcoin Developers
 Copyright (c) 2011-2014 Picscoin Developers
@@ -19,7 +19,7 @@ The rest is the same as Bitcoin.
  - 2016 blocks to retarget difficulty
 
 For more information, as well as an immediately useable, binary version of
-the Picscoin client sofware, see http://www.picscoin.org.
+the Picscoin client sofware, see http://www.picscoins.org.
 
 License
 -------
