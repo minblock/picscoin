@@ -19,7 +19,6 @@ files:
 - "qt-win32-4.8.5-gitian-r8.zip"
 - "boost-win32-1.55.0-gitian-r6.zip"
 - "bitcoin08-deps-win32-gitian-r13.zip"
-- "picscoin.zip"
 script: |
   #
   STAGING=$HOME/staging
@@ -32,7 +31,6 @@ script: |
   unzip ../build/bitcoin08-deps-win32-gitian-r13.zip
   cd $HOME/build/
   #
-  unzip picscoin.zip
   cp -r picscoin $OUTDIR/src
   mkdir nsis
   cp -r picscoin nsis
