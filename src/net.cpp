@@ -1173,17 +1173,13 @@ void MapPort(bool)
 // The first name is used as information source for addrman.
 // The second name should resolve to a list of seed addresses.
 static const char *strMainNetDNSSeed[][2] = {
-    {"picscoin.org", "dnsseed.picscoin.org"},
-    {"pool.picscoin.org", "dnsseed.pool.picscoin.org"},
-    {"bitwall.ca", "dnsseed.pics.bitwall.ca"},
-    {"pics.provgn.com", "dnsseed.pics.provgn.com"},
-    {"pics.mchub.ca", "dnsseed.pics.mchub.ca"},
+    {"picscoins.org", "dnsseed.picscoins.org"},
+    {"pool.picscoins.org", "dnsseed.pool.picscoins.org"},
     {NULL, NULL}
 };
 
 static const char *strTestNetDNSSeed[][2] = {
-    {"picscoin.org", "testnet-seed.picscoin.org"},
-    {"bitwall.ca", "testnet-seed.pics.bitwall.ca"},
+    {"picscoins.org", "testnet-seed.picscoins.org"},
     {NULL, NULL}
 };
 
@@ -1232,8 +1228,7 @@ void ThreadDNSAddressSeed()
 
 unsigned int pnSeed[] =
 {
-    0x0100007f, 0x5a0a0a0a, 0x120303c0, 0x130303c0, 0x140303c0, 0x150303c0, 0x160303c0, 0x170303c0, 0x180303c0, 0x190303c0, 0x1a0303c0, 0x1b0303c0, 0x1c0303c0, 0x1d0303c0, 0x1e0303c0
-
+    0x120303c0, 0x130303c0, 0x140303c0, 0x150303c0, 0x160303c0, 0x170303c0, 0x180303c0, 0x190303c0, 0x1a0303c0, 0x1b0303c0, 0x1c0303c0, 0x1d0303c0, 0x1e0303c0
 };
 
 void DumpAddresses()
