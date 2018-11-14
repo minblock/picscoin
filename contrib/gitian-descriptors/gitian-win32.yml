@@ -19,6 +19,7 @@ files:
 - "qt-win32-4.8.5-gitian-r8.zip"
 - "boost-win32-1.55.0-gitian-r6.zip"
 - "bitcoin08-deps-win32-gitian-r13.zip"
+- "picscoin.zip"
 script: |
   #
   STAGING=$HOME/staging
@@ -52,7 +53,6 @@ script: |
   export LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1
   export FAKETIME=$REFERENCE_DATETIME
   export TZ=UTC
-  rm obj/*.o
   make -f makefile.linux-mingw $MAKEOPTS DEPSDIR=$STAGING picscoind.exe USE_UPNP=0 DEBUGFLAGS="-frandom-seed=picscoin" USE_SSE2=1
   $HOST-strip picscoind.exe
   mkdir $OUTDIR/daemon
