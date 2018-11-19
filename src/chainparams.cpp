@@ -208,10 +208,10 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x1efb29c8187d5a496a33377941d1df415169c3ce5d8c05d055f25b683ec3f9a3"); //612653
 
-        pchMessageStart[0] = 0xfd;
-        pchMessageStart[1] = 0xd2;
-        pchMessageStart[2] = 0xc8;
-        pchMessageStart[3] = 0xf1;
+        pchMessageStart[0] = 0xfc;
+        pchMessageStart[1] = 0xc1;
+        pchMessageStart[2] = 0xb7;
+        pchMessageStart[3] = 0xdc;
         nDefaultPort = 1336;
         nPruneAfterHeight = 1000;
 
@@ -223,9 +223,9 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testnet-seed.picscointools.com");
-        vSeeds.emplace_back("seed-b.picscoin.loshan.co.uk");
-        vSeeds.emplace_back("dnsseed-testnet.thrasher.io");
+        vSeeds.emplace_back("testnet-seed.picscoins.org");
+        vSeeds.emplace_back("seed-b.picscoin.provgn.com");
+        vSeeds.emplace_back("dnsseed-testnet.picscoin..ca");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -260,7 +260,7 @@ public:
 };
 
 /**
- * Regression Implemnting soon. Need to recreate Hash from merkl
+ * Regression Implemnation. Used to do test on main net with 0 diffuclty*/
 
 class CRegTestParams : public CChainParams {
 public:
@@ -268,7 +268,7 @@ public:
         strNetworkID = "regtest";
         consensus.nSubsidyHalvingInterval = 150;
         consensus.BIP16Height = 0; // always enforce P2SH BIP16 on regtest
-        consensus.BIP34Height = 0; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests)
+        consensus.BIP34Height = 100000000; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests)
         consensus.BIP34Hash = uint256();
         consensus.BIP65Height = 0; // BIP65 activated on regtest (Used in rpc activation tests)
         consensus.BIP66Height = 01; // BIP66 activated on regtest (Used in rpc activation tests)
@@ -304,7 +304,7 @@ public:
 
         genesis = CreateGenesisBlock(1296688602, 0, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x"));
+        assert(consensus.hashGenesisBlock == uint256S("0x82db42015aa8ed5ba165482d8e9836c99ef6579617be7df52e766effc647179e"));
         assert(genesis.hashMerkleRoot == uint256S("0x2402e13c93957aa10bed945886f3cfbe12749bb8886492db16560c8419a42c9d"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
@@ -316,7 +316,7 @@ public:
 
         checkpointData = {
             {
-                {0, uint256S("0x")},
+                {0, uint256S("0x82db42015aa8ed5ba165482d8e9836c99ef6579617be7df52e766effc647179e")},
             }
         };
 
@@ -336,7 +336,7 @@ public:
         bech32_hrp = "rtpic";
     }
 };
- */
+ 
 static std::unique_ptr<CChainParams> globalChainParams;
 
 const CChainParams &Params() {
