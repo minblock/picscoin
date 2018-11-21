@@ -62,12 +62,12 @@
         <translation>Mottager adresser</translation>
     </message>
     <message>
-        <source>These are your Picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Dette er dine Picscoin adresser for å sende  å sende betalinger. Husk å sjekke beløp og mottager adresser før du sender mynter.</translation>
+        <source>These are your strayacoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Dette er dine strayacoin adresser for å sende  å sende betalinger. Husk å sjekke beløp og mottager adresser før du sender mynter.</translation>
     </message>
     <message>
-        <source>These are your Picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Dette er dine Picscoin adresse for å motta betalinger. Det er anbefalt å bruke en ny mottager adresse for hver transaksjon.</translation>
+        <source>These are your strayacoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Dette er dine strayacoin adresse for å motta betalinger. Det er anbefalt å bruke en ny mottager adresse for hver transaksjon.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -168,8 +168,8 @@
         <translation>Bekreft kryptering av lommeboken</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PICSCOINS&lt;/b&gt;!</source>
-        <translation>Advarsel: Dersom du krypterer lommeboken og mister passordsetningen vil du &lt;b&gt;MISTE ALLE DINE PICSCOIN&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR strayacoinS&lt;/b&gt;!</source>
+        <translation>Advarsel: Dersom du krypterer lommeboken og mister passordsetningen vil du &lt;b&gt;MISTE ALLE DINE strayacoin&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -180,8 +180,8 @@
         <translation>Lommeboken er kryptert</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your picscoins from being stolen by malware infecting your computer.</source>
-        <translation>%1 vil nå lukkes for å fullføre krypteringsprosessen. Husk at å kryptere lommeboken ikke kan beskytte dine picscoin fullstendig fra å bli stjålet av skadelig programvare som har infisert datamaskinen din.</translation>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your strayacoins from being stolen by malware infecting your computer.</source>
+        <translation>%1 vil nå lukkes for å fullføre krypteringsprosessen. Husk at å kryptere lommeboken ikke kan beskytte dine strayacoin fullstendig fra å bli stjålet av skadelig programvare som har infisert datamaskinen din.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -189,7 +189,7 @@
     </message>
     <message>
         <source>Wallet encryption failed</source>
-        <translation>Kryptering av lommeboken feilet</translation>
+        <translation>Lommebokkrypteringen feilet</translation>
     </message>
     <message>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
@@ -287,7 +287,7 @@
     </message>
     <message>
         <source>&amp;Options...</source>
-        <translation>&amp;Alternativer</translation>
+        <translation>&amp;Valg</translation>
     </message>
     <message>
         <source>Modify configuration options for %1</source>
@@ -338,8 +338,8 @@
         <translation>Reindekserer blokker på disken</translation>
     </message>
     <message>
-        <source>Send coins to a Picscoin address</source>
-        <translation>Send mynter til en Picscoin adresse</translation>
+        <source>Send coins to a strayacoin address</source>
+        <translation>Send mynter til en strayacoin adresse</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -362,8 +362,8 @@
         <translation>&amp;Verifiser meldingen...</translation>
     </message>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <source>strayacoin</source>
+        <translation>strayacoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -390,12 +390,12 @@
         <translation>Krypter de private nøklene som tilhører lommeboken din</translation>
     </message>
     <message>
-        <source>Sign messages with your Picscoin addresses to prove you own them</source>
-        <translation>Signer meldingene med Picscoin adresse for å bevise at diu eier dem</translation>
+        <source>Sign messages with your strayacoin addresses to prove you own them</source>
+        <translation>Signer meldingene med strayacoin adresse for å bevise at diu eier dem</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Picscoin addresses</source>
-        <translation>Verifiser meldinger for å sikre at de ble signert med en angitt Picscoin adresse</translation>
+        <source>Verify messages to ensure they were signed with specified strayacoin addresses</source>
+        <translation>Verifiser meldinger for å sikre at de ble signert med en angitt strayacoin adresse</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -403,7 +403,7 @@
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>Inn&amp;stillinger</translation>
+        <translation>In&amp;stillinger</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -412,108 +412,6 @@
     <message>
         <source>Tabs toolbar</source>
         <translation>Hjelpelinje for fliker</translation>
-    </message>
-    <message>
-        <source>Request payments (generates QR codes and picscoin: URIs)</source>
-        <translation>Be om betalinger (genererer QR-koder og picscoin-URIer)</translation>
-    </message>
-    <message>
-        <source>Show the list of used sending addresses and labels</source>
-        <translation>Vis lista over brukte sendeadresser og merkelapper</translation>
-    </message>
-    <message>
-        <source>Show the list of used receiving addresses and labels</source>
-        <translation>Vis lista over brukte mottakeradresser og merkelapper</translation>
-    </message>
-    <message>
-        <source>Open a picscoin: URI or payment request</source>
-        <translation>Åpne en picscoin: URI eller betalingsforespørsel</translation>
-    </message>
-    <message>
-        <source>&amp;Command-line options</source>
-        <translation>&amp;Kommandolinjealternativer</translation>
-    </message>
-    <message>
-        <source>Processing blocks on disk...</source>
-        <translation>Behandler blokker på disken…</translation>
-    </message>
-    <message>
-        <source>%1 behind</source>
-        <translation>%1 bak</translation>
-    </message>
-    <message>
-        <source>Last received block was generated %1 ago.</source>
-        <translation>Siste mottatte blokk ble generert for %1 siden.</translation>
-    </message>
-    <message>
-        <source>Transactions after this will not yet be visible.</source>
-        <translation>Transaksjoner etter dette vil ikke være synlige ennå.</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Feilmelding</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>Advarsel</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Informasjon</translation>
-    </message>
-    <message>
-        <source>Up to date</source>
-        <translation>Oppdatert</translation>
-    </message>
-    <message>
-        <source>Show the %1 help message to get a list with possible Picscoin command-line options</source>
-        <translation>Vis %1-hjelpemeldingen for å få en liste over mulige Picscoin-kommandolinjealternativer</translation>
-    </message>
-    <message>
-        <source>%1 client</source>
-        <translation>%1-klient</translation>
-    </message>
-    <message>
-        <source>Catching up...</source>
-        <translation>Tar igjen…</translation>
-    </message>
-    <message>
-        <source>Date: %1
-</source>
-        <translation>Dato: %1
-</translation>
-    </message>
-    <message>
-        <source>Amount: %1
-</source>
-        <translation>Mengde: %1
-</translation>
-    </message>
-    <message>
-        <source>Type: %1
-</source>
-        <translation>Type: %1
-</translation>
-    </message>
-    <message>
-        <source>Label: %1
-</source>
-        <translation>Merkelapp: %1
-</translation>
-    </message>
-    <message>
-        <source>Address: %1
-</source>
-        <translation>Adresse: %1
-</translation>
-    </message>
-    <message>
-        <source>Sent transaction</source>
-        <translation>Sendt transaksjon</translation>
-    </message>
-    <message>
-        <source>Incoming transaction</source>
-        <translation>Innkommende transaksjon</translation>
     </message>
     </context>
 <context>
@@ -534,14 +432,6 @@
     </context>
 <context>
     <name>Intro</name>
-    <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Feilmelding</translation>
-    </message>
     </context>
 <context>
     <name>ModalOverlay</name>
@@ -551,10 +441,6 @@
     </context>
 <context>
     <name>OptionsDialog</name>
-    <message>
-        <source>Error</source>
-        <translation>Feilmelding</translation>
-    </message>
     </context>
 <context>
     <name>OverviewPage</name>
@@ -685,17 +571,5 @@
     </context>
 <context>
     <name>bitcoin-core</name>
-    <message>
-        <source>Information</source>
-        <translation>Informasjon</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>Advarsel</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Feilmelding</translation>
-    </message>
-</context>
+    </context>
 </TS>

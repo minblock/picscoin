@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Picscoin"
-            VALUE "FileDescription",    "picscoin-cli (JSON-RPC client for " PACKAGE_NAME ")"
+            VALUE "CompanyName",        "strayacoin"
+            VALUE "FileDescription",    "strayacoin-cli (JSON-RPC client for " PACKAGE_NAME ")"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "picscoin-cli"
+            VALUE "InternalName",       "strayacoin-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "picscoin-cli.exe"
-            VALUE "ProductName",        "picscoin-cli"
+            VALUE "OriginalFilename",   "strayacoin-cli.exe"
+            VALUE "ProductName",        "strayacoin-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

@@ -42,14 +42,6 @@
         <translation>&amp;წაშლა</translation>
     </message>
     <message>
-        <source>Choose the address to send coins to</source>
-        <translation>აირჩიეთ კოინების გამგზავნი მისამართი</translation>
-    </message>
-    <message>
-        <source>Choose the address to receive coins with</source>
-        <translation>აირჩიეთ კოინების მიმღები მისამართი</translation>
-    </message>
-    <message>
         <source>C&amp;hoose</source>
         <translation>&amp;არჩევა</translation>
     </message>
@@ -62,57 +54,17 @@
         <translation>მიმღები მისამართი</translation>
     </message>
     <message>
-        <source>These are your Picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>ეს არის თქვენი ბიტკოინ-მისამართები, რომელთაგანაც შეგიძლიათ გადახდა. აუცილებლად შეამოწმეთ თანხა და მიმღები მისამართი გაგზავნამდე.</translation>
-    </message>
-    <message>
-        <source>These are your Picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>ეს არის თქვენი ბიტკოინ-მისამართები, რომლებზეც შეგიძლიათ მიიღოთ თანხები. რეკომენდებულია ყოველი ტრანსაქციისათვის ახალი მიმღები მისამართის გამოყენება.</translation>
-    </message>
-    <message>
-        <source>&amp;Copy Address</source>
-        <translation>მისამართის კოპირება</translation>
-    </message>
-    <message>
-        <source>Copy &amp;Label</source>
-        <translation>ნიშნულის კოპირება</translation>
-    </message>
-    <message>
         <source>&amp;Edit</source>
         <translation>&amp;რედაქტირება</translation>
     </message>
-    <message>
-        <source>Export Address List</source>
-        <translation>მისამართების სიის ექსპორტი</translation>
-    </message>
-    <message>
-        <source>Comma separated file (*.csv)</source>
-        <translation>CSV ფორმატის ფაილი (*.csv)</translation>
-    </message>
-    <message>
-        <source>Exporting Failed</source>
-        <translation>ექპორტი ვერ განხორციელდა</translation>
-    </message>
-    <message>
-        <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>მისამართების სიის %1 შენახვა ვერ მოხერხდა. გაიმეორეთ მცდელობა.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>AddressTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>ნიშნული</translation>
-    </message>
     <message>
         <source>Address</source>
         <translation>მისამართი</translation>
     </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(ნიშნული არ არის)</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
@@ -132,24 +84,12 @@
         <translation>გაიმეორეთ ახალი ფრაზა-პაროლი</translation>
     </message>
     <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>აკრიფეთ ახალი პასფრაზა საფულისათვის.&lt;br/&gt; გამოიყენეთ &lt;b&gt;ათი ან მეტი შემთხვევითი სიმბოლოსაგან &lt;/b&gt;, ან &lt;b&gt;რვა ან მეტი სიტყვისაგან&lt;/b&gt; შემდგარი პასფრაზა.</translation>
-    </message>
-    <message>
         <source>Encrypt wallet</source>
         <translation>საფულის დაშიფრვა</translation>
     </message>
     <message>
-        <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>ამ ოპერაციის შესასრულებლად საჭიროა თქვენი საფულის განბლოკვა პასფრაზით.</translation>
-    </message>
-    <message>
         <source>Unlock wallet</source>
         <translation>საფულის განბლოკვა</translation>
-    </message>
-    <message>
-        <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>ამ ოპერაციის შესასრულებლად საჭიროა თქვენი საფულის განშიფრვა პასფრაზით.</translation>
     </message>
     <message>
         <source>Decrypt wallet</source>
@@ -158,38 +98,6 @@
     <message>
         <source>Change passphrase</source>
         <translation>პაროლის შეცვლა</translation>
-    </message>
-    <message>
-        <source>Enter the old passphrase and new passphrase to the wallet.</source>
-        <translation>აკრიფეთ ძველი და ახალი პასფრაზები საფულისათვის.</translation>
-    </message>
-    <message>
-        <source>Confirm wallet encryption</source>
-        <translation>საფულის დაშიფრვის დადასტურება</translation>
-    </message>
-    <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PICSCOINS&lt;/b&gt;!</source>
-        <translation>გაფრთხილება: თუ თქვენ დაშიფრავთ თქვენს საფულეს და ამის შემდეგ დაკარგავთ გასაშიფრ ფრაზას, &lt;b&gt;თქვენ დაკარგავთ ყველა ბიტკოინს!&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>დარწმუნებული ხარ რომ საფულის დაშიფვრა გსურს?</translation>
-    </message>
-    <message>
-        <source>Wallet encrypted</source>
-        <translation>საფულე დაშიფრულია</translation>
-    </message>
-    <message>
-        <source>Wallet encryption failed</source>
-        <translation>საფულის დაშიფვრა წარუმატებით დამთვრდა</translation>
-    </message>
-    <message>
-        <source>Wallet unlock failed</source>
-        <translation>საფულის გახსნა წარუმატებლად შესრულდა</translation>
-    </message>
-    <message>
-        <source>Wallet decryption failed</source>
-        <translation>საფულის გაშიფვრა ვერ შესრულდა</translation>
     </message>
     </context>
 <context>
@@ -254,10 +162,6 @@
         <translation>&amp;ოპციები</translation>
     </message>
     <message>
-        <source>Modify configuration options for %1</source>
-        <translation>%1-ის კონფიგურირების პარამეტრების რედაქტირება</translation>
-    </message>
-    <message>
         <source>&amp;Encrypt Wallet...</source>
         <translation>საფულის &amp;დაშიფრვა</translation>
     </message>
@@ -286,8 +190,8 @@
         <translation>დისკზე ბლოკების რეინდექსაცია...</translation>
     </message>
     <message>
-        <source>Send coins to a Picscoin address</source>
-        <translation>მონეტების გაგზავნა Picscoin-მისამართზე</translation>
+        <source>Send coins to a strayacoin address</source>
+        <translation>მონეტების გაგზავნა strayacoin-მისამართზე</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -310,8 +214,8 @@
         <translation>&amp;ვერიფიკაცია</translation>
     </message>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <source>strayacoin</source>
+        <translation>strayacoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -338,12 +242,12 @@
         <translation>თქვენი საფულის პირადი გასაღებების დაშიფრვა</translation>
     </message>
     <message>
-        <source>Sign messages with your Picscoin addresses to prove you own them</source>
-        <translation>მესიჯებზე ხელმოწერა თქვენი Picscoin-მისამართებით იმის დასტურად, რომ ის თქვენია</translation>
+        <source>Sign messages with your strayacoin addresses to prove you own them</source>
+        <translation>მესიჯებზე ხელმოწერა თქვენი strayacoin-მისამართებით იმის დასტურად, რომ ის თქვენია</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Picscoin addresses</source>
-        <translation>შეამოწმეთ, რომ მესიჯები ხელმოწერილია მითითებული Picscoin-მისამართით</translation>
+        <source>Verify messages to ensure they were signed with specified strayacoin addresses</source>
+        <translation>შეამოწმეთ, რომ მესიჯები ხელმოწერილია მითითებული strayacoin-მისამართით</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -362,8 +266,8 @@
         <translation>ბარათების პანელი</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and picscoin: URIs)</source>
-        <translation>გადახდის მოთხოვნა (შეიქმნება QR-კოდები და picscoin: ბმულები)</translation>
+        <source>Request payments (generates QR codes and strayacoin: URIs)</source>
+        <translation>გადახდის მოთხოვნა (შეიქმნება QR-კოდები და strayacoin: ბმულები)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -374,8 +278,8 @@
         <translation>გამოყენებული მიღების მისამართებისა და ნიშნულების სიის ჩვენება</translation>
     </message>
     <message>
-        <source>Open a picscoin: URI or payment request</source>
-        <translation>picscoin: URI-ის ან გადახდის მოთხოვნის გახსნა</translation>
+        <source>Open a strayacoin: URI or payment request</source>
+        <translation>strayacoin: URI-ის ან გადახდის მოთხოვნის გახსნა</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -414,12 +318,8 @@
         <translation>%1 კლიენტი</translation>
     </message>
     <message>
-        <source>Connecting to peers...</source>
-        <translation>შეერთება ქსელთან...</translation>
-    </message>
-    <message>
         <source>Catching up...</source>
-        <translation>ჩართვა...</translation>
+        <translation>მიმდინარეობს განახლება...</translation>
     </message>
     <message>
         <source>Date: %1
@@ -430,19 +330,13 @@
     <message>
         <source>Amount: %1
 </source>
-        <translation>რაოდენობა^ %1
+        <translation>რაოდენობა: %1
 </translation>
     </message>
     <message>
         <source>Type: %1
 </source>
         <translation>ტიპი: %1
-</translation>
-    </message>
-    <message>
-        <source>Label: %1
-</source>
-        <translation>ლეიბლი: %1
 </translation>
     </message>
     <message>
@@ -527,32 +421,12 @@
         <translation>დადასტურებულია</translation>
     </message>
     <message>
-        <source>Copy address</source>
-        <translation>მისამართის კოპირება</translation>
-    </message>
-    <message>
-        <source>Copy label</source>
-        <translation>ლეიბლის კოპირება</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>რაოდენობის კოპირება</translation>
-    </message>
-    <message>
-        <source>Lock unspent</source>
-        <translation>დაუხარჯავის ჩაკეტვა</translation>
-    </message>
-    <message>
         <source>yes</source>
         <translation>დიახ</translation>
     </message>
     <message>
         <source>no</source>
         <translation>არა</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(ნიშნული არ არის)</translation>
     </message>
     <message>
         <source>(change)</source>
@@ -655,14 +529,18 @@
         <translation>მითითებული კატალოგის გამოყენება:</translation>
     </message>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>შეცდომა</translation>
     </message>
-    </context>
+    <message numerus="yes">
+        <source>%n GB of free space available</source>
+        <translation><numerusform>ხელმისაწვდომია თავისუფალი სივრცის %n გბ</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>(of %n GB needed)</source>
+        <translation><numerusform>(საჭირო %n გბ-დან)</numerusform></translation>
+    </message>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -764,8 +642,8 @@
         <translation>დაუდასტურებელი ხურდის გამოყენების აკრძალვის შემდეგ მათი გამოყენება შეუძლებელი იქნება, სანამ ტრანსაქციას არ ექნება ერთი დასტური მაინც. ეს აისახება თქვენი ნაშთის დათვლაზეც.</translation>
     </message>
     <message>
-        <source>Automatically open the Picscoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>როუტერში Picscoin-კლიენტის პორტის ავტომატური გახსნა. მუშაობს, თუ თქვენს როუტერს ჩართული აქვს UPnP.</translation>
+        <source>Automatically open the strayacoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>როუტერში strayacoin-კლიენტის პორტის ავტომატური გახსნა. მუშაობს, თუ თქვენს როუტერს ჩართული აქვს UPnP.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -856,10 +734,6 @@
         <translation>ცვლილებები ძალაში შევა კლიენტის ხელახალი გაშვების შემდეგ.</translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation>შეცდომა</translation>
-    </message>
-    <message>
         <source>This change would require a client restart.</source>
         <translation>ამ ცვლილებების ძალაში შესასვლელად საჭიროა კლიენტის დახურვა და ხელახალი გაშვება.</translation>
     </message>
@@ -875,8 +749,8 @@
         <translation>ფორმა</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Picscoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>ნაჩვენები ინფორმაცია შეიძლება მოძველებული იყოს. თქვენი საფულე ავტომატურად სინქრონიზდება Picscoin-ის ქსელთან კავშირის დამყარების შემდეგ, ეს პროცესი ჯერ არ არის დასრულებული.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the strayacoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>ნაჩვენები ინფორმაცია შეიძლება მოძველებული იყოს. თქვენი საფულე ავტომატურად სინქრონიზდება strayacoin-ის ქსელთან კავშირის დამყარების შემდეგ, ეს პროცესი ჯერ არ არის დასრულებული.</translation>
     </message>
     <message>
         <source>Available:</source>
@@ -939,27 +813,7 @@
         <source>%1 and %2</source>
         <translation>%1 და %2</translation>
     </message>
-    <message>
-        <source>%1 B</source>
-        <translation>%1 B</translation>
-    </message>
-    <message>
-        <source>%1 KB</source>
-        <translation>%1 KB</translation>
-    </message>
-    <message>
-        <source>%1 MB</source>
-        <translation>%1 MB</translation>
-    </message>
-    <message>
-        <source>%1 GB</source>
-        <translation>%1 GB</translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>უცნობია</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>QObject::QObject</name>
     </context>
@@ -1029,6 +883,10 @@
         <translation>&amp;ქსელის ტრაფიკი</translation>
     </message>
     <message>
+        <source>&amp;Clear</source>
+        <translation>&amp;წაშლა</translation>
+    </message>
+    <message>
         <source>Totals</source>
         <translation>სულ:</translation>
     </message>
@@ -1048,6 +906,30 @@
         <source>Clear console</source>
         <translation>კონსოლის გასუფთავება</translation>
     </message>
+    <message>
+        <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
+        <translation>კლავიშები "ზევით" და "ქვევით" - ისტორიაში მოძრაობა, &lt;b&gt;Ctrl-L&lt;/b&gt; - ეკრანის გასუფთავება.</translation>
+    </message>
+    <message>
+        <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
+        <translation>აკრიფეთ &lt;b&gt;help&lt;/b&gt; ფაშვებული ბრძანებების სანახავად.</translation>
+    </message>
+    <message>
+        <source>%1 B</source>
+        <translation>%1 B</translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation>%1 KB</translation>
+    </message>
+    <message>
+        <source>%1 MB</source>
+        <translation>%1 MB</translation>
+    </message>
+    <message>
+        <source>%1 GB</source>
+        <translation>%1 GB</translation>
+    </message>
     </context>
 <context>
     <name>ReceiveCoinsDialog</name>
@@ -1064,7 +946,15 @@
         <translation>&amp;მესიჯი:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Picscoin network.</source>
+        <source>Reuse one of the previously used receiving addresses. Reusing addresses has security and privacy issues. Do not use this unless re-generating a payment request made before.</source>
+        <translation>რომელიმე ადრე გამოყენებული მიღების მისამართის გამოყენება. ეს ამცირებს უსაფრთხოებასა და პრივატულობას. ნუ გამოიყენებთ ამ ოპციას, თუ არ ახდენთ ადრე მოთხოვნილი გადახდის ხელახლა გენერირებას.</translation>
+    </message>
+    <message>
+        <source>R&amp;euse an existing receiving address (not recommended)</source>
+        <translation>ად&amp;რე გამოყენებული მიღების მისამართის გამოყენება (არ არის რეკომენდებული)</translation>
+    </message>
+    <message>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the strayacoin network.</source>
         <translation>არააუცილებელი მესიჯი, რომელიც ერთვის გადახდის მოთხოვნას და ნაჩვენები იქნება მოთხოვნის გახსნისას. შენიშვნა: მესიჯი არ გაყვება გადახდას ბითქოინის ქსელში.</translation>
     </message>
     <message>
@@ -1111,15 +1001,7 @@
         <source>Remove</source>
         <translation>წაშლა</translation>
     </message>
-    <message>
-        <source>Copy label</source>
-        <translation>ლეიბლის კოპირება</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>რაოდენობის კოპირება</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -1142,21 +1024,9 @@
         <source>Address</source>
         <translation>მისამართი</translation>
     </message>
-    <message>
-        <source>Label</source>
-        <translation>ნიშნული</translation>
-    </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>ნიშნული</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(ნიშნული არ არის)</translation>
-    </message>
     </context>
 <context>
     <name>SendCoinsDialog</name>
@@ -1252,15 +1122,7 @@
         <source>S&amp;end</source>
         <translation>გაგ&amp;ზავნა</translation>
     </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>რაოდენობის კოპირება</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(ნიშნული არ არის)</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
@@ -1308,7 +1170,7 @@
         <translation>შეიყვანეთ ამ მისამართის ნიშნული გამოყენებული მისამართების სიაში დასამატებლად</translation>
     </message>
     <message>
-        <source>A message that was attached to the picscoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Picscoin network.</source>
+        <source>A message that was attached to the strayacoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the strayacoin network.</source>
         <translation>მესიჯი, რომელიც თან ერთვის მონეტებს:  URI, რომელიც შეინახება ტრანსაქციასთან ერთად თქვენთვის. შენიშვნა: მესიჯი არ გაყვება გადახდას ბითქოინის ქსელში.</translation>
     </message>
     <message>
@@ -1369,7 +1231,7 @@
         <translation>მიმდინარე ხელმოწერის კოპირება კლიპბორდში</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Picscoin address</source>
+        <source>Sign the message to prove you own this strayacoin address</source>
         <translation>მოაწერეთ ხელი იმის დასადასტურებლად, რომ ეს მისამართი თქვენია</translation>
     </message>
     <message>
@@ -1389,8 +1251,8 @@
         <translation>მესიჯის &amp;ვერიფიკაცია</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Picscoin address</source>
-        <translation>შეამოწმეთ, რომ მესიჯი ხელმოწერილია მითითებული Picscoin-მისამართით</translation>
+        <source>Verify the message to ensure it was signed with the specified strayacoin address</source>
+        <translation>შეამოწმეთ, რომ მესიჯი ხელმოწერილია მითითებული strayacoin-მისამართით</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -1427,44 +1289,12 @@
     </context>
 <context>
     <name>TransactionTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>ნიშნული</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(ნიშნული არ არის)</translation>
-    </message>
     </context>
 <context>
     <name>TransactionView</name>
     <message>
-        <source>Copy address</source>
-        <translation>მისამართის კოპირება</translation>
-    </message>
-    <message>
-        <source>Copy label</source>
-        <translation>ლეიბლის კოპირება</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>რაოდენობის კოპირება</translation>
-    </message>
-    <message>
-        <source>Comma separated file (*.csv)</source>
-        <translation>CSV ფორმატის ფაილი (*.csv)</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>ნიშნული</translation>
-    </message>
-    <message>
         <source>Address</source>
         <translation>მისამართი</translation>
-    </message>
-    <message>
-        <source>Exporting Failed</source>
-        <translation>ექპორტი ვერ განხორციელდა</translation>
     </message>
     </context>
 <context>
@@ -1506,8 +1336,8 @@
         <translation>რეზიდენტულად გაშვება და კომანდების მიღება</translation>
     </message>
     <message>
-        <source>Picscoin Core</source>
-        <translation>Picscoin Core</translation>
+        <source>Strayacoin Core</source>
+        <translation>Strayacoin Core</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>
@@ -1520,10 +1350,6 @@
     <message>
         <source>&lt;category&gt; can be:</source>
         <translation>&lt;category&gt; შეიძლება იყოს:</translation>
-    </message>
-    <message>
-        <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation>გარედან შეერთებების დაშვება (ნაგულისხმევი: 1 თუ არ გამოიყენება -proxy ან -connect)</translation>
     </message>
     <message>
         <source>Block creation options:</source>
@@ -1570,8 +1396,16 @@
         <translation>საწყისი ბლოკი არ არსებობს ან არასწორია. ქსელის მონაცემთა კატალოგი datadir ხომ არის არასწორი?</translation>
     </message>
     <message>
+        <source>Invalid -onion address: '%s'</source>
+        <translation>არასწორია მისამართი -onion: '%s'</translation>
+    </message>
+    <message>
         <source>Not enough file descriptors available.</source>
         <translation>არ არის საკმარისი ფაილ-დესკრიპტორები.</translation>
+    </message>
+    <message>
+        <source>Set maximum block size in bytes (default: %d)</source>
+        <translation>ბლოკის მაქსიმალური ზომის განსაზღვრა ბაიტებში (ნადულისხმევი: %d)</translation>
     </message>
     <message>
         <source>Specify wallet file (within data directory)</source>
@@ -1582,12 +1416,24 @@
         <translation>ბლოკების ვერიფიკაცია...</translation>
     </message>
     <message>
+        <source>Verifying wallet...</source>
+        <translation>საფულის ვერიფიკაცია...</translation>
+    </message>
+    <message>
+        <source>Wallet %s resides outside data directory %s</source>
+        <translation>საფულე %s მდებარეობს მონაცემთა კატალოგის %s გარეთ</translation>
+    </message>
+    <message>
         <source>Wallet options:</source>
         <translation>სფულის ოპციები:</translation>
     </message>
     <message>
         <source>Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)</source>
         <translation>ბრძანების შესრულება შესაბამისი უწყების მიღებისას ან როცა შეინიშნება საგრძნობი გახლეჩა (cmd-ში %s შეიცვლება მესიჯით)</translation>
+    </message>
+    <message>
+        <source>Set maximum size of high-priority/low-fee transactions in bytes (default: %d)</source>
+        <translation>მაღალპრიორიტეტული/დაბალსაკომისიოიანი ტრანსაქციების მაქსიმალური ზომა ბაიტებში (ნაგულისხმევი: %d)</translation>
     </message>
     <message>
         <source>Information</source>
@@ -1622,10 +1468,6 @@
         <translation>გაფრთხილება</translation>
     </message>
     <message>
-        <source>You need to rebuild the database using -reindex to change -txindex</source>
-        <translation>საჭიროა ბაზის ხელახალი აგება, გამოიყენეთ -reindex რათა შეცვალოთ -txindex</translation>
-    </message>
-    <message>
         <source>Zapping all transactions from wallet...</source>
         <translation>ტრანსაქციების ჩახსნა საფულიდან...</translation>
     </message>
@@ -1642,6 +1484,14 @@
         <translation>DNS-ძებნის დაშვება -addnode, -seednode და -connect-სათვის</translation>
     </message>
     <message>
+        <source>Loading addresses...</source>
+        <translation>მისამართების ჩატვირთვა...</translation>
+    </message>
+    <message>
+        <source>Invalid -proxy address: '%s'</source>
+        <translation>არასწორია მისამართი -proxy: '%s'</translation>
+    </message>
+    <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
         <translation>-onlynet-ში მითითებულია უცნობი ქსელი: '%s'</translation>
     </message>
@@ -1654,12 +1504,20 @@
         <translation>ბლოკების ინდექსის ჩატვირთვა...</translation>
     </message>
     <message>
+        <source>Add a node to connect to and attempt to keep the connection open</source>
+        <translation>მისაერთებელი კვანძის დამატება და მიერთების შეძლებისდაგვარად შენარჩუნება</translation>
+    </message>
+    <message>
         <source>Loading wallet...</source>
         <translation>საფულის ჩატვირთვა...</translation>
     </message>
     <message>
         <source>Cannot downgrade wallet</source>
         <translation>საფულის ძველ ვერსიაზე გადაყვანა შეუძლებელია</translation>
+    </message>
+    <message>
+        <source>Cannot write default address</source>
+        <translation>ვერ ხერხდება ნაგულისხმევი მისამართის ჩაწერა</translation>
     </message>
     <message>
         <source>Rescanning...</source>

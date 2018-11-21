@@ -62,12 +62,12 @@
         <translation>адрасы Прымання</translation>
     </message>
     <message>
-        <source>These are your Picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Тут знаходзяцца Picscoin-адрасы для высылання плацяжоў. Заўсёды спраўджвайце колькасць і адрас прызначэння перад здзяйсненнем транзакцыі.</translation>
+        <source>These are your strayacoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Тут знаходзяцца strayacoin-адрасы для высылання плацяжоў. Заўсёды спраўджвайце колькасць і адрас прызначэння перад здзяйсненнем транзакцыі.</translation>
     </message>
     <message>
-        <source>These are your Picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Тут знаходзяцца Picscoin-адрасы для прымання плацяжоў. Пажадана выкарыстоўваць новы адрас для кожнай транзакцыі.</translation>
+        <source>These are your strayacoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Тут знаходзяцца strayacoin-адрасы для прымання плацяжоў. Пажадана выкарыстоўваць новы адрас для кожнай транзакцыі.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -168,7 +168,7 @@
         <translation>Пацвердзіце шыфраванне гаманца</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PICSCOINS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR strayacoinS&lt;/b&gt;!</source>
         <translation>Увага: калі вы зашыфруеце свой гаманец і страціце парольную фразу, то &lt;b&gt;СТРАЦІЦЕ ЎСЕ СВАЕ БІТКОЙНЫ&lt;/b&gt;!</translation>
     </message>
     <message>
@@ -298,8 +298,8 @@
         <translation>Пераіндэксацыя блокаў на дыску...</translation>
     </message>
     <message>
-        <source>Send coins to a Picscoin address</source>
-        <translation>Даслаць манеты на Picscoin-адрас</translation>
+        <source>Send coins to a strayacoin address</source>
+        <translation>Даслаць манеты на strayacoin-адрас</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -322,8 +322,8 @@
         <translation>Праверыць паведамленне...</translation>
     </message>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <source>strayacoin</source>
+        <translation>strayacoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -350,12 +350,12 @@
         <translation>Зашыфраваць прыватныя ключы, якия належаць вашаму гаманцу</translation>
     </message>
     <message>
-        <source>Sign messages with your Picscoin addresses to prove you own them</source>
-        <translation>Падпісаць паведамленне з дапамогай Picscoin-адраса каб даказаць, што яно належыць вам</translation>
+        <source>Sign messages with your strayacoin addresses to prove you own them</source>
+        <translation>Падпісаць паведамленне з дапамогай strayacoin-адраса каб даказаць, што яно належыць вам</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Picscoin addresses</source>
-        <translation>Спраўдзіць паведамленне з дапамогай Picscoin-адраса каб даказаць, што яно належыць вам</translation>
+        <source>Verify messages to ensure they were signed with specified strayacoin addresses</source>
+        <translation>Спраўдзіць паведамленне з дапамогай strayacoin-адраса каб даказаць, што яно належыць вам</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -370,8 +370,8 @@
         <translation>Дапамога</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and picscoin: URIs)</source>
-        <translation>Запатрабаваць плацёж (генеруецца QR-код для picscoin URI)</translation>
+        <source>Request payments (generates QR codes and strayacoin: URIs)</source>
+        <translation>Запатрабаваць плацёж (генеруецца QR-код для strayacoin URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -382,8 +382,8 @@
         <translation>Паказаць спіс адрасоў і метак для прымання</translation>
     </message>
     <message>
-        <source>Open a picscoin: URI or payment request</source>
-        <translation>Адкрыць picscoin: URI ці запыт плацяжу</translation>
+        <source>Open a strayacoin: URI or payment request</source>
+        <translation>Адкрыць strayacoin: URI ці запыт плацяжу</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -675,10 +675,6 @@
         <translation>Вітаем</translation>
     </message>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Памылка</translation>
     </message>
@@ -711,10 +707,6 @@
         <source>W&amp;allet</source>
         <translation>Гаманец</translation>
     </message>
-    <message>
-        <source>Error</source>
-        <translation>Памылка</translation>
-    </message>
     </context>
 <context>
     <name>OverviewPage</name>
@@ -739,11 +731,7 @@
         <source>%1 and %2</source>
         <translation>%1 і %2</translation>
     </message>
-    <message>
-        <source>unknown</source>
-        <translation>невядома</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>QObject::QObject</name>
     </context>
@@ -1159,6 +1147,10 @@
         <translation>Іншыя</translation>
     </message>
     <message>
+        <source>Enter address or label to search</source>
+        <translation>Увядзіце адрас ці пазнаку для пошуку</translation>
+    </message>
+    <message>
         <source>Min amount</source>
         <translation>Мін. колькасць</translation>
     </message>
@@ -1235,7 +1227,7 @@
         <source>Send Coins</source>
         <translation>Даслаць Манеты</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -1266,8 +1258,8 @@
         <translation>Запусціць у фоне як дэман і прымаць каманды</translation>
     </message>
     <message>
-        <source>Picscoin Core</source>
-        <translation>Picscoin Core</translation>
+        <source>Strayacoin Core</source>
+        <translation>Strayacoin Core</translation>
     </message>
     <message>
         <source>Do you want to rebuild the block database now?</source>
@@ -1308,6 +1300,10 @@
     <message>
         <source>Verifying blocks...</source>
         <translation>Праверка блокаў...</translation>
+    </message>
+    <message>
+        <source>Verifying wallet...</source>
+        <translation>Праверка гаманца...</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -1356,6 +1352,10 @@
     <message>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
         <translation>Выканаць каманду калі лепшы блок зменіцца (%s замяняецца на хэш блока)</translation>
+    </message>
+    <message>
+        <source>Loading addresses...</source>
+        <translation>Загружаем адрасы...</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

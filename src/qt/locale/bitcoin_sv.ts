@@ -3,7 +3,7 @@
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>Högerklicka för att redigera adressen eller etiketten.</translation>
+        <translation>Högerklicka för att ändra adressen eller etiketten</translation>
     </message>
     <message>
         <source>Create a new address</source>
@@ -31,7 +31,7 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Exportera informationen i aktuell flik till en fil</translation>
+        <translation>Exportera informationen i den nuvarande fliken till en fil</translation>
     </message>
     <message>
         <source>&amp;Export</source>
@@ -43,11 +43,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Välj en adress att skicka transaktionen till</translation>
+        <translation>Välj en adress att sända betalning till</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Välj en adress att ta emot transaktionen med</translation>
+        <translation>Välj en adress att ta emot betalning till</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -62,12 +62,12 @@
         <translation>Mottagaradresser</translation>
     </message>
     <message>
-        <source>These are your Picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Detta är dina Picscoin-adresser för att skicka betalningar. Kontrollera alltid summan och den mottagande adressen innan du skickar picscoin.</translation>
+        <source>These are your strayacoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Detta är dina strayacoin adresser för att skicka betalningar. Kolla alltid summan och den mottagande adressen innan du skickar strayacoins.</translation>
     </message>
     <message>
-        <source>These are your Picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Detta är dina Picscoin-adresser för att ta emot betalningar. Det rekommenderas att använda en ny mottagningsadress för varje transaktion.</translation>
+        <source>These are your strayacoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Detta är dina strayacoin adresser för att ta emot betalningar. Det rekommenderas att använda en ny mottagningsadress för varje transaktion.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -95,7 +95,7 @@
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Ett fel inträffade när adresslistan skulle sparas till %1.
+        <translation>Det inträffade ett fel när adresslistan skulle sparas till %1.
 Var vänlig och försök igen.</translation>
     </message>
 </context>
@@ -131,10 +131,6 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>Repeat new passphrase</source>
         <translation>Upprepa nytt lösenord</translation>
-    </message>
-    <message>
-        <source>Show password</source>
-        <translation>Visa lösenord</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -173,8 +169,8 @@ Var vänlig och försök igen.</translation>
         <translation>Bekräfta kryptering av plånbok</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PICSCOINS&lt;/b&gt;!</source>
-        <translation>VARNING: Om du krypterar din plånbok och glömmer ditt lösenord, kommer du att &lt;b&gt;FÖRLORA ALLA DINA PICSCOIN&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR strayacoinS&lt;/b&gt;!</source>
+        <translation>VARNING: Om du krypterar din plånbok och glömmer ditt lösenord, kommer du att &lt;b&gt;FÖRLORA ALLA DINA strayacoin&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -185,12 +181,12 @@ Var vänlig och försök igen.</translation>
         <translation>Plånbok krypterad</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your picscoins from being stolen by malware infecting your computer.</source>
-        <translation>%1 kommer nu att stänga ner för att slutföra krypteringen. Tänk på att en krypterad plånbok inte skyddar mot stöld om din dator är infekterad med en keylogger.</translation>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your strayacoins from being stolen by malware infecting your computer.</source>
+        <translation>%1 kommer nu att stänga ner för att färdigställa krypteringen. Tänk på att en krypterad plånbok inte skyddar mot stöld om din dator är infekterad med en keylogger.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>VIKTIGT: Alla tidigare säkerhetskopior du har skapat av plånboksfilen ska ersättas med den nyss skapade, krypterade plånboksfilen. Av säkerhetsskäl kommer tidigare säkerhetskopior av den okrypterade plånboksfilen att bli oanvändbara när du börjar använda den nya, krypterade plånboken.</translation>
+        <translation>VIKTIGT: Alla tidigare säkerhetskopior du har gjort av plånboksfilen ska ersättas med den nya genererade, krypterade plånboksfilen. Av säkerhetsskäl kommer tidigare säkerhetskopior av den okrypterade plånboksfilen blir oanvändbara när du börjar använda en ny, krypterad plånbok.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -198,7 +194,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>Kryptering av plånbok misslyckades på grund av ett internt fel. Din plånbok krypterades inte.</translation>
+        <translation>Kryptering av plånbok misslyckades på grund av ett internt fel. Din plånbok blev inte krypterad.</translation>
     </message>
     <message>
         <source>The supplied passphrases do not match.</source>
@@ -210,7 +206,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>Lösenordet för dekryptering av plånboken var felaktigt.</translation>
+        <translation>Lösenordet för dekryptering av plånboken var felaktig.</translation>
     </message>
     <message>
         <source>Wallet decryption failed</source>
@@ -218,7 +214,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Wallet passphrase was successfully changed.</source>
-        <translation>Plånbokens lösenord ändrades.</translation>
+        <translation>Plånbokens lösenord har ändrats.</translation>
     </message>
     <message>
         <source>Warning: The Caps Lock key is on!</source>
@@ -308,7 +304,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Ändra lösenord...</translation>
+        <translation>&amp;Byt lösenord...</translation>
     </message>
     <message>
         <source>&amp;Sending addresses...</source>
@@ -343,8 +339,8 @@ Var vänlig och försök igen.</translation>
         <translation>Återindexerar block på disken...</translation>
     </message>
     <message>
-        <source>Send coins to a Picscoin address</source>
-        <translation>Skicka picscoin till en Picscoin-adress</translation>
+        <source>Send coins to a strayacoin address</source>
+        <translation>Skicka strayacoins till en strayacoin-adress</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -367,8 +363,8 @@ Var vänlig och försök igen.</translation>
         <translation>&amp;Verifiera meddelande...</translation>
     </message>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <source>strayacoin</source>
+        <translation>strayacoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -395,12 +391,12 @@ Var vänlig och försök igen.</translation>
         <translation>Kryptera de privata nycklar som tillhör din plånbok</translation>
     </message>
     <message>
-        <source>Sign messages with your Picscoin addresses to prove you own them</source>
-        <translation>Signera meddelanden med dina Picscoin-adresser för att bevisa att du äger dem</translation>
+        <source>Sign messages with your strayacoin addresses to prove you own them</source>
+        <translation>Signera meddelanden med din strayacoin-adress för att bevisa att du äger dem</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Picscoin addresses</source>
-        <translation>Verifiera meddelanden för att vara säker på att de signerades med angivna Picscoin-adresser</translation>
+        <source>Verify messages to ensure they were signed with specified strayacoin addresses</source>
+        <translation>Verifiera meddelanden för att vara säker på att de var signerade med specificerade strayacoin-adresser</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -419,28 +415,28 @@ Var vänlig och försök igen.</translation>
         <translation>Verktygsfält för tabbar</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and picscoin: URIs)</source>
-        <translation>Begär betalningar (skapar QR-koder och picscoin: -URIer)</translation>
+        <source>Request payments (generates QR codes and strayacoin: URIs)</source>
+        <translation>Begär betalning (genererar QR-koder och strayacoin-URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
-        <translation>Visa listan med använda avsändaradresser och etiketter</translation>
+        <translation>Visa listan av använda avsändaradresser och etiketter</translation>
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
-        <translation>Visa listan med använda mottagningsadresser och etiketter</translation>
+        <translation>Visa listan av använda mottagningsadresser och etiketter</translation>
     </message>
     <message>
-        <source>Open a picscoin: URI or payment request</source>
-        <translation>Öppna en picscoin: URI eller betalningsbegäran</translation>
+        <source>Open a strayacoin: URI or payment request</source>
+        <translation>Öppna en strayacoin: URI eller betalningsbegäran</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>&amp;Kommandoradsalternativ</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Picscoin network</source>
-        <translation><numerusform>%n aktiva anslutningar till Picscoin-nätverket.</numerusform><numerusform>%n aktiva anslutningar till Picscoin-nätverket.</numerusform></translation>
+        <source>%n active connection(s) to strayacoin network</source>
+        <translation><numerusform>%n aktiva anslutningar till strayacoin-nätverket.</numerusform><numerusform>%n aktiva anslutningar till strayacoin-nätverket.</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -460,7 +456,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Last received block was generated %1 ago.</source>
-        <translation>Senast mottagna block skapades för %1 sedan.</translation>
+        <translation>Senast mottagna block genererades för %1 sen.</translation>
     </message>
     <message>
         <source>Transactions after this will not yet be visible.</source>
@@ -483,8 +479,8 @@ Var vänlig och försök igen.</translation>
         <translation>Uppdaterad</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Picscoin command-line options</source>
-        <translation>Visa %1 hjälpmeddelande för att få en lista med möjliga Picscoin kommandoradsalternativ.</translation>
+        <source>Show the %1 help message to get a list with possible strayacoin command-line options</source>
+        <translation>Visa %1 hjälpmeddelande för att få en lista med möjliga strayacoin kommandoradsalternativ.</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -553,8 +549,8 @@ Var vänlig och försök igen.</translation>
         <translation>Denna plånbok är &lt;b&gt;krypterad&lt;/b&gt; och för närvarande &lt;b&gt;låst&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Picscoin can no longer continue safely and will quit.</source>
-        <translation>Ett kritiskt fel uppstod. Picscoin kan inte fortsätta att köra säkert och kommer att avslutas.</translation>
+        <source>A fatal error occurred. strayacoin can no longer continue safely and will quit.</source>
+        <translation>Ett kritiskt fel uppstod. strayacoin kan inte fortsätta att köra säkert och kommer att avslutas.</translation>
     </message>
 </context>
 <context>
@@ -689,7 +685,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
-        <translation>Denna etikett blir röd om någon mottagare får en betalning som är mindre än aktuell dammtröskel.</translation>
+        <translation>Denna etikett blir röd om någon mottagare får en betalning som är mindre än aktuella dammtröskeln.</translation>
     </message>
     <message>
         <source>Can vary +/- %1 satoshi(s) per input.</source>
@@ -720,11 +716,11 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>The label associated with this address list entry</source>
-        <translation>Etiketten associerad med denna post i adresslistan</translation>
+        <translation>Etiketten associerad med denna adresslistas post</translation>
     </message>
     <message>
         <source>The address associated with this address list entry. This can only be modified for sending addresses.</source>
-        <translation>Adressen associerad med denna post i adresslistan. Den kan bara ändras för sändningsadresser.</translation>
+        <translation>Adressen associerad med denna adresslistas post. Detta kan bara ändras för sändningsadresser.</translation>
     </message>
     <message>
         <source>&amp;Address</source>
@@ -747,8 +743,8 @@ Var vänlig och försök igen.</translation>
         <translation>Redigera avsändaradress</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Picscoin address.</source>
-        <translation>Den angivna adressen "%1" är inte en giltig Picscoin-adress.</translation>
+        <source>The entered address "%1" is not a valid strayacoin address.</source>
+        <translation>Den angivna adressen "%1" är inte en giltig strayacoin-adress.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -830,7 +826,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Set SSL root certificates for payment request (default: -system-)</source>
-        <translation>Ange SSL-rotcertifikat för betalningsbegäran (standard: -system-)</translation>
+        <translation>Ange SSL rotcertifikat för betalningsansökan (standard: -system-)</translation>
     </message>
     <message>
         <source>Show splash screen on startup (default: %u)</source>
@@ -856,8 +852,8 @@ Var vänlig och försök igen.</translation>
         <translation>Eftersom detta är första gången programmet startas får du välja var %1 skall lagra sitt data.</translation>
     </message>
     <message>
-        <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
-        <translation>Denna första synkronisering är väldigt krävande, och kan påvisa hårdvaruproblem med din dator som tidigare inte visats sig. Varje gång du kör %1, kommer nerladdningen att fortsätta där den avslutades.</translation>
+        <source>%1 will download and store a copy of the strayacoin block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>%1 kommer att ladda ner och spara en kopia av strayacoin blockkedjan. Åtminstone %2GB av data kommer att sparas i denna katalog, och den kommer att växa över tiden. Plånboken kommer också att sparas i denna katalog.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -868,28 +864,8 @@ Var vänlig och försök igen.</translation>
         <translation>Använd en anpassad datakatalog:</translation>
     </message>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
-    </message>
-    <message>
-        <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
-        <translation>Minst %1 GB data kommer att lagras i den här katalogen, och den växer över tiden.</translation>
-    </message>
-    <message>
-        <source>Approximately %1 GB of data will be stored in this directory.</source>
-        <translation>Ungefär %1 GB data kommer att lagras i den här katalogen.</translation>
-    </message>
-    <message>
-        <source>%1 will download and store a copy of the Picscoin block chain.</source>
-        <translation>%1 kommer att ladda ner och lagra en kopia av Picscoin-blockkedjan.</translation>
-    </message>
-    <message>
-        <source>The wallet will also be stored in this directory.</source>
-        <translation>Plånboken lagras också i den här katalogen.</translation>
-    </message>
-    <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Fel: Angiven datakatalog "%1" kan inte skapas.</translation>
+        <translation>Fel: Den angivna datakatalogen "%1" kan inte skapas.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -911,12 +887,8 @@ Var vänlig och försök igen.</translation>
         <translation>Formulär</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the picscoin network, as detailed below.</source>
-        <translation>Nyligen gjorda transaktioner visas inte korrekt och därför kan din plånboks saldo visas felaktigt. Denna information kommer att visas korrekt så snart din plånbok har synkroniserat klart med Picscoin-nätverket enligt detaljer nedan.</translation>
-    </message>
-    <message>
-        <source>Attempting to spend picscoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Att försöka spendera picscoin som påverkas av transaktioner som ännu inte visas kommer inte accepteras av nätverket. </translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the strayacoin network, as detailed below.</source>
+        <translation>Nyligen gjorda transaktioner visas inte korrekt och därför kan ditt din plånboks saldo visas felaktigt. Denna information kommer att visas korrekt så snart din plånbok har synkroniserat klart med strayacoin nätverket, enligt detaljer nedan.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -975,7 +947,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Select payment request file to open</source>
-        <translation>Välj betalningsbegäransfil som ska öppnas</translation>
+        <translation>Välj betalningsförfrågningsfil som ska öppnas</translation>
     </message>
 </context>
 <context>
@@ -1009,24 +981,16 @@ Var vänlig och försök igen.</translation>
         <translation>Antalet skript&amp;verifikationstrådar</translation>
     </message>
     <message>
+        <source>Accept connections from outside</source>
+        <translation>Acceptera anslutningar utifrån</translation>
+    </message>
+    <message>
+        <source>Allow incoming connections</source>
+        <translation>Acceptera inkommande anslutningar</translation>
+    </message>
+    <message>
         <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
         <translation>Proxyns IP-adress (t.ex.  IPv4: 127.0.0.1 / IPv6: ::1)</translation>
-    </message>
-    <message>
-        <source>Shows if the supplied default SOCKS5 proxy is used to reach peers via this network type.</source>
-        <translation>Visas, om den angivna standard-SOCKS5-proxyn används för att nå noder via den här nätverkstypen.</translation>
-    </message>
-    <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor hidden services:</source>
-        <translation>Använd separata SOCKS&amp;5-proxy för att nå noder via Tors dolda tjänster:</translation>
-    </message>
-    <message>
-        <source>Hide the icon from the system tray.</source>
-        <translation>Göm ikonen från aktivitetsfältet.</translation>
-    </message>
-    <message>
-        <source>&amp;Hide tray icon</source>
-        <translation>&amp;Göm ikonen</translation>
     </message>
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
@@ -1037,16 +1001,12 @@ Var vänlig och försök igen.</translation>
         <translation>Tredjeparts URL:er (t.ex. en blockutforskare) som finns i transaktionstabben som ett menyval i sammanhanget. %s i URL:en ersätts med tansaktionshashen. Flera URL:er är separerade med vertikala streck |.</translation>
     </message>
     <message>
+        <source>Third party transaction URLs</source>
+        <translation>Tredjeparts transaktions-URL:er</translation>
+    </message>
+    <message>
         <source>Active command-line options that override above options:</source>
         <translation>Aktiva kommandoradsalternativ som ersätter alternativen ovan:</translation>
-    </message>
-    <message>
-        <source>Open the %1 configuration file from the working directory.</source>
-        <translation>Öppna konfigurationsfilen %1 från arbetskatalogen.</translation>
-    </message>
-    <message>
-        <source>Open Configuration File</source>
-        <translation>Öppna Konfigurationsfil</translation>
     </message>
     <message>
         <source>Reset all client options to default.</source>
@@ -1078,31 +1038,23 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>If you disable the spending of unconfirmed change, the change from a transaction cannot be used until that transaction has at least one confirmation. This also affects how your balance is computed.</source>
-        <translation>Om du avaktiverar spendering av obekräftad växel, kan inte växeln från en transaktion användas förrän transaktionen har minst en bekräftelse. Detta påverkar också hur ditt saldo beräknas.</translation>
+        <translation>Om du avaktiverar betalning med obekräftad växel, kan inte växeln från en transaktion användas förrän den transaktionen har minst en bekräftelse.</translation>
     </message>
     <message>
         <source>&amp;Spend unconfirmed change</source>
         <translation>&amp;Spendera obekräftad växel</translation>
     </message>
     <message>
-        <source>Automatically open the Picscoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Öppna automatiskt Picscoin-klientens port på routern. Detta fungerar endast om din router stödjer UPnP och det är är aktiverat.</translation>
+        <source>Automatically open the strayacoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Öppna automatiskt strayacoin-klientens port på routern. Detta fungerar endast om din router har UPnP aktiverat.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Tilldela port med hjälp av &amp;UPnP</translation>
     </message>
     <message>
-        <source>Accept connections from outside.</source>
-        <translation>Acceptera anslutningar utifrån.</translation>
-    </message>
-    <message>
-        <source>Allow incomin&amp;g connections</source>
-        <translation>Tillåt ankommande anslutningar</translation>
-    </message>
-    <message>
-        <source>Connect to the Picscoin network through a SOCKS5 proxy.</source>
-        <translation>Anslut till Picscoin-nätverket genom en SOCKS5-proxy.</translation>
+        <source>Connect to the strayacoin network through a SOCKS5 proxy.</source>
+        <translation>Anslut till strayacoin-nätverket genom en SOCKS5-proxy.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1125,6 +1077,10 @@ Var vänlig och försök igen.</translation>
         <translation>Används för att nå noder via:</translation>
     </message>
     <message>
+        <source>Shows, if the supplied default SOCKS5 proxy is used to reach peers via this network type.</source>
+        <translation>Visas, om den angivna standard-SOCKS5-proxyn används för att nå noder via den här nätverkstypen.</translation>
+    </message>
+    <message>
         <source>IPv4</source>
         <translation>IPv4</translation>
     </message>
@@ -1137,12 +1093,24 @@ Var vänlig och försök igen.</translation>
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Picscoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Anslut till Picscoin-nätverket genom en separat SOCKS5-proxy för dolda tjänster i Tor.</translation>
+        <source>Connect to the strayacoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Anslut till strayacoin-nätverket genom en separat SOCKS5-proxy för dolda tjänster i Tor.</translation>
+    </message>
+    <message>
+        <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services:</source>
+        <translation>Använd separat SOCKS5-proxy för att nå noder via dolda tjänster i Tor:</translation>
     </message>
     <message>
         <source>&amp;Window</source>
         <translation>&amp;Fönster</translation>
+    </message>
+    <message>
+        <source>&amp;Hide the icon from the system tray.</source>
+        <translation>&amp;Göm ikonen från systemfältet.</translation>
+    </message>
+    <message>
+        <source>Hide tray icon</source>
+        <translation>Göm systemfältsikonen</translation>
     </message>
     <message>
         <source>Show only a tray icon after minimizing the window.</source>
@@ -1181,10 +1149,6 @@ Var vänlig och försök igen.</translation>
         <translation>Om myntkontrollfunktioner skall visas eller inte</translation>
     </message>
     <message>
-        <source>&amp;Third party transaction URLs</source>
-        <translation>&amp;URL:er för tredjepartstransaktioner</translation>
-    </message>
-    <message>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -1213,22 +1177,6 @@ Var vänlig och försök igen.</translation>
         <translation>Programmet kommer att stängas. Vill du fortsätta?</translation>
     </message>
     <message>
-        <source>Configuration options</source>
-        <translation>Konfigurationsalternativ</translation>
-    </message>
-    <message>
-        <source>The configuration file is used to specify advanced user options which override GUI settings. Additionally, any command-line options will override this configuration file.</source>
-        <translation>Konfigurationsfilen används för att ange avancerade användaralternativ som överskrider GUI-inställningarna. Dessutom kommer alla kommandoradsalternativ att överskrida denna konfigurationsfil.</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Fel</translation>
-    </message>
-    <message>
-        <source>The configuration file could not be opened.</source>
-        <translation>Konfigurationsfilen kunde inte öppnas.</translation>
-    </message>
-    <message>
         <source>This change would require a client restart.</source>
         <translation>Denna ändring kräver en klientomstart.</translation>
     </message>
@@ -1244,8 +1192,8 @@ Var vänlig och försök igen.</translation>
         <translation>Formulär</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Picscoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Den visade informationen kan vara inaktuell. Plånboken synkroniseras automatiskt med Picscoin-nätverket efter att anslutningen är upprättad, men denna process har inte slutförts ännu.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the strayacoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Den visade informationen kan vara inaktuell. Plånboken synkroniseras automatiskt med strayacoin-nätverket efter att anslutningen är upprättad, men denna process har inte slutförts ännu.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1273,11 +1221,11 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Mined balance that has not yet matured</source>
-        <translation>Genererat saldo som ännu inte har mognat</translation>
+        <translation>Den genererade balansen som ännu inte har mognat</translation>
     </message>
     <message>
         <source>Balances</source>
-        <translation>Saldon</translation>
+        <translation>Balanser</translation>
     </message>
     <message>
         <source>Total:</source>
@@ -1285,11 +1233,11 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Your current total balance</source>
-        <translation>Ditt aktuella totala saldo</translation>
+        <translation>Ditt nuvarande totala saldo</translation>
     </message>
     <message>
         <source>Your current balance in watch-only addresses</source>
-        <translation>Ditt aktuella saldo i granska-bara adresser</translation>
+        <translation>Ditt nuvarande saldo i granska-bara adresser</translation>
     </message>
     <message>
         <source>Spendable:</source>
@@ -1301,15 +1249,15 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Unconfirmed transactions to watch-only addresses</source>
-        <translation>Obekräftade transaktioner till granska-bara adresser</translation>
+        <translation>Okonfirmerade transaktioner till granska-bara adresser</translation>
     </message>
     <message>
         <source>Mined balance in watch-only addresses that has not yet matured</source>
-        <translation>Genererat saldo i granska-bara adresser som ännu inte har mognat</translation>
+        <translation>Den genererade balansen i granska-bara adresser som ännu inte har mognat</translation>
     </message>
     <message>
         <source>Current total balance in watch-only addresses</source>
-        <translation>Aktuellt totalt saldo i granska-bara adresser</translation>
+        <translation>Nuvarande total balans i granska-bara adresser</translation>
     </message>
 </context>
 <context>
@@ -1319,8 +1267,8 @@ Var vänlig och försök igen.</translation>
         <translation>Fel vid betalningsbegäran</translation>
     </message>
     <message>
-        <source>Cannot start picscoin: click-to-pay handler</source>
-        <translation>Kan inte starta picscoin: klicka-och-betala hanteraren</translation>
+        <source>Cannot start strayacoin: click-to-pay handler</source>
+        <translation>Kan inte starta strayacoin: klicka-och-betala handhavare</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1328,23 +1276,23 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
-        <translation>Hämtningsadressen för betalningsbegäran är ogiltig: %1</translation>
+        <translation>Hämtningsadressen för betalningsförfrågan är ogiltig: %1</translation>
     </message>
     <message>
         <source>Invalid payment address %1</source>
         <translation>Ogiltig betalningsadress %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Picscoin address or malformed URI parameters.</source>
-        <translation>URI kan inte parsas! Detta kan orsakas av en ogiltig Picscoin-adress eller felaktiga URI-parametrar.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid strayacoin address or malformed URI parameters.</source>
+        <translation>URI kan inte tolkas! Detta kan orsakas av en ogiltig strayacoin-adress eller felaktiga URI parametrar.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
-        <translation>Hantering av betalningsbegäransfil</translation>
+        <translation>Hantering av betalningsförfrågningsfil</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>Betalningsbegäransfilen kan inte läsas! Detta kan orsakas av en ogiltig betalningsbegäransfil.</translation>
+        <translation>Betalningsförfrågningsfilen kan inte läsas! Detta kan orsakas av en felaktig betalningsförfrågnigsfil.</translation>
     </message>
     <message>
         <source>Payment request rejected</source>
@@ -1364,7 +1312,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>Overifierade betalningsbegäranden till anpassade betalningsskript stöds inte.</translation>
+        <translation>Overifierade betalningsförfrågningar till anpassade betalningsskript stöds inte.</translation>
     </message>
     <message>
         <source>Invalid payment request.</source>
@@ -1388,7 +1336,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Payment request cannot be parsed!</source>
-        <translation>Betalningsbegäran kan inte parsas!</translation>
+        <translation>Betalningsbegäran kan inte behandlas!</translation>
     </message>
     <message>
         <source>Bad response from server %1</source>
@@ -1396,7 +1344,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Network request error</source>
-        <translation>Fel vid nätverksbegäran</translation>
+        <translation>Fel vid närverksbegäran</translation>
     </message>
     <message>
         <source>Payment acknowledged</source>
@@ -1421,14 +1369,6 @@ Var vänlig och försök igen.</translation>
         <source>Ping</source>
         <translation>Ping</translation>
     </message>
-    <message>
-        <source>Sent</source>
-        <translation>Skickad</translation>
-    </message>
-    <message>
-        <source>Received</source>
-        <translation>Mottagen</translation>
-    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -1437,8 +1377,8 @@ Var vänlig och försök igen.</translation>
         <translation>Mängd</translation>
     </message>
     <message>
-        <source>Enter a Picscoin address (e.g. %1)</source>
-        <translation>Ange en Picscoin-adress (t.ex. %1)</translation>
+        <source>Enter a strayacoin address (e.g. %1)</source>
+        <translation>Ange en strayacoin-adress (t.ex. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1497,35 +1437,15 @@ Var vänlig och försök igen.</translation>
         <translation><numerusform>%n år</numerusform><numerusform>%n år</numerusform></translation>
     </message>
     <message>
-        <source>%1 B</source>
-        <translation>%1 B</translation>
-    </message>
-    <message>
-        <source>%1 KB</source>
-        <translation>%1 KB</translation>
-    </message>
-    <message>
-        <source>%1 MB</source>
-        <translation>%1 MB</translation>
-    </message>
-    <message>
-        <source>%1 GB</source>
-        <translation>%1 GB</translation>
-    </message>
-    <message>
         <source>%1 didn't yet exit safely...</source>
         <translation>%1 avslutades inte ännu säkert...</translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>okänd</translation>
     </message>
 </context>
 <context>
     <name>QObject::QObject</name>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Fel: Angiven datakatalog "%1" finns inte.</translation>
+        <translation>Fel: Den angivna datakatalogen "%1" finns inte.</translation>
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1. Only use key=value syntax.</source>
@@ -1615,15 +1535,11 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Current number of transactions</source>
-        <translation>Aktuellt antal transaktioner</translation>
+        <translation>Nuvarande antal transaktioner</translation>
     </message>
     <message>
         <source>Memory usage</source>
         <translation>Minnesåtgång</translation>
-    </message>
-    <message>
-        <source>&amp;Reset</source>
-        <translation>&amp;Återställ</translation>
     </message>
     <message>
         <source>Received</source>
@@ -1711,15 +1627,11 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>The duration of a currently outstanding ping.</source>
-        <translation>Tidsåtgången för en aktuell utestående ping.</translation>
+        <translation>Tidsåtgången för en nuvarande utestående ping.</translation>
     </message>
     <message>
         <source>Ping Wait</source>
         <translation>Pingväntetid</translation>
-    </message>
-    <message>
-        <source>Min Ping</source>
-        <translation>Min Ping</translation>
     </message>
     <message>
         <source>Time Offset</source>
@@ -1740,6 +1652,10 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>&amp;Network Traffic</source>
         <translation>&amp;Nätverkstrafik</translation>
+    </message>
+    <message>
+        <source>&amp;Clear</source>
+        <translation>&amp;Rensa</translation>
     </message>
     <message>
         <source>Totals</source>
@@ -1794,24 +1710,32 @@ Var vänlig och försök igen.</translation>
         <translation>Välkommen till %1 RPC-konsolen.</translation>
     </message>
     <message>
-        <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
-        <translation>Använd upp- och ner-pilarna för att navigera i historiken, och %1 för att rensa skärmen.</translation>
+        <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
+        <translation>Använd upp- och ner-pilarna för att navigera i historiken, och &lt;b&gt;Ctrl-L&lt;/b&gt; för att rensa skärmen.</translation>
     </message>
     <message>
-        <source>Type %1 for an overview of available commands.</source>
-        <translation>Skriv %1 för att få en överblick över tillgängliga kommandon.</translation>
-    </message>
-    <message>
-        <source>For more information on using this console type %1.</source>
-        <translation>För mer information om att använda denna konsol, skriv %1.</translation>
-    </message>
-    <message>
-        <source>WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.</source>
-        <translation>VARNING: Bedragare är kända för att be användare skriva olika kommandon här, varpå de stjäl plånböckernas innehåll. Använd inte konsolen utan att fullt ut förstå konsekvenserna av ett visst kommando.</translation>
+        <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
+        <translation>Skriv &lt;b&gt;help&lt;/b&gt; för en översikt av alla kommandon.</translation>
     </message>
     <message>
         <source>Network activity disabled</source>
         <translation>Nätverksaktivitet inaktiverad</translation>
+    </message>
+    <message>
+        <source>%1 B</source>
+        <translation>%1 B</translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation>%1 KB</translation>
+    </message>
+    <message>
+        <source>%1 MB</source>
+        <translation>%1 MB</translation>
+    </message>
+    <message>
+        <source>%1 GB</source>
+        <translation>%1 GB</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -1861,16 +1785,24 @@ Var vänlig och försök igen.</translation>
         <translation>&amp;Meddelande:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Picscoin network.</source>
-        <translation>Ett valfritt meddelande att bifoga betalningsbegäran, vilket visas när begäran öppnas. Obs: Meddelandet kommer inte att sändas med betalningen över Picscoin-nätverket.</translation>
+        <source>Reuse one of the previously used receiving addresses. Reusing addresses has security and privacy issues. Do not use this unless re-generating a payment request made before.</source>
+        <translation>Återanvänd en av tidigare använda mottagningsadresser. Återanvändning av adresser har både säkerhets och integritetsbrister. Använd inte samma mottagningsadress om du inte gör om samma betalningsbegäran.</translation>
+    </message>
+    <message>
+        <source>R&amp;euse an existing receiving address (not recommended)</source>
+        <translation>Åt&amp;eranvänd en existerande mottagningsadress (rekommenderas inte)</translation>
+    </message>
+    <message>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the strayacoin network.</source>
+        <translation>Ett frivilligt meddelande att bifoga betalningsbegäran, vilket visas när begäran öppnas. NB: Meddelandet kommer inte att sändas med betalningen över strayacoinnätverket.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
-        <translation>En valfri etikett att associera med den nya mottagningsadressen.</translation>
+        <translation>En frivillig etikett att associera med den nya mottagningsadressen.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
-        <translation>Använd detta formulär för att begära betalningar. Alla fält är  &lt;b&gt;valfria&lt;/b&gt;.</translation>
+        <translation>Använd detta formulär för att begära betalningar. Alla fält är  &lt;b&gt;frivilliga&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>An optional amount to request. Leave this empty or zero to not request a specific amount.</source>
@@ -1961,7 +1893,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Amount</source>
-        <translation>Belopp</translation>
+        <translation>Belopp:</translation>
     </message>
     <message>
         <source>Label</source>
@@ -2004,11 +1936,11 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>(no amount requested)</source>
-        <translation>(inget belopp begärt)</translation>
+        <translation>(ingen summa begärd)</translation>
     </message>
     <message>
         <source>Requested</source>
-        <translation>Begärt</translation>
+        <translation>Begärd</translation>
     </message>
 </context>
 <context>
@@ -2059,11 +1991,11 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>If this is activated, but the change address is empty or invalid, change will be sent to a newly generated address.</source>
-        <translation>Om denna är aktiverad men växeladressen är tom eller ogiltig kommer växeln att sändas till en nyss skapad adress.</translation>
+        <translation>Om denna är aktiverad men växeladressen är tom eller felaktig kommer växeln att sändas till en nygenererad adress.</translation>
     </message>
     <message>
         <source>Custom change address</source>
-        <translation>Anpassad växeladress</translation>
+        <translation>Specialväxeladress</translation>
     </message>
     <message>
         <source>Transaction Fee:</source>
@@ -2072,14 +2004,6 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>Choose...</source>
         <translation>Välj...</translation>
-    </message>
-    <message>
-        <source>Using the fallbackfee can result in sending a transaction that will take several hours or days (or never) to confirm. Consider choosing your fee manually or wait until you have validated the complete chain.</source>
-        <translation>Med standardavgiften riskerar en transaktion ta timmar eller dagar för att bekräftas, om den ens gör det. Överväg att själv välja avgift alternativt vänta tills du har validerat hela kedjan.</translation>
-    </message>
-    <message>
-        <source>Warning: Fee estimation is currently not possible.</source>
-        <translation>Varning: Avgiftsberäkning är för närvarande inte möjlig.</translation>
     </message>
     <message>
         <source>collapse fee-settings</source>
@@ -2091,15 +2015,19 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then "per kilobyte" only pays 250 satoshis in fee, while "total at least" pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Om den anpassade avgiften är satt till 1000 satoshi och transaktionen bara är 250 byte, betalar "per kilobyte" bara 250 satoshi i avgift, medan "totalt minst" betalar 1000 satoshi. För transaktioner större än en kilobyte betalar båda per kilobyte.</translation>
+        <translation>Om den anpassad avgiften är satt till 1000 satoshi och transaktionen bara är 250 byte, betalar "per kilobyte" bara 250 satoshi i avgift, medans "totalt minst" betalar 1000 satoshi. För transaktioner större än en kilobyte betalar både per kilobyte.</translation>
     </message>
     <message>
         <source>Hide</source>
         <translation>Göm</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for picscoin transactions than the network can process.</source>
-        <translation>Att bara betala den minsta avgiften är helt ok så länge transaktionsvolymen är mindre än ledigt utrymme i blocken. Men tänk på att det kan bli en en transaktion som aldrig bekräftas om efterfrågan på picscoin-transaktioner är större än vad nätverket kan hantera.</translation>
+        <source>total at least</source>
+        <translation>totalt minst</translation>
+    </message>
+    <message>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for strayacoin transactions than the network can process.</source>
+        <translation>Att betala endast den minsta avgiften är bara bra så länge det är mindre transaktionsvolym än utrymme i blocken. Men tänk på att det kan hamna i en aldrig bekräftar transaktion när det finns mer efterfrågan på strayacoin transaktioner än nätverket kan bearbeta.</translation>
     </message>
     <message>
         <source>(read the tooltip)</source>
@@ -2116,6 +2044,14 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>(Smart fee not initialized yet. This usually takes a few blocks...)</source>
         <translation>(Smartavgiften är inte initierad än. Detta tar vanligen några block...)</translation>
+    </message>
+    <message>
+        <source>normal</source>
+        <translation>normal</translation>
+    </message>
+    <message>
+        <source>fast</source>
+        <translation>snabb</translation>
     </message>
     <message>
         <source>Send to multiple recipients at once</source>
@@ -2138,24 +2074,16 @@ Var vänlig och försök igen.</translation>
         <translation>Bekräftelsestidsmål:</translation>
     </message>
     <message>
-        <source>Enable Replace-By-Fee</source>
-        <translation>Möjliggör ersättande avgift</translation>
-    </message>
-    <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
-        <translation>Med ersättande avgift (BIP-125) kan du höja transaktionsavgiften efter att transaktionen redan skickats. Om du väljer bort det kan en högre avgift rekommenderas för att kompensera för ökad risk för förhöjd transaktionstid.</translation>
-    </message>
-    <message>
         <source>Clear &amp;All</source>
         <translation>Rensa &amp;alla</translation>
     </message>
     <message>
         <source>Balance:</source>
-        <translation>Saldo:</translation>
+        <translation>Balans:</translation>
     </message>
     <message>
         <source>Confirm the send action</source>
-        <translation>Bekräfta sändåtgärden</translation>
+        <translation>Bekräfta sändordern</translation>
     </message>
     <message>
         <source>S&amp;end</source>
@@ -2190,10 +2118,6 @@ Var vänlig och försök igen.</translation>
         <translation>Kopiera växel</translation>
     </message>
     <message>
-        <source>%1 (%2 blocks)</source>
-        <translation>%1 (%2 block)</translation>
-    </message>
-    <message>
         <source>%1 to %2</source>
         <translation>%1 till %2</translation>
     </message>
@@ -2214,16 +2138,8 @@ Var vänlig och försök igen.</translation>
         <translation>eller</translation>
     </message>
     <message>
-        <source>You can increase the fee later (signals Replace-By-Fee, BIP-125).</source>
-        <translation>Du kan välja att höja avgiften senare (med ersättande avgift, BIP-125).</translation>
-    </message>
-    <message>
-        <source>Not signalling Replace-By-Fee, BIP-125.</source>
-        <translation>Använder inte ersättande avgift, BIP-125.</translation>
-    </message>
-    <message>
         <source>Confirm send coins</source>
-        <translation>Bekräfta att mynt ska skickas</translation>
+        <translation>Bekräfta skickade mynt</translation>
     </message>
     <message>
         <source>The recipient address is not valid. Please recheck.</source>
@@ -2235,15 +2151,15 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>The amount exceeds your balance.</source>
-        <translation>Beloppet överstiger ditt saldo.</translation>
+        <translation>Värdet överstiger ditt saldo.</translation>
     </message>
     <message>
         <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation>Totalbeloppet överstiger ditt saldo när transaktionsavgiften %1 är pålagd.</translation>
+        <translation>Totalvärdet överstiger ditt saldo när transaktionsavgiften %1 är pålagd.</translation>
     </message>
     <message>
         <source>Duplicate address found: addresses should only be used once each.</source>
-        <translation>Dubblettadress hittades: adresser skall endast användas en gång var.</translation>
+        <translation>Duplicerad adress upptäckt: adresser skall endast användas en gång var.</translation>
     </message>
     <message>
         <source>Transaction creation failed!</source>
@@ -2261,17 +2177,17 @@ Var vänlig och försök igen.</translation>
         <source>Payment request expired.</source>
         <translation>Betalningsbegäran löpte ut.</translation>
     </message>
+    <message numerus="yes">
+        <source>%n block(s)</source>
+        <translation><numerusform>%n block</numerusform><numerusform>%n block</numerusform></translation>
+    </message>
     <message>
         <source>Pay only the required fee of %1</source>
         <translation>Betala endast den nödvändiga avgiften på %1</translation>
     </message>
-    <message numerus="yes">
-        <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Uppskattas till att påbörja bekräftelse inom %n block.</numerusform><numerusform>Uppskattas till att påbörja bekräftelse inom %n block.</numerusform></translation>
-    </message>
     <message>
-        <source>Warning: Invalid Picscoin address</source>
-        <translation>Varning: Ogiltig Picscoin-adress</translation>
+        <source>Warning: Invalid strayacoin address</source>
+        <translation>Varning: Felaktig strayacoinadress</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2279,15 +2195,15 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Confirm custom change address</source>
-        <translation>Bekräfta anpassad växeladress</translation>
+        <translation>Bekräfta anpassad växlingsadress</translation>
     </message>
     <message>
         <source>The address you selected for change is not part of this wallet. Any or all funds in your wallet may be sent to this address. Are you sure?</source>
-        <translation>Den adress du valt för växel ingår inte i denna plånbok. Eventuella eller alla pengar i din plånbok kan komma att skickas till den här adressen. Är du säker?</translation>
+        <translation>Den adress du valt för växel ingår inte i denna plånbok. Eventuella eller alla pengar i din plånbok kan skickas till den här adressen. Är du säker?</translation>
     </message>
     <message>
         <source>(no label)</source>
-        <translation>(ingen etikett)</translation>
+        <translation>(Ingen etikett)</translation>
     </message>
 </context>
 <context>
@@ -2313,8 +2229,8 @@ Var vänlig och försök igen.</translation>
         <translation>Detta är en normal betalning.</translation>
     </message>
     <message>
-        <source>The Picscoin address to send the payment to</source>
-        <translation>Picscoin-adress att sända betalning till</translation>
+        <source>The strayacoin address to send the payment to</source>
+        <translation>strayacoinadress att sända betalning till</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2333,16 +2249,12 @@ Var vänlig och försök igen.</translation>
         <translation>Radera denna post</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less picscoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>Avgiften dras från beloppet som skickas. Mottagaren kommer att ta emot mindre picscoin än du angivit i beloppsfältet. Om flera mottagare valts kommer avgiften att fördelas jämt.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less strayacoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>Avgiften dras från beloppet som skickas. Mottagaren kommer att få mindre strayacoins än du angivit i belopp-fältet. Om flera mottagare valts kommer avgiften delas jämt.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
         <translation>S&amp;ubtrahera avgiften från beloppet</translation>
-    </message>
-    <message>
-        <source>Use available balance</source>
-        <translation>Använd tillgängligt saldo</translation>
     </message>
     <message>
         <source>Message:</source>
@@ -2358,11 +2270,11 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Enter a label for this address to add it to the list of used addresses</source>
-        <translation>Ange en etikett för denna adress för att lägga till den i listan med använda adresser</translation>
+        <translation>Ange en etikett för denna adress att adderas till listan över använda adresser</translation>
     </message>
     <message>
-        <source>A message that was attached to the picscoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Picscoin network.</source>
-        <translation>Ett meddelande som bifogades picscoin: -URIn och som lagras med transaktionen som referens. NB: Meddelandet kommer inte att sändas över Picscoin-nätverket.</translation>
+        <source>A message that was attached to the strayacoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the strayacoin network.</source>
+        <translation>Ett meddelande som bifogades strayacoin-URI, vilket lagras med transaktionen som referens. NB: Meddelandet kommer inte att sändas över strayacoinnätverket.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2374,7 +2286,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Enter a label for this address to add it to your address book</source>
-        <translation>Ange en etikett för denna adress för att lägga till den i din adressbok</translation>
+        <translation>Ange en etikett för den här adressen och lägg till den i din adressbok</translation>
     </message>
 </context>
 <context>
@@ -2406,12 +2318,12 @@ Var vänlig och försök igen.</translation>
         <translation>&amp;Signera Meddelande</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive picscoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Du kan signera meddelanden/avtal med dina adresser för att bevisa att du kan ta emot picscoin som skickats till dem. Var försiktig så du inte signerar något oklart eller konstigt, eftersom phishing-angrepp kan försöka få dig att signera över din identitet till dem. Signera endast väldetaljerade meddelanden som du godkänner.</translation>
+        <source>You can sign messages/agreements with your addresses to prove you can receive strayacoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>Du kan underteckna meddelanden/avtal med dina adresser för att bevisa att du kan ta emot strayacoins som skickats till dem. Var försiktig så du inte undertecknar något oklart eller konstigt, eftersom phishing-angrepp kan försöka få dig att underteckna din identitet till dem. Underteckna endast väldetaljerade meddelanden som du godkänner.</translation>
     </message>
     <message>
-        <source>The Picscoin address to sign the message with</source>
-        <translation>Picscoin-adress att signera meddelandet med</translation>
+        <source>The strayacoin address to sign the message with</source>
+        <translation>strayacoinadress att signera meddelandet med</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2442,8 +2354,8 @@ Var vänlig och försök igen.</translation>
         <translation>Kopiera signaturen till systemets Urklipp</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Picscoin address</source>
-        <translation>Signera meddelandet för att bevisa att du äger denna Picscoin-adress</translation>
+        <source>Sign the message to prove you own this strayacoin address</source>
+        <translation>Signera meddelandet för att bevisa att du äger denna adress</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2463,15 +2375,15 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
-        <translation>Ange mottagarens adress, meddelande (kopiera radbrytningar, mellanslag, TAB-tecken, osv. exakt) och signatur nedan, för att verifiera meddelandet. Undvik att läsa in mera information i signaturen än vad som stod i själva det signerade meddelandet, för att undvika ett man-in-the-middle-angrepp. Notera att detta endast bevisar att den signerande parten tar emot med adressen, det bevisar inte vem som skickat transaktionen!</translation>
+        <translation>Ange mottagarens adress, meddelande (kopiera radbrytningar, mellanrum, flikar, etc. exakt) och signatur nedan för att verifiera meddelandet. Undvik att läsa in mera information i signaturen än vad som stod i själva undertecknade meddelandet, för att undvika ett man-in-the-middle-angrepp. Notera att detta endast bevisar att undertecknad tar emot med adressen, det bevisar inte vem som skickat transaktionen!</translation>
     </message>
     <message>
-        <source>The Picscoin address the message was signed with</source>
-        <translation>Picscoin-adress som meddelandet signerades med</translation>
+        <source>The strayacoin address the message was signed with</source>
+        <translation>strayacoinadressen som meddelandet signerades med</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Picscoin address</source>
-        <translation>Verifiera meddelandet för att vara säker på att det signerades med angiven Picscoin-adress</translation>
+        <source>Verify the message to ensure it was signed with the specified strayacoin address</source>
+        <translation>Verifiera meddelandet för att vara säker på att den var signerad med den angivna strayacoin-adressen</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -2483,7 +2395,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Click "Sign Message" to generate signature</source>
-        <translation>Klicka "Signera Meddelande" för att skapa en signatur</translation>
+        <translation>Klicka "Signera Meddelande" för att få en signatur</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2503,7 +2415,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
-        <translation>Den privata nyckeln för den angivna adressen är inte tillgänglig.</translation>
+        <translation>Privata nyckel för den angivna adressen är inte tillgänglig.</translation>
     </message>
     <message>
         <source>Message signing failed.</source>
@@ -2564,7 +2476,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>%1/offline</source>
-        <translation>%1/nedkopplad</translation>
+        <translation>%1/nerkopplad</translation>
     </message>
     <message>
         <source>0/unconfirmed, %1</source>
@@ -2593,14 +2505,6 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>Status</source>
         <translation>Status</translation>
-    </message>
-    <message>
-        <source>, has not been successfully broadcast yet</source>
-        <translation>,har inte lyckats sända än</translation>
-    </message>
-    <message numerus="yes">
-        <source>, broadcast through %n node(s)</source>
-        <translation><numerusform>, sänd genom %n nod</numerusform><numerusform>, sänd genom %n noder</numerusform></translation>
     </message>
     <message>
         <source>Date</source>
@@ -2638,10 +2542,6 @@ Var vänlig och försök igen.</translation>
         <source>label</source>
         <translation>etikett</translation>
     </message>
-    <message>
-        <source>Credit</source>
-        <translation>Kredit</translation>
-    </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
         <translation><numerusform>mognar om %n mer block</numerusform><numerusform>mognar om %n fler block</numerusform></translation>
@@ -2655,20 +2555,8 @@ Var vänlig och försök igen.</translation>
         <translation>Belasta</translation>
     </message>
     <message>
-        <source>Total debit</source>
-        <translation>Total debet</translation>
-    </message>
-    <message>
-        <source>Total credit</source>
-        <translation>Total kredit</translation>
-    </message>
-    <message>
         <source>Transaction fee</source>
         <translation>Transaktionsavgift</translation>
-    </message>
-    <message>
-        <source>Net amount</source>
-        <translation>Nettobelopp</translation>
     </message>
     <message>
         <source>Message</source>
@@ -2687,16 +2575,12 @@ Var vänlig och försök igen.</translation>
         <translation>Transaktionens totala storlek</translation>
     </message>
     <message>
-        <source>Output index</source>
-        <translation>Utmatningsindex</translation>
-    </message>
-    <message>
         <source>Merchant</source>
         <translation>Handlare</translation>
     </message>
     <message>
         <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Skapade mynt måste mogna i %1 block innan de kan spenderas. När du skapade detta block sändes det till nätverket för att läggas till i blockkedjan. Om blocket inte kommer in i kedjan kommer dess status att ändras till "ej accepterat" och går inte att spendera. Detta kan ibland hända om en annan nod skapar ett block nästan samtidigt som dig.</translation>
+        <translation>Genererade mynt måste vänta %1 block innan de kan användas. När du skapade detta block sändes det till nätverket för att läggas till i blockkedjan. Om blocket inte kommer in i kedjan kommer dess status att ändras till "accepteras inte" och kommer ej att gå att spendera. Detta kan ibland hända om en annan nod genererar ett block nästan samtidigt som dig.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2750,7 +2634,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Öppet för %n mer block</numerusform><numerusform>Öppet för %n fler block</numerusform></translation>
+        <translation><numerusform>Öppet för %n mer block</numerusform><numerusform>Öppet för %n mer block</numerusform></translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2762,7 +2646,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Unconfirmed</source>
-        <translation>Obekräftade</translation>
+        <translation>Obekräftade:</translation>
     </message>
     <message>
         <source>Abandoned</source>
@@ -2770,7 +2654,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Confirming (%1 of %2 recommended confirmations)</source>
-        <translation>Bekräftar (%1 av %2 rekommenderade bekräftelser)</translation>
+        <translation>Bekräftar (%1 av %2 bekräftelser)</translation>
     </message>
     <message>
         <source>Confirmed (%1 confirmations)</source>
@@ -2786,11 +2670,11 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>This block was not received by any other nodes and will probably not be accepted!</source>
-        <translation>Det här blocket togs inte emot av några andra noder och kommer antagligen inte att accepteras!</translation>
+        <translation>Det här blocket togs inte emot av några andra noder och kommer antagligen inte att bli accepterad!</translation>
     </message>
     <message>
         <source>Generated but not accepted</source>
-        <translation>Skapad men inte accepterad</translation>
+        <translation>Genererad men inte accepterad</translation>
     </message>
     <message>
         <source>Received with</source>
@@ -2822,7 +2706,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>(no label)</source>
-        <translation>(ingen etikett)</translation>
+        <translation>(Ingen etikett)</translation>
     </message>
     <message>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
@@ -2830,7 +2714,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Date and time that the transaction was received.</source>
-        <translation>Datum och tid då transaktionen mottogs.</translation>
+        <translation>Tidpunkt då transaktionen mottogs.</translation>
     </message>
     <message>
         <source>Type of transaction.</source>
@@ -2838,7 +2722,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Whether or not a watch-only address is involved in this transaction.</source>
-        <translation>Anger om en granska-bara--adress är involverad i denna transaktion.</translation>
+        <translation>Anger om granska-bara--adresser är involverade i denna transaktion.</translation>
     </message>
     <message>
         <source>User-defined intent/purpose of the transaction.</source>
@@ -2846,7 +2730,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Amount removed from or added to balance.</source>
-        <translation>Belopp draget eller tillagt till saldo.</translation>
+        <translation>Belopp draget eller tillagt till balans.</translation>
     </message>
 </context>
 <context>
@@ -2876,10 +2760,6 @@ Var vänlig och försök igen.</translation>
         <translation>Det här året</translation>
     </message>
     <message>
-        <source>Range...</source>
-        <translation>Period...</translation>
-    </message>
-    <message>
         <source>Received with</source>
         <translation>Mottagen med</translation>
     </message>
@@ -2900,8 +2780,8 @@ Var vänlig och försök igen.</translation>
         <translation>Övriga</translation>
     </message>
     <message>
-        <source>Enter address, transaction id, or label to search</source>
-        <translation>Ange adress, transaktions-id eller etikett för att söka</translation>
+        <source>Enter address or label to search</source>
+        <translation>Ange en adress eller etikett att söka efter</translation>
     </message>
     <message>
         <source>Min amount</source>
@@ -2910,10 +2790,6 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>Abandon transaction</source>
         <translation>Avbryt transaktionen</translation>
-    </message>
-    <message>
-        <source>Increase transaction fee</source>
-        <translation>Öka transaktionsavgift</translation>
     </message>
     <message>
         <source>Copy address</source>
@@ -2941,7 +2817,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Edit label</source>
-        <translation>Redigera etikett</translation>
+        <translation>Ändra etikett</translation>
     </message>
     <message>
         <source>Show transaction details</source>
@@ -2989,7 +2865,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>There was an error trying to save the transaction history to %1.</source>
-        <translation>Ett fel inträffade när transaktionshistoriken skulle sparas till %1.</translation>
+        <translation>Det inträffade ett fel när transaktionshistoriken skulle sparas till %1.</translation>
     </message>
     <message>
         <source>Exporting Successful</source>
@@ -2997,11 +2873,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>The transaction history was successfully saved to %1.</source>
-        <translation>Transaktionshistoriken sparades till %1.</translation>
-    </message>
-    <message>
-        <source>Range:</source>
-        <translation>Räckvidd:</translation>
+        <translation>Transaktionshistoriken sparades utan problem till %1.</translation>
     </message>
     <message>
         <source>to</source>
@@ -3012,53 +2884,21 @@ Var vänlig och försök igen.</translation>
     <name>UnitDisplayStatusBarControl</name>
     <message>
         <source>Unit to show amounts in. Click to select another unit.</source>
-        <translation>&amp;Enhet att visa belopp i. Klicka för att välja annan enhet.</translation>
+        <translation>Enhet att visa belopp i. Klicka för att välja annan enhet.</translation>
     </message>
 </context>
 <context>
     <name>WalletFrame</name>
     <message>
         <source>No wallet has been loaded.</source>
-        <translation>Ingen plånbok har lästs in.</translation>
+        <translation>Ingen plånbok har laddats in.</translation>
     </message>
 </context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
-        <translation>Skicka Picscoins</translation>
-    </message>
-    <message>
-        <source>Increasing transaction fee failed</source>
-        <translation>Ökning av avgiften lyckades inte</translation>
-    </message>
-    <message>
-        <source>Do you want to increase the fee?</source>
-        <translation>Vill du öka avgiften?</translation>
-    </message>
-    <message>
-        <source>Current fee:</source>
-        <translation>Aktuell avgift:</translation>
-    </message>
-    <message>
-        <source>Increase:</source>
-        <translation>Öka:</translation>
-    </message>
-    <message>
-        <source>New fee:</source>
-        <translation>Ny avgift:</translation>
-    </message>
-    <message>
-        <source>Confirm fee bump</source>
-        <translation>Bekräfta avgiftshöjning</translation>
-    </message>
-    <message>
-        <source>Can't sign transaction.</source>
-        <translation>Kan ej signera transaktion.</translation>
-    </message>
-    <message>
-        <source>Could not commit transaction</source>
-        <translation>Kunde inte skicka transaktion</translation>
+        <translation>Skicka strayacoins</translation>
     </message>
 </context>
 <context>
@@ -3069,7 +2909,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Exportera informationen i aktuell flik till en fil</translation>
+        <translation>Exportera informationen i den nuvarande fliken till en fil</translation>
     </message>
     <message>
         <source>Backup Wallet</source>
@@ -3085,7 +2925,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>There was an error trying to save the wallet data to %1.</source>
-        <translation>Ett fel inträffade när plånbokens data skulle sparas till %1.</translation>
+        <translation>Det inträffade ett fel när plånbokens data skulle sparas till %1.</translation>
     </message>
     <message>
         <source>Backup Successful</source>
@@ -3093,7 +2933,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>The wallet data was successfully saved to %1.</source>
-        <translation>Plånbokens data sparades till %1.</translation>
+        <translation>Plånbokens data sparades utan problem till %1.</translation>
     </message>
 </context>
 <context>
@@ -3108,7 +2948,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Connect to a node to retrieve peer addresses, and disconnect</source>
-        <translation>Anslut till en nod för att hämta peer-adresser, och koppla från</translation>
+        <translation>Anslut till en nod för att hämta klientadresser, och koppla från</translation>
     </message>
     <message>
         <source>Specify your own public address</source>
@@ -3117,6 +2957,14 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
         <translation>Tillåt kommandon från kommandotolken och JSON-RPC-kommandon</translation>
+    </message>
+    <message>
+        <source>Accept connections from outside (default: 1 if no -proxy or -connect/-noconnect)</source>
+        <translation>Acceptera anslutningar utifrån (förvalt: 1 om ingen -proxy eller -connect/-noconnect)</translation>
+    </message>
+    <message>
+        <source>Connect only to the specified node(s); -noconnect or -connect=0 alone to disable automatic connections</source>
+        <translation>Anslut endast till angivna nod(er); -noconnect eller -connect=0 ensam för att inaktivera automatiska anslutningar</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
@@ -3159,8 +3007,8 @@ Var vänlig och försök igen.</translation>
         <translation>Kunde inte starta HTTP-server. Se avlusningsloggen för detaljer.</translation>
     </message>
     <message>
-        <source>Picscoin Core</source>
-        <translation>Picscoin Core</translation>
+        <source>Strayacoin Core</source>
+        <translation>Strayacoin Core</translation>
     </message>
     <message>
         <source>The %s developers</source>
@@ -3187,8 +3035,12 @@ Var vänlig och försök igen.</translation>
         <translation>Ta bort alla plånbokstransaktioner och återskapa bara dom som är en del av blockkedjan genom att ange -rescan vid uppstart</translation>
     </message>
     <message>
+        <source>Error loading %s: You can't enable HD on a already existing non-HD wallet</source>
+        <translation>Fel vid laddning av %s: Du kan inte aktivera HD på en existerande icke-HD plånbok</translation>
+    </message>
+    <message>
         <source>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation>Fel vid läsning av %s! Alla nycklar lästes korrekt, men transaktionsdata eller poster i adressboken kanske saknas eller är felaktiga.</translation>
+        <translation>Fel vid läsning av %s! Alla nycklar lästes korrekt, men transaktionsdatat eller adressbokens poster kanske saknas eller är felaktiga.</translation>
     </message>
     <message>
         <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
@@ -3224,11 +3076,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
-        <translation>Detta är ett förhandstestbygge - använd på egen risk - använd inte för brytning eller handelsapplikationer</translation>
-    </message>
-    <message>
-        <source>Unable to replay blocks. You will need to rebuild the database using -reindex-chainstate.</source>
-        <translation>Kunde inte spela om block. Du kommer att behöva bygga om databasen med -reindex-chainstate.</translation>
+        <translation>Detta är ett förhandstestbygge - använd på egen risk - använd inte för mining eller handels applikationer</translation>
     </message>
     <message>
         <source>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</source>
@@ -3248,19 +3096,15 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
-        <translation>Varning: Nätverket verkar inte vara helt överens! Några brytare verkar ha problem.</translation>
+        <translation>Varning: Nätverket verkar inte vara helt överens! Några miners verkar ha problem.</translation>
     </message>
     <message>
         <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
         <translation>Varning: Vi verkar inte helt överens med våra peers! Du kan behöva uppgradera, eller andra noder kan behöva uppgradera.</translation>
     </message>
     <message>
-        <source>Whether to save the mempool on shutdown and load on restart (default: %u)</source>
-        <translation>Hurvida mempoolen ska sparas vid avstängning och läsas in vid omstart (förval: %u)</translation>
-    </message>
-    <message>
-        <source>%d of last 100 blocks have unexpected version</source>
-        <translation>%d av de senaste 100 blocken har oväntad version</translation>
+        <source>You need to rebuild the database using -reindex-chainstate to change -txindex</source>
+        <translation>Du måste återskapa databasen med -reindex-chainstate för att ändra -txindex</translation>
     </message>
     <message>
         <source>%s corrupt, salvage failed</source>
@@ -3273,10 +3117,6 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>&lt;category&gt; can be:</source>
         <translation>&lt;category&gt; Kan vara:</translation>
-    </message>
-    <message>
-        <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation>Acceptera anslutningar utifrån (förvalt: 1 om ingen -proxy eller -connect)</translation>
     </message>
     <message>
         <source>Append comment to the user agent string</source>
@@ -3296,7 +3136,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Change index out of range</source>
-        <translation>Förändringsindexet utanför tillåtet intervall</translation>
+        <translation>Förändringsindexet utom räckhåll</translation>
     </message>
     <message>
         <source>Connection options:</source>
@@ -3316,7 +3156,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Do not load the wallet and disable wallet RPC calls</source>
-        <translation>Läs inte in plånboken och stäng av RPC-anrop till plånboken</translation>
+        <translation>Ladda inte plånboken och stäng av RPC-anrop till plånboken</translation>
     </message>
     <message>
         <source>Do you want to rebuild the block database now?</source>
@@ -3324,19 +3164,19 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Enable publish hash block in &lt;address&gt;</source>
-        <translation>Aktivera publicering av hashblock i &lt;address&gt;</translation>
+        <translation>Aktivera publicering av hashblock i &lt;adress&gt;</translation>
     </message>
     <message>
         <source>Enable publish hash transaction in &lt;address&gt;</source>
-        <translation>Aktivera publicering av hashtransaktion i &lt;address&gt;</translation>
+        <translation>Aktivera publicering av hashtransaktion i &lt;adress&gt;</translation>
     </message>
     <message>
         <source>Enable publish raw block in &lt;address&gt;</source>
-        <translation>Aktivera publicering av råa block i &lt;address&gt;</translation>
+        <translation>Aktivera publicering av råa block i &lt;adress&gt;</translation>
     </message>
     <message>
         <source>Enable publish raw transaction in &lt;address&gt;</source>
-        <translation>Aktivera publicering av råa transaktioner i &lt;address&gt;</translation>
+        <translation>Aktivera publicering av råa transaktioner i &lt;adress&gt;</translation>
     </message>
     <message>
         <source>Enable transaction replacement in the memory pool (default: %u)</source>
@@ -3356,11 +3196,15 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Error loading %s: Wallet corrupted</source>
-        <translation>Fel vid inläsning av %s: Plånboken är korrupt</translation>
+        <translation>Fel vid inläsningen av %s: Plånboken är koruppt</translation>
     </message>
     <message>
         <source>Error loading %s: Wallet requires newer version of %s</source>
-        <translation>Fel vid inläsning av %s: Plånboken kräver en senare version av %s</translation>
+        <translation>Fel vid inläsningen av %s: Plånboken kräver en senare version av %s</translation>
+    </message>
+    <message>
+        <source>Error loading %s: You can't disable HD on a already existing HD wallet</source>
+        <translation>Fel vid laddning av %s: Du kan inte avaktivera HD på en redan existerande HD plånbok</translation>
     </message>
     <message>
         <source>Error loading block database</source>
@@ -3379,10 +3223,6 @@ Var vänlig och försök igen.</translation>
         <translation>Misslyckades att lyssna på någon port. Använd -listen=0 om du vill detta.</translation>
     </message>
     <message>
-        <source>Failed to rescan the wallet during initialization</source>
-        <translation>Misslyckades med att skanna om plånboken under initiering.</translation>
-    </message>
-    <message>
         <source>Importing...</source>
         <translation>Importerar...</translation>
     </message>
@@ -3395,28 +3235,24 @@ Var vänlig och försök igen.</translation>
         <translation>Initieringschecken fallerade. %s stängs av.</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>Ogiltigt belopp för -%s=&lt;amount&gt;:'%s'</translation>
+        <source>Invalid -onion address: '%s'</source>
+        <translation>Ogiltig -onion adress:'%s'</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ogiltigt belopp för -discardfee=&lt;amount&gt;:'%s'</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
+        <translation>Ogiltigt belopp för -%s=&lt;belopp&gt;:'%s'</translation>
     </message>
     <message>
         <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ogiltigt belopp för -fallbackfee=&lt;amount&gt;: '%s'</translation>
+        <translation>Ogiltigt belopp för -fallbackfee=&lt;belopp&gt;: '%s'</translation>
     </message>
     <message>
         <source>Keep the transaction memory pool below &lt;n&gt; megabytes (default: %u)</source>
         <translation>Håll minnespoolen över transaktioner under &lt;n&gt; megabyte (förvalt: %u)</translation>
     </message>
     <message>
-        <source>Loading P2P addresses...</source>
-        <translation>Läser in P2P-adresser...</translation>
-    </message>
-    <message>
         <source>Loading banlist...</source>
-        <translation>Läser in svarta listan...</translation>
+        <translation>Laddar svarta listan...</translation>
     </message>
     <message>
         <source>Location of the auth cookie (default: data dir)</source>
@@ -3455,10 +3291,6 @@ Var vänlig och försök igen.</translation>
         <translation>Återskapa blockkedjans status från aktuella indexerade block</translation>
     </message>
     <message>
-        <source>Replaying blocks...</source>
-        <translation>Spelar om block...</translation>
-    </message>
-    <message>
         <source>Rewinding blocks...</source>
         <translation>Spolar tillbaka blocken...</translation>
     </message>
@@ -3467,16 +3299,16 @@ Var vänlig och försök igen.</translation>
         <translation>Sätt databasens cachestorlek i megabyte (%d till %d, förvalt: %d)</translation>
     </message>
     <message>
+        <source>Set maximum block size in bytes (default: %d)</source>
+        <translation>Sätt maximal blockstorlek i byte (förvalt: %d)</translation>
+    </message>
+    <message>
         <source>Specify wallet file (within data directory)</source>
         <translation>Ange plånboksfil (inom datakatalogen)</translation>
     </message>
     <message>
         <source>The source code is available from %s.</source>
         <translation>Källkoden är tillgänglig från %s.</translation>
-    </message>
-    <message>
-        <source>Transaction fee and change calculation failed</source>
-        <translation>Beräkning av transaktionsavgift och växel mislyckades</translation>
     </message>
     <message>
         <source>Unable to bind to %s on this computer. %s is probably already running.</source>
@@ -3495,10 +3327,6 @@ Var vänlig och försök igen.</translation>
         <translation>Argumentet -tor hittades men stöds inte, använd -onion.</translation>
     </message>
     <message>
-        <source>Upgrading UTXO database</source>
-        <translation>Uppgraderar UTXO-databasen</translation>
-    </message>
-    <message>
         <source>Use UPnP to map the listening port (default: %u)</source>
         <translation>Använd UPnP för att mappa den lyssnande porten (förvalt: %u)</translation>
     </message>
@@ -3515,6 +3343,14 @@ Var vänlig och försök igen.</translation>
         <translation>Verifierar block...</translation>
     </message>
     <message>
+        <source>Verifying wallet...</source>
+        <translation>Verifierar plånboken...</translation>
+    </message>
+    <message>
+        <source>Wallet %s resides outside data directory %s</source>
+        <translation>Plånbok %s ligger utanför datakatalogen %s</translation>
+    </message>
+    <message>
         <source>Wallet debugging/testing options:</source>
         <translation>Plånbokens Avlusnings/Testnings optioner:</translation>
     </message>
@@ -3528,11 +3364,15 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Allow JSON-RPC connections from specified source. Valid for &lt;ip&gt; are a single IP (e.g. 1.2.3.4), a network/netmask (e.g. 1.2.3.4/255.255.255.0) or a network/CIDR (e.g. 1.2.3.4/24). This option can be specified multiple times</source>
-        <translation>Tillåt JSON-RPC-anslutningar från angiven källa. Tillåtna &lt;ip&gt; är en IP (t.ex 1.2.3.4), ett nätverk/nätmask (t.ex. 1.2.3.4/255.255.255.0) eller ett nätverk/CIDR (t.ex. 1.2.3.4/24). Detta alternativ kan anges flera gånger</translation>
+        <translation>Tillåt JSON-RPC-anslutningar från specifik källa. Tillåtna &lt;ip&gt; är enkel IP (t.ex 1.2.3.4), en nätverk/nätmask (t.ex. 1.2.3.4/255.255.255.0) eller ett nätverk/CIDR (t.ex. 1.2.3.4/24). Detta alternativ anges flera gånger</translation>
     </message>
     <message>
         <source>Bind to given address and whitelist peers connecting to it. Use [host]:port notation for IPv6</source>
         <translation>Bind till given adress och vitlista klienter som ansluter till den. Använd [värd]:port notation för IPv6</translation>
+    </message>
+    <message>
+        <source>Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6. This option can be specified multiple times (default: bind to all interfaces)</source>
+        <translation>Bind till angiven adress för att lyssna på JSON-RPC-anslutningar. Använd [värd]:port-format for IPv6. Detta alternativ kan anges flera gånger (förvalt: bind till alla gränssnitt)</translation>
     </message>
     <message>
         <source>Create new files with system default permissions, instead of umask 077 (only effective with disabled wallet functionality)</source>
@@ -3540,7 +3380,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Discover own IP addresses (default: 1 when listening and no -externalip or -proxy)</source>
-        <translation>Upptäck egna IP adresser (standard: 1 vid lyssning och ingen -externalip eller -proxy)</translation>
+        <translation>Upptäck egna IP adresser (standard: 1 vid lyssning ingen -externalip eller -proxy)</translation>
     </message>
     <message>
         <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
@@ -3552,15 +3392,15 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Fees (in %s/kB) smaller than this are considered zero fee for relaying, mining and transaction creation (default: %s)</source>
-        <translation>Avgifter (i %s/kB) mindre än detta betraktas som nollavgift för vidarebefordran, brytning och transaktionsskapande (förvalt: %s)</translation>
+        <translation>Avgifter (i %s/kB) mindre än detta betraktas som nollavgift för vidarebefordran, mining och transaktionsskapande (förvalt: %s)</translation>
     </message>
     <message>
         <source>If paytxfee is not set, include enough fee so transactions begin confirmation on average within n blocks (default: %u)</source>
-        <translation>Om paytxfee inte har angivits, inkludera tillräcklig avgift så att transaktioner börjar bekräftas inom n blocks(förvalt: %u)</translation>
+        <translation>Om paytxfee inte är satt, inkludera tillräcklig avgift så att transaktionen börjar att konfirmeras inom n blocks (förvalt: %u)</translation>
     </message>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>Ogiltigt belopp för -maxtxfee=&lt;amount&gt;: '%s' (måste vara åtminstone minrelay avgift %s för att förhindra stoppade transaktioner)</translation>
+        <translation>Otillåtet belopp för -maxtxfee=&lt;belopp&gt;: '%s' (måste åtminstånde vara minrelay avgift %s för att förhindra stoppade transkationer)</translation>
     </message>
     <message>
         <source>Maximum size of data in data carrier transactions we relay and mine (default: %u)</source>
@@ -3571,8 +3411,16 @@ Var vänlig och försök igen.</translation>
         <translation>Slumpa autentiseringen för varje proxyanslutning. Detta möjliggör Tor ström-isolering (förvalt: %u)</translation>
     </message>
     <message>
+        <source>Set maximum size of high-priority/low-fee transactions in bytes (default: %d)</source>
+        <translation>Sätt den maximala storleken av hög-prioriterade/låg-avgifts transaktioner i byte (förvalt: %d)</translation>
+    </message>
+    <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
         <translation>Transaktionen är för liten att skicka efter det att avgiften har dragits</translation>
+    </message>
+    <message>
+        <source>Use hierarchical deterministic key generation (HD) after BIP32. Only has effect during wallet creation/first start</source>
+        <translation>Använd hierarkisk deterministisk nyckel generering (HD) efter BIP32. Har bara effekt under plånbokens skapande/första användning.</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
@@ -3580,7 +3428,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</source>
-        <translation>Du måste bygga om databasen genom att använda -reindex för att återgå till obeskärt läge. Detta kommer att ladda ner hela blockkedjan på nytt.</translation>
+        <translation>Du måste bygga om databasen genom att använda -reindex för att återgå till obeskärt läge. Detta kommer att ladda ner hela blockkedjan.</translation>
     </message>
     <message>
         <source>(default: %u)</source>
@@ -3599,10 +3447,6 @@ Var vänlig och försök igen.</translation>
         <translation>Anslut genom SOCKS5 proxy</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
-        <translation>Fel vid inläsning av %s: Du kan inte avaktivera HD på en redan existerande HD-plånbok</translation>
-    </message>
-    <message>
         <source>Error reading from database, shutting down.</source>
         <translation>Fel vid läsning från databas, avslutar.</translation>
     </message>
@@ -3615,16 +3459,8 @@ Var vänlig och försök igen.</translation>
         <translation>Information</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>Ogiltig -onion adress eller värdnamn: '%s'</translation>
-    </message>
-    <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>Ogiltig -proxy adress eller värdnamn: '%s'</translation>
-    </message>
-    <message>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>Ogiltigt belopp för -paytxfee=&lt;amount&gt;:'%s' (måste vara minst %s)</translation>
+        <translation>Ogiltigt belopp för -paytxfee=&lt;belopp&gt;:'%s' (måste vara minst %s)</translation>
     </message>
     <message>
         <source>Invalid netmask specified in -whitelist: '%s'</source>
@@ -3659,6 +3495,10 @@ Var vänlig och försök igen.</translation>
         <translation>Skicka trace-/debuginformation till terminalen istället för till debug.log</translation>
     </message>
     <message>
+        <source>Send transactions as zero-fee transactions if possible (default: %u)</source>
+        <translation>Sänd transaktioner som nollavgiftstransaktioner om möjligt (förvalt: %u)</translation>
+    </message>
+    <message>
         <source>Show all debugging options (usage: --help -help-debug)</source>
         <translation>Visa alla avlusningsalternativ (använd: --help -help-debug)</translation>
     </message>
@@ -3669,18 +3509,6 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>Signing transaction failed</source>
         <translation>Signering av transaktion misslyckades</translation>
-    </message>
-    <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Angiven -walletdir "%s" finns inte</translation>
-    </message>
-    <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>Angiven -walletdir "%s" är en relativ sökväg</translation>
-    </message>
-    <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>Angiven -walletdir "%s" är inte en katalog</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
@@ -3715,20 +3543,12 @@ Var vänlig och försök igen.</translation>
         <translation>Det går inte att binda till %s på den här datorn (bind returnerade felmeddelande %s)</translation>
     </message>
     <message>
-        <source>Unable to generate initial keys</source>
-        <translation>Det gick inte att skapa ursprungliga nycklar</translation>
-    </message>
-    <message>
         <source>Upgrade wallet to latest format on startup</source>
         <translation>Uppgradera plånbok till senaste formatet vid uppstart</translation>
     </message>
     <message>
         <source>Username for JSON-RPC connections</source>
         <translation>Användarnamn för JSON-RPC-anslutningar</translation>
-    </message>
-    <message>
-        <source>Verifying wallet(s)...</source>
-        <translation>Verifierar plånbok(er)...</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -3741,10 +3561,6 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>Whether to operate in a blocks only mode (default: %u)</source>
         <translation>Ska allt göras i endast block-läge (förval: %u)</translation>
-    </message>
-    <message>
-        <source>You need to rebuild the database using -reindex to change -txindex</source>
-        <translation>Du måste återskapa databasen med -reindex för att ändra -txindex</translation>
     </message>
     <message>
         <source>Zapping all transactions from wallet...</source>
@@ -3767,6 +3583,10 @@ Var vänlig och försök igen.</translation>
         <translation>Tillåt DNS-sökningar för -addnode, -seednode och -connect</translation>
     </message>
     <message>
+        <source>Loading addresses...</source>
+        <translation>Laddar adresser...</translation>
+    </message>
+    <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 = spara tx metadata t.ex. kontoägare och betalningsbegäransinformation, 2 = släng tx metadata)</translation>
     </message>
@@ -3781,14 +3601,6 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>Equivalent bytes per sigop in transactions for relay and mining (default: %u)</source>
         <translation>Samma antal byte per sigop i transaktioner som vi reläar och bryter (förvalt: %u)</translation>
-    </message>
-    <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
-        <translation>Fel vid inläsning av %s: Du kan inte aktivera HD på en existerande icke-HD plånbok</translation>
-    </message>
-    <message>
-        <source>Error loading wallet %s. -wallet parameter must only specify a filename (not a path).</source>
-        <translation>Fel vid inläsningen av plånbok %s. -wallet parametern kan bara innehålla ett filnamn (inte en sökväg).</translation>
     </message>
     <message>
         <source>Fees (in %s/kB) smaller than this are considered zero fee for transaction creation (default: %s)</source>
@@ -3812,7 +3624,11 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Output debugging information (default: %u, supplying &lt;category&gt; is optional)</source>
-        <translation>Skriv ut avlusningsinformation (förvalt: %u, att ange &lt;category&gt; är valfritt)</translation>
+        <translation>Skriv ut avlusningsinformation (förvalt: %u, att ange &lt;category&gt; är frivilligt)</translation>
+    </message>
+    <message>
+        <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
+        <translation>Sök efter klientadresser med DNS sökningen, om det finns otillräckligt med adresser (förvalt: 1 om inte -connect/-noconnect)</translation>
     </message>
     <message>
         <source>Support filtering of blocks and transaction with bloom filters (default: %u)</source>
@@ -3852,7 +3668,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Warning: Wallet file corrupt, data salvaged! Original %s saved as %s in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>Varning: Plånboksfilen var korrupt, data har räddats! Den ursprungliga %s har sparas som %s i %s. Om ditt saldo eller transaktioner är felaktiga bör du återställa från en säkerhetskopia.</translation>
+        <translation>Varning: Plånboksfilen var korrupt, datat har räddats! Den ursprungliga %s har sparas som %s i %s. Om ditt saldo eller transaktioner är felaktiga bör du återställa från en säkerhetskopia.</translation>
     </message>
     <message>
         <source>%s is set very high!</source>
@@ -3864,19 +3680,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Always query for peer addresses via DNS lookup (default: %u)</source>
-        <translation>Fråga alltid efter klientadresser med DNS-sökning (förvalt: %u)</translation>
-    </message>
-    <message>
-        <source>Error loading wallet %s. -wallet filename must be a regular file.</source>
-        <translation>Fel vid inläsningen av plånbok %s. -wallet filnamn måste var en vanlig fil.</translation>
-    </message>
-    <message>
-        <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
-        <translation>Fel vid inläsningen av plånbok %s. Dublett -wallet filnamn angavs.</translation>
-    </message>
-    <message>
-        <source>Error loading wallet %s. Invalid characters in -wallet filename.</source>
-        <translation>Fel vid inläsningen av plånbok %s. Ogiltiga tecken i -wallet filnamn.</translation>
+        <translation>Sök alltid efter klientadresser med DNS sökningen (förvalt: %u)</translation>
     </message>
     <message>
         <source>How many blocks to check at startup (default: %u, 0 = all)</source>
@@ -3885,6 +3689,10 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>Include IP addresses in debug output (default: %u)</source>
         <translation>Inkludera IP-adresser i debugutskrift (förvalt: %u)</translation>
+    </message>
+    <message>
+        <source>Invalid -proxy address: '%s'</source>
+        <translation>Ogiltig -proxy adress: '%s'</translation>
     </message>
     <message>
         <source>Listen for JSON-RPC connections on &lt;port&gt; (default: %u or testnet: %u)</source>
@@ -3916,7 +3724,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Relay and mine data carrier transactions (default: %u)</source>
-        <translation>Reläa och bryta databärartransaktioner (förvalt: %u) </translation>
+        <translation>Reläa och bearbeta databärartransaktioner (förvalt: %u) </translation>
     </message>
     <message>
         <source>Relay non-P2SH multisig (default: %u)</source>
@@ -3948,7 +3756,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Spend unconfirmed change when sending transactions (default: %u)</source>
-        <translation>Spendera obekräftad växel när transaktioner sänds (förvalt: %u)</translation>
+        <translation>Spendera okonfirmerad växel när transaktioner sänds (förvalt: %u)</translation>
     </message>
     <message>
         <source>Starting network threads...</source>
@@ -3984,15 +3792,19 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Okänt nätverk angavs i -onlynet: '%s'</translation>
+        <translation>Okänt nätverk som anges i -onlynet: '%s'</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
-        <translation>Otillräckligt med picscoins</translation>
+        <translation>Otillräckligt med strayacoins</translation>
     </message>
     <message>
         <source>Loading block index...</source>
         <translation>Laddar blockindex...</translation>
+    </message>
+    <message>
+        <source>Add a node to connect to and attempt to keep the connection open</source>
+        <translation>Lägg till en nod att koppla upp mot och försök att hålla anslutningen öppen</translation>
     </message>
     <message>
         <source>Loading wallet...</source>
@@ -4001,6 +3813,10 @@ Var vänlig och försök igen.</translation>
     <message>
         <source>Cannot downgrade wallet</source>
         <translation>Kan inte nedgradera plånboken</translation>
+    </message>
+    <message>
+        <source>Cannot write default address</source>
+        <translation>Kan inte skriva standardadress</translation>
     </message>
     <message>
         <source>Rescanning...</source>
