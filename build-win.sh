@@ -1,6 +1,6 @@
 # build
 cd depends
-chown +x config.*
+chmod +x config.*
 make HOST=x86_64-w64-mingw32
 cd ..
 chmod +x *.sh
