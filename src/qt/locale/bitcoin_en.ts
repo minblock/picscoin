@@ -80,12 +80,12 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>These are your strayacoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>These are your strayacoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -211,7 +211,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR strayacoinS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR picscoinS&lt;/b&gt;!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <location line="-56"/>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your strayacoins from being stolen by malware infecting your computer.</source>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your picscoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -430,8 +430,8 @@
     </message>
     <message>
         <location line="-510"/>
-        <source>Send coins to a strayacoin address</source>
-        <translation>Send coins to a strayacoin address</translation>
+        <source>Send coins to a picscoin address</source>
+        <translation>Send coins to a picscoin address</translation>
     </message>
     <message>
         <location line="+67"/>
@@ -460,8 +460,8 @@
     </message>
     <message>
         <location line="+516"/>
-        <source>strayacoin</source>
-        <translation>strayacoin</translation>
+        <source>picscoin</source>
+        <translation>picscoin</translation>
     </message>
     <message>
         <location line="-741"/>
@@ -495,13 +495,13 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>Sign messages with your strayacoin addresses to prove you own them</source>
-        <translation>Sign messages with your strayacoin addresses to prove you own them</translation>
+        <source>Sign messages with your picscoin addresses to prove you own them</source>
+        <translation>Sign messages with your picscoin addresses to prove you own them</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Verify messages to ensure they were signed with specified strayacoin addresses</source>
-        <translation>Verify messages to ensure they were signed with specified strayacoin addresses</translation>
+        <source>Verify messages to ensure they were signed with specified picscoin addresses</source>
+        <translation>Verify messages to ensure they were signed with specified picscoin addresses</translation>
     </message>
     <message>
         <location line="+58"/>
@@ -525,7 +525,7 @@
     </message>
     <message>
         <location line="-158"/>
-        <source>Request payments (generates QR codes and strayacoin: URIs)</source>
+        <source>Request payments (generates QR codes and picscoin: URIs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -540,7 +540,7 @@
     </message>
     <message>
         <location line="+3"/>
-        <source>Open a strayacoin: URI or payment request</source>
+        <source>Open a picscoin: URI or payment request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -550,10 +550,10 @@
     </message>
     <message numerus="yes">
         <location line="+356"/>
-        <source>%n active connection(s) to strayacoin network</source>
+        <source>%n active connection(s) to picscoin network</source>
         <translation>
-            <numerusform>%n active connection to strayacoin network</numerusform>
-            <numerusform>%n active connections to strayacoin network</numerusform>
+            <numerusform>%n active connection to picscoin network</numerusform>
+            <numerusform>%n active connections to picscoin network</numerusform>
         </translation>
     </message>
     <message>
@@ -611,7 +611,7 @@
     </message>
     <message>
         <location line="-440"/>
-        <source>Show the %1 help message to get a list with possible strayacoin command-line options</source>
+        <source>Show the %1 help message to get a list with possible picscoin command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -691,7 +691,7 @@
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+534"/>
-        <source>A fatal error occurred. strayacoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. picscoin can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -934,7 +934,7 @@
     </message>
     <message>
         <location line="+71"/>
-        <source>The entered address &quot;%1&quot; is not a valid strayacoin address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid picscoin address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1094,8 +1094,8 @@
     </message>
     <message>
         <location filename="../intro.cpp" line="+20"/>
-        <source>strayacoin</source>
-        <translation type="unfinished">strayacoin</translation>
+        <source>picscoin</source>
+        <translation type="unfinished">picscoin</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1109,7 +1109,7 @@
     </message>
     <message>
         <location line="+8"/>
-        <source>%1 will download and store a copy of the strayacoin block chain.</source>
+        <source>%1 will download and store a copy of the picscoin block chain.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1153,12 +1153,12 @@
     </message>
     <message>
         <location line="+119"/>
-        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the strayacoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the picscoin network, as detailed below.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+19"/>
-        <source>Attempting to spend strayacoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spend picscoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1376,8 +1376,8 @@
     </message>
     <message>
         <location line="+30"/>
-        <source>Automatically open the strayacoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatically open the strayacoin client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
+        <source>Automatically open the picscoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatically open the picscoin client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1386,7 +1386,7 @@
     </message>
     <message>
         <location line="+17"/>
-        <source>Connect to the strayacoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the picscoin network through a SOCKS5 proxy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1434,7 +1434,7 @@
     </message>
     <message>
         <location line="+25"/>
-        <source>Connect to the strayacoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <source>Connect to the picscoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1579,8 +1579,8 @@
     <message>
         <location line="+62"/>
         <location line="+386"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the strayacoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the strayacoin network after a connection is established, but this process has not completed yet.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the picscoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the picscoin network after a connection is established, but this process has not completed yet.</translation>
     </message>
     <message>
         <location line="-139"/>
@@ -1677,7 +1677,7 @@
     </message>
     <message>
         <location line="-402"/>
-        <source>Cannot start strayacoin: click-to-pay handler</source>
+        <source>Cannot start picscoin: click-to-pay handler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1699,7 +1699,7 @@
     </message>
     <message>
         <location line="+8"/>
-        <source>URI cannot be parsed! This can be caused by an invalid strayacoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid picscoin address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1821,7 +1821,7 @@
     </message>
     <message>
         <location filename="../guiutil.cpp" line="+130"/>
-        <source>Enter a strayacoin address (e.g. %1)</source>
+        <source>Enter a picscoin address (e.g. %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2407,7 +2407,7 @@
     <message>
         <location line="+14"/>
         <location line="+23"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the strayacoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the picscoin network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2705,7 +2705,7 @@
     <message>
         <location line="+84"/>
         <location line="+13"/>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for strayacoin transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for picscoin transactions than the network can process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2921,7 +2921,7 @@
     </message>
     <message>
         <location line="+101"/>
-        <source>Warning: Invalid strayacoin address</source>
+        <source>Warning: Invalid picscoin address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2976,7 +2976,7 @@
     </message>
     <message>
         <location line="+39"/>
-        <source>The strayacoin address to send the payment to</source>
+        <source>The picscoin address to send the payment to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3003,7 +3003,7 @@
     </message>
     <message>
         <location line="-1021"/>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less strayacoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less picscoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3033,7 +3033,7 @@
     </message>
     <message>
         <location line="+47"/>
-        <source>A message that was attached to the strayacoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the strayacoin network.</source>
+        <source>A message that was attached to the picscoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the picscoin network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3090,12 +3090,12 @@
     </message>
     <message>
         <location line="+6"/>
-        <source>You can sign messages/agreements with your addresses to prove you can receive strayacoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive picscoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The strayacoin address to sign the message with</source>
+        <source>The picscoin address to sign the message with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3137,8 +3137,8 @@
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this strayacoin address</source>
-        <translation>Sign the message to prove you own this strayacoin address</translation>
+        <source>Sign the message to prove you own this picscoin address</source>
+        <translation>Sign the message to prove you own this picscoin address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -3168,13 +3168,13 @@
     </message>
     <message>
         <location line="+21"/>
-        <source>The strayacoin address the message was signed with</source>
+        <source>The picscoin address the message was signed with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+37"/>
-        <source>Verify the message to ensure it was signed with the specified strayacoin address</source>
-        <translation>Verify the message to ensure it was signed with the specified strayacoin address</translation>
+        <source>Verify the message to ensure it was signed with the specified picscoin address</source>
+        <translation>Verify the message to ensure it was signed with the specified picscoin address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -4066,8 +4066,8 @@
     </message>
     <message>
         <location line="-384"/>
-        <source>Strayacoin Core</source>
-        <translation type="unfinished">Strayacoin Core</translation>
+        <source>Picscoin Core</source>
+        <translation type="unfinished">Picscoin Core</translation>
     </message>
     <message>
         <location line="+1"/>

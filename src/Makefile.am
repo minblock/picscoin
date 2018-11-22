@@ -66,11 +66,11 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += strayacoind
+  bin_PROGRAMS += picscoind
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += strayacoin-cli strayacoin-tx
+  bin_PROGRAMS += picscoin-cli picscoin-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
@@ -370,16 +370,16 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-strayacoind_SOURCES = bitcoind.cpp
-strayacoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-strayacoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-strayacoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+picscoind_SOURCES = bitcoind.cpp
+picscoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+picscoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+picscoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-strayacoind_SOURCES += bitcoind-res.rc
+picscoind_SOURCES += bitcoind-res.rc
 endif
 
-strayacoind_LDADD = \
+picscoind_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBUNIVALUE) \
@@ -393,38 +393,38 @@ strayacoind_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-strayacoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+picscoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
 # bitcoin-cli binary #
-strayacoin_cli_SOURCES = bitcoin-cli.cpp
-strayacoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-strayacoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-strayacoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+picscoin_cli_SOURCES = bitcoin-cli.cpp
+picscoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+picscoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+picscoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-strayacoin_cli_SOURCES += bitcoin-cli-res.rc
+picscoin_cli_SOURCES += bitcoin-cli-res.rc
 endif
 
-strayacoin_cli_LDADD = \
+picscoin_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-strayacoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+picscoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # bitcoin-tx binary #
-strayacoin_tx_SOURCES = bitcoin-tx.cpp
-strayacoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-strayacoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-strayacoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+picscoin_tx_SOURCES = bitcoin-tx.cpp
+picscoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+picscoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+picscoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-strayacoin_tx_SOURCES += bitcoin-tx-res.rc
+picscoin_tx_SOURCES += bitcoin-tx-res.rc
 endif
 
-strayacoin_tx_LDADD = \
+picscoin_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -432,7 +432,7 @@ strayacoin_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-strayacoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+picscoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #

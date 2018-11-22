@@ -230,8 +230,8 @@
         <translation>&amp;Проверить сообщение...</translation>
     </message>
     <message>
-        <source>strayacoin</source>
-        <translation>Strayacoin Core</translation>
+        <source>picscoin</source>
+        <translation>Picscoin Core</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -442,8 +442,8 @@
         <translation>Пробросить порт через &amp;UPnP</translation>
     </message>
     <message>
-        <source>Connect to the strayacoin network through a SOCKS5 proxy.</source>
-        <translation>Подключится к сети strayacoin через SOCKS5 прокси.</translation>
+        <source>Connect to the picscoin network through a SOCKS5 proxy.</source>
+        <translation>Подключится к сети picscoin через SOCKS5 прокси.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -522,7 +522,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Enter a strayacoin address (e.g. %1)</source>
+        <source>Enter a picscoin address (e.g. %1)</source>
         <translation>Введите биткоин-адрес (напр. %1)</translation>
     </message>
     <message numerus="yes">
@@ -832,8 +832,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Strayacoin Core</source>
-        <translation>Strayacoin Core</translation>
+        <source>Picscoin Core</source>
+        <translation>Picscoin Core</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>

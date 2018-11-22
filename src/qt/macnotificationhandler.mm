@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"org.strayacoin.strayacoin-Qt";
+        return @"org.picscoin.picscoin-Qt";
     } else {
         return [self __bundleIdentifier];
     }

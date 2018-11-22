@@ -58,12 +58,12 @@
         <translation>Adresa na koju se prima</translation>
     </message>
     <message>
-        <source>These are your strayacoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ovo su Vaše strayacoin adrese na koju se vrše uplate. Uvek proverite iznos i prijemnu adresu pre slanja novčića</translation>
+        <source>These are your picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ovo su Vaše picscoin adrese na koju se vrše uplate. Uvek proverite iznos i prijemnu adresu pre slanja novčića</translation>
     </message>
     <message>
-        <source>These are your strayacoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Ovo su Vaše strayacoin adrese za primanje uplata. Preporučuje se upotreba nove adrese za svaku transakciju.</translation>
+        <source>These are your picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Ovo su Vaše picscoin adrese za primanje uplata. Preporučuje se upotreba nove adrese za svaku transakciju.</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
@@ -132,7 +132,7 @@
         <translation>Potvrdite šifrovanje novčanika</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR strayacoinS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR picscoinS&lt;/b&gt;!</source>
         <translation>Upozorenje: Ako šifrujete svoj novčanik, i potom izgubite svoju pristupnu frazu &lt;b&gt;IZGUBIĆETE SVE SVOJE BITKOINE&lt;/b&gt;!</translation>
     </message>
     <message>
@@ -198,16 +198,16 @@
         <translation>Otvori &amp;URI...</translation>
     </message>
     <message>
-        <source>Send coins to a strayacoin address</source>
-        <translation>Pošalji novčiće na strayacoin adresu</translation>
+        <source>Send coins to a picscoin address</source>
+        <translation>Pošalji novčiće na picscoin adresu</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
         <translation>&amp;Proveri poruku...</translation>
     </message>
     <message>
-        <source>strayacoin</source>
-        <translation>strayacoin</translation>
+        <source>picscoin</source>
+        <translation>picscoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -446,8 +446,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Strayacoin Core</source>
-        <translation>Strayacoin Core</translation>
+        <source>Picscoin Core</source>
+        <translation>Picscoin Core</translation>
     </message>
     <message>
         <source>Information</source>

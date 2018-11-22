@@ -38,8 +38,8 @@
         <translation>Билдирүүнү &amp;текшерүү...</translation>
     </message>
     <message>
-        <source>strayacoin</source>
-        <translation>strayacoin</translation>
+        <source>picscoin</source>
+        <translation>picscoin</translation>
     </message>
     <message>
         <source>Wallet</source>

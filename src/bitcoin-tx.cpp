@@ -54,10 +54,10 @@ static int AppInitRawTx(int argc, char* argv[])
     if (argc<2 || gArgs.IsArgSet("-?") || gArgs.IsArgSet("-h") || gArgs.IsArgSet("-help"))
     {
         // First part of help message is specific to this utility
-        std::string strUsage = strprintf(_("%s strayacoin-tx utility version"), _(PACKAGE_NAME)) + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = strprintf(_("%s picscoin-tx utility version"), _(PACKAGE_NAME)) + " " + FormatFullVersion() + "\n\n" +
             _("Usage:") + "\n" +
-              "  strayacoin-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded strayacoin transaction") + "\n" +
-              "  strayacoin-tx [options] -create [commands]   " + _("Create hex-encoded strayacoin transaction") + "\n" +
+              "  picscoin-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded picscoin transaction") + "\n" +
+              "  picscoin-tx [options] -create [commands]   " + _("Create hex-encoded picscoin transaction") + "\n" +
               "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());

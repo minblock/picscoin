@@ -1483,7 +1483,7 @@ void ThreadMapPort()
             }
         }
 
-        std::string strDesc = "strayacoin " + FormatFullVersion();
+        std::string strDesc = "picscoin " + FormatFullVersion();
 
         try {
             while (true) {

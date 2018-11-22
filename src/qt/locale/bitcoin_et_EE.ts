@@ -130,8 +130,8 @@
         <translation>Kõvakettal olevate plokkide reindekseerimine...</translation>
     </message>
     <message>
-        <source>strayacoin</source>
-        <translation>strayacoin</translation>
+        <source>picscoin</source>
+        <translation>picscoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -760,8 +760,8 @@
         <translation>Valikud:</translation>
     </message>
     <message>
-        <source>Strayacoin Core</source>
-        <translation>Strayacoin Core</translation>
+        <source>Picscoin Core</source>
+        <translation>Picscoin Core</translation>
     </message>
     <message>
         <source>Information</source>

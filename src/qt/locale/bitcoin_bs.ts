@@ -14,8 +14,8 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <source>strayacoin</source>
-        <translation>strayacoin</translation>
+        <source>picscoin</source>
+        <translation>picscoin</translation>
     </message>
     </context>
 <context>
@@ -156,8 +156,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Strayacoin Core</source>
-        <translation>strayacoin Jezrga</translation>
+        <source>Picscoin Core</source>
+        <translation>picscoin Jezrga</translation>
     </message>
     </context>
 </TS>

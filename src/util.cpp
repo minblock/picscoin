@@ -87,8 +87,8 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "strayacoin.conf";
-const char * const BITCOIN_PID_FILENAME = "strayacoin.pid";
+const char * const BITCOIN_CONF_FILENAME = "picscoin.conf";
+const char * const BITCOIN_PID_FILENAME = "picscoin.pid";
 
 ArgsManager gArgs;
 bool fPrintToConsole = false;
@@ -505,7 +505,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(nullptr, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "strayacoin";
+    const char* pszModule = "picscoin";
 #endif
     if (pex)
         return strprintf(
@@ -530,7 +530,7 @@ fs::path GetDefaultDataDir()
     // Unix: ~/.bitcoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "strayacoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "picscoin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -540,10 +540,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/strayacoin";
+    return pathRet / "Library/Application Support/picscoin";
 #else
     // Unix
-    return pathRet / ".strayacoin";
+    return pathRet / ".picscoin";
 #endif
 #endif
 }

@@ -142,8 +142,8 @@
         <translation>Deschide &amp;URI...</translation>
     </message>
     <message>
-        <source>Send coins to a strayacoin address</source>
-        <translation>Trimite monedele către o adresă strayacoin</translation>
+        <source>Send coins to a picscoin address</source>
+        <translation>Trimite monedele către o adresă picscoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -166,8 +166,8 @@
         <translation>&amp;Verifică mesajul...</translation>
     </message>
     <message>
-        <source>strayacoin</source>
-        <translation>strayacoin</translation>
+        <source>picscoin</source>
+        <translation>picscoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -194,12 +194,12 @@
         <translation>Criptează cheile private care aparțin portofelului tău.</translation>
     </message>
     <message>
-        <source>Sign messages with your strayacoin addresses to prove you own them</source>
-        <translation>Semnează mesajele cu adresa ta de strayacoin pentru a face dovada că îți aparțin.</translation>
+        <source>Sign messages with your picscoin addresses to prove you own them</source>
+        <translation>Semnează mesajele cu adresa ta de picscoin pentru a face dovada că îți aparțin.</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified strayacoin addresses</source>
-        <translation>Verifică mesajele cu scopul de a asigura faptul că au fost semnate cu adresa de strayacoin specificată.</translation>
+        <source>Verify messages to ensure they were signed with specified picscoin addresses</source>
+        <translation>Verifică mesajele cu scopul de a asigura faptul că au fost semnate cu adresa de picscoin specificată.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -214,12 +214,12 @@
         <translation>&amp;Ajutor</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and strayacoin: URIs)</source>
-        <translation>Cerere plată (generează coduri QR și strayacoin: URIs)</translation>
+        <source>Request payments (generates QR codes and picscoin: URIs)</source>
+        <translation>Cerere plată (generează coduri QR și picscoin: URIs)</translation>
     </message>
     <message>
-        <source>Open a strayacoin: URI or payment request</source>
-        <translation>Deschide un strayacoin: URI sau cerere de plată</translation>
+        <source>Open a picscoin: URI or payment request</source>
+        <translation>Deschide un picscoin: URI sau cerere de plată</translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -748,8 +748,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Strayacoin Core</source>
-        <translation>Strayacoin Core</translation>
+        <source>Picscoin Core</source>
+        <translation>Picscoin Core</translation>
     </message>
     <message>
         <source>Information</source>

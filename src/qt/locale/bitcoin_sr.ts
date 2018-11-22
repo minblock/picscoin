@@ -130,8 +130,8 @@
         <translation>Промени &amp;лозинку...</translation>
     </message>
     <message>
-        <source>Send coins to a strayacoin address</source>
-        <translation>Пошаљите новац на strayacoin адресу</translation>
+        <source>Send coins to a picscoin address</source>
+        <translation>Пошаљите новац на picscoin адресу</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>

@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "strayacoin"
-            VALUE "FileDescription",    "strayacoin-tx (CLI strayacoin transaction editor utility)"
+            VALUE "CompanyName",        "picscoin"
+            VALUE "FileDescription",    "picscoin-tx (CLI picscoin transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "strayacoin-tx"
+            VALUE "InternalName",       "picscoin-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "strayacoin-tx.exe"
-            VALUE "ProductName",        "strayacoin-tx"
+            VALUE "OriginalFilename",   "picscoin-tx.exe"
+            VALUE "ProductName",        "picscoin-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

@@ -70,7 +70,7 @@
         <translation>Құпия сөзді өзгерту</translation>
     </message>
     <message>
-        <source>strayacoin</source>
+        <source>picscoin</source>
         <translation>Биткоин</translation>
     </message>
     <message>

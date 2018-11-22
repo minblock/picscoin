@@ -114,8 +114,8 @@
         <translation>Reindexando bloques en el disco...</translation>
     </message>
     <message>
-        <source>Send coins to a strayacoin address</source>
-        <translation>Enviar monedas a una dirección strayacoin</translation>
+        <source>Send coins to a picscoin address</source>
+        <translation>Enviar monedas a una dirección picscoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -130,8 +130,8 @@
         <translation>Abre la consola de depuración y diágnostico</translation>
     </message>
     <message>
-        <source>strayacoin</source>
-        <translation>strayacoin</translation>
+        <source>picscoin</source>
+        <translation>picscoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -158,12 +158,12 @@
         <translation>Encriptar las llaves privadas que pertenecen a tu billetera</translation>
     </message>
     <message>
-        <source>Sign messages with your strayacoin addresses to prove you own them</source>
-        <translation>Firma mensajes con tus direcciones strayacoin para probar que eres dueño de ellas</translation>
+        <source>Sign messages with your picscoin addresses to prove you own them</source>
+        <translation>Firma mensajes con tus direcciones picscoin para probar que eres dueño de ellas</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified strayacoin addresses</source>
-        <translation>Verificar mensajes para asegurar que estaban firmados con direcciones strayacoin especificas</translation>
+        <source>Verify messages to ensure they were signed with specified picscoin addresses</source>
+        <translation>Verificar mensajes para asegurar que estaban firmados con direcciones picscoin especificas</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -608,8 +608,8 @@
         <translation>Correr en segundo plano como daemon y aceptar comandos</translation>
     </message>
     <message>
-        <source>Strayacoin Core</source>
-        <translation>Strayacoin Core</translation>
+        <source>Picscoin Core</source>
+        <translation>Picscoin Core</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>
