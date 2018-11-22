@@ -114,11 +114,11 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x2402e13c93957aa10bed945886f3cfbe12749bb8886492db16560c8419a42c9d"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("dnsseed.picscoins.org");
-        vSeeds.emplace_back("dnsseed.pool.mchub.ca");
-        vSeeds.emplace_back("dnsseed.provgn.com");
-        vSeeds.emplace_back("dnsseed.bitwall.ca");
-        vSeeds.emplace_back("dnsseed.stratum.bitwall.ca");
+        vSeeds.emplace_back("seed.picscoins.org", true);
+        vSeeds.emplace_back("dnsseed.pool.mchub.ca", true);
+        vSeeds.emplace_back("dnsseed.provgn.com", true);
+        vSeeds.emplace_back("dnsseed.bitwall.ca", true);
+        vSeeds.emplace_back("dnsseed.stratum.bitwall.ca", true);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -209,9 +209,9 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testnet-seed.picscoins.org");
-        vSeeds.emplace_back("seed-b.picscoin.provgn.com");
-        vSeeds.emplace_back("dnsseed-testnet.picscoin..ca");
+        vSeeds.emplace_back("testnet-seed.picscoins.org", true);
+        vSeeds.emplace_back("seed-b.picscoin.provgn.com", true);
+        vSeeds.emplace_back("dnsseed-testnet.picscoin..ca", true);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,117);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
