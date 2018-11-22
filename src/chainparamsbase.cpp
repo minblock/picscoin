@@ -3,14 +3,16 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <chainparamsbase.h>
+#include <chainparams.h>
+#include <consensus/merkle.h>
 
 #include <tinyformat.h>
 #include <util.h>
+#include <utilstrencodings.h>
 
 #include <assert.h>
-#include <memory>
 
+#include <chainparamsseeds.h>
 const std::string CBaseChainParams::MAIN = "main";
 const std::string CBaseChainParams::TESTNET = "test";
 const std::string CBaseChainParams::REGTEST = "regtest";
