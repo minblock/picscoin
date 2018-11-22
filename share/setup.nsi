@@ -10,11 +10,11 @@ SetCompressor /SOLID lzma
 !define URL https://picscoins.org/
 
 # MUI Symbol Definitions
-!define MUI_ICON "/home/spanky/picscoin0.16/share/pixmaps/bitcoin.ico"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "/home/spanky/picscoin0.16/share/pixmaps/nsis-wizard.bmp"
+!define MUI_ICON "/home/spanky/picscoin/share/pixmaps/bitcoin.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "/home/spanky/picscoin/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "/home/spanky/picscoin0.16/share/pixmaps/nsis-header.bmp"
+!define MUI_HEADERIMAGE_BITMAP "/home/spanky/picscoin/share/pixmaps/nsis-header.bmp"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
@@ -23,7 +23,7 @@ SetCompressor /SOLID lzma
 !define MUI_FINISHPAGE_RUN "$WINDIR\explorer.exe"
 !define MUI_FINISHPAGE_RUN_PARAMETERS $INSTDIR\picscoin-qt
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/home/spanky/picscoin0.16/share/pixmaps/nsis-wizard.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/home/spanky/picscoin/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
@@ -49,7 +49,7 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile /home/spanky/picscoin0.16/picscoin-${VERSION}-win-setup.exe
+OutFile /home/spanky/picscoin/picscoin-${VERSION}-win-setup.exe
 !if "" == "64"
 InstallDir $PROGRAMFILES64\Picscoin
 !else
@@ -74,14 +74,14 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /home/spanky/picscoin0.16/release/picscoin-qt
-    File /oname=COPYING.txt /home/spanky/picscoin0.16/COPYING
-    File /oname=readme.txt /home/spanky/picscoin0.16/doc/README_windows.txt
+    File /home/spanky/picscoin/release/picscoin-qt
+    File /oname=COPYING.txt /home/spanky/picscoin/COPYING
+    File /oname=readme.txt /home/spanky/picscoin/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /home/spanky/picscoin0.16/release/picscoind
-    File /home/spanky/picscoin0.16/release/picscoin-cli
+    File /home/spanky/picscoin/release/picscoind
+    File /home/spanky/picscoin/release/picscoin-cli
     SetOutPath $INSTDIR\doc
-    File /r /home/spanky/picscoin0.16/doc\*.*
+    File /r /home/spanky/picscoin/doc\*.*
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 SectionEnd

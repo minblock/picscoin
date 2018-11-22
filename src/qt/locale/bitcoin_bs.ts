@@ -14,8 +14,8 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <source>picscoin</source>
-        <translation>picscoin</translation>
+        <source>Picscoin</source>
+        <translation>Picscoin</translation>
     </message>
     </context>
 <context>
@@ -32,6 +32,10 @@
     </context>
 <context>
     <name>Intro</name>
+    <message>
+        <source>Picscoin</source>
+        <translation>Picscoin</translation>
+    </message>
     </context>
 <context>
     <name>ModalOverlay</name>
@@ -157,7 +161,7 @@
     <name>bitcoin-core</name>
     <message>
         <source>Picscoin Core</source>
-        <translation>picscoin Jezrga</translation>
+        <translation>Picscoin Jezrga</translation>
     </message>
     </context>
 </TS>

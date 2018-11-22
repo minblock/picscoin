@@ -62,12 +62,12 @@
         <translation>Alamat-alamat penerima</translation>
     </message>
     <message>
-        <source>These are your picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ini adalah alamat- alamat picscoin Anda untuk mengirimkan pembayaran. Selalu periksa jumlah dan alamat penerima sebelum mengirimkan koin.</translation>
+        <source>These are your Picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ini adalah alamat- alamat Picscoin Anda untuk mengirimkan pembayaran. Selalu periksa jumlah dan alamat penerima sebelum mengirimkan koin.</translation>
     </message>
     <message>
-        <source>These are your picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Ini adalah alamat- alamat picscoin Anda untuk menerima pembayaran. Dianjurkan untuk menggunakan alamat penerima yang baru setiap melakukan transaksi.</translation>
+        <source>These are your Picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Ini adalah alamat- alamat Picscoin Anda untuk menerima pembayaran. Dianjurkan untuk menggunakan alamat penerima yang baru setiap melakukan transaksi.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -128,6 +128,10 @@
         <translation>Ulangi kata kunci baru</translation>
     </message>
     <message>
+        <source>Show password</source>
+        <translation>Tampilkan password</translation>
+    </message>
+    <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation>Masukan kata sandi baru ke dompet.&lt;br/&gt;Mohon gunakan kata sandi &lt;b&gt;sepuluh karakter acak atau lebih&lt;/b&gt;, atau &lt;b&gt; delapan atau lebih beberapa kata &lt;/​​b&gt;.</translation>
     </message>
@@ -164,8 +168,8 @@
         <translation>Konfirmasi pengenkripsian dompet</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR picscoinS&lt;/b&gt;!</source>
-        <translation>Peringatan: Jika Anda enkripsi dompet Anda dan lupa kata sandi anda, Anda akan &lt;b&gt;KEHILANGAN SEMUA picscoin ANDA&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PICSCOINS&lt;/b&gt;!</source>
+        <translation>Peringatan: Jika Anda enkripsi dompet Anda dan lupa kata sandi anda, Anda akan &lt;b&gt;KEHILANGAN SEMUA PICSCOIN ANDA&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -334,8 +338,8 @@
         <translation>Mengindex ulang blok di dalam disk...</translation>
     </message>
     <message>
-        <source>Send coins to a picscoin address</source>
-        <translation>Kirim koin ke alamat picscoin</translation>
+        <source>Send coins to a Picscoin address</source>
+        <translation>Kirim koin ke alamat Picscoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -358,8 +362,8 @@
         <translation>&amp;Verifikasi pesan...</translation>
     </message>
     <message>
-        <source>picscoin</source>
-        <translation>picscoin</translation>
+        <source>Picscoin</source>
+        <translation>Picscoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -386,12 +390,12 @@
         <translation>Enkripsi private key yang dimiliki dompet Anda</translation>
     </message>
     <message>
-        <source>Sign messages with your picscoin addresses to prove you own them</source>
-        <translation>Tanda tangani sebuah pesan menggunakan alamat picscoin Anda untuk membuktikan bahwa Anda adalah pemilik alamat tersebut</translation>
+        <source>Sign messages with your Picscoin addresses to prove you own them</source>
+        <translation>Tanda tangani sebuah pesan menggunakan alamat Picscoin Anda untuk membuktikan bahwa Anda adalah pemilik alamat tersebut</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified picscoin addresses</source>
-        <translation>Verifikasi pesan untuk memastikan bahwa pesan tersebut ditanda tangani oleh suatu alamat picscoin tertentu</translation>
+        <source>Verify messages to ensure they were signed with specified Picscoin addresses</source>
+        <translation>Verifikasi pesan untuk memastikan bahwa pesan tersebut ditanda tangani oleh suatu alamat Picscoin tertentu</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -430,8 +434,8 @@
         <translation>&amp;pilihan Command-line</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to picscoin network</source>
-        <translation><numerusform>%n koneksi aktif ke jaringan picscoin</numerusform></translation>
+        <source>%n active connection(s) to Picscoin network</source>
+        <translation><numerusform>%n koneksi aktif ke jaringan Picscoin</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -474,8 +478,8 @@
         <translation>Terbaru</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible picscoin command-line options</source>
-        <translation>Tampilkan %1 pesan bantuan untuk mendapatkan daftar opsi baris perintah picscoin yang memungkinkan</translation>
+        <source>Show the %1 help message to get a list with possible Picscoin command-line options</source>
+        <translation>Tampilkan %1 pesan bantuan untuk mendapatkan daftar opsi baris perintah Picscoin yang memungkinkan</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -544,8 +548,8 @@
         <translation>Dompet saat ini &lt;b&gt;terenkripsi&lt;/b&gt; dan &lt;b&gt;terkunci&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. picscoin can no longer continue safely and will quit.</source>
-        <translation>Terjadi Kesalahan Fatal. picscoin Tidak Dapat Melanjutkan Dengan Aman Dan Akan Keluar</translation>
+        <source>A fatal error occurred. Picscoin can no longer continue safely and will quit.</source>
+        <translation>Terjadi Kesalahan Fatal. Picscoin Tidak Dapat Melanjutkan Dengan Aman Dan Akan Keluar</translation>
     </message>
 </context>
 <context>
@@ -679,6 +683,10 @@
         <translation>Tidak</translation>
     </message>
     <message>
+        <source>Can vary +/- %1 satoshi(s) per input.</source>
+        <translation>Dapat bervariasi +/- %1 satoshi per input.</translation>
+    </message>
+    <message>
         <source>(no label)</source>
         <translation>(tidak ada label)</translation>
     </message>
@@ -722,8 +730,8 @@
         <translation>Ubah alamat pengirim</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid picscoin address.</source>
-        <translation>Alamat yang dimasukkan "%1" bukanlah alamat picscoin yang valid.</translation>
+        <source>The entered address "%1" is not a valid Picscoin address.</source>
+        <translation>Alamat yang dimasukkan "%1" bukanlah alamat Picscoin yang valid.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -824,7 +832,7 @@
     </message>
     <message>
         <source>Welcome to %1.</source>
-        <translation>Selamat Datang ke %1.</translation>
+        <translation>Selamat Datang di %1.</translation>
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where %1 will store its data.</source>
@@ -837,6 +845,10 @@
     <message>
         <source>Use a custom data directory:</source>
         <translation>Gunakan direktori pilihan Anda:</translation>
+    </message>
+    <message>
+        <source>Picscoin</source>
+        <translation>Picscoin</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -908,14 +920,6 @@
         <translation>Jumlah script &amp;verification threads</translation>
     </message>
     <message>
-        <source>Accept connections from outside</source>
-        <translation>Terima koneksi dari luar</translation>
-    </message>
-    <message>
-        <source>Allow incoming connections</source>
-        <translation>Perbolehkan koneksi masuk</translation>
-    </message>
-    <message>
         <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
         <translation>Alamat IP proxy (cth. IPv4: 127.0.0.1 / IPv6: ::1)</translation>
     </message>
@@ -926,10 +930,6 @@
     <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
         <translation>URL pihak ketika (misalnya sebuah block explorer) yang mumcul dalam tab transaksi sebagai konteks menu. %s dalam URL diganti dengan kode transaksi. URL dipisahkan dengan tanda vertikal |.</translation>
-    </message>
-    <message>
-        <source>Third party transaction URLs</source>
-        <translation>URL transaksi pihak ketiga</translation>
     </message>
     <message>
         <source>Active command-line options that override above options:</source>
@@ -972,16 +972,16 @@
         <translation>&amp;Perubahan saldo untuk transaksi yang belum dikonfirmasi</translation>
     </message>
     <message>
-        <source>Automatically open the picscoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Otomatis membuka port client picscoin di router. Hanya berjalan apabila router anda mendukung UPnP dan di-enable.</translation>
+        <source>Automatically open the Picscoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Otomatis membuka port client Picscoin di router. Hanya berjalan apabila router anda mendukung UPnP dan di-enable.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Petakan port dengan &amp;UPnP</translation>
     </message>
     <message>
-        <source>Connect to the picscoin network through a SOCKS5 proxy.</source>
-        <translation>Hubungkan ke jaringan picscoin melalui SOCKS5 proxy.</translation>
+        <source>Connect to the Picscoin network through a SOCKS5 proxy.</source>
+        <translation>Hubungkan ke jaringan Picscoin melalui SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1072,6 +1072,10 @@
         <translation>Klien akan dimatikan, apakah anda hendak melanjutkan?</translation>
     </message>
     <message>
+        <source>Error</source>
+        <translation>Terjadi sebuah kesalahan</translation>
+    </message>
+    <message>
         <source>This change would require a client restart.</source>
         <translation>Perubahan ini akan memerlukan restart klien</translation>
     </message>
@@ -1087,8 +1091,8 @@
         <translation>Formulir</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the picscoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Informasi terlampir mungkin sudah kedaluwarsa. Dompet Anda secara otomatis mensinkronisasi dengan jaringan picscoin ketika sebuah hubungan terbentuk, namun proses ini belum selesai.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Picscoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Informasi terlampir mungkin sudah kedaluwarsa. Dompet Anda secara otomatis mensinkronisasi dengan jaringan Picscoin ketika sebuah hubungan terbentuk, namun proses ini belum selesai.</translation>
     </message>
     <message>
         <source>Available:</source>
@@ -1136,6 +1140,10 @@
         <source>User Agent</source>
         <translation>Agen Pengguna</translation>
     </message>
+    <message>
+        <source>Sent</source>
+        <translation>Terkirim</translation>
+    </message>
     </context>
 <context>
     <name>QObject</name>
@@ -1144,8 +1152,8 @@
         <translation>Nilai</translation>
     </message>
     <message>
-        <source>Enter a picscoin address (e.g. %1)</source>
-        <translation>Masukkan alamat picscoin (contoh %1)</translation>
+        <source>Enter a Picscoin address (e.g. %1)</source>
+        <translation>Masukkan alamat Picscoin (contoh %1)</translation>
     </message>
     <message>
         <source>%1 h</source>
@@ -1163,7 +1171,27 @@
         <source>%1 and %2</source>
         <translation>%1 dan %2</translation>
     </message>
-    </context>
+    <message>
+        <source>%1 B</source>
+        <translation>%1 B</translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation>%1 KB</translation>
+    </message>
+    <message>
+        <source>%1 MB</source>
+        <translation>%1 MB</translation>
+    </message>
+    <message>
+        <source>%1 GB</source>
+        <translation>%1 GB</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>tidak diketahui</translation>
+    </message>
+</context>
 <context>
     <name>QObject::QObject</name>
     </context>
@@ -1251,10 +1279,6 @@
         <translation>Kemacetan &amp;Jaringan </translation>
     </message>
     <message>
-        <source>&amp;Clear</source>
-        <translation>&amp;Kosongkan</translation>
-    </message>
-    <message>
         <source>Totals</source>
         <translation>Total</translation>
     </message>
@@ -1291,30 +1315,6 @@
         <translation>1 &amp;tahun</translation>
     </message>
     <message>
-        <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
-        <translation>Gunakan panah keatas dan kebawah untuk menampilkan sejarah, dan &lt;b&gt;Ctrl-L&lt;/b&gt; untuk bersihkan layar.</translation>
-    </message>
-    <message>
-        <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
-        <translation>Ketik &lt;b&gt;help&lt;/b&gt; untuk menampilkan perintah tersedia.</translation>
-    </message>
-    <message>
-        <source>%1 B</source>
-        <translation>%1 B</translation>
-    </message>
-    <message>
-        <source>%1 KB</source>
-        <translation>%1 KB</translation>
-    </message>
-    <message>
-        <source>%1 MB</source>
-        <translation>%1 MB</translation>
-    </message>
-    <message>
-        <source>%1 GB</source>
-        <translation>%1 GB</translation>
-    </message>
-    <message>
         <source>Yes</source>
         <translation>Ya</translation>
     </message>
@@ -1340,10 +1340,6 @@
     <message>
         <source>&amp;Message:</source>
         <translation>&amp;Pesan:</translation>
-    </message>
-    <message>
-        <source>R&amp;euse an existing receiving address (not recommended)</source>
-        <translation>Gunakan lagi alamat penerima yang ada (tidak disarankan)</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -1501,14 +1497,6 @@
     <message>
         <source>Recommended:</source>
         <translation>Disarankan</translation>
-    </message>
-    <message>
-        <source>normal</source>
-        <translation>normal</translation>
-    </message>
-    <message>
-        <source>fast</source>
-        <translation>cepat</translation>
     </message>
     <message>
         <source>Send to multiple recipients at once</source>
@@ -1679,8 +1667,8 @@
         <translation>Salin tanda tangan terpilih ke sistem klipboard</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this picscoin address</source>
-        <translation>Tandai pesan untuk menyetujui kamu pemiliki alamat picscoin ini</translation>
+        <source>Sign the message to prove you own this Picscoin address</source>
+        <translation>Tandai pesan untuk menyetujui kamu pemiliki alamat Picscoin ini</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1828,6 +1816,10 @@
         <translation>Jalankan perintah ketika perubahan transaksi dompet (%s di cmd digantikan oleh TxID)</translation>
     </message>
     <message>
+        <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
+        <translation>Terima hubungan dari luar (standar: 1 kalau -proxy atau -connect tidak dipilih)</translation>
+    </message>
+    <message>
         <source>Block creation options:</source>
         <translation>Pilihan pembuatan blok:</translation>
     </message>
@@ -1876,16 +1868,8 @@
         <translation>Tidak bisa cari blok pertama, atau blok pertama salah. Salah direktori untuk jaringan?</translation>
     </message>
     <message>
-        <source>Invalid -onion address: '%s'</source>
-        <translation>Alamat -onion salah: '%s'</translation>
-    </message>
-    <message>
         <source>Not enough file descriptors available.</source>
         <translation>Deskripsi berkas tidak tersedia dengan cukup.</translation>
-    </message>
-    <message>
-        <source>Set maximum block size in bytes (default: %d)</source>
-        <translation>Atur ukuran maksimal untuk blok dalam byte (biasanya: %d)</translation>
     </message>
     <message>
         <source>Specify wallet file (within data directory)</source>
@@ -1894,14 +1878,6 @@
     <message>
         <source>Verifying blocks...</source>
         <translation>Blok-blok sedang diverifikasi...</translation>
-    </message>
-    <message>
-        <source>Verifying wallet...</source>
-        <translation>Dompet sedang diverifikasi...</translation>
-    </message>
-    <message>
-        <source>Wallet %s resides outside data directory %s</source>
-        <translation>Dompet %s ada diluar direktori data %s</translation>
     </message>
     <message>
         <source>Wallet options:</source>
@@ -1964,14 +1940,6 @@
         <translation>Izinkan peninjauan DNS untuk -addnote, -seednode dan -connect</translation>
     </message>
     <message>
-        <source>Loading addresses...</source>
-        <translation>Memuat alamat...</translation>
-    </message>
-    <message>
-        <source>Invalid -proxy address: '%s'</source>
-        <translation>Alamat -proxy salah: '%s'</translation>
-    </message>
-    <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
         <translation>Jaringan tidak diketahui yang ditentukan dalam -onlynet: '%s'</translation>
     </message>
@@ -1984,20 +1952,12 @@
         <translation>Memuat indeks blok...</translation>
     </message>
     <message>
-        <source>Add a node to connect to and attempt to keep the connection open</source>
-        <translation>Tambahkan node untuk dihubungkan dan upaya untuk menjaga hubungan tetap terbuka</translation>
-    </message>
-    <message>
         <source>Loading wallet...</source>
         <translation>Memuat dompet...</translation>
     </message>
     <message>
         <source>Cannot downgrade wallet</source>
         <translation>Tidak dapat menurunkan versi dompet</translation>
-    </message>
-    <message>
-        <source>Cannot write default address</source>
-        <translation>Tidak dapat menyimpan alamat standar</translation>
     </message>
     <message>
         <source>Rescanning...</source>

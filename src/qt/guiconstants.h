@@ -27,8 +27,6 @@ static const bool DEFAULT_SPLASHSCREEN = true;
 #define COLOR_BAREADDRESS QColor(140, 140, 140)
 /* Transaction list -- TX status decoration - open until date */
 #define COLOR_TX_STATUS_OPENUNTILDATE QColor(64, 64, 255)
-/* Transaction list -- TX status decoration - offline */
-#define COLOR_TX_STATUS_OFFLINE QColor(192, 192, 192)
 /* Transaction list -- TX status decoration - danger, tx needs attention */
 #define COLOR_TX_STATUS_DANGER QColor(200, 100, 100)
 /* Transaction list -- TX status decoration - default color */
@@ -48,9 +46,9 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 36
 
-#define QAPP_ORG_NAME "picscoin"
-#define QAPP_ORG_DOMAIN "picscoin.org"
-#define QAPP_APP_NAME_DEFAULT "picscoin-Qt"
-#define QAPP_APP_NAME_TESTNET "picscoin-Qt-testnet"
+#define QAPP_ORG_NAME "Picscoin"
+#define QAPP_ORG_DOMAIN "picscoins.org"
+#define QAPP_APP_NAME_DEFAULT "Picscoin-Qt"
+#define QAPP_APP_NAME_TESTNET "Picscoin-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

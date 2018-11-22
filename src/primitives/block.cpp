@@ -1,36 +1,25 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "primitives/block.h"
+#include <primitives/block.h>
 
-#include "hash.h"
-#include "tinyformat.h"
-#include "utilstrencodings.h"
-#include "crypto/common.h"
-#include "crypto/scrypt.h"
-#include <chainparams.h>
-#include "arith_uint256.h"
+#include <hash.h>
+#include <tinyformat.h>
+#include <utilstrencodings.h>
+#include <crypto/common.h>
+#include <crypto/scrypt.h>
 
 uint256 CBlockHeader::GetHash() const
 {
     return SerializeHash(*this);
 }
 
-uint256 CBlockHeader::GetPoWHash(int nAlgo) const
+uint256 CBlockHeader::GetPoWHash() const
 {
-    arith_uint256 thash1;
-    arith_uint256 thash2;
     uint256 thash;
-    switch(nAlgo){
-        case CChainParams::ALGO_SCRYPT :
-            scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
-            break;
-        case CChainParams::ALGO_SCRYPT_PIC :
-            scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
-            break;
-    }
+    scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
     return thash;
 }
 

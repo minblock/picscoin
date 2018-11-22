@@ -1,7 +1,5 @@
 This is a system of building and caching dependencies necessary for building Picscoin. 
-Main thing is don't compile as root user. Because you will encounter permission errors.
-Also besure to chmod everything executable. When you start compiling you'll be greatful 
-you did. There are several features that make it different from most similar systems:
+There are several features that make it different from most similar systems:
 
 ### It is designed to be builder and host agnostic
 

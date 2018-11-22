@@ -38,8 +38,8 @@
         <translation>Билдирүүнү &amp;текшерүү...</translation>
     </message>
     <message>
-        <source>picscoin</source>
-        <translation>picscoin</translation>
+        <source>Picscoin</source>
+        <translation>Picscoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -101,6 +101,10 @@
 <context>
     <name>Intro</name>
     <message>
+        <source>Picscoin</source>
+        <translation>Picscoin</translation>
+    </message>
+    <message>
         <source>Error</source>
         <translation>Ката</translation>
     </message>
@@ -148,6 +152,10 @@
     <message>
         <source>none</source>
         <translation>жок</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Ката</translation>
     </message>
     </context>
 <context>
