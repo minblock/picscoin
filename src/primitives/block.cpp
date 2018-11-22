@@ -27,7 +27,7 @@ uint256 CBlockHeader::GetPoWHash(int nAlgo) const
         case CChainParams::ALGO_SCRYPT :
             scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
             break;
-        case CChainParams::ALGO_SCRYPT_NAH :
+        case CChainParams::ALGO_SCRYPT_PIC :
             scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
             break;
     }
