@@ -86,9 +86,9 @@ public:
     void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout);
     int GetPoWAlgo(int nHeight) const {
         if (strNetworkID == CBaseChainParams::TESTNET && nHeight > 10){
-            return ALGO_SCRYPT_NAH;
+            return ALGO_SCRYPT_PIC;
         } else if(strNetworkID == CBaseChainParams::MAIN && nHeight > 62685){ // whenever mate...time/date goes here
-            return ALGO_SCRYPT_NAH;
+            return ALGO_SCRYPT_PIC;
         } else {
             return ALGO_SCRYPT;
         }
