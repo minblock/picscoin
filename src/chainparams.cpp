@@ -232,7 +232,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        bech32_hrp = "plic";
+        bech32_hrp = "tpic";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
@@ -295,7 +295,7 @@ public:
         pchMessageStart[1] = 0x03;
         pchMessageStart[2] = 0x02;
         pchMessageStart[3] = 0x01;
-        nDefaultPort = 17445;
+        nDefaultPort = 25566;
         nPruneAfterHeight = 1000;
 
         genesis = CreateGenesisBlock(1296688602, 0, 0x207fffff, 1, 50 * COIN);
