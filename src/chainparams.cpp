@@ -223,7 +223,7 @@ public:
         // nodes with support for servicebits filtering should be at the top
         vSeeds.emplace_back("testnet-seed.picscoins.org");
         vSeeds.emplace_back("seed-b.picscoin.provgn.com");
-        vSeeds.emplace_back("dnsseed-testnet.picscoin..ca");
+        vSeeds.emplace_back("dnsseed-testnet.picscoin.ca");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,117);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
