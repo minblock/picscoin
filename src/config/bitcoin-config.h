@@ -18,10 +18,10 @@
 #define CLIENT_VERSION_MAJOR 0
 
 /* Minor version */
-#define CLIENT_VERSION_MINOR 16
+#define CLIENT_VERSION_MINOR 14
 
 /* Build revision */
-#define CLIENT_VERSION_REVISION 3
+#define CLIENT_VERSION_REVISION 2
 
 /* Copyright holder(s) before %s replacement */
 #define COPYRIGHT_HOLDERS "The %s developers"
@@ -33,7 +33,7 @@
 #define COPYRIGHT_HOLDERS_SUBSTITUTION "Picscoin Core"
 
 /* Copyright year */
-#define COPYRIGHT_YEAR 2018
+#define COPYRIGHT_YEAR 2017
 
 /* Define to 1 to enable wallet functions */
 #define ENABLE_WALLET 1
@@ -104,7 +104,7 @@
 
 /* Define to 1 if you have the declaration of `EVP_MD_CTX_new', and to 0 if
    you don't. */
-#define HAVE_DECL_EVP_MD_CTX_NEW 1
+#define HAVE_DECL_EVP_MD_CTX_NEW 0
 
 /* Define to 1 if you have the declaration of `htobe16', and to 0 if you
    don't. */
@@ -150,18 +150,6 @@
    don't. */
 #define HAVE_DECL_STRNLEN 1
 
-/* Define to 1 if you have the declaration of `__builtin_clz', and to 0 if you
-   don't. */
-#define HAVE_DECL___BUILTIN_CLZ 1
-
-/* Define to 1 if you have the declaration of `__builtin_clzl', and to 0 if
-   you don't. */
-#define HAVE_DECL___BUILTIN_CLZL 1
-
-/* Define to 1 if you have the declaration of `__builtin_clzll', and to 0 if
-   you don't. */
-#define HAVE_DECL___BUILTIN_CLZLL 1
-
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1
 
@@ -176,13 +164,6 @@
 
 /* Define to 1 if the system has the `visibility' function attribute */
 #define HAVE_FUNC_ATTRIBUTE_VISIBILITY 1
-
-/* Define this symbol if the BSD getentropy system call is available */
-#define HAVE_GETENTROPY 1
-
-/* Define this symbol if the BSD getentropy system call is available with
-   sys/random.h */
-#define HAVE_GETENTROPY_RAND 1
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
@@ -256,9 +237,6 @@
 /* Define to 1 if you have the `z ' library (-lz ). */
 /* #undef HAVE_LIBZ_ */
 
-/* Define this symbol if you have malloc_info */
-#define HAVE_MALLOC_INFO 1
-
 /* Define this symbol if you have mallopt with M_ARENA_MAX */
 #define HAVE_MALLOPT_ARENA_MAX 1
 
@@ -276,9 +254,6 @@
 
 /* Define to 1 if you have the <miniupnpc/upnperrors.h> header file. */
 #define HAVE_MINIUPNPC_UPNPERRORS_H 1
-
-/* Define this symbol if you have MSG_DONTWAIT */
-#define HAVE_MSG_DONTWAIT 1
 
 /* Define this symbol if you have MSG_NOSIGNAL */
 #define HAVE_MSG_NOSIGNAL 1
@@ -307,14 +282,8 @@
 /* Define to 1 if you have the <string.h> header file. */
 #define HAVE_STRING_H 1
 
-/* Define this symbol if the BSD sysctl(KERN_ARND) is available */
-/* #undef HAVE_SYSCTL_ARND */
-
 /* Define to 1 if you have the <sys/endian.h> header file. */
 /* #undef HAVE_SYS_ENDIAN_H */
-
-/* Define this symbol if the Linux getrandom system call is available */
-#define HAVE_SYS_GETRANDOM 1
 
 /* Define to 1 if you have the <sys/prctl.h> header file. */
 #define HAVE_SYS_PRCTL_H 1
@@ -327,9 +296,6 @@
 
 /* Define to 1 if you have the <sys/types.h> header file. */
 #define HAVE_SYS_TYPES_H 1
-
-/* Define if thread_local is supported. */
-#define HAVE_THREAD_LOCAL 1
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
@@ -347,22 +313,22 @@
 #define LT_OBJDIR ".libs/"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "https://github.com/minblock/picscoin/issues"
+#define PACKAGE_BUGREPORT "https://github.com/picscoin-project/picscoin/issues"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "Picscoin Core"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "Picscoin Core 0.16.3"
+#define PACKAGE_STRING "Picscoin Core 0.14.2"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "picscoin"
 
 /* Define to the home page for this package. */
-#define PACKAGE_URL "https://picscoins.org/"
+#define PACKAGE_URL "https://picscoin.org/"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "0.16.3"
+#define PACKAGE_VERSION "0.14.2"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */
@@ -370,9 +336,6 @@
 
 /* Define this symbol if the qt platform is cocoa */
 /* #undef QT_QPA_PLATFORM_COCOA */
-
-/* Define this symbol if the minimal qt platform exists */
-/* #undef QT_QPA_PLATFORM_MINIMAL */
 
 /* Define this symbol if the qt platform is windows */
 /* #undef QT_QPA_PLATFORM_WINDOWS */
@@ -389,20 +352,11 @@
 /* Define to 1 if strerror_r returns char *. */
 #define STRERROR_R_CHAR_P 1
 
-/* Define this symbol to build in assembly routines */
-#define USE_ASM 1
-
-/* Define this symbol if coverage is enabled */
-/* #undef USE_COVERAGE */
-
 /* Define if dbus support should be compiled in */
 #define USE_DBUS 1
 
 /* Define if QR support should be compiled in */
 #define USE_QRCODE 1
-
-/* Define if SSE2 support should be compiled in */
-/* #undef USE_SSE2 */
 
 /* UPnP support not compiled if undefined, otherwise value (0 or 1) determines
    default state */
