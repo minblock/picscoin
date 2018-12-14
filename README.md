@@ -1,18 +1,22 @@
 Picscoin Core integration/staging tree
 =====================================
 
-[![Build Status](https://travis-ci.org/minblock/picscoin.svg?branch=master)](https://travis-ci.org/minblock/picscoin)
-
 https://picscoins.org
 
 What is Picscoin?
 ----------------
 
-Picscoin is an experimental digital currency that enables instant payments to
-anyone, anywhere in the world. Picscoin uses peer-to-peer technology to operate
-with no central authority: managing transactions and issuing money are carried
-out collectively by the network. Picscoin Core is the name of open source
-software which enables the use of this currency.
+Picscoin is the currency that enables the automation of BitWall a marketplace where
+anyone, anywhere in the world can pay to have their advertisement displayed
+Picscoin uses peer-to-peer technology to operate with no central authority: 
+managing transactions and issuing money are carried out collectively by the network. 
+Picscoin Core is the name of open source software which enables the use of this currency. 
+Along with the payment confirmations for server automation, Picscoin's integration into
+image dApps will function only on the PixChain.
+
+42 Million Blocks in total
+Difficulty adjustment every 3.5 Days
+The rest is like Bitcoin.
 
 For more information, as well as an immediately useable, binary version of
 the Picscoin Core software, see [https://picscoins.org](https://picscoins.org).
@@ -27,11 +31,12 @@ Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/minblock/picscoin/tags) are created
+completely stable. [Tags](https://github.com/picscoin-project/picscoin/tags) are created
 regularly to indicate new official, stable release versions of Picscoin Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
+The developer [mailing list](https://groups.google.com/forum/#!forum/picscoin-dev)
 should be used to discuss complicated or controversial changes before working
 on a patch set.
 
