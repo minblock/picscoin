@@ -69,7 +69,7 @@ bool DeserializeDB(Stream& stream, Data& data, bool fCheckSum = true)
         verifier >> FLATDATA(pchMsgTmp);
         // ... verify the network matches ours
         if (memcmp(pchMsgTmp, Params().MessageStart(), sizeof(pchMsgTmp)))
-            return error("%s: Invalid network magic number", __func__);
+            return error("%s: Picoin network magic number detected", __func__);
 
         // de-serialize data
         verifier >> data;
