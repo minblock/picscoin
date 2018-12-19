@@ -1,5 +1,5 @@
-Picscoin Core
-=============
+Picscoin Core 0.14.2
+=====================
 
 Intro
 -----

@@ -1,22 +1,18 @@
 Picscoin Core integration/staging tree
 =====================================
 
+[![Build Status](https://travis-ci.org/picscoin-project/picscoin.svg?branch=master)](https://travis-ci.org/picscoin-project/picscoin)
+
 https://picscoins.org
 
 What is Picscoin?
 ----------------
 
-Picscoin is the currency that enables the automation of BitWall a marketplace where
-anyone, anywhere in the world can pay to have their advertisement displayed
-Picscoin uses peer-to-peer technology to operate with no central authority: 
-managing transactions and issuing money are carried out collectively by the network. 
-Picscoin Core is the name of open source software which enables the use of this currency. 
-Along with the payment confirmations for server automation, Picscoin's integration into
-image dApps will function only on the PixChain.
-
-42 Million Blocks in total
-Difficulty adjustment every 3.5 Days
-The rest is like Bitcoin.
+Picscoin is an experimental digital currency that enables instant payments to
+anyone, anywhere in the world. Picscoin uses peer-to-peer technology to operate
+with no central authority: managing transactions and issuing money are carried
+out collectively by the network. Picscoin Core is the name of open source
+software which enables the use of this currency.
 
 For more information, as well as an immediately useable, binary version of
 the Picscoin Core software, see [https://picscoins.org](https://picscoins.org).
@@ -57,9 +53,9 @@ submit new unit tests for old code. Unit tests can be compiled and run
 (assuming they weren't disabled in configure) with: `make check`. Further details on running
 and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
 
-There are also [regression and integration tests](/test), written
+There are also [regression and integration tests](/qa) of the RPC interface, written
 in Python, that are run automatically on the build server.
-These tests can be run (if the [test dependencies](/test) are installed) with: `test/functional/test_runner.py`
+These tests can be run (if the [test dependencies](/qa) are installed) with: `qa/pull-tester/rpc-tests.py`
 
 The Travis CI system makes sure that every pull request is built for Windows, Linux, and OS X, and that unit/sanity tests are run automatically.
 
