@@ -107,20 +107,20 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x4c;
-        pchMessageStart[1] = 0x65;
-        pchMessageStart[2] = 0x65;
-        pchMessageStart[3] = 0x74;
+        pchMessageStart[0] = 0xfb;
+        pchMessageStart[1] = 0xc0;
+        pchMessageStart[2] = 0xb6;
+        pchMessageStart[3] = 0xdb;
         nDefaultPort = 1337;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1543178027, 536821, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1545183172, 3633462, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0xad268f1843fc3673c1a2ce38959b2e4ceb90e32b45e09042e0d3a781f812583b"));
+        assert(consensus.hashGenesisBlock == uint256S("0x2daeb8c3efaf9351643b51c5336818fba839dcc6d79c4585e341dab2d8776838"));
         assert(genesis.hashMerkleRoot == uint256S("0x2cc06d170c33cdbf144e3e597a97a8786fcd84b04a0b3283c054c559646dc855"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.push_back(CDNSSeedData("picscoins.org", "dnsseed.picscoins.org", true));
+        //vSeeds.push_back(CDNSSeedData("loshan.co.uk", "seed-a.picscoin.loshan.co.uk", true));
         //vSeeds.push_back(CDNSSeedData("thrasher.io", "dnsseed.thrasher.io", true));
         //vSeeds.push_back(CDNSSeedData("picscointools.com", "dnsseed.picscointools.com"));
         //vSeeds.push_back(CDNSSeedData("picscoinpool.org", "dnsseed.picscoinpool.org"));
@@ -134,23 +134,20 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
-        
-	fMiningRequiresPeers = true;
+
+        fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            
-                ( 5, uint256S("0x00358a2e7f5299904739744618afff9d88ca8db108d61c3f09d78b08fe5beed3"))
-                ( 10, uint256S("0xd73cf8472c81541c0280db47ac92945fd12ea5c34e61ca4a331a70e5cfbfca2c"))
-                ( 15, uint256S("0x00d0c678746bd9b7b5e9b98d1348eabde898afdcf071a06f709990324ea01b89"))
-/**       (  4032, uint256S("0x086013d38fd0a439532587730fd2b7e384b71c3e44021b9fc7abc9e13c940f4a"))
-            (  8064, uint256S("0x9efaf84c0bcaf60d0401989bfc25221574c38dc61db7cc449aac6d4ecfb57f44"))
-            ( 16128, uint256S("0x97e8fe7886cbd54897af2f330dd7453b6e63708c6e6551d9633b810a4b861200"))
-            ( 18237, uint256S("0x52a5880eb896ffe5bb05acc03c692dc8acaf45ec804c237e2d09a962837c8946"))
-         ( 50000, uint256S("0x69dc37eb029b68f075a5012dcc0419c127672adb4f3a32882b2b3e71d07a20a6"))
+            (  1500, uint256S("0x841a2965955dd288cfa707a755d05a54e45f8bd476835ec9af4402a2b59a2967"))
+            (  4032, uint256S("0x9ce90e427198fc0ef05e5905ce3503725b80e26afd35a987965fd7e3d9cf0846"))
+            (  8064, uint256S("0xeb984353fc5190f210651f150c40b8a4bab9eeeff0b729fcb3987da694430d70"))
+            ( 16128, uint256S("0x602edf1859b7f9a6af809f1d9b0e6cb66fdc1d4d9dcd7a4bec03e12a1ccd153d"))
+            ( 23420, uint256S("0xd80fdf9ca81afd0bd2b2a90ac3a9fe547da58f2530ec874e978fce0b5101b507"))
+            ( 50000, uint256S("0x69dc37eb029b68f075a5012dcc0419c127672adb4f3a32882b2b3e71d07a20a6"))
             ( 80000, uint256S("0x4fcb7c02f676a300503f49c764a89955a8f920b46a8cbecb4867182ecdb2e90a"))
             (120000, uint256S("0xbd9d26924f05f6daa7f0155f32828ec89e8e29cee9e7121b026a7a3552ac6131"))
             (161500, uint256S("0xdbe89880474f4bb4f75c227c77ba1cdc024991123b28b8418dbbf7798471ff43"))
@@ -160,12 +157,12 @@ public:
             (409004, uint256S("0x487518d663d9f1fa08611d9395ad74d982b667fbdc0e77e9cf39b4f1355908a3"))
             (456000, uint256S("0xbf34f71cc6366cd487930d06be22f897e34ca6a40501ac7d401be32456372004"))
             (638902, uint256S("0x15238656e8ec63d28de29a8c75fcf3a5819afc953dcd9cc45cecc53baec74f38"))
-            (721000, uint256S("0x198a7b4de1df9478e2463bd99d75b714eab235a2e63e741641dc8a759a9840e5"))**/
+            (721000, uint256S("0x198a7b4de1df9478e2463bd99d75b714eab235a2e63e741641dc8a759a9840e5"))
         };
 
         chainTxData = ChainTxData{
             // Data as of block b44bc5ae41d1be67227ba9ad875d7268aa86c965b1d64b47c35be6e8d5c352f4 (height 1155626).
-            1544670092, // * UNIX timestamp of last known number of transactions
+            1487715936, // * UNIX timestamp of last known number of transactions
             9243806,  // * total number of transactions between genesis and that timestamp
                     //   (the tx=... number in the SetBestChain debug.log lines)
             0.06     // * estimated number of transactions per second after that timestamp
@@ -213,10 +210,10 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x43a16a626ef2ffdbe928f2bc26dcd5475c6a1a04f9542dfc6a0a88e5fcf9bd4c"); //8711
 
-        pchMessageStart[0] = 0x05;
-        pchMessageStart[1] = 0x04;
-        pchMessageStart[2] = 0x03;
-        pchMessageStart[3] = 0x02;
+        pchMessageStart[0] = 0xfd;
+        pchMessageStart[1] = 0xd2;
+        pchMessageStart[2] = 0xc8;
+        pchMessageStart[3] = 0xf1;
         nDefaultPort = 1336;
         nPruneAfterHeight = 1000;
 
@@ -228,7 +225,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("picscointools.com", "testnet-seed.picscointools.com"));
+        //vSeeds.push_back(CDNSSeedData("picscointools.com", "testnet-seed.picscointools.com"));
         //vSeeds.push_back(CDNSSeedData("loshan.co.uk", "seed-b.picscoin.loshan.co.uk", true));
         //vSeeds.push_back(CDNSSeedData("thrasher.io", "dnsseed-testnet.thrasher.io", true));
 
@@ -248,7 +245,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            ( 0, uint256S("0x1cef4a5283b4e4848cb85ad719312e50f7b63eebbce6627b53db498196fe302e")),
+            ( 2056, uint256S("0x17748a31ba97afdc9a4f86837a39d287e3e7c7290a08a1d816c5969c78a83289")),
         };
 
         chainTxData = ChainTxData{
@@ -297,11 +294,11 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
 
-        pchMessageStart[0] = 0x05;
-        pchMessageStart[1] = 0x04;
-        pchMessageStart[2] = 0x03;
-        pchMessageStart[3] = 0x02;
-        nDefaultPort = 25566;
+        pchMessageStart[0] = 0xfa;
+        pchMessageStart[1] = 0xbf;
+        pchMessageStart[2] = 0xb5;
+        pchMessageStart[3] = 0xda;
+        nDefaultPort = 19444;
         nPruneAfterHeight = 1000;
 
         genesis = CreateGenesisBlock(1296688602, 1, 0x207fffff, 1, 50 * COIN);

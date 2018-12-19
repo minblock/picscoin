@@ -594,7 +594,7 @@ PACKAGE_TARNAME='picscoin'
 PACKAGE_VERSION='0.14.2'
 PACKAGE_STRING='Picscoin Core 0.14.2'
 PACKAGE_BUGREPORT='https://github.com/picscoin-project/picscoin/issues'
-PACKAGE_URL='https://picscoins.org/'
+PACKAGE_URL='https://picscoin.org/'
 
 ac_unique_file="src/validation.cpp"
 # Factoring default headers for most tests.
@@ -1851,7 +1851,7 @@ Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
 
 Report bugs to <https://github.com/picscoin-project/picscoin/issues>.
-Picscoin Core home page: <https://picscoins.org/>.
+Picscoin Core home page: <https://picscoin.org/>.
 _ACEOF
 ac_status=$?
 fi
@@ -30909,7 +30909,7 @@ Configuration commands:
 $config_commands
 
 Report bugs to <https://github.com/picscoin-project/picscoin/issues>.
-Picscoin Core home page: <https://picscoins.org/>."
+Picscoin Core home page: <https://picscoin.org/>."
 
 _ACEOF
 cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
@@ -32173,6 +32173,7 @@ $as_echo X"$file" |
     cat <<_LT_EOF >> "$cfgfile"
 #! $SHELL
 # Generated automatically by $as_me ($PACKAGE) $VERSION
+# Libtool was configured on host `(hostname || uname -n) 2>/dev/null | sed 1q`:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
 # Provide generalized library-building support services.

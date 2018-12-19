@@ -39,7 +39,7 @@
 #define ENABLE_WALLET 1
 
 /* Define to 1 to enable ZMQ functions */
-#define ENABLE_ZMQ 0
+#define ENABLE_ZMQ 1
 
 /* parameter and return value type for __fdelt_chk */
 /* #undef FDELT_TYPE */
@@ -104,7 +104,7 @@
 
 /* Define to 1 if you have the declaration of `EVP_MD_CTX_new', and to 0 if
    you don't. */
-#define HAVE_DECL_EVP_MD_CTX_NEW 1
+#define HAVE_DECL_EVP_MD_CTX_NEW 0
 
 /* Define to 1 if you have the declaration of `htobe16', and to 0 if you
    don't. */
@@ -325,7 +325,7 @@
 #define PACKAGE_TARNAME "picscoin"
 
 /* Define to the home page for this package. */
-#define PACKAGE_URL "https://picscoins.org/"
+#define PACKAGE_URL "https://picscoin.org/"
 
 /* Define to the version of this package. */
 #define PACKAGE_VERSION "0.14.2"
@@ -356,7 +356,7 @@
 #define USE_DBUS 1
 
 /* Define if QR support should be compiled in */
-/* #undef USE_QRCODE */
+#define USE_QRCODE 1
 
 /* UPnP support not compiled if undefined, otherwise value (0 or 1) determines
    default state */
