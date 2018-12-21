@@ -41,8 +41,8 @@ QString BitcoinUnits::name(int unit)
     switch(unit)
     {
     case BTC: return QString("PIC");
-    case mBTC: return QString("mPIC");
-    case uBTC: return QString::fromUtf8("μPIC");
+    case mBTC: return QString("lites");
+    case uBTC: return QString("bitmaps");
     default: return QString("???");
     }
 }
@@ -52,8 +52,8 @@ QString BitcoinUnits::description(int unit)
     switch(unit)
     {
     case BTC: return QString("Picscoins");
-    case mBTC: return QString("Milli-Picscoins (1 / 1" THIN_SP_UTF8 "000)");
-    case uBTC: return QString("Micro-Picscoins (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case mBTC: return QString("Lites (1 / 1" THIN_SP_UTF8 "000)");
+    case uBTC: return QString("Photons (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }

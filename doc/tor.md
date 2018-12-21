@@ -1,4 +1,4 @@
-TOR SUPPORT IN PICSCOIN
+TOR SUPPORT IN LITECOIN
 ======================
 
 It is possible to run Picscoin as a Tor hidden service, and connect to such services.

@@ -1,13 +1,13 @@
 *.tar.gz
 
 *.exe
-src/litecoin
-src/litecoind
-src/litecoin-cli
-src/litecoin-tx
-src/test/test_litecoin
-src/test/test_litecoin_fuzzy
-src/qt/test/test_litecoin-qt
+src/picscoin
+src/picscoind
+src/picscoin-cli
+src/picscoin-tx
+src/test/test_picscoin
+src/test/test_picscoin_fuzzy
+src/qt/test/test_picscoin-qt
 
 # autoreconf
 Makefile.in
@@ -74,13 +74,12 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-litecoin-qt
-Litecoin-Qt.app
+picscoin-qt
+Picscoin-Qt.app
 
 # Unit-tests
 Makefile.test
-litecoin-qt_test
-src/test/buildenv.py
+picscoin-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -93,7 +92,7 @@ build
 *.gcno
 *.gcda
 /*.info
-test_litecoin.coverage/
+test_picscoin.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -101,8 +100,8 @@ coverage_percent.txt
 linux-coverage-build
 linux-build
 win32-build
-qa/pull-tester/tests_config.py
-qa/cache/*
+test/config.ini
+test/cache/*
 
 !src/leveldb*/Makefile
 
