@@ -239,8 +239,9 @@ libbitcoin_server_a-addrman.o: addrman.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/5/bits/istream.tcc \
  /usr/include/c++/5/bits/stream_iterator.h protocol.h uint256.h \
  /usr/include/c++/5/cstring crypto/common.h \
- ../src/config/bitcoin-config.h compat/endian.h version.h random.h sync.h \
- threadsafety.h /usr/include/boost/thread/condition_variable.hpp \
+ ../src/config/bitcoin-config.h compat/endian.h version.h random.h \
+ crypto/chacha20.h sync.h threadsafety.h \
+ /usr/include/boost/thread/condition_variable.hpp \
  /usr/include/boost/thread/detail/platform.hpp \
  /usr/include/boost/config.hpp /usr/include/boost/config/user.hpp \
  /usr/include/boost/config/select_compiler_config.hpp \
@@ -276,11 +277,12 @@ libbitcoin_server_a-addrman.o: addrman.cpp /usr/include/stdc-predef.h \
  /usr/include/boost/smart_ptr/bad_weak_ptr.hpp \
  /usr/include/boost/smart_ptr/detail/sp_counted_base.hpp \
  /usr/include/boost/smart_ptr/detail/sp_has_sync.hpp \
- /usr/include/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp \
+ /usr/include/boost/smart_ptr/detail/sp_counted_base_std_atomic.hpp \
  /usr/include/boost/detail/sp_typeinfo.hpp \
  /usr/include/boost/core/typeinfo.hpp \
  /usr/include/boost/core/demangle.hpp /usr/include/c++/5/cxxabi.h \
  /usr/include/x86_64-linux-gnu/c++/5/bits/cxxabi_tweaks.h \
+ /usr/include/c++/5/atomic \
  /usr/include/boost/smart_ptr/detail/sp_counted_impl.hpp \
  /usr/include/boost/utility/addressof.hpp \
  /usr/include/boost/core/addressof.hpp \
@@ -288,7 +290,7 @@ libbitcoin_server_a-addrman.o: addrman.cpp /usr/include/stdc-predef.h \
  /usr/include/boost/smart_ptr/detail/sp_nullptr_t.hpp \
  /usr/include/boost/smart_ptr/detail/spinlock_pool.hpp \
  /usr/include/boost/smart_ptr/detail/spinlock.hpp \
- /usr/include/boost/smart_ptr/detail/spinlock_sync.hpp \
+ /usr/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp \
  /usr/include/boost/smart_ptr/detail/yield_k.hpp \
  /usr/include/boost/predef.h /usr/include/boost/predef/language.h \
  /usr/include/boost/predef/language/stdc.h \
@@ -646,13 +648,11 @@ libbitcoin_server_a-addrman.o: addrman.cpp /usr/include/stdc-predef.h \
  /usr/include/boost/enable_shared_from_this.hpp \
  /usr/include/boost/smart_ptr/enable_shared_from_this.hpp \
  /usr/include/boost/smart_ptr/weak_ptr.hpp \
- /usr/include/boost/thread/locks.hpp \
- /usr/include/boost/thread/lock_algorithms.hpp \
  /usr/include/boost/thread/recursive_mutex.hpp \
  /usr/include/boost/thread/pthread/recursive_mutex.hpp timedata.h util.h \
- tinyformat.h utiltime.h /usr/include/c++/5/atomic \
- /usr/include/boost/filesystem/path.hpp \
+ fs.h /usr/include/boost/filesystem.hpp \
  /usr/include/boost/filesystem/config.hpp \
+ /usr/include/boost/filesystem/path.hpp \
  /usr/include/boost/filesystem/path_traits.hpp /usr/include/c++/5/list \
  /usr/include/c++/5/bits/stl_list.h /usr/include/c++/5/bits/list.tcc \
  /usr/include/c++/5/locale /usr/include/c++/5/bits/locale_facets_nonio.h \
@@ -733,6 +733,24 @@ libbitcoin_server_a-addrman.o: addrman.cpp /usr/include/stdc-predef.h \
  /usr/include/boost/io/ios_state.hpp /usr/include/boost/io_fwd.hpp \
  /usr/include/boost/functional/hash_fwd.hpp \
  /usr/include/boost/functional/hash/hash_fwd.hpp \
+ /usr/include/boost/filesystem/operations.hpp \
+ /usr/include/boost/detail/scoped_enum_emulation.hpp \
+ /usr/include/boost/detail/bitmask.hpp \
+ /usr/include/boost/range/mutable_iterator.hpp \
+ /usr/include/boost/range/config.hpp \
+ /usr/include/boost/range/range_fwd.hpp \
+ /usr/include/boost/range/detail/extract_optional_type.hpp \
+ /usr/include/boost/range/detail/msvc_has_iterator_workaround.hpp \
+ /usr/include/boost/range/const_iterator.hpp /usr/include/c++/5/stack \
+ /usr/include/c++/5/deque /usr/include/c++/5/bits/stl_deque.h \
+ /usr/include/c++/5/bits/deque.tcc /usr/include/c++/5/bits/stl_stack.h \
+ /usr/include/boost/filesystem/convenience.hpp \
+ /usr/include/boost/filesystem/fstream.hpp /usr/include/c++/5/fstream \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/c++io.h \
+ /usr/include/c++/5/bits/fstream.tcc \
+ /usr/include/boost/filesystem/detail/utf8_codecvt_facet.hpp \
+ /usr/include/boost/detail/utf8_codecvt_facet.hpp tinyformat.h utiltime.h \
  /usr/include/boost/signals2/signal.hpp /usr/include/boost/function.hpp \
  /usr/include/boost/preprocessor/iterate.hpp \
  /usr/include/boost/preprocessor/iteration/iterate.hpp \
@@ -1626,6 +1644,8 @@ version.h:
 
 random.h:
 
+crypto/chacha20.h:
+
 sync.h:
 
 threadsafety.h:
@@ -1710,7 +1730,7 @@ threadsafety.h:
 
 /usr/include/boost/smart_ptr/detail/sp_has_sync.hpp:
 
-/usr/include/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp:
+/usr/include/boost/smart_ptr/detail/sp_counted_base_std_atomic.hpp:
 
 /usr/include/boost/detail/sp_typeinfo.hpp:
 
@@ -1721,6 +1741,8 @@ threadsafety.h:
 /usr/include/c++/5/cxxabi.h:
 
 /usr/include/x86_64-linux-gnu/c++/5/bits/cxxabi_tweaks.h:
+
+/usr/include/c++/5/atomic:
 
 /usr/include/boost/smart_ptr/detail/sp_counted_impl.hpp:
 
@@ -1736,7 +1758,7 @@ threadsafety.h:
 
 /usr/include/boost/smart_ptr/detail/spinlock.hpp:
 
-/usr/include/boost/smart_ptr/detail/spinlock_sync.hpp:
+/usr/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp:
 
 /usr/include/boost/smart_ptr/detail/yield_k.hpp:
 
@@ -2494,10 +2516,6 @@ threadsafety.h:
 
 /usr/include/boost/smart_ptr/weak_ptr.hpp:
 
-/usr/include/boost/thread/locks.hpp:
-
-/usr/include/boost/thread/lock_algorithms.hpp:
-
 /usr/include/boost/thread/recursive_mutex.hpp:
 
 /usr/include/boost/thread/pthread/recursive_mutex.hpp:
@@ -2506,15 +2524,13 @@ timedata.h:
 
 util.h:
 
-tinyformat.h:
+fs.h:
 
-utiltime.h:
-
-/usr/include/c++/5/atomic:
-
-/usr/include/boost/filesystem/path.hpp:
+/usr/include/boost/filesystem.hpp:
 
 /usr/include/boost/filesystem/config.hpp:
+
+/usr/include/boost/filesystem/path.hpp:
 
 /usr/include/boost/filesystem/path_traits.hpp:
 
@@ -2701,6 +2717,54 @@ utiltime.h:
 /usr/include/boost/functional/hash_fwd.hpp:
 
 /usr/include/boost/functional/hash/hash_fwd.hpp:
+
+/usr/include/boost/filesystem/operations.hpp:
+
+/usr/include/boost/detail/scoped_enum_emulation.hpp:
+
+/usr/include/boost/detail/bitmask.hpp:
+
+/usr/include/boost/range/mutable_iterator.hpp:
+
+/usr/include/boost/range/config.hpp:
+
+/usr/include/boost/range/range_fwd.hpp:
+
+/usr/include/boost/range/detail/extract_optional_type.hpp:
+
+/usr/include/boost/range/detail/msvc_has_iterator_workaround.hpp:
+
+/usr/include/boost/range/const_iterator.hpp:
+
+/usr/include/c++/5/stack:
+
+/usr/include/c++/5/deque:
+
+/usr/include/c++/5/bits/stl_deque.h:
+
+/usr/include/c++/5/bits/deque.tcc:
+
+/usr/include/c++/5/bits/stl_stack.h:
+
+/usr/include/boost/filesystem/convenience.hpp:
+
+/usr/include/boost/filesystem/fstream.hpp:
+
+/usr/include/c++/5/fstream:
+
+/usr/include/x86_64-linux-gnu/c++/5/bits/basic_file.h:
+
+/usr/include/x86_64-linux-gnu/c++/5/bits/c++io.h:
+
+/usr/include/c++/5/bits/fstream.tcc:
+
+/usr/include/boost/filesystem/detail/utf8_codecvt_facet.hpp:
+
+/usr/include/boost/detail/utf8_codecvt_facet.hpp:
+
+tinyformat.h:
+
+utiltime.h:
 
 /usr/include/boost/signals2/signal.hpp:
 

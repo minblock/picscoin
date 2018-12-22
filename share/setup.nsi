@@ -5,7 +5,7 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.14.2
+!define VERSION 0.15.1
 !define COMPANY "Picscoin Core project"
 !define URL https://picscoin.org/
 

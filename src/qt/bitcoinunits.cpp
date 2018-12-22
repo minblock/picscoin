@@ -42,7 +42,7 @@ QString BitcoinUnits::name(int unit)
     {
     case BTC: return QString("PIC");
     case mBTC: return QString("lites");
-    case uBTC: return QString("bitmaps");
+    case uBTC: return QString("photons");
     default: return QString("???");
     }
 }

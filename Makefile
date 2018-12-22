@@ -129,9 +129,10 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/src/config/bitcoin-config.h
 CONFIG_CLEAN_FILES = libbitcoinconsensus.pc share/setup.nsi \
-	share/qt/Info.plist src/test/buildenv.py \
-	qa/pull-tester/tests_config.py contrib/devtools/split-debug.sh
-CONFIG_CLEAN_VPATH_FILES = qa/pull-tester/rpc-tests.py
+	share/qt/Info.plist test/config.ini \
+	contrib/devtools/split-debug.sh doc/Doxyfile
+CONFIG_CLEAN_VPATH_FILES = contrib/filter-lcov.py \
+	test/functional/test_runner.py test/util/bitcoin-util-test.py
 SCRIPTS = $(dist_noinst_SCRIPTS)
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
@@ -227,12 +228,14 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/build-aux/ltmain.sh \
 	$(top_srcdir)/build-aux/missing \
 	$(top_srcdir)/contrib/devtools/split-debug.sh.in \
-	$(top_srcdir)/qa/pull-tester/rpc-tests.py \
-	$(top_srcdir)/qa/pull-tester/tests_config.py.in \
+	$(top_srcdir)/contrib/filter-lcov.py \
+	$(top_srcdir)/doc/Doxyfile.in \
 	$(top_srcdir)/share/qt/Info.plist.in \
 	$(top_srcdir)/share/setup.nsi.in \
 	$(top_srcdir)/src/config/bitcoin-config.h.in \
-	$(top_srcdir)/src/test/buildenv.py.in COPYING \
+	$(top_srcdir)/test/config.ini.in \
+	$(top_srcdir)/test/functional/test_runner.py \
+	$(top_srcdir)/test/util/bitcoin-util-test.py COPYING \
 	build-aux/compile build-aux/config.guess build-aux/config.sub \
 	build-aux/install-sh build-aux/ltmain.sh build-aux/missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -280,6 +283,7 @@ ACLOCAL = ${SHELL} /picscoin/build-aux/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 AR = /usr/bin/ar
+ARFLAGS = cr
 AUTOCONF = ${SHELL} /picscoin/build-aux/missing autoconf
 AUTOHEADER = ${SHELL} /picscoin/build-aux/missing autoheader
 AUTOMAKE = ${SHELL} /picscoin/build-aux/missing automake-1.15
@@ -292,7 +296,7 @@ BITCOIN_DAEMON_NAME = picscoind
 BITCOIN_GUI_NAME = picscoin-qt
 BITCOIN_TX_NAME = picscoin-tx
 BOOST_CHRONO_LIB = -lboost_chrono
-BOOST_CPPFLAGS = -pthread -I/usr/include
+BOOST_CPPFLAGS = -DBOOST_SP_USE_STD_ATOMIC -DBOOST_AC_USE_STD_ATOMIC -pthread -I/usr/include
 BOOST_FILESYSTEM_LIB = -lboost_filesystem
 BOOST_LDFLAGS = -L/usr/lib/x86_64-linux-gnu
 BOOST_LIBS = -L/usr/lib/x86_64-linux-gnu -lboost_system -lboost_filesystem -lboost_program_options -lboost_thread -lboost_chrono
@@ -308,12 +312,12 @@ CFLAGS = -g -O2
 CLIENT_VERSION_BUILD = 0
 CLIENT_VERSION_IS_RELEASE = true
 CLIENT_VERSION_MAJOR = 0
-CLIENT_VERSION_MINOR = 14
-CLIENT_VERSION_REVISION = 2
+CLIENT_VERSION_MINOR = 15
+CLIENT_VERSION_REVISION = 1
 COPYRIGHT_HOLDERS = The %s developers
 COPYRIGHT_HOLDERS_FINAL = The Picscoin Core developers
 COPYRIGHT_HOLDERS_SUBSTITUTION = Picscoin Core
-COPYRIGHT_YEAR = 2017
+COPYRIGHT_YEAR = 2018
 CPP = gcc -E
 CPPFILT = /usr/bin/c++filt
 CPPFLAGS =  -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS
@@ -339,7 +343,7 @@ EVENT_LIBS = -levent
 EVENT_PTHREADS_CFLAGS = -pthread
 EVENT_PTHREADS_LIBS = -levent_pthreads -levent
 EXEEXT = 
-EXTENDED_RPC_TESTS = 
+EXTENDED_FUNCTIONAL_TESTS = 
 FGREP = /bin/grep -F
 GCOV = /usr/bin/gcov
 GENHTML = 
@@ -359,6 +363,7 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LCOV = 
+LCOV_OPTS = 
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LEVELDB_CPPFLAGS = 
@@ -397,10 +402,10 @@ OTOOL64 =
 PACKAGE = picscoin
 PACKAGE_BUGREPORT = https://github.com/picscoin-project/picscoin/issues
 PACKAGE_NAME = Picscoin Core
-PACKAGE_STRING = Picscoin Core 0.14.2
+PACKAGE_STRING = Picscoin Core 0.15.1
 PACKAGE_TARNAME = picscoin
 PACKAGE_URL = https://picscoin.org/
-PACKAGE_VERSION = 0.14.2
+PACKAGE_VERSION = 0.15.1
 PATH_SEPARATOR = :
 PIC_FLAGS = -fPIC
 PIE_FLAGS = -fPIE
@@ -418,13 +423,16 @@ PYTHON = /usr/bin/python2.7
 PYTHONPATH = 
 QR_CFLAGS = 
 QR_LIBS = -lqrencode
+QT4_CFLAGS = 
+QT4_LIBS = 
+QT5_CFLAGS = -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
+QT5_LIBS = -lQt5Network -lQt5Widgets -lQt5Gui -lQt5Core
 QTPLATFORM_CFLAGS = 
 QTPLATFORM_LIBS = 
 QTPRINT_CFLAGS = 
 QTPRINT_LIBS = 
 QTXCBQPA_CFLAGS = 
 QTXCBQPA_LIBS = 
-QT_CFLAGS = -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
 QT_DBUS_CFLAGS = -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
 QT_DBUS_INCLUDES = -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
 QT_DBUS_LIBS = -lQt5DBus -lQt5Core
@@ -445,6 +453,7 @@ RSVG_CONVERT =
 SED = /bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
+SSE42_CXXFLAGS = -msse4.2
 SSL_CFLAGS = 
 SSL_LIBS = -lssl
 STRIP = /usr/bin/strip
@@ -454,8 +463,9 @@ UIC = /usr/lib/x86_64-linux-gnu/qt5/bin/uic
 UNIVALUE_CFLAGS = -I$(srcdir)/univalue/include
 UNIVALUE_LIBS = univalue/libunivalue.la
 USE_QRCODE = 
+USE_SSE2 = 
 USE_UPNP = 
-VERSION = 0.14.2
+VERSION = 0.15.1
 WINDOWS_BITS = 
 WINDRES = 
 X11XCB_CFLAGS = 
@@ -550,6 +560,10 @@ DIST_CONTRIB = $(top_srcdir)/contrib/bitcoin-cli.bash-completion \
 	       $(top_srcdir)/contrib/init \
 	       $(top_srcdir)/contrib/rpm
 
+DIST_SHARE = \
+  $(top_srcdir)/share/genbuild.sh \
+  $(top_srcdir)/share/rpcuser
+
 BIN_CHECKS = $(top_srcdir)/contrib/devtools/symbol-check.py \
            $(top_srcdir)/contrib/devtools/security-check.py
 
@@ -564,10 +578,10 @@ OSX_PACKAGING = $(OSX_DEPLOY_SCRIPT) $(OSX_FANCY_PLIST) $(OSX_INSTALLER_ICONS) \
   $(top_srcdir)/contrib/macdeploy/detached-sig-apply.sh \
   $(top_srcdir)/contrib/macdeploy/detached-sig-create.sh
 
-COVERAGE_INFO = baseline_filtered_combined.info baseline.info \
-  leveldb_baseline.info test_bitcoin_filtered.info total_coverage.info \
-  baseline_filtered.info rpc_test.info rpc_test_filtered.info \
-  leveldb_baseline_filtered.info test_bitcoin_coverage.info test_bitcoin.info
+COVERAGE_INFO = baseline.info \
+  test_bitcoin_filtered.info total_coverage.info \
+  baseline_filtered.info functional_test.info functional_test_filtered.info \
+  test_bitcoin_coverage.info test_bitcoin.info
 
 OSX_APP_BUILT = $(OSX_APP)/Contents/PkgInfo $(OSX_APP)/Contents/Resources/empty.lproj \
   $(OSX_APP)/Contents/Resources/bitcoin.icns $(OSX_APP)/Contents/Info.plist \
@@ -576,12 +590,58 @@ OSX_APP_BUILT = $(OSX_APP)/Contents/PkgInfo $(OSX_APP)/Contents/Resources/empty.
 APP_DIST_DIR = $(top_builddir)/dist
 APP_DIST_EXTRAS = $(APP_DIST_DIR)/.background/$(OSX_BACKGROUND_IMAGE) $(APP_DIST_DIR)/.DS_Store $(APP_DIST_DIR)/Applications
 OSX_BACKGROUND_IMAGE_DPIFILES := $(foreach dpi,$(OSX_BACKGROUND_IMAGE_DPIS),dpi$(dpi).$(OSX_BACKGROUND_IMAGE))
+#LCOV_FILTER_PATTERN = -p "/usr/include/" -p "src/leveldb/" -p "src/bench/" -p "src/univalue" -p "src/crypto/ctaes" -p "src/secp256k1"
 dist_noinst_SCRIPTS = autogen.sh
-EXTRA_DIST = $(top_srcdir)/share/genbuild.sh qa/pull-tester/rpc-tests.py qa/rpc-tests $(DIST_CONTRIB) $(DIST_DOCS) $(WINDOWS_PACKAGING) $(OSX_PACKAGING) $(BIN_CHECKS)
+EXTRA_DIST = $(DIST_SHARE) test/functional/test_runner.py \
+	test/functional $(DIST_CONTRIB) $(DIST_DOCS) \
+	$(WINDOWS_PACKAGING) $(OSX_PACKAGING) $(BIN_CHECKS) \
+	test/util/bitcoin-util-test.py \
+	test/util/data/bitcoin-util-test.json \
+	test/util/data/blanktxv1.hex test/util/data/blanktxv1.json \
+	test/util/data/blanktxv2.hex test/util/data/blanktxv2.json \
+	test/util/data/tt-delin1-out.hex \
+	test/util/data/tt-delin1-out.json \
+	test/util/data/tt-delout1-out.hex \
+	test/util/data/tt-delout1-out.json \
+	test/util/data/tt-locktime317000-out.hex \
+	test/util/data/tt-locktime317000-out.json \
+	test/util/data/tx394b54bb.hex test/util/data/txcreate1.hex \
+	test/util/data/txcreate1.json test/util/data/txcreate2.hex \
+	test/util/data/txcreate2.json test/util/data/txcreatedata1.hex \
+	test/util/data/txcreatedata1.json \
+	test/util/data/txcreatedata2.hex \
+	test/util/data/txcreatedata2.json \
+	test/util/data/txcreatedata_seq0.hex \
+	test/util/data/txcreatedata_seq0.json \
+	test/util/data/txcreatedata_seq1.hex \
+	test/util/data/txcreatedata_seq1.json \
+	test/util/data/txcreatemultisig1.hex \
+	test/util/data/txcreatemultisig1.json \
+	test/util/data/txcreatemultisig2.hex \
+	test/util/data/txcreatemultisig2.json \
+	test/util/data/txcreatemultisig3.hex \
+	test/util/data/txcreatemultisig3.json \
+	test/util/data/txcreatemultisig4.hex \
+	test/util/data/txcreatemultisig4.json \
+	test/util/data/txcreatemultisig5.json \
+	test/util/data/txcreateoutpubkey1.hex \
+	test/util/data/txcreateoutpubkey1.json \
+	test/util/data/txcreateoutpubkey2.hex \
+	test/util/data/txcreateoutpubkey2.json \
+	test/util/data/txcreateoutpubkey3.hex \
+	test/util/data/txcreateoutpubkey3.json \
+	test/util/data/txcreatescript1.hex \
+	test/util/data/txcreatescript1.json \
+	test/util/data/txcreatescript2.hex \
+	test/util/data/txcreatescript2.json \
+	test/util/data/txcreatescript3.hex \
+	test/util/data/txcreatescript3.json \
+	test/util/data/txcreatescript4.hex \
+	test/util/data/txcreatescript4.json \
+	test/util/data/txcreatesignv1.hex \
+	test/util/data/txcreatesignv1.json \
+	test/util/data/txcreatesignv2.hex
 CLEANFILES = $(OSX_DMG) $(BITCOIN_WIN_INSTALLER)
-
-# This file is problematic for out-of-tree builds if it exists.
-DISTCLEANFILES = qa/pull-tester/tests_config.pyc
 DISTCHECK_CONFIGURE_FLAGS = --enable-man
 all: all-recursive
 
@@ -640,11 +700,11 @@ share/setup.nsi: $(top_builddir)/config.status $(top_srcdir)/share/setup.nsi.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 share/qt/Info.plist: $(top_builddir)/config.status $(top_srcdir)/share/qt/Info.plist.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-src/test/buildenv.py: $(top_builddir)/config.status $(top_srcdir)/src/test/buildenv.py.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-qa/pull-tester/tests_config.py: $(top_builddir)/config.status $(top_srcdir)/qa/pull-tester/tests_config.py.in
+test/config.ini: $(top_builddir)/config.status $(top_srcdir)/test/config.ini.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 contrib/devtools/split-debug.sh: $(top_builddir)/config.status $(top_srcdir)/contrib/devtools/split-debug.sh.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+doc/Doxyfile: $(top_builddir)/config.status $(top_srcdir)/doc/Doxyfile.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 
 mostlyclean-libtool:
@@ -1009,7 +1069,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1200,47 +1259,39 @@ $(BITCOIN_CLI_BIN): FORCE
 #	$(LCOV) -c -i -d $(abs_builddir)/src -o $@
 
 #baseline_filtered.info: baseline.info
-#	$(LCOV) -r $< "/usr/include/*" -o $@
+#	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
+#	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-#leveldb_baseline.info: baseline_filtered.info
-#	$(LCOV) -c -i -d $(abs_builddir)/src/leveldb -b $(abs_builddir)/src/leveldb -o $@
-
-#leveldb_baseline_filtered.info: leveldb_baseline.info
-#	$(LCOV) -r $< "/usr/include/*" -o $@
-
-#baseline_filtered_combined.info: leveldb_baseline_filtered.info baseline_filtered.info
-#	$(LCOV) -a leveldb_baseline_filtered.info -a baseline_filtered.info -o $@
-
-#test_bitcoin.info: baseline_filtered_combined.info
+#test_bitcoin.info: baseline_filtered.info
 #	$(MAKE) -C src/ check
-#	$(LCOV) -c -d $(abs_builddir)/src -t test_bitcoin -o $@
-#	$(LCOV) -z -d $(abs_builddir)/src
-#	$(LCOV) -z -d $(abs_builddir)/src/leveldb
+#	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src -t test_bitcoin -o $@
+#	$(LCOV) -z $(LCOV_OPTS) -d $(abs_builddir)/src
 
 #test_bitcoin_filtered.info: test_bitcoin.info
-#	$(LCOV) -r $< "/usr/include/*" -o $@
+#	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
+#	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-#rpc_test.info: test_bitcoin_filtered.info
-#	-@TIMEOUT=15 python qa/pull-tester/rpc-tests.py $(EXTENDED_RPC_TESTS)
-#	$(LCOV) -c -d $(abs_builddir)/src --t rpc-tests -o $@
-#	$(LCOV) -z -d $(abs_builddir)/src
-#	$(LCOV) -z -d $(abs_builddir)/src/leveldb
+#functional_test.info: test_bitcoin_filtered.info
+#	-@TIMEOUT=15 test/functional/test_runner.py $(EXTENDED_FUNCTIONAL_TESTS)
+#	$(LCOV) -c $(LCOV_OPTS) -d $(abs_builddir)/src --t functional-tests -o $@
+#	$(LCOV) -z $(LCOV_OPTS) -d $(abs_builddir)/src
 
-#rpc_test_filtered.info: rpc_test.info
-#	$(LCOV) -r $< "/usr/include/*" -o $@
+#functional_test_filtered.info: functional_test.info
+#	$(abs_builddir)/contrib/filter-lcov.py $(LCOV_FILTER_PATTERN) $< $@
+#	$(LCOV) -a $@ $(LCOV_OPTS) -o $@
 
-#test_bitcoin_coverage.info: baseline_filtered_combined.info test_bitcoin_filtered.info
-#	$(LCOV) -a baseline_filtered.info -a leveldb_baseline_filtered.info -a test_bitcoin_filtered.info -o $@
+#test_bitcoin_coverage.info: baseline_filtered.info test_bitcoin_filtered.info
+#	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_bitcoin_filtered.info -o $@
 
-#total_coverage.info: baseline_filtered_combined.info test_bitcoin_filtered.info rpc_test_filtered.info
-#	$(LCOV) -a baseline_filtered.info -a leveldb_baseline_filtered.info -a test_bitcoin_filtered.info -a rpc_test_filtered.info -o $@ | $(GREP) "\%" | $(AWK) '{ print substr($$3,2,50) "/" $$5 }' > coverage_percent.txt
+#total_coverage.info: test_bitcoin_filtered.info functional_test_filtered.info
+#	$(LCOV) -a $(LCOV_OPTS) baseline_filtered.info -a test_bitcoin_filtered.info -a functional_test_filtered.info -o $@ | $(GREP) "\%" | $(AWK) '{ print substr($$3,2,50) "/" $$5 }' > coverage_percent.txt
 
 #test_bitcoin.coverage/.dirstamp:  test_bitcoin_coverage.info
-#	$(GENHTML) -s $< -o $(@D)
+#	$(GENHTML) -s $(LCOV_OPTS) $< -o $(@D)
 #	@touch $@
 
 #total.coverage/.dirstamp: total_coverage.info
-#	$(GENHTML) -s $< -o $(@D)
+#	$(GENHTML) -s $(LCOV_OPTS) $< -o $(@D)
 #	@touch $@
 
 #cov: test_bitcoin.coverage/.dirstamp total.coverage/.dirstamp
@@ -1248,8 +1299,8 @@ $(BITCOIN_CLI_BIN): FORCE
 .INTERMEDIATE: $(COVERAGE_INFO)
 
 clean-local:
-	rm -rf coverage_percent.txt test_bitcoin.coverage/ total.coverage/ qa/tmp/ cache/ $(OSX_APP)
-	rm -rf qa/pull-tester/__pycache__
+	rm -rf coverage_percent.txt test_bitcoin.coverage/ total.coverage/ test/tmp/ cache/ $(OSX_APP)
+	rm -rf test/functional/__pycache__
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

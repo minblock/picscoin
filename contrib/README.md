@@ -47,4 +47,4 @@ Test and Verify Tools
 Utilities to generate test vectors for the data-driven Picscoin tests.
 
 ### [Verify Binaries](/contrib/verifybinaries) ###
-This script attempts to download and verify the signature file SHA256SUMS.asc from picscoins.org.
+This script attempts to download and verify the signature file SHA256SUMS.asc from picscoin.org.

@@ -1,6 +1,6 @@
 #! /bin/sh
-# Generated automatically by config.status (picscoin) 0.14.2
-# Libtool was configured on host 9a0f6107d0e7:
+# Generated automatically by config.status (picscoin) 0.15.1
+# Libtool was configured on host a8902f77794b:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
 # Provide generalized library-building support services.
