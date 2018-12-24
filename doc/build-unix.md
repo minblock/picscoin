@@ -25,7 +25,7 @@ To Build
  
  apt-get update
  
- apt-get install -y -y libdb4.8-dev libdb4.8++-dev
+ apt-get install -y libdb4.8-dev libdb4.8++-dev
  
  apt-get install -y libzmq3-dev
  
