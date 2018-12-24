@@ -1,4 +1,4 @@
-prefix=/usr/local
+prefix=/root/pcscoinarm64/picscoin/depends/x86_64-apple-darwin11
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
