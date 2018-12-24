@@ -22,7 +22,7 @@ packages:
 - "ca-certificates"
 - "python"
 remotes:
-- "url": "https://github.com/picscoin-project/picscoin.git"
+- "url": "https://github.com/minblock/picscoin.git"
   "dir": "picscoin"
 files: []
 script: |

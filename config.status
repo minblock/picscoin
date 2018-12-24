@@ -429,7 +429,7 @@ $config_links
 Configuration commands:
 $config_commands
 
-Report bugs to <https://github.com/picscoin-project/picscoin/issues>.
+Report bugs to <https://github.com/minblock/picscoin/issues>.
 Picscoin Core home page: <https://picscoins.org/>."
 
 ac_cs_config="'--prefix=/root/pcscoinarm64/picscoin/depends/x86_64-apple-darwin11' '--enable-glibc-back-compat' '--enable-reduce-exports' 'LDFLAGS=-static-libstdc++' 'PYTHONPATH=' '--disable-shared' '--with-pic' '--with-bignum=no' '--enable-module-recovery' '--disable-jni' --disable-shared --with-pic --with-bignum=no --enable-module-recovery --disable-jni"
@@ -1184,7 +1184,7 @@ S["program_transform_name"]="s,x,x,"
 S["prefix"]="/root/pcscoinarm64/picscoin/depends/x86_64-apple-darwin11"
 S["exec_prefix"]="${prefix}"
 S["PACKAGE_URL"]="https://picscoins.org/"
-S["PACKAGE_BUGREPORT"]="https://github.com/picscoin-project/picscoin/issues"
+S["PACKAGE_BUGREPORT"]="https://github.com/minblock/picscoin/issues"
 S["PACKAGE_STRING"]="Picscoin Core 0.16.3"
 S["PACKAGE_VERSION"]="0.16.3"
 S["PACKAGE_TARNAME"]="picscoin"
@@ -1236,7 +1236,7 @@ D["PACKAGE_NAME"]=" \"Picscoin Core\""
 D["PACKAGE_TARNAME"]=" \"picscoin\""
 D["PACKAGE_VERSION"]=" \"0.16.3\""
 D["PACKAGE_STRING"]=" \"Picscoin Core 0.16.3\""
-D["PACKAGE_BUGREPORT"]=" \"https://github.com/picscoin-project/picscoin/issues\""
+D["PACKAGE_BUGREPORT"]=" \"https://github.com/minblock/picscoin/issues\""
 D["PACKAGE_URL"]=" \"https://picscoins.org/\""
 D["HAVE_CXX11"]=" 1"
 D["STDC_HEADERS"]=" 1"

@@ -7,7 +7,7 @@ It is recommended to upgrade to this version.
 
 Please report bugs using the issue tracker at github:
 
-  <https://github.com/picscoin-project/picscoin/issues>
+  <https://github.com/minblock/picscoin/issues>
 
 Compatibility
 ==============
