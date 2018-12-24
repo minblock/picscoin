@@ -93,11 +93,29 @@ libbitcoin_server_a-chain.o: chain.cpp /usr/include/stdc-predef.h chain.h \
  /usr/include/c++/5/bits/stl_uninitialized.h \
  /usr/include/c++/5/bits/stl_vector.h \
  /usr/include/c++/5/bits/stl_bvector.h /usr/include/c++/5/bits/vector.tcc \
- primitives/block.h primitives/transaction.h amount.h serialize.h \
- compat/endian.h config/bitcoin-config.h compat/byteswap.h \
- /usr/include/byteswap.h /usr/include/c++/5/algorithm \
- /usr/include/c++/5/utility /usr/include/c++/5/bits/stl_relops.h \
- /usr/include/c++/5/bits/stl_algo.h \
+ primitives/block.h primitives/transaction.h amount.h script/script.h \
+ crypto/common.h config/bitcoin-config.h compat/endian.h \
+ compat/byteswap.h /usr/include/byteswap.h prevector.h \
+ /usr/include/c++/5/iterator /usr/include/c++/5/ostream \
+ /usr/include/c++/5/ios /usr/include/c++/5/bits/ios_base.h \
+ /usr/include/c++/5/bits/locale_classes.h \
+ /usr/include/c++/5/bits/locale_classes.tcc \
+ /usr/include/c++/5/system_error \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/error_constants.h \
+ /usr/include/c++/5/streambuf /usr/include/c++/5/bits/streambuf.tcc \
+ /usr/include/c++/5/bits/basic_ios.h \
+ /usr/include/c++/5/bits/locale_facets.h /usr/include/c++/5/cwctype \
+ /usr/include/wctype.h \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/ctype_base.h \
+ /usr/include/c++/5/bits/streambuf_iterator.h \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/ctype_inline.h \
+ /usr/include/c++/5/bits/locale_facets.tcc \
+ /usr/include/c++/5/bits/basic_ios.tcc \
+ /usr/include/c++/5/bits/ostream.tcc /usr/include/c++/5/istream \
+ /usr/include/c++/5/bits/istream.tcc \
+ /usr/include/c++/5/bits/stream_iterator.h serialize.h \
+ /usr/include/c++/5/algorithm /usr/include/c++/5/utility \
+ /usr/include/c++/5/bits/stl_relops.h /usr/include/c++/5/bits/stl_algo.h \
  /usr/include/c++/5/bits/algorithmfwd.h \
  /usr/include/c++/5/bits/stl_heap.h /usr/include/c++/5/bits/stl_tempbuf.h \
  /usr/include/c++/5/random /usr/include/c++/5/cmath /usr/include/math.h \
@@ -168,21 +186,7 @@ libbitcoin_server_a-chain.o: chain.cpp /usr/include/stdc-predef.h chain.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include/xsavecintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include/mwaitxintrin.h \
  /usr/include/c++/5/bits/random.tcc /usr/include/c++/5/numeric \
- /usr/include/c++/5/bits/stl_numeric.h /usr/include/c++/5/ios \
- /usr/include/c++/5/bits/ios_base.h \
- /usr/include/c++/5/bits/locale_classes.h \
- /usr/include/c++/5/bits/locale_classes.tcc \
- /usr/include/c++/5/system_error \
- /usr/include/x86_64-linux-gnu/c++/5/bits/error_constants.h \
- /usr/include/c++/5/streambuf /usr/include/c++/5/bits/streambuf.tcc \
- /usr/include/c++/5/bits/basic_ios.h \
- /usr/include/c++/5/bits/locale_facets.h /usr/include/c++/5/cwctype \
- /usr/include/wctype.h \
- /usr/include/x86_64-linux-gnu/c++/5/bits/ctype_base.h \
- /usr/include/c++/5/bits/streambuf_iterator.h \
- /usr/include/x86_64-linux-gnu/c++/5/bits/ctype_inline.h \
- /usr/include/c++/5/bits/locale_facets.tcc \
- /usr/include/c++/5/bits/basic_ios.tcc /usr/include/c++/5/map \
+ /usr/include/c++/5/bits/stl_numeric.h /usr/include/c++/5/map \
  /usr/include/c++/5/bits/stl_tree.h \
  /usr/include/c++/5/ext/aligned_buffer.h \
  /usr/include/c++/5/bits/stl_map.h /usr/include/c++/5/tuple \
@@ -198,22 +202,17 @@ libbitcoin_server_a-chain.o: chain.cpp /usr/include/stdc-predef.h chain.h \
  /usr/include/c++/5/bits/atomic_base.h \
  /usr/include/c++/5/backward/auto_ptr.h /usr/include/c++/5/set \
  /usr/include/c++/5/bits/stl_set.h /usr/include/c++/5/bits/stl_multiset.h \
- prevector.h /usr/include/c++/5/iterator /usr/include/c++/5/ostream \
- /usr/include/c++/5/bits/ostream.tcc /usr/include/c++/5/istream \
- /usr/include/c++/5/bits/istream.tcc \
- /usr/include/c++/5/bits/stream_iterator.h script/script.h \
- crypto/common.h ../src/config/bitcoin-config.h compat/endian.h \
- prevector.h /usr/include/c++/5/climits \
+ /usr/include/c++/5/climits \
  /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
- /usr/include/x86_64-linux-gnu/bits/xopen_lim.h serialize.h uint256.h \
- crypto/common.h pow.h consensus/params.h tinyformat.h \
- /usr/include/c++/5/cassert /usr/include/c++/5/iostream \
- /usr/include/c++/5/sstream /usr/include/c++/5/bits/sstream.tcc uint256.h
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h uint256.h pow.h \
+ consensus/params.h tinyformat.h /usr/include/c++/5/cassert \
+ /usr/include/c++/5/iostream /usr/include/c++/5/sstream \
+ /usr/include/c++/5/bits/sstream.tcc
 
 /usr/include/stdc-predef.h:
 
@@ -479,15 +478,67 @@ primitives/transaction.h:
 
 amount.h:
 
-serialize.h:
+script/script.h:
 
-compat/endian.h:
+crypto/common.h:
 
 config/bitcoin-config.h:
+
+compat/endian.h:
 
 compat/byteswap.h:
 
 /usr/include/byteswap.h:
+
+prevector.h:
+
+/usr/include/c++/5/iterator:
+
+/usr/include/c++/5/ostream:
+
+/usr/include/c++/5/ios:
+
+/usr/include/c++/5/bits/ios_base.h:
+
+/usr/include/c++/5/bits/locale_classes.h:
+
+/usr/include/c++/5/bits/locale_classes.tcc:
+
+/usr/include/c++/5/system_error:
+
+/usr/include/x86_64-linux-gnu/c++/5/bits/error_constants.h:
+
+/usr/include/c++/5/streambuf:
+
+/usr/include/c++/5/bits/streambuf.tcc:
+
+/usr/include/c++/5/bits/basic_ios.h:
+
+/usr/include/c++/5/bits/locale_facets.h:
+
+/usr/include/c++/5/cwctype:
+
+/usr/include/wctype.h:
+
+/usr/include/x86_64-linux-gnu/c++/5/bits/ctype_base.h:
+
+/usr/include/c++/5/bits/streambuf_iterator.h:
+
+/usr/include/x86_64-linux-gnu/c++/5/bits/ctype_inline.h:
+
+/usr/include/c++/5/bits/locale_facets.tcc:
+
+/usr/include/c++/5/bits/basic_ios.tcc:
+
+/usr/include/c++/5/bits/ostream.tcc:
+
+/usr/include/c++/5/istream:
+
+/usr/include/c++/5/bits/istream.tcc:
+
+/usr/include/c++/5/bits/stream_iterator.h:
+
+serialize.h:
 
 /usr/include/c++/5/algorithm:
 
@@ -649,40 +700,6 @@ compat/byteswap.h:
 
 /usr/include/c++/5/bits/stl_numeric.h:
 
-/usr/include/c++/5/ios:
-
-/usr/include/c++/5/bits/ios_base.h:
-
-/usr/include/c++/5/bits/locale_classes.h:
-
-/usr/include/c++/5/bits/locale_classes.tcc:
-
-/usr/include/c++/5/system_error:
-
-/usr/include/x86_64-linux-gnu/c++/5/bits/error_constants.h:
-
-/usr/include/c++/5/streambuf:
-
-/usr/include/c++/5/bits/streambuf.tcc:
-
-/usr/include/c++/5/bits/basic_ios.h:
-
-/usr/include/c++/5/bits/locale_facets.h:
-
-/usr/include/c++/5/cwctype:
-
-/usr/include/wctype.h:
-
-/usr/include/x86_64-linux-gnu/c++/5/bits/ctype_base.h:
-
-/usr/include/c++/5/bits/streambuf_iterator.h:
-
-/usr/include/x86_64-linux-gnu/c++/5/bits/ctype_inline.h:
-
-/usr/include/c++/5/bits/locale_facets.tcc:
-
-/usr/include/c++/5/bits/basic_ios.tcc:
-
 /usr/include/c++/5/map:
 
 /usr/include/c++/5/bits/stl_tree.h:
@@ -729,30 +746,6 @@ compat/byteswap.h:
 
 /usr/include/c++/5/bits/stl_multiset.h:
 
-prevector.h:
-
-/usr/include/c++/5/iterator:
-
-/usr/include/c++/5/ostream:
-
-/usr/include/c++/5/bits/ostream.tcc:
-
-/usr/include/c++/5/istream:
-
-/usr/include/c++/5/bits/istream.tcc:
-
-/usr/include/c++/5/bits/stream_iterator.h:
-
-script/script.h:
-
-crypto/common.h:
-
-../src/config/bitcoin-config.h:
-
-compat/endian.h:
-
-prevector.h:
-
 /usr/include/c++/5/climits:
 
 /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h:
@@ -771,11 +764,7 @@ prevector.h:
 
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
-serialize.h:
-
 uint256.h:
-
-crypto/common.h:
 
 pow.h:
 
@@ -790,5 +779,3 @@ tinyformat.h:
 /usr/include/c++/5/sstream:
 
 /usr/include/c++/5/bits/sstream.tcc:
-
-uint256.h:

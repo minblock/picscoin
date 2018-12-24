@@ -1,12 +1,12 @@
 libbitcoin_server_a-bloom.o: bloom.cpp /usr/include/stdc-predef.h bloom.h \
- serialize.h compat/endian.h config/bitcoin-config.h \
+ serialize.h compat/endian.h config/bitcoin-config.h compat/byteswap.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h /usr/include/stdint.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h compat/byteswap.h \
- /usr/include/byteswap.h /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h /usr/include/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
  /usr/include/x86_64-linux-gnu/bits/types.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
  /usr/include/x86_64-linux-gnu/bits/byteswap-16.h /usr/include/endian.h \
@@ -200,19 +200,16 @@ libbitcoin_server_a-bloom.o: bloom.cpp /usr/include/stdc-predef.h bloom.h \
  /usr/include/c++/5/bits/ostream.tcc /usr/include/c++/5/istream \
  /usr/include/c++/5/bits/istream.tcc \
  /usr/include/c++/5/bits/stream_iterator.h primitives/transaction.h \
- amount.h serialize.h script/script.h crypto/common.h \
- ../src/config/bitcoin-config.h compat/endian.h prevector.h \
- /usr/include/c++/5/climits \
+ amount.h script/script.h crypto/common.h /usr/include/c++/5/climits \
  /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
- /usr/include/x86_64-linux-gnu/bits/xopen_lim.h serialize.h uint256.h \
- /usr/include/c++/5/cstring crypto/common.h hash.h crypto/ripemd160.h \
- crypto/sha256.h uint256.h version.h script/script.h script/standard.h \
- script/interpreter.h script/script_error.h primitives/transaction.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h uint256.h \
+ /usr/include/c++/5/cstring hash.h crypto/ripemd160.h crypto/sha256.h \
+ version.h script/standard.h script/interpreter.h script/script_error.h \
  /usr/include/boost/variant.hpp /usr/include/boost/variant/variant.hpp \
  /usr/include/c++/5/cstddef /usr/include/boost/type_index.hpp \
  /usr/include/boost/config.hpp /usr/include/boost/config/user.hpp \
@@ -626,51 +623,8 @@ libbitcoin_server_a-bloom.o: bloom.cpp /usr/include/stdc-predef.h bloom.h \
  /usr/include/boost/variant/detail/element_index.hpp \
  /usr/include/boost/type_traits/add_pointer.hpp \
  /usr/include/boost/variant/visitor_ptr.hpp \
- /usr/include/boost/variant/bad_visit.hpp random.h streams.h \
- support/allocators/zeroafterfree.h support/cleanse.h \
- /usr/include/boost/foreach.hpp /usr/include/boost/noncopyable.hpp \
- /usr/include/boost/core/noncopyable.hpp /usr/include/boost/range/end.hpp \
- /usr/include/boost/range/config.hpp \
- /usr/include/boost/range/detail/implementation_help.hpp \
- /usr/include/boost/range/detail/common.hpp \
- /usr/include/boost/range/detail/sfinae.hpp \
- /usr/include/boost/range/iterator.hpp \
- /usr/include/boost/range/range_fwd.hpp \
- /usr/include/boost/range/mutable_iterator.hpp \
- /usr/include/boost/range/detail/extract_optional_type.hpp \
- /usr/include/boost/iterator/iterator_traits.hpp \
- /usr/include/boost/detail/iterator.hpp \
- /usr/include/boost/range/detail/msvc_has_iterator_workaround.hpp \
- /usr/include/boost/range/const_iterator.hpp \
- /usr/include/boost/type_traits/remove_const.hpp \
- /usr/include/boost/range/begin.hpp /usr/include/boost/range/rend.hpp \
- /usr/include/boost/range/reverse_iterator.hpp \
- /usr/include/boost/iterator/reverse_iterator.hpp \
- /usr/include/boost/next_prior.hpp \
- /usr/include/boost/type_traits/is_unsigned.hpp \
- /usr/include/boost/type_traits/integral_promotion.hpp \
- /usr/include/boost/type_traits/make_signed.hpp \
- /usr/include/boost/type_traits/is_signed.hpp \
- /usr/include/boost/type_traits/add_volatile.hpp \
- /usr/include/boost/type_traits/has_plus.hpp \
- /usr/include/boost/type_traits/detail/has_binary_operator.hpp \
- /usr/include/boost/type_traits/is_base_of.hpp \
- /usr/include/boost/type_traits/is_fundamental.hpp \
- /usr/include/boost/type_traits/remove_pointer.hpp \
- /usr/include/boost/type_traits/has_plus_assign.hpp \
- /usr/include/boost/type_traits/has_minus.hpp \
- /usr/include/boost/type_traits/has_minus_assign.hpp \
- /usr/include/boost/iterator.hpp \
- /usr/include/boost/iterator/iterator_adaptor.hpp \
- /usr/include/boost/iterator/iterator_categories.hpp \
- /usr/include/boost/iterator/detail/config_def.hpp \
- /usr/include/boost/iterator/detail/config_undef.hpp \
- /usr/include/boost/iterator/iterator_facade.hpp \
- /usr/include/boost/iterator/interoperable.hpp \
- /usr/include/boost/iterator/detail/facade_iterator_category.hpp \
- /usr/include/boost/detail/indirect_traits.hpp \
- /usr/include/boost/iterator/detail/enable_if.hpp \
- /usr/include/boost/range/rbegin.hpp /usr/include/boost/foreach_fwd.hpp
+ /usr/include/boost/variant/bad_visit.hpp random.h crypto/chacha20.h \
+ streams.h support/allocators/zeroafterfree.h support/cleanse.h
 
 /usr/include/stdc-predef.h:
 
@@ -681,6 +635,8 @@ serialize.h:
 compat/endian.h:
 
 config/bitcoin-config.h:
+
+compat/byteswap.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h:
 
@@ -697,8 +653,6 @@ config/bitcoin-config.h:
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
-
-compat/byteswap.h:
 
 /usr/include/byteswap.h:
 
@@ -1194,17 +1148,9 @@ primitives/transaction.h:
 
 amount.h:
 
-serialize.h:
-
 script/script.h:
 
 crypto/common.h:
-
-../src/config/bitcoin-config.h:
-
-compat/endian.h:
-
-prevector.h:
 
 /usr/include/c++/5/climits:
 
@@ -1224,13 +1170,9 @@ prevector.h:
 
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
-serialize.h:
-
 uint256.h:
 
 /usr/include/c++/5/cstring:
-
-crypto/common.h:
 
 hash.h:
 
@@ -1238,19 +1180,13 @@ crypto/ripemd160.h:
 
 crypto/sha256.h:
 
-uint256.h:
-
 version.h:
-
-script/script.h:
 
 script/standard.h:
 
 script/interpreter.h:
 
 script/script_error.h:
-
-primitives/transaction.h:
 
 /usr/include/boost/variant.hpp:
 
@@ -2134,102 +2070,10 @@ primitives/transaction.h:
 
 random.h:
 
+crypto/chacha20.h:
+
 streams.h:
 
 support/allocators/zeroafterfree.h:
 
 support/cleanse.h:
-
-/usr/include/boost/foreach.hpp:
-
-/usr/include/boost/noncopyable.hpp:
-
-/usr/include/boost/core/noncopyable.hpp:
-
-/usr/include/boost/range/end.hpp:
-
-/usr/include/boost/range/config.hpp:
-
-/usr/include/boost/range/detail/implementation_help.hpp:
-
-/usr/include/boost/range/detail/common.hpp:
-
-/usr/include/boost/range/detail/sfinae.hpp:
-
-/usr/include/boost/range/iterator.hpp:
-
-/usr/include/boost/range/range_fwd.hpp:
-
-/usr/include/boost/range/mutable_iterator.hpp:
-
-/usr/include/boost/range/detail/extract_optional_type.hpp:
-
-/usr/include/boost/iterator/iterator_traits.hpp:
-
-/usr/include/boost/detail/iterator.hpp:
-
-/usr/include/boost/range/detail/msvc_has_iterator_workaround.hpp:
-
-/usr/include/boost/range/const_iterator.hpp:
-
-/usr/include/boost/type_traits/remove_const.hpp:
-
-/usr/include/boost/range/begin.hpp:
-
-/usr/include/boost/range/rend.hpp:
-
-/usr/include/boost/range/reverse_iterator.hpp:
-
-/usr/include/boost/iterator/reverse_iterator.hpp:
-
-/usr/include/boost/next_prior.hpp:
-
-/usr/include/boost/type_traits/is_unsigned.hpp:
-
-/usr/include/boost/type_traits/integral_promotion.hpp:
-
-/usr/include/boost/type_traits/make_signed.hpp:
-
-/usr/include/boost/type_traits/is_signed.hpp:
-
-/usr/include/boost/type_traits/add_volatile.hpp:
-
-/usr/include/boost/type_traits/has_plus.hpp:
-
-/usr/include/boost/type_traits/detail/has_binary_operator.hpp:
-
-/usr/include/boost/type_traits/is_base_of.hpp:
-
-/usr/include/boost/type_traits/is_fundamental.hpp:
-
-/usr/include/boost/type_traits/remove_pointer.hpp:
-
-/usr/include/boost/type_traits/has_plus_assign.hpp:
-
-/usr/include/boost/type_traits/has_minus.hpp:
-
-/usr/include/boost/type_traits/has_minus_assign.hpp:
-
-/usr/include/boost/iterator.hpp:
-
-/usr/include/boost/iterator/iterator_adaptor.hpp:
-
-/usr/include/boost/iterator/iterator_categories.hpp:
-
-/usr/include/boost/iterator/detail/config_def.hpp:
-
-/usr/include/boost/iterator/detail/config_undef.hpp:
-
-/usr/include/boost/iterator/iterator_facade.hpp:
-
-/usr/include/boost/iterator/interoperable.hpp:
-
-/usr/include/boost/iterator/detail/facade_iterator_category.hpp:
-
-/usr/include/boost/detail/indirect_traits.hpp:
-
-/usr/include/boost/iterator/detail/enable_if.hpp:
-
-/usr/include/boost/range/rbegin.hpp:
-
-/usr/include/boost/foreach_fwd.hpp:

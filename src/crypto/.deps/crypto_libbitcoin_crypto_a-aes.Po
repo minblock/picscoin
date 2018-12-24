@@ -25,10 +25,10 @@ crypto/crypto_libbitcoin_crypto_a-aes.o: crypto/aes.cpp \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h crypto/common.h \
- ../src/config/bitcoin-config.h /usr/include/string.h \
+ config/bitcoin-config.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/string3.h compat/endian.h \
- config/bitcoin-config.h compat/byteswap.h /usr/include/byteswap.h \
- /usr/include/assert.h crypto/ctaes/ctaes.c crypto/ctaes/ctaes.h
+ compat/byteswap.h /usr/include/byteswap.h /usr/include/assert.h \
+ crypto/ctaes/ctaes.c crypto/ctaes/ctaes.h
 
 /usr/include/stdc-predef.h:
 
@@ -102,15 +102,13 @@ crypto/ctaes/ctaes.h:
 
 crypto/common.h:
 
-../src/config/bitcoin-config.h:
+config/bitcoin-config.h:
 
 /usr/include/string.h:
 
 /usr/include/x86_64-linux-gnu/bits/string3.h:
 
 compat/endian.h:
-
-config/bitcoin-config.h:
 
 compat/byteswap.h:
 

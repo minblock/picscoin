@@ -1,7 +1,7 @@
 libbitcoin_common_a-netaddress.o: netaddress.cpp \
- /usr/include/stdc-predef.h config/bitcoin-config.h netaddress.h compat.h \
- /usr/include/x86_64-linux-gnu/sys/fcntl.h /usr/include/fcntl.h \
- /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/stdc-predef.h netaddress.h config/bitcoin-config.h compat.h \
+ /usr/include/fcntl.h /usr/include/features.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
@@ -59,9 +59,8 @@ libbitcoin_common_a-netaddress.o: netaddress.cpp \
  /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
  /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- serialize.h compat/endian.h config/bitcoin-config.h compat/byteswap.h \
- /usr/include/byteswap.h /usr/include/c++/5/algorithm \
- /usr/include/c++/5/utility \
+ serialize.h compat/endian.h compat/byteswap.h /usr/include/byteswap.h \
+ /usr/include/c++/5/algorithm /usr/include/c++/5/utility \
  /usr/include/x86_64-linux-gnu/c++/5/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/5/bits/os_defines.h \
  /usr/include/x86_64-linux-gnu/c++/5/bits/cpu_defines.h \
@@ -239,20 +238,17 @@ libbitcoin_common_a-netaddress.o: netaddress.cpp \
  /usr/include/c++/5/bits/istream.tcc \
  /usr/include/c++/5/bits/stream_iterator.h hash.h crypto/ripemd160.h \
  crypto/sha256.h uint256.h /usr/include/c++/5/cstring crypto/common.h \
- ../src/config/bitcoin-config.h compat/endian.h version.h \
- utilstrencodings.h tinyformat.h /usr/include/c++/5/cassert \
+ version.h utilstrencodings.h tinyformat.h /usr/include/c++/5/cassert \
  /usr/include/c++/5/iostream /usr/include/c++/5/sstream \
  /usr/include/c++/5/bits/sstream.tcc
 
 /usr/include/stdc-predef.h:
 
-config/bitcoin-config.h:
-
 netaddress.h:
 
-compat.h:
+config/bitcoin-config.h:
 
-/usr/include/x86_64-linux-gnu/sys/fcntl.h:
+compat.h:
 
 /usr/include/fcntl.h:
 
@@ -405,8 +401,6 @@ compat.h:
 serialize.h:
 
 compat/endian.h:
-
-config/bitcoin-config.h:
 
 compat/byteswap.h:
 
@@ -865,10 +859,6 @@ uint256.h:
 /usr/include/c++/5/cstring:
 
 crypto/common.h:
-
-../src/config/bitcoin-config.h:
-
-compat/endian.h:
 
 version.h:
 

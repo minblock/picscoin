@@ -1,13 +1,13 @@
 libbitcoin_server_a-merkleblock.o: merkleblock.cpp \
  /usr/include/stdc-predef.h merkleblock.h serialize.h compat/endian.h \
- config/bitcoin-config.h /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h \
- /usr/include/stdint.h /usr/include/features.h \
- /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ config/bitcoin-config.h compat/byteswap.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h /usr/include/stdint.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h compat/byteswap.h \
- /usr/include/byteswap.h /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h /usr/include/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
  /usr/include/x86_64-linux-gnu/bits/types.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
  /usr/include/x86_64-linux-gnu/bits/byteswap-16.h /usr/include/endian.h \
@@ -201,19 +201,18 @@ libbitcoin_server_a-merkleblock.o: merkleblock.cpp \
  /usr/include/c++/5/bits/ostream.tcc /usr/include/c++/5/istream \
  /usr/include/c++/5/bits/istream.tcc \
  /usr/include/c++/5/bits/stream_iterator.h uint256.h \
- /usr/include/c++/5/cstring crypto/common.h \
- ../src/config/bitcoin-config.h compat/endian.h primitives/block.h \
- primitives/transaction.h amount.h serialize.h script/script.h \
- crypto/common.h prevector.h /usr/include/c++/5/climits \
+ /usr/include/c++/5/cstring crypto/common.h primitives/block.h \
+ primitives/transaction.h amount.h script/script.h \
+ /usr/include/c++/5/climits \
  /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
- /usr/include/x86_64-linux-gnu/bits/xopen_lim.h serialize.h uint256.h \
- bloom.h hash.h crypto/ripemd160.h crypto/sha256.h version.h \
- consensus/consensus.h utilstrencodings.h
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h bloom.h hash.h \
+ crypto/ripemd160.h crypto/sha256.h version.h consensus/consensus.h \
+ utilstrencodings.h
 
 /usr/include/stdc-predef.h:
 
@@ -224,6 +223,8 @@ serialize.h:
 compat/endian.h:
 
 config/bitcoin-config.h:
+
+compat/byteswap.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h:
 
@@ -240,8 +241,6 @@ config/bitcoin-config.h:
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
-
-compat/byteswap.h:
 
 /usr/include/byteswap.h:
 
@@ -739,23 +738,13 @@ uint256.h:
 
 crypto/common.h:
 
-../src/config/bitcoin-config.h:
-
-compat/endian.h:
-
 primitives/block.h:
 
 primitives/transaction.h:
 
 amount.h:
 
-serialize.h:
-
 script/script.h:
-
-crypto/common.h:
-
-prevector.h:
 
 /usr/include/c++/5/climits:
 
@@ -774,10 +763,6 @@ prevector.h:
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
-
-serialize.h:
-
-uint256.h:
 
 bloom.h:
 

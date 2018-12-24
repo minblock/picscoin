@@ -93,9 +93,8 @@ libbitcoin_consensus_a-uint256.o: uint256.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/5/bits/stl_uninitialized.h \
  /usr/include/c++/5/bits/stl_vector.h \
  /usr/include/c++/5/bits/stl_bvector.h /usr/include/c++/5/bits/vector.tcc \
- crypto/common.h ../src/config/bitcoin-config.h compat/endian.h \
- config/bitcoin-config.h compat/byteswap.h /usr/include/byteswap.h \
- utilstrencodings.h
+ crypto/common.h config/bitcoin-config.h compat/endian.h \
+ compat/byteswap.h /usr/include/byteswap.h utilstrencodings.h
 
 /usr/include/stdc-predef.h:
 
@@ -355,11 +354,9 @@ uint256.h:
 
 crypto/common.h:
 
-../src/config/bitcoin-config.h:
+config/bitcoin-config.h:
 
 compat/endian.h:
-
-config/bitcoin-config.h:
 
 compat/byteswap.h:
 

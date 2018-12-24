@@ -87,7 +87,8 @@ libbitcoin_util_a-utiltime.o: utiltime.cpp /usr/include/stdc-predef.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/c++/5/bits/functional_hash.h \
  /usr/include/c++/5/bits/hash_bytes.h \
- /usr/include/c++/5/bits/basic_string.tcc \
+ /usr/include/c++/5/bits/basic_string.tcc /usr/include/c++/5/atomic \
+ /usr/include/c++/5/bits/atomic_base.h \
  /usr/include/boost/date_time/posix_time/posix_time.hpp \
  /usr/include/boost/date_time/compiler_config.hpp \
  /usr/include/boost/config.hpp /usr/include/boost/config/user.hpp \
@@ -288,7 +289,6 @@ libbitcoin_util_a-utiltime.o: utiltime.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/5/bits/allocated_ptr.h \
  /usr/include/c++/5/ext/aligned_buffer.h \
  /usr/include/c++/5/bits/shared_ptr_atomic.h \
- /usr/include/c++/5/bits/atomic_base.h \
  /usr/include/c++/5/backward/auto_ptr.h /usr/include/boost/assert.hpp \
  /usr/include/assert.h /usr/include/boost/checked_delete.hpp \
  /usr/include/boost/core/checked_delete.hpp \
@@ -296,7 +296,7 @@ libbitcoin_util_a-utiltime.o: utiltime.cpp /usr/include/stdc-predef.h \
  /usr/include/boost/smart_ptr/bad_weak_ptr.hpp \
  /usr/include/boost/smart_ptr/detail/sp_counted_base.hpp \
  /usr/include/boost/smart_ptr/detail/sp_has_sync.hpp \
- /usr/include/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp \
+ /usr/include/boost/smart_ptr/detail/sp_counted_base_std_atomic.hpp \
  /usr/include/boost/detail/sp_typeinfo.hpp \
  /usr/include/boost/core/typeinfo.hpp \
  /usr/include/boost/core/demangle.hpp /usr/include/c++/5/cxxabi.h \
@@ -308,7 +308,7 @@ libbitcoin_util_a-utiltime.o: utiltime.cpp /usr/include/stdc-predef.h \
  /usr/include/boost/smart_ptr/detail/sp_nullptr_t.hpp \
  /usr/include/boost/smart_ptr/detail/spinlock_pool.hpp \
  /usr/include/boost/smart_ptr/detail/spinlock.hpp \
- /usr/include/boost/smart_ptr/detail/spinlock_sync.hpp \
+ /usr/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp \
  /usr/include/boost/smart_ptr/detail/yield_k.hpp \
  /usr/include/boost/predef.h /usr/include/boost/predef/language.h \
  /usr/include/boost/predef/language/stdc.h \
@@ -1427,6 +1427,10 @@ utiltime.h:
 
 /usr/include/c++/5/bits/basic_string.tcc:
 
+/usr/include/c++/5/atomic:
+
+/usr/include/c++/5/bits/atomic_base.h:
+
 /usr/include/boost/date_time/posix_time/posix_time.hpp:
 
 /usr/include/boost/date_time/compiler_config.hpp:
@@ -1869,8 +1873,6 @@ utiltime.h:
 
 /usr/include/c++/5/bits/shared_ptr_atomic.h:
 
-/usr/include/c++/5/bits/atomic_base.h:
-
 /usr/include/c++/5/backward/auto_ptr.h:
 
 /usr/include/boost/assert.hpp:
@@ -1889,7 +1891,7 @@ utiltime.h:
 
 /usr/include/boost/smart_ptr/detail/sp_has_sync.hpp:
 
-/usr/include/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp:
+/usr/include/boost/smart_ptr/detail/sp_counted_base_std_atomic.hpp:
 
 /usr/include/boost/detail/sp_typeinfo.hpp:
 
@@ -1915,7 +1917,7 @@ utiltime.h:
 
 /usr/include/boost/smart_ptr/detail/spinlock.hpp:
 
-/usr/include/boost/smart_ptr/detail/spinlock_sync.hpp:
+/usr/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp:
 
 /usr/include/boost/smart_ptr/detail/yield_k.hpp:
 
