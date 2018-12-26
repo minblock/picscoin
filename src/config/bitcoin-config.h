@@ -347,7 +347,7 @@
 #define LT_OBJDIR ".libs/"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "https://github.com/picscoin-project/picscoin/issues"
+#define PACKAGE_BUGREPORT "https://github.com/minblock/picscoin/issues"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "Picscoin Core"

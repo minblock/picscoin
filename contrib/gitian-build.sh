@@ -3,9 +3,9 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 # What to do
-sign=false
+sign=true
 verify=false
-build=false
+build=true
 setupenv=false
 
 # Systems to build
@@ -14,12 +14,12 @@ windows=true
 osx=true
 
 # Other Basic variables
-SIGNER=
-VERSION=
+SIGNER=minblock
+VERSION=0.15
 commit=false
-url=https://github.com/picscoin-project/picscoin
-proc=2
-mem=2000
+url=https://github.com/minblock/picscoin
+proc=6
+mem=4000
 lxc=true
 osslTarUrl=http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
 osslPatchUrl=https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/picscoin-project/picscoin
+-u|--url	Specify the URL of the repository. Default is https://github.com/minblock/picscoin
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -180,7 +180,7 @@ if [[ $lxc = true ]]
 then
     export USE_LXC=1
     export LXC_BRIDGE=lxcbr0
-    sudo ifconfig lxcbr0 up 10.0.2.2
+    sudo ifconfig lxcbr0 up 10.0.3.5
 fi
 
 # Check for OSX SDK
@@ -232,8 +232,8 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/picscoin-project/gitian.sigs.ltc.git
-    git clone https://github.com/picscoin-project/picscoin-detached-sigs.git
+    git clone https://github.com/minblock/gitian.sigs.ltc.git
+    git clone https://github.com/minblock/picscoin-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]

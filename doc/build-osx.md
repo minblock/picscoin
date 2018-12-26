@@ -33,7 +33,7 @@ Build Picscoin Core
 
 1. Clone the picscoin source code and cd into `picscoin`
 
-        git clone https://github.com/picscoin-project/picscoin
+        git clone https://github.com/minblock/picscoin
         cd picscoin
 
 2.  Build picscoin-core:

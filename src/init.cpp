@@ -531,7 +531,7 @@ std::string HelpMessage(HelpMessageMode mode)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/picscoin-project/picscoin>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/minblock/picscoin>";
     const std::string URL_WEBSITE = "<https://picscoin.org>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2011, COPYRIGHT_YEAR) + " ") + "\n" +
