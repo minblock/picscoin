@@ -31,7 +31,7 @@ commitFiles=true
 read -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the picscoin, gitian-builder, gitian.sigs.ltc, and picscoin-detached-sigs.
+Run this script from the directory containing the picscoin, gitian-builder, gitian.sigs.pic, and picscoin-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -232,7 +232,7 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/minblock/gitian.sigs.ltc.git
+    git clone https://github.com/minblock/gitian.sigs.pic.git
     git clone https://github.com/minblock/picscoin-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
@@ -275,7 +275,7 @@ then
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit picscoin=${COMMIT} --url picscoin=${url} ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
 	    mv build/out/picscoin-*.tar.gz build/out/src/picscoin-*.tar.gz ../picscoin-binaries/${VERSION}
 	fi
 	# Windows
@@ -285,7 +285,7 @@ then
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit picscoin=${COMMIT} --url picscoin=${url} ../picscoin/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-win.yml
 	    mv build/out/picscoin-*-win-unsigned.tar.gz inputs/picscoin-win-unsigned.tar.gz
 	    mv build/out/picscoin-*.zip build/out/picscoin-*.exe ../picscoin-binaries/${VERSION}
 	fi
@@ -296,7 +296,7 @@ then
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit picscoin=${COMMIT} --url picscoin=${url} ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
 	    mv build/out/picscoin-*-osx-unsigned.tar.gz inputs/picscoin-osx-unsigned.tar.gz
 	    mv build/out/picscoin-*.tar.gz build/out/picscoin-*.dmg ../picscoin-binaries/${VERSION}
 	fi
@@ -325,27 +325,27 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-linux ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-linux ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-win-unsigned ../picscoin/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-win-unsigned ../picscoin/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX	
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""	
-	./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-osx-unsigned ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-osx-unsigned ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-osx-signed ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-osx-signed ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-osx-signed ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml	
+	./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-osx-signed ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml	
 	popd
 fi
 
@@ -361,7 +361,7 @@ then
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
 	    ./bin/gbuild -i --commit signature=${COMMIT} ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
 	    mv build/out/picscoin-*win64-setup.exe ../picscoin-binaries/${VERSION}
 	    mv build/out/picscoin-*win32-setup.exe ../picscoin-binaries/${VERSION}
 	fi
@@ -372,7 +372,7 @@ then
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
 	    ./bin/gbuild -i --commit signature=${COMMIT} ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
 	    mv build/out/picscoin-osx-signed.dmg ../picscoin-binaries/${VERSION}/picscoin-${VERSION}-osx.dmg
 	fi
 	popd
