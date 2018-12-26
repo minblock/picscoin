@@ -4,7 +4,7 @@
 
 # What to do
 sign=true
-verify=false
+verify=true
 build=true
 setupenv=false
 
@@ -18,8 +18,8 @@ SIGNER=minblock
 VERSION=0.15
 commit=false
 url=https://github.com/minblock/picscoin
-proc=6
-mem=4000
+proc=12
+mem=8000
 lxc=true
 osslTarUrl=http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
 osslPatchUrl=https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
