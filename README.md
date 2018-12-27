@@ -2,9 +2,11 @@ Picscoin Core integration/staging tree
 =====================================
 https://picscoins.org
 
-Copyright (c) 2009-2014 Bitcoin Developers
-Copyright (c) 2011-2014 Litecoin Developers
-Copyright (c) 2018 Picscoin Developers
+Copyright (c) 2009-2018 Bitcoin Developers
+
+Copyright (c) 2011-2018 Litecoin Developers
+
+Copyright (c) 2018 Picscoin Developer
 
 What is Picscoin?
 ----------------
