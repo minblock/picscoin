@@ -141,14 +141,19 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (  8445, uint256S("0x763e60c05a26fcb7bf95bdb0a0b8c47b5f39d7fdc08f75c8cad862e870f15047"))
-            (  10656, uint256S("0x4569782247e8800f972bddeb8858a3be4cf20c3fa6ccc3561713f5b190e37f5e"))
+              1500, uint256S("0xf912963a40fd1f049e23fd3f0b173dccdb012ee0f40146b66defd5db9af9e707"))
+              4032, uint256S("0x83275c7af68da129f5be38e2f21feee241049fc6be42a4f91b6adc160b2dffca"))
+              8064, uint256S("0x2164bcc2297412625d39a88b569efedc1fd34286759ade21df824960e2debc61"))
+              8445, uint256S("0x763e60c05a26fcb7bf95bdb0a0b8c47b5f39d7fdc08f75c8cad862e870f15047"))
+              10656, uint256S("0x4569782247e8800f972bddeb8858a3be4cf20c3fa6ccc3561713f5b190e37f5e"))
+              12164, uint256S("0x610f1e821ca74a088bc694bde28cecebfeeb4189d9c65510716f9e8b382bd463"))
+		      12799, uint256S("0x692813a44e3b7986380dfb169344c76d40f5c2827b3ec79d740f401f3ccee40f"))
         };
 
         chainTxData = ChainTxData{
-            // Data as of block 4569782247e8800f972bddeb8858a3be4cf20c3fa6ccc3561713f5b190e37f5e (height 10656).
-            1545602821, // * UNIX timestamp of last known number of transactions
-            10674,  // * total number of transactions between genesis and that timestamp
+            // Data as of block 457a5b24d632f1ebfab27083ef3a3519ada5beb5f06739b922494b38698c07f2 (height 12801).
+            1545887615, // * UNIX timestamp of last known number of transactions
+            12824,  // * total number of transactions between genesis and that timestamp
                     //   (the tx=... number in the SetBestChain debug.log lines)
             0.06     // * estimated number of transactions per second after that timestamp
         };
@@ -230,13 +235,13 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            ( 0, uint256S("0x0")),
+            ( 0, uint256S("0x1cef4a5283b4e4848cb85ad719312e50f7b63eebbce6627b53db498196fe302e")),
         };
 
         chainTxData = ChainTxData{
             // Data as of block f2dc531da6be01f53774f970aaaca200c7a8317ee9fd398ee733b40f14e265d1 (height 8702)
-            1487715270,
-            8731,
+            1516406749,
+            794057,
             0.01
         };
 
@@ -301,7 +306,7 @@ public:
 
         checkpointData = (CCheckpointData){
             boost::assign::map_list_of
-            ( 0, uint256S("0x0"))
+            ( 0, uint256S("0x31084fe36da4b52656a4be23f30c5fdd25304e3b0a937408fd389f62ac76beac"))
         };
 
         chainTxData = ChainTxData{
