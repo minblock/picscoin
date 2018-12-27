@@ -1,6 +1,6 @@
-Picscoin Core version 0.17.0 is now available from:
+Picscoin Core version 0.16.3 is now available from:
 
-  <https://download.picscoins.org/picscoin-0.17.0/>
+  <https://download.picscoins.org/picscoin-0.16.3/>
 
 This is a new minor version release, with various bugfixes
 as well as updated translations.
@@ -54,9 +54,9 @@ Denial-of-Service vulnerability
 
 A denial-of-service vulnerability exploitable by miners has been discovered in
 Picscoin Core versions 0.14.0 up to 0.16.2. It is recommended to upgrade any of
-the vulnerable versions to 0.17.0 as soon as possible.
+the vulnerable versions to 0.16.3 as soon as possible.
 
-0.17.0 change log
+0.16.3 change log
 ------------------
 
 ### Consensus
