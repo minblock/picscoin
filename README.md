@@ -2,10 +2,26 @@ Picscoin Core integration/staging tree
 =====================================
 https://picscoins.org
 
+Copyright (c) 2009-2014 Bitcoin Developers
+Copyright (c) 2011-2014 Litecoin Developers
+Copyright (c) 2018 Picscoin Developers
+
 What is Picscoin?
 ----------------
 
-Picscoin is an experimental digital currency that enables instant payments to
+Picscoin is a lite version of Bitcoin using scrypt as a proof-of-work algorithm.
+ - 2.5 minute block targets
+ - subsidy halves in 840k blocks (~4 years)
+ - ~42 million total coins
+
+The rest is the same as Bitcoin.
+ - 50 coins per block
+ - 2016 blocks to retarget difficulty
+
+For more information, as well as an immediately useable, binary version of
+the Picscoin client sofware, see https://pix.bitwall.ca.
+
+An experimental digital currency that enables storage and retreivable of pictures/photos. Each block will represent an image store for retreivable with RPC and API. Private Encrypted messaging / instant payments as well as satellite internet for pics transfers to
 anyone, anywhere in the world. Picscoin uses peer-to-peer technology to operate
 with no central authority: managing transactions and issuing money are carried
 out collectively by the network. Picscoin Core is the name of open source
