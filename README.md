@@ -20,8 +20,7 @@ The rest is the same as Bitcoin.
  - 50 coins per block
  - 2016 blocks to retarget difficulty
 
-For more information, as well as an immediately useable, binary version of
-the Picscoin client sofware, see https://pix.bitwall.ca.
+For more information, see https://bitwall.ca.
 
 An experimental digital currency that enables storage and retreivable of pictures/photos. Each block will represent an image store for retreivable with RPC and API. Private Encrypted messaging / instant payments as well as satellite internet for pics transfers to
 anyone, anywhere in the world. Picscoin uses peer-to-peer technology to operate
