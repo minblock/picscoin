@@ -18,12 +18,10 @@ import random
 from binascii import b2a_hex
 
 # key types
-PUBKEY_ADDRESS = 48
-SCRIPT_ADDRESS = 5
-SCRIPT_ADDRESS2 = 50
-PUBKEY_ADDRESS_TEST = 111
-SCRIPT_ADDRESS_TEST = 196
-SCRIPT_ADDRESS_TEST2 = 58
+PUBKEY_ADDRESS = 55 #Originally L or Mainnnet base58 address now P
+SCRIPT_ADDRESS2 = 15 #Originally M or New Mainnet Address Starting address now 7
+PUBKEY_ADDRESS_TEST = 117 #Originally m or Testnet address Starting address  now p
+SCRIPT_ADDRESS_TEST2 = 10  #Originally Q or New Testnet Starting address now 5
 PRIVKEY = 176
 PRIVKEY_TEST = 239
 
