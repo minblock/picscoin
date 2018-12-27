@@ -2927,8 +2927,8 @@ UniValue listunspent(const JSONRPCRequest& request)
 
             "\nExamples\n"
             + HelpExampleCli("listunspent", "")
-            + HelpExampleCli("listunspent", "6 9999999 \"[\\\"LGPYcOdyoBnraaWX5tknkJZZWafjRAGVzx\\\",\\\"LLmraTr3qBjE2YseA3CnZ55la4TQmWnRY3\\\"]\"")
-            + HelpExampleRpc("listunspent", "6, 9999999 \"[\\\"LGPYcOdyoBnraaWX5tknkJZZWafjRAGVzx\\\",\\\"LLmraTr3qBjE2YseA3CnZ55la4TQmWnRY3\\\"]\"")
+            + HelpExampleCli("listunspent", "6 9999999 \"[\\\"PGPYcOdyoBnraaWX5tknkJZZWafjRAGVzx\\\",\\\"PGPYcOr3qBjE2YseA3CnZ55la4TQmWnRY3\\\"]\"")
+            + HelpExampleRpc("listunspent", "6, 9999999 \"[\\\"PGPYcOdyoBnraaWX5tknkJZZWafjRAGVzx\\\",\\\"PGPYcOr3qBjE2YseA3CnZ55la4TQmWnRY3\\\"]\"")
             + HelpExampleCli("listunspent", "6 9999999 '[]' true '{ \"minimumAmount\": 0.005 }'")
             + HelpExampleRpc("listunspent", "6, 9999999, [] , true, { \"minimumAmount\": 0.005 } ")
         );
