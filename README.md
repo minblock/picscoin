@@ -26,7 +26,7 @@ An experimental digital currency that enables storage and retreivable of picture
 anyone, anywhere in the world. Picscoin uses peer-to-peer technology to operate
 with no central authority: managing transactions and issuing money are carried
 out collectively by the network. Picscoin Core is the name of open source
-software which enables the use of this currency. The Pixchain (https://explorer.picscoins.org) is the experimental block explorer based on the Iquidos Block Explorer that will integrate pictures into the block hash. 
+software which enables the use of this currency. The Pixchain (https://explorer.picscoins.org) is the experimental block explorer based on the Iquidos Block Explorer that will integrate picture link (hybrid ftp/samba server protocol) into the block hash. 
 
 For more information, as well as an immediately useable, binary version of
 the Picscoin Core software, see [https://picscoins.org](https://picscoins.org).
