@@ -103,7 +103,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1517356801; // January 31st, 2018
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000007816781600");
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000001b5aa9cae38");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x0a9e2a7760125aab7e60e26a1c0944604fd6bf1b22610e48ff9b9c3c3d3e4f72"); //9315
@@ -134,7 +134,7 @@ public:
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
-        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,50);
+        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,15);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,176);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
@@ -155,6 +155,7 @@ public:
                 {  8445, uint256S("0x763e60c05a26fcb7bf95bdb0a0b8c47b5f39d7fdc08f75c8cad862e870f15047")},
                 {  10656, uint256S("0x4569782247e8800f972bddeb8858a3be4cf20c3fa6ccc3561713f5b190e37f5e")},
                 {  12164, uint256S("0x610f1e821ca74a088bc694bde28cecebfeeb4189d9c65510716f9e8b382bd463")},
+                {  13180, uint256S("0xe717bcbf2aa1c4b35b2ad8ce9695650a83a118922b6a6499da38d2938ada42c8")},
             }
         };
 
@@ -227,9 +228,9 @@ public:
         vSeeds.emplace_back("seed-b.picscoin.loshan.co.uk");
         vSeeds.emplace_back("dnsseed-testnet.thrasher.io");
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,117);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
-        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,58);
+        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,10);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
@@ -244,7 +245,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {2056, uint256S("17748a31ba97afdc9a4f86837a39d287e3e7c7290a08a1d816c5969c78a83289")},
+                {0, uint256S("17748a31ba97afdc9a4f86837a39d287e3e7c7290a08a1d816c5969c78a83289")},
             }
         };
 
@@ -315,7 +316,7 @@ public:
 
         checkpointData = {
             {
-                {0, uint256S("530827f38f93b43ed12af0b3ad25a288dc02ed74d6d7857862df51fc56c416f9")},
+                {0, uint256S("31084fe36da4b52656a4be23f30c5fdd25304e3b0a937408fd389f62ac76beac")},
             }
         };
 
