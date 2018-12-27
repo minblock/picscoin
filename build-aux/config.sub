@@ -1387,7 +1387,7 @@ case $os in
 	      | -ekkobsd* | -kfreebsd* | -freebsd* | -riscix* | -lynxos* \
 	      | -bosx* | -nextstep* | -cxux* | -aout* | -elf* | -oabi* \
 	      | -ptx* | -coff* | -ecoff* | -winnt* | -domain* | -vsta* \
-	      | -udi* | -eabi* | -lites* | -ieee* | -go32* | -aux* \
+	      | -udi* | -eabi* | -bitmaps* | -ieee* | -go32* | -aux* \
 	      | -chorusos* | -chorusrdb* | -cegcc* \
 	      | -cygwin* | -msys* | -pe* | -psos* | -moss* | -proelf* | -rtems* \
 	      | -mingw32* | -mingw64* | -linux-gnu* | -linux-android* \
