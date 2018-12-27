@@ -101,7 +101,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1517356801; // January 31st, 2018
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000007816781600");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000190148520c0");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x0a9e2a7760125aab7e60e26a1c0944604fd6bf1b22610e48ff9b9c3c3d3e4f72");  //9315
@@ -151,13 +151,14 @@ public:
                 {  8445, uint256S("0x763e60c05a26fcb7bf95bdb0a0b8c47b5f39d7fdc08f75c8cad862e870f15047")},
                 {  10656, uint256S("0x4569782247e8800f972bddeb8858a3be4cf20c3fa6ccc3561713f5b190e37f5e")},
                 {  12164, uint256S("0x610f1e821ca74a088bc694bde28cecebfeeb4189d9c65510716f9e8b382bd463")},
+                {  12799, uint256S("0x692813a44e3b7986380dfb169344c76d40f5c2827b3ec79d740f401f3ccee40f")},
             }
         };
 
         chainTxData = ChainTxData{
-            // Data as of block 032b0e81b51adb13855a796ecc86849d1719cabf8c4ea3e07783ddffe404785a (height 12176).
-            1545790107, // * UNIX timestamp of last known number of transactions
-            12199,  // * total number of transactions between genesis and that timestamp
+            // Data as of block 457a5b24d632f1ebfab27083ef3a3519ada5beb5f06739b922494b38698c07f2 (height 12801).
+            1545887615, // * UNIX timestamp of last known number of transactions
+            12824,  // * total number of transactions between genesis and that timestamp
                     //   (the tx=... number in the SetBestChain debug.log lines)
             0.06     // * estimated number of transactions per second after that timestamp
         };
@@ -218,9 +219,9 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testnet-seed.picscointools.com", true);
-        vSeeds.emplace_back("seed-b.picscoin.loshan.co.uk", true);
-        vSeeds.emplace_back("dnsseed-testnet.thrasher.io", true);
+        vSeeds.emplace_back("testnet-seed.picscoins.org", true);
+        //vSeeds.emplace_back("seed-b.picscoins.org", true);
+        //vSeeds.emplace_back("dnsseed-testnet.thrasher.io", true);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
