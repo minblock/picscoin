@@ -127,10 +127,10 @@ public:
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.emplace_back("seed-a.picscoins.org");
-//        vSeeds.emplace_back("dnsseed.thrasher.io");
-  //      vSeeds.emplace_back("dnsseed.picscointools.com");
-    //    vSeeds.emplace_back("dnsseed.picscoinpool.org");
-      //  vSeeds.emplace_back("dnsseed.koin-project.com");
+        //vSeeds.emplace_back("dnsseed.thrasher.io");
+        //vSeeds.emplace_back("dnsseed.picscointools.com");
+        //vSeeds.emplace_back("dnsseed.picscoinpool.org");
+        //vSeeds.emplace_back("dnsseed.koin-project.com");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -224,9 +224,9 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testnet-seed.picscointools.com");
-        vSeeds.emplace_back("seed-b.picscoin.loshan.co.uk");
-        vSeeds.emplace_back("dnsseed-testnet.thrasher.io");
+        vSeeds.emplace_back("testnet-seed.picscoins.org");
+        //vSeeds.emplace_back("seed-b.picscoin.loshan.co.uk");
+        //vSeeds.emplace_back("dnsseed-testnet.thrasher.io");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,117);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
