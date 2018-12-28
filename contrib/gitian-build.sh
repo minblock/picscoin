@@ -5,20 +5,20 @@
 # What to do
 sign=false
 verify=false
-build=true
+build=false
 
 # Systems to build
 linux=true
-windows=false
-osx=false
+windows=true
+osx=true
 
 # Other Basic variables
-SIGNER=sev@provgn.com
-VERSION=0.16.3
+SIGNER=
+VERSION=
 commit=false
 url=https://github.com/minblock/picscoin
-proc=12
-mem=5000
+proc=2
+mem=2000
 lxc=true
 osslTarUrl=http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
 osslPatchUrl=https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
