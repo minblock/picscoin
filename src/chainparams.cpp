@@ -224,9 +224,9 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testnet-seed.picscointools.com");
-        vSeeds.emplace_back("seed-b.picscoin.loshan.co.uk");
-        vSeeds.emplace_back("dnsseed-testnet.thrasher.io");
+        vSeeds.emplace_back("testnet-seed.picscoins.org");
+        //vSeeds.emplace_back("seed-b.picscoin.loshan.co.uk");
+        //vSeeds.emplace_back("dnsseed-testnet.thrasher.io");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,117);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
@@ -250,9 +250,9 @@ public:
         };
 
         chainTxData = ChainTxData{
-            // Data as of block a0afbded94d4be233e191525dc2d467af5c7eab3143c852c3cd549831022aad6 (height 343833)
-            1516406749,
-            794057,
+            // Data as of block 1ce* (height 0)
+            1486949366,
+            0,
             0.01
         };
 
