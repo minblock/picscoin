@@ -13,11 +13,11 @@ windows=true
 osx=true
 
 # Other Basic variables
-SIGNER=sev@provgn.com
-VERSION=0.16.3
+SIGNER=
+VERSION=
 commit=false
 url=https://github.com/minblock/picscoin
-proc=6
+proc=12
 mem=5000
 lxc=true
 osslTarUrl=http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
