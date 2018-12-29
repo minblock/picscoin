@@ -94,13 +94,11 @@ public:
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-<<<<<<< HEAD
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 0; // Bigbang
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 999999999999ULL; // Lightyear 16 Million 2005
-=======
+
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 0; // January 28, 2017
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 999999999999ULL; // January 31st, 2018
->>>>>>> 99d8cba45ba6c764bbc39c36cd5edd93d86b004b
 
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
