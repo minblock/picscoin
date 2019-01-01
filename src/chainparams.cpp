@@ -251,6 +251,7 @@ public:
         checkpointData = (CCheckpointData) {
             {
                 {0, uint256S("1cef4a5283b4e4848cb85ad719312e50f7b63eebbce6627b53db498196fe302e")},
+                {2, uint256S("fc1396ba57195830faef588fc89423d0c28875d9854f80a71634c53799e82f74")},
             }
         };
 
