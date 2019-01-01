@@ -156,8 +156,11 @@ public:
                 {  10656, uint256S("0x4569782247e8800f972bddeb8858a3be4cf20c3fa6ccc3561713f5b190e37f5e")},
                 {  12164, uint256S("0x610f1e821ca74a088bc694bde28cecebfeeb4189d9c65510716f9e8b382bd463")},
                 {  13180, uint256S("0xe717bcbf2aa1c4b35b2ad8ce9695650a83a118922b6a6499da38d2938ada42c8")},
-                {  13180, uint256S("0xe717bcbf2aa1c4b35b2ad8ce9695650a83a118922b6a6499da38d2938ada42c8")},
+                {  14580, uint256S("0x6f158b8e6593d0ffcc0590fdadfef17bd9a612cd1744c92be50963dc08b42121")},
+                {  17580, uint256S("0x8fc65a8fe16c4c99e19ebe970805747e5984230949ee419a096bb0f760522382")},
+                {  18580, uint256S("0x8ef1342747b321fe1876f8ef7723bf5080ee29ffc9b111426e31e29023678993")},
                 {  19166, uint256S("0xa504e69d862231bf5317cbddbb69b6c69467e474f60bcf9793c814c0727208e7")},
+                {  19284, uint256S("0x28fc6e7c9580c5dccc929261f918f11f0aef9a441d5826b1de8d8bf5c70c323c")},
             }
         };
 
