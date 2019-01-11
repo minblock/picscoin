@@ -107,7 +107,7 @@
 
 /* Define to 1 if you have the declaration of `EVP_MD_CTX_new', and to 0 if
    you don't. */
-#define HAVE_DECL_EVP_MD_CTX_NEW 0
+#define HAVE_DECL_EVP_MD_CTX_NEW 1
 
 /* Define to 1 if you have the declaration of `htobe16', and to 0 if you
    don't. */
@@ -269,16 +269,16 @@
 #define HAVE_MEMORY_H 1
 
 /* Define to 1 if you have the <miniupnpc/miniupnpc.h> header file. */
-#define HAVE_MINIUPNPC_MINIUPNPC_H 1
+/* #undef HAVE_MINIUPNPC_MINIUPNPC_H */
 
 /* Define to 1 if you have the <miniupnpc/miniwget.h> header file. */
-#define HAVE_MINIUPNPC_MINIWGET_H 1
+/* #undef HAVE_MINIUPNPC_MINIWGET_H */
 
 /* Define to 1 if you have the <miniupnpc/upnpcommands.h> header file. */
-#define HAVE_MINIUPNPC_UPNPCOMMANDS_H 1
+/* #undef HAVE_MINIUPNPC_UPNPCOMMANDS_H */
 
 /* Define to 1 if you have the <miniupnpc/upnperrors.h> header file. */
-#define HAVE_MINIUPNPC_UPNPERRORS_H 1
+/* #undef HAVE_MINIUPNPC_UPNPERRORS_H */
 
 /* Define this symbol if you have MSG_DONTWAIT */
 #define HAVE_MSG_DONTWAIT 1
@@ -347,7 +347,7 @@
 #define LT_OBJDIR ".libs/"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "https://github.com/minblock/picscoin/issues"
+#define PACKAGE_BUGREPORT "https://github.com/picscoin-project/picscoin/issues"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "Picscoin Core"
@@ -393,17 +393,17 @@
 /* #undef USE_COVERAGE */
 
 /* Define if dbus support should be compiled in */
-#define USE_DBUS 1
+/* #undef USE_DBUS */
 
 /* Define if QR support should be compiled in */
-#define USE_QRCODE 1
+/* #undef USE_QRCODE */
 
 /* Define if SSE2 support should be compiled in */
 /* #undef USE_SSE2 */
 
 /* UPnP support not compiled if undefined, otherwise value (0 or 1) determines
    default state */
-#define USE_UPNP 0
+/* #undef USE_UPNP */
 
 /* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
    significant byte first (like Motorola and SPARC, unlike Intel). */
