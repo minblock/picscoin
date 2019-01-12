@@ -9,12 +9,12 @@ build=true
 
 # Systems to build
 linux=true
-windows=false
-osx=false
+windows=true
+osx=true
 
 # Other Basic variables
-SIGNER=sev@provgn.com
-VERSION=0.16.3
+SIGNER=
+VERSION=
 commit=false
 url=https://github.com/minblock/picscoin
 proc=12
