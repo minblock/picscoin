@@ -1,7 +1,9 @@
 Picscoin Core integration/staging tree
 =====================================
 
-https://picscoins.org
+[![Build Status](https://travis-ci.org/picscoin-project/picscoin.svg?branch=master)](https://travis-ci.org/picscoin-project/picscoin)
+
+https://picscoin.org
 
 What is Picscoin?
 ----------------
@@ -13,7 +15,7 @@ out collectively by the network. Picscoin Core is the name of open source
 software which enables the use of this currency.
 
 For more information, as well as an immediately useable, binary version of
-the Picscoin Core software, see [https://picscoins.org](https://picscoin.org).
+the Picscoin Core software, see [https://picscoin.org](https://picscoin.org).
 
 License
 -------
@@ -25,7 +27,7 @@ Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/minblock/picscoin/tags) are created
+completely stable. [Tags](https://github.com/picscoin-project/picscoin/tags) are created
 regularly to indicate new official, stable release versions of Picscoin Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
