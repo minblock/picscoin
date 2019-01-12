@@ -208,7 +208,7 @@ public:
         pchMessageStart[1] = 0x04;
         pchMessageStart[2] = 0x03;
         pchMessageStart[3] = 0x02;
-        nDefaultPort = 1336;
+        nDefaultPort = 11336;
         nPruneAfterHeight = 1000;
 
         genesis = CreateGenesisBlock(1486949366, 793157, 0x1e0ffff0, 1, 50 * COIN);
@@ -291,12 +291,12 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
 
-        pchMessageStart[0] = 0xfa;
-        pchMessageStart[1] = 0xbf;
-        pchMessageStart[2] = 0xb5;
-        pchMessageStart[3] = 0xda;
-        nDefaultPort = 19444;
-        nPruneAfterHeight = 1000;
+        pchMessageStart[0] = 0x01;
+        pchMessageStart[1] = 0x02;
+        pchMessageStart[2] = 0x03;
+        pchMessageStart[3] = 0x04;
+        nDefaultPort = 25565;
+	nPruneAfterHeight = 1000;
 
         genesis = CreateGenesisBlock(1296688602, 1, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
