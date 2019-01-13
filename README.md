@@ -1,12 +1,12 @@
 Picscoin Core integration/staging tree
 =====================================
-https://picscoins.org
+https://www.picscoins.org
 
 Copyright (c) 2009-2018 Bitcoin Developers
 
 Copyright (c) 2011-2018 Litecoin Developers
 
-Copyright (c) 2018 Picscoin Developer
+Copyright (c) 2018-2019 Picscoin Developer
 
 What is Picscoin?
 ----------------
@@ -19,6 +19,7 @@ Picscoin is a lite version of Bitcoin using scrypt as a proof-of-work algorithm.
 The rest is the same as Bitcoin.
  - 50 coins per block
  - 2016 blocks to retarget difficulty
+ - 2000 confirmations for mined blocks
 
 For more information, see https://bitwall.ca.
 
