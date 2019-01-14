@@ -79,8 +79,8 @@ public:
         consensus.BIP16Height = 0; // 03e08f919837c10f8a75086c8d376e3fb6400691b3514740c1e112d45b0fa08d - January 10, 2019
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S("03e08f919837c10f8a75086c8d376e3fb6400691b3514740c1e112d45b0fa08d");
-        consensus.BIP65Height = 0; // bab3041e8977e0dc3eeff63fe707b92bde1dd449d8efafb248c27c8264cc311a
-        consensus.BIP66Height = 0; // 7aceee012833fa8952f8835d8b1b3ae233cd6ab08fdb27a771d2bd7bdc491894
+        consensus.BIP65Height = 0; // 03e08f919837c10f8a75086c8d376e3fb6400691b3514740c1e112d45b0fa08d
+        consensus.BIP66Height = 0; // 03e08f919837c10f8a75086c8d376e3fb6400691b3514740c1e112d45b0fa08d
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); 
         consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
         consensus.nPowTargetSpacing = 2.5 * 60;
@@ -95,18 +95,18 @@ public:
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 999999999999ULL; //January 12, 2020
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1547510400; //January 1st @ 12:00am (UTC)
 
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL; //January 12, 2020
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1547510400; //January 1st, 2019 @ 12:00am (UTC)
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000361caebe4");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xcfdf50e9441ed126691c9fec46c072b9f4b1eeadd5056eec4be49c472aa05feb"); //5758
+        consensus.defaultAssumeValid = uint256S("0x35d68474a31788791ddfdfa487c11776c6056ed166eba085cb0a57e7527f78db"); //7530
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -151,13 +151,15 @@ public:
             {
                 {     1500, uint256S("0x568701c98a298f50db69440c7bc5ef7b96eda42562fff7d7e726af222d5cb482")},
                 {     4032, uint256S("0xfbc21ce299cfc05524f332e4aab3f4b1e035ab21f1bc9e127cc105c06355eb04")},
+                {     7500, uint256S("0xcaaace3cb2791ba9f62eb6b7c3c52302079bd527878a0e020b4a1c7165af00bc")},
+                {     7530, uint256S("0x35d68474a31788791ddfdfa487c11776c6056ed166eba085cb0a57e7527f78db")},
             }
         };
 
         chainTxData = ChainTxData{
-            // Data as of block f84dde5af2b202e2ab0f31c07173c0b1bef06f46cee4f7d09e55298325509507 (height 5763).
-            1547277052, // * UNIX timestamp of last known number of transactions
-            6995,  // * total number of transactions between genesis and that timestamp
+            // Data as of block 35d68474a31788791ddfdfa487c11776c6056ed166eba085cb0a57e7527f78db (height 7530).
+            1547506784, // * UNIX timestamp of last known number of transactions
+            9310,  // * total number of transactions between genesis and that timestamp
                     //   (the tx=... number in the SetBestChain debug.log lines)
             0.06     // * estimated number of transactions per second after that timestamp
         };
