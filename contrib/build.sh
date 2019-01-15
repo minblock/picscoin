@@ -11,5 +11,5 @@ git clone https://github.com/minblock/picscoin
 #currently set to 12 and 5000MB
 #execute from your root home folder
 export SIGNER=minblock
-export VERSION=HEAD
+export VERSION=0.16.3
 picscoin/contrib/gitian-build.sh --setup -c $SIGNER $VERSION

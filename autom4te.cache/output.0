@@ -275,11 +275,10 @@ fi
     $as_echo "$0: be upgraded to zsh 4.3.4 or later."
   else
     $as_echo "$0: Please tell bug-autoconf@gnu.org and
-$0: https://github.com/minblock/picscoin/issues
-$0: about your system, including any error possibly output
-$0: before this message. Then install a modern shell, or
-$0: manually run the script under such a shell if you do
-$0: have one."
+$0: https://github.com/minblock/picscoin/issues about your
+$0: system, including any error possibly output before this
+$0: message. Then install a modern shell, or manually run
+$0: the script under such a shell if you do have one."
   fi
   exit 1
 fi
@@ -639,13 +638,6 @@ am__EXEEXT_TRUE
 LTLIBOBJS
 LIB@&t@OBJS
 subdirs
-QR_LIBS
-PROTOBUF_LIBS
-ZMQ_LIBS
-EVENT_PTHREADS_LIBS
-EVENT_LIBS
-SSL_LIBS
-CRYPTO_LIBS
 MINIUPNPC_LIBS
 MINIUPNPC_CPPFLAGS
 LEVELDB_TARGET_FLAGS
@@ -715,10 +707,24 @@ BUILD_BITCOIN_UTILS_TRUE
 BUILD_BITCOIND_FALSE
 BUILD_BITCOIND_TRUE
 PROTOC
-UNIVALUE_LIBS
-UNIVALUE_CFLAGS
 EMBEDDED_UNIVALUE_FALSE
 EMBEDDED_UNIVALUE_TRUE
+UNIVALUE_LIBS
+UNIVALUE_CFLAGS
+ZMQ_LIBS
+ZMQ_CFLAGS
+EVENT_PTHREADS_LIBS
+EVENT_PTHREADS_CFLAGS
+EVENT_LIBS
+EVENT_CFLAGS
+QR_LIBS
+QR_CFLAGS
+PROTOBUF_LIBS
+PROTOBUF_CFLAGS
+CRYPTO_LIBS
+CRYPTO_CFLAGS
+SSL_LIBS
+SSL_CFLAGS
 BOOST_UNIT_TEST_FRAMEWORK_LIB
 BOOST_CHRONO_LIB
 BOOST_THREAD_LIB
@@ -729,9 +735,7 @@ BOOST_LDFLAGS
 BOOST_CPPFLAGS
 MOC_DEFS
 QT_SELECT
-QT_TEST_LIBS
 QT_TEST_INCLUDES
-QT_DBUS_LIBS
 QT_DBUS_INCLUDES
 QT_LDFLAGS
 QT_LIBS
@@ -742,6 +746,22 @@ LRELEASE
 RCC
 UIC
 MOC
+QTPRINT_LIBS
+QTPRINT_CFLAGS
+QTXCBQPA_LIBS
+QTXCBQPA_CFLAGS
+X11XCB_LIBS
+X11XCB_CFLAGS
+QTPLATFORM_LIBS
+QTPLATFORM_CFLAGS
+QT_DBUS_LIBS
+QT_DBUS_CFLAGS
+QT_TEST_LIBS
+QT_TEST_CFLAGS
+QT4_LIBS
+QT4_CFLAGS
+QT5_LIBS
+QT5_CFLAGS
 QT_TRANSLATION_DIR
 BDB_CPPFLAGS
 BDB_LIBS
@@ -757,6 +777,9 @@ PTHREAD_CC
 ax_pthread_config
 LCOV_OPTS
 EXTENDED_FUNCTIONAL_TESTS
+PKG_CONFIG_LIBDIR
+PKG_CONFIG_PATH
+PKG_CONFIG
 TIFFCP
 IMAGEMAGICK_CONVERT
 GENISOIMAGE
@@ -988,8 +1011,43 @@ LT_SYS_LIBRARY_PATH
 CPP
 CXXCPP
 PYTHONPATH
+PKG_CONFIG
+PKG_CONFIG_PATH
+PKG_CONFIG_LIBDIR
 BDB_CFLAGS
-BDB_LIBS'
+BDB_LIBS
+QT5_CFLAGS
+QT5_LIBS
+QT4_CFLAGS
+QT4_LIBS
+QT_TEST_CFLAGS
+QT_TEST_LIBS
+QT_DBUS_CFLAGS
+QT_DBUS_LIBS
+QTPLATFORM_CFLAGS
+QTPLATFORM_LIBS
+X11XCB_CFLAGS
+X11XCB_LIBS
+QTXCBQPA_CFLAGS
+QTXCBQPA_LIBS
+QTPRINT_CFLAGS
+QTPRINT_LIBS
+SSL_CFLAGS
+SSL_LIBS
+CRYPTO_CFLAGS
+CRYPTO_LIBS
+PROTOBUF_CFLAGS
+PROTOBUF_LIBS
+QR_CFLAGS
+QR_LIBS
+EVENT_CFLAGS
+EVENT_LIBS
+EVENT_PTHREADS_CFLAGS
+EVENT_PTHREADS_LIBS
+ZMQ_CFLAGS
+ZMQ_LIBS
+UNIVALUE_CFLAGS
+UNIVALUE_LIBS'
 ac_subdirs_all='src/univalue
 src/secp256k1'
 
@@ -1757,8 +1815,64 @@ Some influential environment variables:
   CPP         C preprocessor
   CXXCPP      C++ preprocessor
   PYTHONPATH  Augments the default search path for python module files
+  PKG_CONFIG  path to pkg-config utility
+  PKG_CONFIG_PATH 
+              directories to add to pkg-config's search path
+  PKG_CONFIG_LIBDIR 
+              path overriding pkg-config's built-in search path
   BDB_CFLAGS  C compiler flags for BerkeleyDB, bypasses autodetection
   BDB_LIBS    Linker flags for BerkeleyDB, bypasses autodetection
+  QT5_CFLAGS  C compiler flags for QT5, overriding pkg-config
+  QT5_LIBS    linker flags for QT5, overriding pkg-config
+  QT4_CFLAGS  C compiler flags for QT4, overriding pkg-config
+  QT4_LIBS    linker flags for QT4, overriding pkg-config
+  QT_TEST_CFLAGS 
+              C compiler flags for QT_TEST, overriding pkg-config
+  QT_TEST_LIBS 
+              linker flags for QT_TEST, overriding pkg-config
+  QT_DBUS_CFLAGS 
+              C compiler flags for QT_DBUS, overriding pkg-config
+  QT_DBUS_LIBS 
+              linker flags for QT_DBUS, overriding pkg-config
+  QTPLATFORM_CFLAGS 
+              C compiler flags for QTPLATFORM, overriding pkg-config
+  QTPLATFORM_LIBS 
+              linker flags for QTPLATFORM, overriding pkg-config
+  X11XCB_CFLAGS 
+              C compiler flags for X11XCB, overriding pkg-config
+  X11XCB_LIBS linker flags for X11XCB, overriding pkg-config
+  QTXCBQPA_CFLAGS 
+              C compiler flags for QTXCBQPA, overriding pkg-config
+  QTXCBQPA_LIBS 
+              linker flags for QTXCBQPA, overriding pkg-config
+  QTPRINT_CFLAGS 
+              C compiler flags for QTPRINT, overriding pkg-config
+  QTPRINT_LIBS 
+              linker flags for QTPRINT, overriding pkg-config
+  SSL_CFLAGS  C compiler flags for SSL, overriding pkg-config
+  SSL_LIBS    linker flags for SSL, overriding pkg-config
+  CRYPTO_CFLAGS 
+              C compiler flags for CRYPTO, overriding pkg-config
+  CRYPTO_LIBS linker flags for CRYPTO, overriding pkg-config
+  PROTOBUF_CFLAGS 
+              C compiler flags for PROTOBUF, overriding pkg-config
+  PROTOBUF_LIBS 
+              linker flags for PROTOBUF, overriding pkg-config
+  QR_CFLAGS   C compiler flags for QR, overriding pkg-config
+  QR_LIBS     linker flags for QR, overriding pkg-config
+  EVENT_CFLAGS 
+              C compiler flags for EVENT, overriding pkg-config
+  EVENT_LIBS  linker flags for EVENT, overriding pkg-config
+  EVENT_PTHREADS_CFLAGS 
+              C compiler flags for EVENT_PTHREADS, overriding pkg-config
+  EVENT_PTHREADS_LIBS 
+              linker flags for EVENT_PTHREADS, overriding pkg-config
+  ZMQ_CFLAGS  C compiler flags for ZMQ, overriding pkg-config
+  ZMQ_LIBS    linker flags for ZMQ, overriding pkg-config
+  UNIVALUE_CFLAGS 
+              C compiler flags for UNIVALUE, overriding pkg-config
+  UNIVALUE_LIBS 
+              linker flags for UNIVALUE, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -2486,9 +2600,9 @@ $as_echo "$as_me: WARNING: $2: see the Autoconf documentation" >&2;}
 $as_echo "$as_me: WARNING: $2:     section \"Present But Cannot Be Compiled\"" >&2;}
     { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $2: proceeding with the compiler's result" >&5
 $as_echo "$as_me: WARNING: $2: proceeding with the compiler's result" >&2;}
-( $as_echo "## ------------------------------------------------------------------ ##
+( $as_echo "## ---------------------------------------------------------- ##
 ## Report this to https://github.com/minblock/picscoin/issues ##
-## ------------------------------------------------------------------ ##"
+## ---------------------------------------------------------- ##"
      ) | sed "s/^/$as_me: WARNING:     /" >&2
     ;;
 esac
@@ -20639,7 +20753,131 @@ $as_echo "$as_me: WARNING: Guessing LevelDB OS as OS_${OTHER_OS}, please check w
 esac
 
 if test x$use_pkgconfig = xyes; then
-  as_fn_error $? "PKG_PROG_PKG_CONFIG macro not found. Please install pkg-config and re-run autogen.sh." "$LINENO" 5
+  
+  
+  
+
+
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_PKG_CONFIG+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+if test -n "$PKG_CONFIG"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
+$as_echo "$PKG_CONFIG" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_ac_pt_PKG_CONFIG+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+if test -n "$ac_pt_PKG_CONFIG"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_pt_PKG_CONFIG" >&5
+$as_echo "$ac_pt_PKG_CONFIG" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+  if test "x$ac_pt_PKG_CONFIG" = x; then
+    PKG_CONFIG=""
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+$as_echo "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    PKG_CONFIG=$ac_pt_PKG_CONFIG
+  fi
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=0.9.0
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
+$as_echo_n "checking pkg-config is at least version $_pkg_min_version... " >&6; }
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	else
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+		PKG_CONFIG=""
+	fi
+fi
+  if test x"$PKG_CONFIG" = "x"; then
+    as_fn_error $? "pkg-config not found." "$LINENO" 5
+  fi
   
 fi
 
@@ -23707,6 +23945,492 @@ fi
     true
     
   
+  auto_priority_version=qt5
+  if test "x$auto_priority_version" = x; then
+    auto_priority_version=qt5
+  fi
+    if test "x$bitcoin_qt_want_version" = xqt5 ||  ( test "x$bitcoin_qt_want_version" = xauto && test "x$auto_priority_version" = xqt5 ); then
+      QT_LIB_PREFIX=Qt5
+      bitcoin_qt_got_major_vers=5
+    else
+      QT_LIB_PREFIX=Qt
+      bitcoin_qt_got_major_vers=4
+    fi
+    qt5_modules="Qt5Core Qt5Gui Qt5Network Qt5Widgets"
+    qt4_modules="QtCore QtGui QtNetwork"
+    
+  if test "x$bitcoin_enable_qt" != xno && test "x$bitcoin_qt_want_version" != xno; then
+    true
+    
+      if test "x$bitcoin_qt_want_version" = xqt5 || ( test "x$bitcoin_qt_want_version" = xauto && test "x$auto_priority_version" = xqt5 ); then
+        
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for QT5" >&5
+$as_echo_n "checking for QT5... " >&6; }
+
+if test -n "$QT5_CFLAGS"; then
+    pkg_cv_QT5_CFLAGS="$QT5_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"\$qt5_modules\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "$qt5_modules") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT5_CFLAGS=`$PKG_CONFIG --cflags "$qt5_modules" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$QT5_LIBS"; then
+    pkg_cv_QT5_LIBS="$QT5_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"\$qt5_modules\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "$qt5_modules") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT5_LIBS=`$PKG_CONFIG --libs "$qt5_modules" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        QT5_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "$qt5_modules" 2>&1`
+        else 
+	        QT5_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "$qt5_modules" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$QT5_PKG_ERRORS" >&5
+
+	have_qt=no
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	have_qt=no
+else
+	QT5_CFLAGS=$pkg_cv_QT5_CFLAGS
+	QT5_LIBS=$pkg_cv_QT5_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	QT_INCLUDES="$QT5_CFLAGS"; QT_LIBS="$QT5_LIBS" have_qt=yes
+fi
+      elif test "x$bitcoin_qt_want_version" = xqt4 || ( test "x$bitcoin_qt_want_version" = xauto && test "x$auto_priority_version" = xqt4 ); then
+        
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for QT4" >&5
+$as_echo_n "checking for QT4... " >&6; }
+
+if test -n "$QT4_CFLAGS"; then
+    pkg_cv_QT4_CFLAGS="$QT4_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"\$qt4_modules\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "$qt4_modules") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT4_CFLAGS=`$PKG_CONFIG --cflags "$qt4_modules" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$QT4_LIBS"; then
+    pkg_cv_QT4_LIBS="$QT4_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"\$qt4_modules\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "$qt4_modules") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT4_LIBS=`$PKG_CONFIG --libs "$qt4_modules" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        QT4_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "$qt4_modules" 2>&1`
+        else 
+	        QT4_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "$qt4_modules" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$QT4_PKG_ERRORS" >&5
+
+	have_qt=no
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	have_qt=no
+else
+	QT4_CFLAGS=$pkg_cv_QT4_CFLAGS
+	QT4_LIBS=$pkg_cv_QT4_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	QT_INCLUDES="$QT4_CFLAGS"; QT_LIBS="$QT4_LIBS" ; have_qt=yes
+fi
+      fi
+
+            if test "x$have_qt" = xno && test "x$bitcoin_qt_want_version" = xauto; then
+        if test "x$auto_priority_version" = xqt5; then
+          
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for QT4" >&5
+$as_echo_n "checking for QT4... " >&6; }
+
+if test -n "$QT4_CFLAGS"; then
+    pkg_cv_QT4_CFLAGS="$QT4_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"\$qt4_modules\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "$qt4_modules") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT4_CFLAGS=`$PKG_CONFIG --cflags "$qt4_modules" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$QT4_LIBS"; then
+    pkg_cv_QT4_LIBS="$QT4_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"\$qt4_modules\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "$qt4_modules") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT4_LIBS=`$PKG_CONFIG --libs "$qt4_modules" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        QT4_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "$qt4_modules" 2>&1`
+        else 
+	        QT4_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "$qt4_modules" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$QT4_PKG_ERRORS" >&5
+
+	have_qt=no
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	have_qt=no
+else
+	QT4_CFLAGS=$pkg_cv_QT4_CFLAGS
+	QT4_LIBS=$pkg_cv_QT4_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	QT_INCLUDES="$QT4_CFLAGS"; QT_LIBS="$QT4_LIBS" ; have_qt=yes; QT_LIB_PREFIX=Qt; bitcoin_qt_got_major_vers=4
+fi
+        else
+          
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for QT5" >&5
+$as_echo_n "checking for QT5... " >&6; }
+
+if test -n "$QT5_CFLAGS"; then
+    pkg_cv_QT5_CFLAGS="$QT5_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"\$qt5_modules\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "$qt5_modules") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT5_CFLAGS=`$PKG_CONFIG --cflags "$qt5_modules" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$QT5_LIBS"; then
+    pkg_cv_QT5_LIBS="$QT5_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"\$qt5_modules\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "$qt5_modules") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT5_LIBS=`$PKG_CONFIG --libs "$qt5_modules" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        QT5_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "$qt5_modules" 2>&1`
+        else 
+	        QT5_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "$qt5_modules" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$QT5_PKG_ERRORS" >&5
+
+	have_qt=no
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	have_qt=no
+else
+	QT5_CFLAGS=$pkg_cv_QT5_CFLAGS
+	QT5_LIBS=$pkg_cv_QT5_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	QT_INCLUDES="$QT5_CFLAGS"; QT_LIBS="$QT5_LIBS" ; have_qt=yes; QT_LIB_PREFIX=Qt5; bitcoin_qt_got_major_vers=5
+fi
+        fi
+      fi
+      if test "x$have_qt" != xyes; then
+        have_qt=no
+        
+  if test "x$bitcoin_qt_want_version" = xauto && test "x$bitcoin_qt_force" != xyes; then
+    if test "x$bitcoin_enable_qt" != xno; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Qt dependencies not found; picscoin-qt frontend will not be built" >&5
+$as_echo "$as_me: WARNING: Qt dependencies not found; picscoin-qt frontend will not be built" >&2;}
+    fi
+    bitcoin_enable_qt=no
+    bitcoin_enable_qt_test=no
+  else
+    as_fn_error $? "Qt dependencies not found" "$LINENO" 5
+  fi
+
+      fi
+    
+  else
+    true
+    
+  fi
+
+    
+  if test "x$bitcoin_enable_qt" != xno && test "x$bitcoin_qt_want_version" != xno; then
+    true
+    
+      
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for QT_TEST" >&5
+$as_echo_n "checking for QT_TEST... " >&6; }
+
+if test -n "$QT_TEST_CFLAGS"; then
+    pkg_cv_QT_TEST_CFLAGS="$QT_TEST_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"\${QT_LIB_PREFIX}Test\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "${QT_LIB_PREFIX}Test") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT_TEST_CFLAGS=`$PKG_CONFIG --cflags "${QT_LIB_PREFIX}Test" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$QT_TEST_LIBS"; then
+    pkg_cv_QT_TEST_LIBS="$QT_TEST_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"\${QT_LIB_PREFIX}Test\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "${QT_LIB_PREFIX}Test") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT_TEST_LIBS=`$PKG_CONFIG --libs "${QT_LIB_PREFIX}Test" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        QT_TEST_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "${QT_LIB_PREFIX}Test" 2>&1`
+        else 
+	        QT_TEST_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "${QT_LIB_PREFIX}Test" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$QT_TEST_PKG_ERRORS" >&5
+
+	have_qt_test=no
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	have_qt_test=no
+else
+	QT_TEST_CFLAGS=$pkg_cv_QT_TEST_CFLAGS
+	QT_TEST_LIBS=$pkg_cv_QT_TEST_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	QT_TEST_INCLUDES="$QT_TEST_CFLAGS"; have_qt_test=yes
+fi
+      if test "x$use_dbus" != xno; then
+        
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for QT_DBUS" >&5
+$as_echo_n "checking for QT_DBUS... " >&6; }
+
+if test -n "$QT_DBUS_CFLAGS"; then
+    pkg_cv_QT_DBUS_CFLAGS="$QT_DBUS_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"\${QT_LIB_PREFIX}DBus\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "${QT_LIB_PREFIX}DBus") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT_DBUS_CFLAGS=`$PKG_CONFIG --cflags "${QT_LIB_PREFIX}DBus" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$QT_DBUS_LIBS"; then
+    pkg_cv_QT_DBUS_LIBS="$QT_DBUS_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"\${QT_LIB_PREFIX}DBus\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "${QT_LIB_PREFIX}DBus") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QT_DBUS_LIBS=`$PKG_CONFIG --libs "${QT_LIB_PREFIX}DBus" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        QT_DBUS_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "${QT_LIB_PREFIX}DBus" 2>&1`
+        else 
+	        QT_DBUS_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "${QT_LIB_PREFIX}DBus" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$QT_DBUS_PKG_ERRORS" >&5
+
+	have_qt_dbus=no
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	have_qt_dbus=no
+else
+	QT_DBUS_CFLAGS=$pkg_cv_QT_DBUS_CFLAGS
+	QT_DBUS_LIBS=$pkg_cv_QT_DBUS_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	QT_DBUS_INCLUDES="$QT_DBUS_CFLAGS"; have_qt_dbus=yes
+fi
+      fi
+    
+  else
+    true
+    
+  fi
+
+  
   true; 
   else
     true
@@ -24717,6 +25441,376 @@ $as_echo "@%:@define QT_STATICPLUGIN 1" >>confdefs.h
       fi
      if test "x$use_pkgconfig" = xyes; then
      :      
+       
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for QTPLATFORM" >&5
+$as_echo_n "checking for QTPLATFORM... " >&6; }
+
+if test -n "$QTPLATFORM_CFLAGS"; then
+    pkg_cv_QTPLATFORM_CFLAGS="$QTPLATFORM_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5PlatformSupport\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5PlatformSupport") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QTPLATFORM_CFLAGS=`$PKG_CONFIG --cflags "Qt5PlatformSupport" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$QTPLATFORM_LIBS"; then
+    pkg_cv_QTPLATFORM_LIBS="$QTPLATFORM_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5PlatformSupport\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5PlatformSupport") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QTPLATFORM_LIBS=`$PKG_CONFIG --libs "Qt5PlatformSupport" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        QTPLATFORM_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "Qt5PlatformSupport" 2>&1`
+        else 
+	        QTPLATFORM_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "Qt5PlatformSupport" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$QTPLATFORM_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (Qt5PlatformSupport) were not met:
+
+$QTPLATFORM_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables QTPLATFORM_CFLAGS
+and QTPLATFORM_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5        
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables QTPLATFORM_CFLAGS
+and QTPLATFORM_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }        
+else
+	QTPLATFORM_CFLAGS=$pkg_cv_QTPLATFORM_CFLAGS
+	QTPLATFORM_LIBS=$pkg_cv_QTPLATFORM_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	QT_LIBS="$QTPLATFORM_LIBS $QT_LIBS"
+fi
+       if test "x$TARGET_OS" = xlinux; then
+         
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for X11XCB" >&5
+$as_echo_n "checking for X11XCB... " >&6; }
+
+if test -n "$X11XCB_CFLAGS"; then
+    pkg_cv_X11XCB_CFLAGS="$X11XCB_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"x11-xcb\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "x11-xcb") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_X11XCB_CFLAGS=`$PKG_CONFIG --cflags "x11-xcb" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$X11XCB_LIBS"; then
+    pkg_cv_X11XCB_LIBS="$X11XCB_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"x11-xcb\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "x11-xcb") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_X11XCB_LIBS=`$PKG_CONFIG --libs "x11-xcb" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        X11XCB_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "x11-xcb" 2>&1`
+        else 
+	        X11XCB_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "x11-xcb" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$X11XCB_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (x11-xcb) were not met:
+
+$X11XCB_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables X11XCB_CFLAGS
+and X11XCB_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5        
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables X11XCB_CFLAGS
+and X11XCB_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }        
+else
+	X11XCB_CFLAGS=$pkg_cv_X11XCB_CFLAGS
+	X11XCB_LIBS=$pkg_cv_X11XCB_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	QT_LIBS="$X11XCB_LIBS $QT_LIBS"
+fi
+         if ${PKG_CONFIG} --exists "Qt5Core >= 5.5" 2>/dev/null; then
+           
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for QTXCBQPA" >&5
+$as_echo_n "checking for QTXCBQPA... " >&6; }
+
+if test -n "$QTXCBQPA_CFLAGS"; then
+    pkg_cv_QTXCBQPA_CFLAGS="$QTXCBQPA_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5XcbQpa\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5XcbQpa") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QTXCBQPA_CFLAGS=`$PKG_CONFIG --cflags "Qt5XcbQpa" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$QTXCBQPA_LIBS"; then
+    pkg_cv_QTXCBQPA_LIBS="$QTXCBQPA_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5XcbQpa\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5XcbQpa") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QTXCBQPA_LIBS=`$PKG_CONFIG --libs "Qt5XcbQpa" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        QTXCBQPA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "Qt5XcbQpa" 2>&1`
+        else 
+	        QTXCBQPA_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "Qt5XcbQpa" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$QTXCBQPA_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (Qt5XcbQpa) were not met:
+
+$QTXCBQPA_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables QTXCBQPA_CFLAGS
+and QTXCBQPA_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5        
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables QTXCBQPA_CFLAGS
+and QTXCBQPA_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }        
+else
+	QTXCBQPA_CFLAGS=$pkg_cv_QTXCBQPA_CFLAGS
+	QTXCBQPA_LIBS=$pkg_cv_QTXCBQPA_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	QT_LIBS="$QTXCBQPA_LIBS $QT_LIBS"
+fi
+         fi
+       elif test "x$TARGET_OS" = xdarwin; then
+         
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for QTPRINT" >&5
+$as_echo_n "checking for QTPRINT... " >&6; }
+
+if test -n "$QTPRINT_CFLAGS"; then
+    pkg_cv_QTPRINT_CFLAGS="$QTPRINT_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5PrintSupport\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5PrintSupport") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QTPRINT_CFLAGS=`$PKG_CONFIG --cflags "Qt5PrintSupport" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$QTPRINT_LIBS"; then
+    pkg_cv_QTPRINT_LIBS="$QTPRINT_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5PrintSupport\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5PrintSupport") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QTPRINT_LIBS=`$PKG_CONFIG --libs "Qt5PrintSupport" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        QTPRINT_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "Qt5PrintSupport" 2>&1`
+        else 
+	        QTPRINT_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "Qt5PrintSupport" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$QTPRINT_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (Qt5PrintSupport) were not met:
+
+$QTPRINT_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables QTPRINT_CFLAGS
+and QTPRINT_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5        
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables QTPRINT_CFLAGS
+and QTPRINT_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }        
+else
+	QTPRINT_CFLAGS=$pkg_cv_QTPRINT_CFLAGS
+	QTPRINT_LIBS=$pkg_cv_QTPRINT_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	QT_LIBS="$QTPRINT_LIBS $QT_LIBS"
+fi
+       fi
+     
      else
        if test "x$TARGET_OS" = xwindows; then
          { $as_echo "$as_me:${as_lineno-$LINENO}: checking for Qt >= 5.6" >&5
@@ -27999,6 +29093,570 @@ fi
 
 if test x$use_pkgconfig = xyes; then
   :   
+      
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for SSL" >&5
+$as_echo_n "checking for SSL... " >&6; }
+
+if test -n "$SSL_CFLAGS"; then
+    pkg_cv_SSL_CFLAGS="$SSL_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libssl\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libssl") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_SSL_CFLAGS=`$PKG_CONFIG --cflags "libssl" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$SSL_LIBS"; then
+    pkg_cv_SSL_LIBS="$SSL_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libssl\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libssl") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_SSL_LIBS=`$PKG_CONFIG --libs "libssl" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        SSL_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libssl" 2>&1`
+        else 
+	        SSL_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libssl" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$SSL_PKG_ERRORS" >&5
+
+	as_fn_error $? "openssl  not found." "$LINENO" 5
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	as_fn_error $? "openssl  not found." "$LINENO" 5
+else
+	SSL_CFLAGS=$pkg_cv_SSL_CFLAGS
+	SSL_LIBS=$pkg_cv_SSL_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	
+fi
+      
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for CRYPTO" >&5
+$as_echo_n "checking for CRYPTO... " >&6; }
+
+if test -n "$CRYPTO_CFLAGS"; then
+    pkg_cv_CRYPTO_CFLAGS="$CRYPTO_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libcrypto\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libcrypto") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_CRYPTO_CFLAGS=`$PKG_CONFIG --cflags "libcrypto" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$CRYPTO_LIBS"; then
+    pkg_cv_CRYPTO_LIBS="$CRYPTO_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libcrypto\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libcrypto") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_CRYPTO_LIBS=`$PKG_CONFIG --libs "libcrypto" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        CRYPTO_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libcrypto" 2>&1`
+        else 
+	        CRYPTO_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libcrypto" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$CRYPTO_PKG_ERRORS" >&5
+
+	as_fn_error $? "libcrypto  not found." "$LINENO" 5
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	as_fn_error $? "libcrypto  not found." "$LINENO" 5
+else
+	CRYPTO_CFLAGS=$pkg_cv_CRYPTO_CFLAGS
+	CRYPTO_LIBS=$pkg_cv_CRYPTO_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	
+fi
+      
+  if test "x$bitcoin_enable_qt" != xno && test "x$bitcoin_qt_want_version" != xno; then
+    true
+    
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for PROTOBUF" >&5
+$as_echo_n "checking for PROTOBUF... " >&6; }
+
+if test -n "$PROTOBUF_CFLAGS"; then
+    pkg_cv_PROTOBUF_CFLAGS="$PROTOBUF_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"protobuf\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "protobuf") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_PROTOBUF_CFLAGS=`$PKG_CONFIG --cflags "protobuf" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$PROTOBUF_LIBS"; then
+    pkg_cv_PROTOBUF_LIBS="$PROTOBUF_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"protobuf\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "protobuf") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_PROTOBUF_LIBS=`$PKG_CONFIG --libs "protobuf" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        PROTOBUF_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "protobuf" 2>&1`
+        else 
+	        PROTOBUF_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "protobuf" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$PROTOBUF_PKG_ERRORS" >&5
+
+	
+  if test "x$bitcoin_qt_want_version" = xauto && test "x$bitcoin_qt_force" != xyes; then
+    if test "x$bitcoin_enable_qt" != xno; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: libprotobuf not found; picscoin-qt frontend will not be built" >&5
+$as_echo "$as_me: WARNING: libprotobuf not found; picscoin-qt frontend will not be built" >&2;}
+    fi
+    bitcoin_enable_qt=no
+    bitcoin_enable_qt_test=no
+  else
+    as_fn_error $? "libprotobuf not found" "$LINENO" 5
+  fi
+
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	
+  if test "x$bitcoin_qt_want_version" = xauto && test "x$bitcoin_qt_force" != xyes; then
+    if test "x$bitcoin_enable_qt" != xno; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: libprotobuf not found; picscoin-qt frontend will not be built" >&5
+$as_echo "$as_me: WARNING: libprotobuf not found; picscoin-qt frontend will not be built" >&2;}
+    fi
+    bitcoin_enable_qt=no
+    bitcoin_enable_qt_test=no
+  else
+    as_fn_error $? "libprotobuf not found" "$LINENO" 5
+  fi
+
+else
+	PROTOBUF_CFLAGS=$pkg_cv_PROTOBUF_CFLAGS
+	PROTOBUF_LIBS=$pkg_cv_PROTOBUF_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	have_protobuf=yes
+fi
+  else
+    true
+    
+  fi
+
+      if test x$use_qr != xno; then
+        
+  if test "x$bitcoin_enable_qt" != xno && test "x$bitcoin_qt_want_version" != xno; then
+    true
+    
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for QR" >&5
+$as_echo_n "checking for QR... " >&6; }
+
+if test -n "$QR_CFLAGS"; then
+    pkg_cv_QR_CFLAGS="$QR_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libqrencode\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libqrencode") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QR_CFLAGS=`$PKG_CONFIG --cflags "libqrencode" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$QR_LIBS"; then
+    pkg_cv_QR_LIBS="$QR_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libqrencode\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libqrencode") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_QR_LIBS=`$PKG_CONFIG --libs "libqrencode" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        QR_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libqrencode" 2>&1`
+        else 
+	        QR_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libqrencode" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$QR_PKG_ERRORS" >&5
+
+	have_qrencode=no
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	have_qrencode=no
+else
+	QR_CFLAGS=$pkg_cv_QR_CFLAGS
+	QR_LIBS=$pkg_cv_QR_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	have_qrencode=yes
+fi
+  else
+    true
+    
+  fi
+
+      fi
+      if test x$build_bitcoin_utils$build_bitcoind$bitcoin_enable_qt$use_tests != xnononono; then
+        
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for EVENT" >&5
+$as_echo_n "checking for EVENT... " >&6; }
+
+if test -n "$EVENT_CFLAGS"; then
+    pkg_cv_EVENT_CFLAGS="$EVENT_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libevent\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libevent") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_EVENT_CFLAGS=`$PKG_CONFIG --cflags "libevent" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$EVENT_LIBS"; then
+    pkg_cv_EVENT_LIBS="$EVENT_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libevent\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libevent") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_EVENT_LIBS=`$PKG_CONFIG --libs "libevent" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        EVENT_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libevent" 2>&1`
+        else 
+	        EVENT_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libevent" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$EVENT_PKG_ERRORS" >&5
+
+	as_fn_error $? "libevent not found." "$LINENO" 5
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	as_fn_error $? "libevent not found." "$LINENO" 5
+else
+	EVENT_CFLAGS=$pkg_cv_EVENT_CFLAGS
+	EVENT_LIBS=$pkg_cv_EVENT_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	
+fi
+        if test x$TARGET_OS != xwindows; then
+          
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for EVENT_PTHREADS" >&5
+$as_echo_n "checking for EVENT_PTHREADS... " >&6; }
+
+if test -n "$EVENT_PTHREADS_CFLAGS"; then
+    pkg_cv_EVENT_PTHREADS_CFLAGS="$EVENT_PTHREADS_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libevent_pthreads\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libevent_pthreads") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_EVENT_PTHREADS_CFLAGS=`$PKG_CONFIG --cflags "libevent_pthreads" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$EVENT_PTHREADS_LIBS"; then
+    pkg_cv_EVENT_PTHREADS_LIBS="$EVENT_PTHREADS_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libevent_pthreads\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libevent_pthreads") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_EVENT_PTHREADS_LIBS=`$PKG_CONFIG --libs "libevent_pthreads" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        EVENT_PTHREADS_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libevent_pthreads" 2>&1`
+        else 
+	        EVENT_PTHREADS_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libevent_pthreads" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$EVENT_PTHREADS_PKG_ERRORS" >&5
+
+	as_fn_error $? "libevent_pthreads not found." "$LINENO" 5
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	as_fn_error $? "libevent_pthreads not found." "$LINENO" 5
+else
+	EVENT_PTHREADS_CFLAGS=$pkg_cv_EVENT_PTHREADS_CFLAGS
+	EVENT_PTHREADS_LIBS=$pkg_cv_EVENT_PTHREADS_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	
+fi
+        fi
+      fi
+
+      if test "x$use_zmq" = "xyes"; then
+        
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for ZMQ" >&5
+$as_echo_n "checking for ZMQ... " >&6; }
+
+if test -n "$ZMQ_CFLAGS"; then
+    pkg_cv_ZMQ_CFLAGS="$ZMQ_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libzmq >= 4\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libzmq >= 4") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_ZMQ_CFLAGS=`$PKG_CONFIG --cflags "libzmq >= 4" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$ZMQ_LIBS"; then
+    pkg_cv_ZMQ_LIBS="$ZMQ_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libzmq >= 4\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libzmq >= 4") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_ZMQ_LIBS=`$PKG_CONFIG --libs "libzmq >= 4" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        ZMQ_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libzmq >= 4" 2>&1`
+        else 
+	        ZMQ_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libzmq >= 4" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$ZMQ_PKG_ERRORS" >&5
+
+	
+$as_echo "@%:@define ENABLE_ZMQ 0" >>confdefs.h
+
+           { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: libzmq version 4.x or greater not found, disabling" >&5
+$as_echo "$as_me: WARNING: libzmq version 4.x or greater not found, disabling" >&2;}
+           use_zmq=no
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	
+$as_echo "@%:@define ENABLE_ZMQ 0" >>confdefs.h
+
+           { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: libzmq version 4.x or greater not found, disabling" >&5
+$as_echo "$as_me: WARNING: libzmq version 4.x or greater not found, disabling" >&2;}
+           use_zmq=no
+else
+	ZMQ_CFLAGS=$pkg_cv_ZMQ_CFLAGS
+	ZMQ_LIBS=$pkg_cv_ZMQ_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	
+$as_echo "@%:@define ENABLE_ZMQ 1" >>confdefs.h
+
+fi
+      else
+          
+cat >>confdefs.h <<_ACEOF
+@%:@define ENABLE_ZMQ 0
+_ACEOF
+
+      fi
+    
+  
 else
   ac_fn_cxx_check_header_mongrel "$LINENO" "openssl/crypto.h" "ac_cv_header_openssl_crypto_h" "$ac_includes_default"
 if test "x$ac_cv_header_openssl_crypto_h" = xyes; then :
@@ -28404,6 +30062,79 @@ if test x$system_univalue != xno ; then
   found_univalue=no
   if test x$use_pkgconfig = xyes; then
     : #NOP
+    
+        
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for UNIVALUE" >&5
+$as_echo_n "checking for UNIVALUE... " >&6; }
+
+if test -n "$UNIVALUE_CFLAGS"; then
+    pkg_cv_UNIVALUE_CFLAGS="$UNIVALUE_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libunivalue\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libunivalue") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_UNIVALUE_CFLAGS=`$PKG_CONFIG --cflags "libunivalue" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$UNIVALUE_LIBS"; then
+    pkg_cv_UNIVALUE_LIBS="$UNIVALUE_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libunivalue\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libunivalue") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_UNIVALUE_LIBS=`$PKG_CONFIG --libs "libunivalue" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        UNIVALUE_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libunivalue" 2>&1`
+        else 
+	        UNIVALUE_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libunivalue" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$UNIVALUE_PKG_ERRORS" >&5
+
+	true
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	true
+else
+	UNIVALUE_CFLAGS=$pkg_cv_UNIVALUE_CFLAGS
+	UNIVALUE_LIBS=$pkg_cv_UNIVALUE_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	found_univalue=yes
+fi
+      
     
   else
     ac_fn_cxx_check_header_mongrel "$LINENO" "univalue.h" "ac_cv_header_univalue_h" "$ac_includes_default"
@@ -31067,7 +32798,6 @@ $as_echo X"$file" |
     cat <<_LT_EOF >> "$cfgfile"
 #! $SHELL
 # Generated automatically by $as_me ($PACKAGE) $VERSION
-# Libtool was configured on host `(hostname || uname -n) 2>/dev/null | sed 1q`:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
 # Provide generalized library-building support services.
