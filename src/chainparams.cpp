@@ -95,28 +95,28 @@ public:
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 0; // January 28, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1547573088; // Locked in January 15th, 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1546200509; // December 30, 2018  @ 8:08pm (UTC)
 
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 0; // December 27, 2018
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1547570232; // Locked in January 15th, 2019 
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1546200509; // December 30, 2018 @ 8:08pm (UTC) 
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000001c540e03b88");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000bcee91d4d0a");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xe41c1aaa563b309774b43c0bfc6b9cf6f06190c872056bcac0441d9d2e4dce9a"); //13338
+        consensus.defaultAssumeValid = uint256S("0xe7b2231dd7cdc1921faa2f2dbfd648f176883f6afe40f75a7bdd4f71bfc7d7fb"); //19485
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x4c;
-        pchMessageStart[1] = 0x65;
-        pchMessageStart[2] = 0x65;
-        pchMessageStart[3] = 0x74;
+        pchMessageStart[0] = 0x4c; //L
+        pchMessageStart[1] = 0x65; //E
+        pchMessageStart[2] = 0x65; //E
+        pchMessageStart[3] = 0x74; //T
         nDefaultPort = 1337;
         nPruneAfterHeight = 100000;
 
@@ -156,13 +156,14 @@ public:
                 {  10656, uint256S("0x4569782247e8800f972bddeb8858a3be4cf20c3fa6ccc3561713f5b190e37f5e")},
                 {  12164, uint256S("0x610f1e821ca74a088bc694bde28cecebfeeb4189d9c65510716f9e8b382bd463")},
                 {  13180, uint256S("0xe717bcbf2aa1c4b35b2ad8ce9695650a83a118922b6a6499da38d2938ada42c8")},
+                {  19485, uint256S("0xe7b2231dd7cdc1921faa2f2dbfd648f176883f6afe40f75a7bdd4f71bfc7d7fb")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data as of block 032b0e81b51adb13855a796ecc86849d1719cabf8c4ea3e07783ddffe404785a (height 12176).
             1545790107, // * UNIX timestamp of last known number of transactions
-            12199,  // * total number of transactions between genesis and that timestamp
+            20194,  // * total number of transactions between genesis and that timestamp
                     //   (the tx=... number in the SetBestChain debug.log lines)
             0.06     // * estimated number of transactions per second after that timestamp
         };
