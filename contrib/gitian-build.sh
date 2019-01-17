@@ -13,11 +13,11 @@ windows=true
 osx=true
 
 # Other Basic variables
-SIGNER=sev@provgn.com
-VERSION=0.16
+SIGNER=
+VERSION=
 commit=false
 url=https://github.com/minblock/picscoin
-proc=6
+proc=12
 mem=5000
 lxc=true
 osslTarUrl=http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
@@ -229,7 +229,7 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/minblock/gitian.sigs.pic.git
+    git clone https://github.com/minblock/gitian.sigs.ltc.git
     git clone https://github.com/minblock/picscoin-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
