@@ -118,8 +118,8 @@ bin_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3) \
 	$(am__EXEEXT_4) $(am__EXEEXT_5) $(am__EXEEXT_6)
 noinst_PROGRAMS = $(am__EXEEXT_7)
 TESTS = $(am__EXEEXT_3) $(am__EXEEXT_6)
-am__append_1 = picscoind
-am__append_2 = picscoin-cli picscoin-tx
+am__append_1 = picsd
+am__append_2 = pics-cli pics-tx
 am__append_3 = crypto/sha256_sse4.cpp
 #am__append_4 = compat/glibc_compat.cpp
 #am__append_5 = bitcoind-res.rc
