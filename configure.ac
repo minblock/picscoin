@@ -5,16 +5,16 @@ define(_CLIENT_VERSION_MINOR, 16)
 define(_CLIENT_VERSION_REVISION, 3)
 define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
-define(_COPYRIGHT_YEAR, 2018)
+define(_COPYRIGHT_YEAR, 2019)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Picscoin Core]])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Litecoin and Picscoin Core]])
 AC_INIT([Picscoin Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/minblock/picscoin/issues],[picscoin],[https://picscoins.org/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=picscoind
+BITCOIN_DAEMON_NAME=picscoin-d
 BITCOIN_GUI_NAME=picscoin-qt
 BITCOIN_CLI_NAME=picscoin-cli
 BITCOIN_TX_NAME=picscoin-tx
