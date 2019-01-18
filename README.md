@@ -2,12 +2,14 @@
 Picscoin Core integration/staging tree
 =====================================
 https://picscoins.org
+
 [![Build Status](https://travis-ci.org/minblock/picscoin.svg?branch=master)](https://travis-ci.org/minblock/picscoin)
+
 Copyright (c) 2009-2018 Bitcoin Developers
 
 Copyright (c) 2011-2018 Litecoin Developers
 
-Copyright (c) 2018 Picscoin Developer
+Copyright (c) 2018-2019 Picscoin Developer
 
 What is Picscoin?
 ----------------
