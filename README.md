@@ -83,5 +83,5 @@ Translations are periodically pulled from Transifex and merged into the git repo
 **Important**: We do not accept translation changes as GitHub pull requests because the next
 pull from Transifex would automatically overwrite them again.
 
-Copyright (C) Litecoin Core Developers
-Copyright (c) stevecat
+Copyright (c) 2011-2019 Litecoin Core Developers. 
+Portions Copyright (c) 2018-2019 stevecat 
