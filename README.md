@@ -84,4 +84,4 @@ Translations are periodically pulled from Transifex and merged into the git repo
 pull from Transifex would automatically overwrite them again.
 
 Copyright (c) 2011-2019 Litecoin Core Developers. 
-Portions Copyright (c) 2018-2019 stevecat 
+Portions Copyright (c) 2018-2019 stevecat.
