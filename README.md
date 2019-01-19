@@ -5,10 +5,6 @@ https://picscoins.org
 
 [![Build Status](https://travis-ci.org/minblock/picscoin.svg?branch=master)](https://travis-ci.org/minblock/picscoin)
 
-Copyright (c) 2009-2018 Bitcoin Developers
-
-Copyright (c) 2011-2018 Litecoin Developers
-
 Copyright (c) 2018-2019 Picscoin Developer
 
 What is Picscoin?
@@ -25,14 +21,9 @@ The rest is the same as Bitcoin.
 
 For more information, see https://bitwall.ca.
 
-An experimental digital currency that enables storage and retreivable of pictures/photos. Each block will represent an image store for retreivable with RPC and API. Private Encrypted messaging / instant payments as well as satellite internet for pics transfers to
-anyone, anywhere in the world. Picscoin uses peer-to-peer technology to operate
-with no central authority: managing transactions and issuing money are carried
-out collectively by the network. Picscoin Core is the name of open source
-software which enables the use of this currency. The Pixchain (https://explorer.picscoins.org) is the experimental block explorer based on the Iquidos Block Explorer that will integrate picture link (hybrid ftp/samba server protocol) into the block hash. 
+An experimental digital currency that enables storage and retreivable of pictures/photos. Each block will represent an image store for retreivable with RPC and API. Private Encrypted messaging / instant payments as well as satellite internet for PIC transfers along with a Picture as receipt. The API will be deployed on the Picscoin blockchain for implementation to Bitcoin and other top Blockchains  (https://explorer.picscoins.org) is the experimental block explorer based on the Iquidos Block Explorer that will integrate picture link (hybrid ftp/samba server protocol) into the block hash. Picscoin Core is the name of the program that enables the use of this digital currency.
 
-For more information, as well as an immediately useable, binary version of
-the Picscoin Core software, see [https://picscoins.org](https://picscoins.org).
+For more information visit [https://picscoins.org](https://picscoins.org).
 
 License
 -------
@@ -43,9 +34,7 @@ information or see https://opensource.org/licenses/MIT.
 Development Process
 -------------------
 
-The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/minblock/picscoin/tags) are created
-regularly to indicate new official, stable release versions of Picscoin Core.
+The `master` branch is where the latest Picscoins developmental builds are being deployed to tags and releases. All Releases are to be considered Developmental as well as latest stable builds. Stable builds begin with a v.  [Tags](https://github.com/minblock/picscoin/tags) are created generated sequentially to indicate new compilation ready releases of Picscoin Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -93,3 +82,6 @@ Translations are periodically pulled from Transifex and merged into the git repo
 
 **Important**: We do not accept translation changes as GitHub pull requests because the next
 pull from Transifex would automatically overwrite them again.
+
+Copyright (C) Litecoin Core Developers
+Copyright (c) stevecat
