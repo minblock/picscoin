@@ -5,8 +5,6 @@ https://picscoins.org
 
 [![Build Status](https://travis-ci.org/minblock/picscoin.svg?branch=master)](https://travis-ci.org/minblock/picscoin)
 
-Copyright (c) 2018-2019 Picscoin Developer
-
 What is Picscoin?
 ----------------
 
@@ -80,6 +78,3 @@ Translations are periodically pulled from Transifex and merged into the git repo
 
 **Important**: We do not accept translation changes as GitHub pull requests because the next
 pull from Transifex would automatically overwrite them again.
-
-Copyright (c) 2011-2019 Litecoin Core Developers. 
-Portions Copyright (c) 2018-2019 stevecat.
