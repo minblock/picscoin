@@ -19,11 +19,9 @@ The rest is the same as Bitcoin.
  - 50 coins per block
  - 2016 blocks to retarget difficulty
 
-For more information, see https://bitwall.ca.
-
 An experimental digital currency that enables storage and retreivable of pictures/photos. Each block will represent an image store for retreivable with RPC and API. Private Encrypted messaging / instant payments as well as satellite internet for PIC transfers along with a Picture as receipt. The API will be deployed on the Picscoin blockchain for implementation to Bitcoin and other top Blockchains  (https://explorer.picscoins.org) is the experimental block explorer based on the Iquidos Block Explorer that will integrate picture link (hybrid ftp/samba server protocol) into the block hash. Picscoin Core is the name of the program that enables the use of this digital currency. Picscoin is completely anonymous. Having Segwith deployed allows PIC's to be sent anonymously. Two payments can go to the same address but once payment is received, the wallet address changes, making tracing transactions impossible. Your picture will be hashed into the blockchain for future retreival and an ANSI (text-based l33t) picture confirmation as well as a universally checkable timestamp. This allows you to patent and share your  pictellectual property through any means. 
 
-For more information visit [https://picscoins.org](https://picscoins.org).
+For more information visit [https://bitwall.ca](https://bitwall.ca).
 
 License
 -------
