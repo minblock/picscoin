@@ -6,10 +6,10 @@ Picscoin Core integration/staging tree
 What is Picscoin?
 ----------------
 
-Picscoin is a lite version of Bitcoin using scrypt as a proof-of-work algorithm.
+Picscoin is a fork Litecoin using scrypt as a proof-of-work algorithm with some differences.
  - 2.5 minute block targets
  - subsidy halves in 840k blocks (~4 years)
- - ~42 million total coins
+ - ~42 million total coins (Litecoin is 84Million)
 
 The rest is the same as Bitcoin.
  - 50 coins per block
