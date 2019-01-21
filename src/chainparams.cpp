@@ -126,7 +126,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x2cc06d170c33cdbf144e3e597a97a8786fcd84b04a0b3283c054c559646dc855"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        //vSeeds.emplace_back("seed-a.picscoins.org");
+        vSeeds.emplace_back("seed-a.picscoins.org");
         //vSeeds.emplace_back("dnsseed.thrasher.io");
         //vSeeds.emplace_back("dnsseed.picscointools.com");
         //vSeeds.emplace_back("dnsseed.picscoinpool.org");
@@ -157,6 +157,7 @@ public:
                 {  12164, uint256S("0x610f1e821ca74a088bc694bde28cecebfeeb4189d9c65510716f9e8b382bd463")},
                 {  13180, uint256S("0xe717bcbf2aa1c4b35b2ad8ce9695650a83a118922b6a6499da38d2938ada42c8")},
                 {  19485, uint256S("0xe7b2231dd7cdc1921faa2f2dbfd648f176883f6afe40f75a7bdd4f71bfc7d7fb")},
+                {  19474, uint256S("0xd3cc87cfab80101755b71f0fd9cdf2ff10f55e42fd0853584f713bf17a8bed3c")},
             }
         };
 
@@ -225,7 +226,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        //vSeeds.emplace_back("testnet-seed.picscoins.org");
+        vSeeds.emplace_back("testnet-seed.picscoins.org");
         //vSeeds.emplace_back("seed-b.picscoin.loshan.co.uk");
         //vSeeds.emplace_back("dnsseed-testnet.thrasher.io");
 
