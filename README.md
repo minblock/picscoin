@@ -10,6 +10,7 @@ Picscoin is a fork Litecoin using scrypt as a proof-of-work algorithm with some 
  - 2.5 minute block targets
  - subsidy halves in 840k blocks (~4 years)
  - ~42 million total coins (Litecoin is 84Million)
+ - 1 Million Premined for Crowdfunding
 
 The rest is the same as Bitcoin.
  - 50 coins per block
