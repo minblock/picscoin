@@ -14,7 +14,7 @@ AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=picscoin-d
+BITCOIN_DAEMON_NAME=picscoind
 BITCOIN_GUI_NAME=picscoin-qt
 BITCOIN_CLI_NAME=picscoin-cli
 BITCOIN_TX_NAME=picscoin-tx
