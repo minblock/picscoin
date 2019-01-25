@@ -17,7 +17,7 @@
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>0.16.3, Copyright © 2009-2018 The Picscoin Core developers</string>
+  <string>0.16.3, Copyright © 2009-2018 The Litecoin Core developers and Copyright © 2018-2019 stevecat</string>
 
   <key>CFBundleShortVersionString</key>
   <string>0.16.3</string>

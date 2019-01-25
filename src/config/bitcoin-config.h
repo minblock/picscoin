@@ -24,16 +24,16 @@
 #define CLIENT_VERSION_REVISION 3
 
 /* Copyright holder(s) before %s replacement */
-#define COPYRIGHT_HOLDERS "The %s developers"
+#define COPYRIGHT_HOLDERS "The Litecoin developers and portions %s"
 
 /* Copyright holder(s) */
-#define COPYRIGHT_HOLDERS_FINAL "The Picscoin Core developers"
+#define COPYRIGHT_HOLDERS_FINAL "The Litecoin Core developers and portions stevecat"
 
 /* Replacement for %s in copyright holders string */
-#define COPYRIGHT_HOLDERS_SUBSTITUTION "Picscoin Core"
+#define COPYRIGHT_HOLDERS_SUBSTITUTION "stevecat"
 
 /* Copyright year */
-#define COPYRIGHT_YEAR 2018
+#define COPYRIGHT_YEAR 2019
 
 /* Define to 1 to enable wallet functions */
 #define ENABLE_WALLET 1
