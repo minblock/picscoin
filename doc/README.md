@@ -5,11 +5,11 @@ Setup
 ---------------------
 Picscoin Core is the original Picscoin client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Picscoin transactions (which is currently more than 7 GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Picscoin Core, visit [picscoins.org](https://picscoins.org).
+To download Picscoin Core, visit [picscoin.org](https://picscoin.org).
 
 Running
 ---------------------
-The following are some helpful notes on how to run Picscoin on your native platform.
+The following are some helpful notes on how to run Picscoin Core on your native platform.
 
 ### Unix
 
@@ -22,9 +22,9 @@ Unpack the files into a directory and run:
 
 Unpack the files into a directory, and then run picscoin-qt.exe.
 
-### OS X
+### macOS
 
-Drag Picscoin-Core to your applications folder, and then run Picscoin-Core.
+Drag Picscoin Core to your applications folder, and then run Picscoin Core.
 
 ### Need Help?
 
@@ -35,13 +35,14 @@ for help and more information.
 
 Building
 ---------------------
-The following are developer notes on how to build Picscoin on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Picscoin Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
-- [OS X Build Notes](build-osx.md)
+- [macOS Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
 - [Windows Build Notes](build-windows.md)
 - [OpenBSD Build Notes](build-openbsd.md)
+- [NetBSD Build Notes](build-netbsd.md)
 - [Gitian Building Guide](gitian-building.md)
 
 Development
