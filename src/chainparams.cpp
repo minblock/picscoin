@@ -94,13 +94,13 @@ public:
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 0; // January 12,2019
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1548979200; // February 1st, 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1546023155; // December 28,2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1547251200; // January 12th, 2019
 
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 0; // January 12,2019
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1578787200; // January 12, 2020
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1546023155; // December 28,2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1578787200; // January 12th, 2020
 
 
         // The best chain should have at least this much work.
@@ -152,14 +152,12 @@ public:
             {
                 {  1500, uint256S("0xf912963a40fd1f049e23fd3f0b173dccdb012ee0f40146b66defd5db9af9e707")},
                 {  4032, uint256S("0x83275c7af68da129f5be38e2f21feee241049fc6be42a4f91b6adc160b2dffca")},
-                {  8064, uint256S("0x2164bcc2297412625d39a88b569efedc1fd34286759ade21df824960e2debc61")},
                 {  8445, uint256S("0x763e60c05a26fcb7bf95bdb0a0b8c47b5f39d7fdc08f75c8cad862e870f15047")},
                 {  10656, uint256S("0x4569782247e8800f972bddeb8858a3be4cf20c3fa6ccc3561713f5b190e37f5e")},
                 {  12164, uint256S("0x610f1e821ca74a088bc694bde28cecebfeeb4189d9c65510716f9e8b382bd463")},
                 {  13180, uint256S("0xe717bcbf2aa1c4b35b2ad8ce9695650a83a118922b6a6499da38d2938ada42c8")},
                 {  19485, uint256S("0xe7b2231dd7cdc1921faa2f2dbfd648f176883f6afe40f75a7bdd4f71bfc7d7fb")},
-                {  19474, uint256S("0xd3cc87cfab80101755b71f0fd9cdf2ff10f55e42fd0853584f713bf17a8bed3c")},
-                {  19474, uint256S("0xd3cc87cfab80101755b71f0fd9cdf2ff10f55e42fd0853584f713bf17a8bed3c")},
+                {  21337, uint256S("0xfde57aa89a5034023309b1d2374fcfb92301f146519819eacc541ab2254e8f08")},
                 {  25695, uint256S("0x3ec7eac396e7392f2410b6aea3680144a27bb81a998c1c5d44423c5c1397a8be")},
             }
         };
