@@ -34,7 +34,7 @@ If you're using the automated script (found in [contrib/gitian-build.py](/contri
 Check out the source code in the following directory hierarchy.
 
     cd /path/to/your/toplevel/build
-    git clone https://github.com/minblock/gitian.sigs.ltc.git
+    git clone https://github.com/minblock/gitian.sigs.pic.git
     git clone https://github.com/minblock/picscoin-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     git clone https://github.com/minblock/picscoin.git
@@ -69,9 +69,9 @@ Setup Gitian descriptors:
     git checkout v${VERSION}
     popd
 
-Ensure your gitian.sigs.ltc are up-to-date if you wish to gverify your builds against other Gitian signatures.
+Ensure your gitian.sigs.pic are up-to-date if you wish to gverify your builds against other Gitian signatures.
 
-    pushd ./gitian.sigs.ltc
+    pushd ./gitian.sigs.pic
     git pull
     popd
 
@@ -115,16 +115,16 @@ The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 
     pushd ./gitian-builder
     ./bin/gbuild --num-make 2 --memory 3000 --commit picscoin=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
     mv build/out/picscoin-*.tar.gz build/out/src/picscoin-*.tar.gz ../
 
     ./bin/gbuild --num-make 2 --memory 3000 --commit picscoin=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-win.yml
     mv build/out/picscoin-*-win-unsigned.tar.gz inputs/picscoin-win-unsigned.tar.gz
     mv build/out/picscoin-*.zip build/out/picscoin-*.exe ../
 
     ./bin/gbuild --num-make 2 --memory 3000 --commit picscoin=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
     mv build/out/picscoin-*-osx-unsigned.tar.gz inputs/picscoin-osx-unsigned.tar.gz
     mv build/out/picscoin-*.tar.gz build/out/picscoin-*.dmg ../
     popd
@@ -135,7 +135,7 @@ Build output expected:
   2. linux 32-bit and 64-bit dist tarballs (`picscoin-${VERSION}-linux[32|64].tar.gz`)
   3. windows 32-bit and 64-bit unsigned installers and dist zips (`picscoin-${VERSION}-win[32|64]-setup-unsigned.exe`, `picscoin-${VERSION}-win[32|64].zip`)
   4. macOS unsigned installer and dist tarball (`picscoin-${VERSION}-osx-unsigned.dmg`, `picscoin-${VERSION}-osx64.tar.gz`)
-  5. Gitian signatures (in `gitian.sigs.ltc/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/`)
+  5. Gitian signatures (in `gitian.sigs.pic/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/`)
 
 ### Verify other gitian builders signatures to your own. (Optional)
 
@@ -144,16 +144,16 @@ Add other gitian builders keys to your gpg keyring, and/or refresh keys: See `..
 Verify the signatures
 
     pushd ./gitian-builder
-    ./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-linux ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-win-unsigned ../picscoin/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-osx-unsigned ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-linux ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-win-unsigned ../picscoin/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-osx-unsigned ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
     popd
 
 ### Next steps:
 
-Commit your signature to gitian.sigs.ltc:
+Commit your signature to gitian.sigs.pic:
 
-    pushd gitian.sigs.ltc
+    pushd gitian.sigs.pic
     git add ${VERSION}-linux/"${SIGNER}"
     git add ${VERSION}-win-unsigned/"${SIGNER}"
     git add ${VERSION}-osx-unsigned/"${SIGNER}"
@@ -201,8 +201,8 @@ Create (and optionally verify) the signed macOS binary:
 
     pushd ./gitian-builder
     ./bin/gbuild -i --commit signature=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-osx-signed ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-osx-signed ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
     mv build/out/picscoin-osx-signed.dmg ../picscoin-${VERSION}-osx.dmg
     popd
 
@@ -210,19 +210,19 @@ Create (and optionally verify) the signed Windows binaries:
 
     pushd ./gitian-builder
     ./bin/gbuild -i --commit signature=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-win-signed ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-win-signed ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
     mv build/out/picscoin-*win64-setup.exe ../picscoin-${VERSION}-win64-setup.exe
     mv build/out/picscoin-*win32-setup.exe ../picscoin-${VERSION}-win32-setup.exe
     popd
 
 Commit your signature for the signed macOS/Windows binaries:
 
-    pushd gitian.sigs.ltc
+    pushd gitian.sigs.pic
     git add ${VERSION}-osx-signed/"${SIGNER}"
     git add ${VERSION}-win-signed/"${SIGNER}"
     git commit -a
-    git push  # Assuming you can push to the gitian.sigs.ltc tree
+    git push  # Assuming you can push to the gitian.sigs.pic tree
     popd
 
 ### After 3 or more people have gitian-built and their results match:

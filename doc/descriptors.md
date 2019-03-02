@@ -64,7 +64,7 @@ Descriptors consist of several types of expressions. The top level expression is
 `ADDR` expressions are any type of supported address:
 - P2PKH addresses (base58, of the form `1...`). Note that P2PKH addresses in descriptors cannot be used for P2PK outputs (use the `pk` function instead).
 - P2SH addresses (base58, of the form `3...`, defined in [BIP 13](https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki)).
-- Segwit addresses (bech32, of the form `ltc1...`, defined in [BIP 173](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki)).
+- Segwit addresses (bech32, of the form `pic1...`, defined in [BIP 173](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki)).
 
 ## Explanation
 
