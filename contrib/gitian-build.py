@@ -23,7 +23,7 @@ def setup():
         programs += ['lxc', 'debootstrap']
     subprocess.check_call(['sudo', 'apt-get', 'install', '-qq'] + programs)
     if not os.path.isdir('gitian.sigs.ltc'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/minblock/gitian.sigs.ltc.git'])
+        subprocess.check_call(['git', 'clone', 'https://github.com/minblock/gitian.sigs.pic.git'])
     if not os.path.isdir('picscoin-detached-sigs'):
         subprocess.check_call(['git', 'clone', 'https://github.com/minblock/picscoin-detached-sigs.git'])
     if not os.path.isdir('gitian-builder'):
