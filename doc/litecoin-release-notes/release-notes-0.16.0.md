@@ -556,7 +556,7 @@ Testing changes
 - #11603 `a933cb1` Move RPC registration out of AppInitParameterInteraction (ryanofsky)
 - #11722 `26efc22` Switched sync.{cpp,h} to std threading primitives (tjps)
 - #10493 `fbce66a` Use range-based for loops (C++11) when looping over map elements (practicalswift)
-- #11337 `0d7e0a3` Fix code constness in CBlockIndex::GetAncestor() overloads (danra)
+- #11336 `0d7e0a3` Fix code constness in CBlockIndex::GetAncestor() overloads (danra)
 - #11516 `0e722e8` crypto: Add test cases covering the relevant HMAC-SHA{256,512} key length boundaries (practicalswift)
 - #10574 `5d132e8` Remove includes in .cpp files for things the corresponding .h file already included (practicalswift)
 - #11884 `66479c0` Remove unused include in hash.cpp (kallewoof)
