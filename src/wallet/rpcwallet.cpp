@@ -394,8 +394,8 @@ static UniValue getaccount(const JSONRPCRequest& request)
             "\nResult:\n"
             "\"accountname\"        (string) the account address\n"
             "\nExamples:\n"
-            + HelpExampleCli("getaccount", "\"LEr4hNAefWYhBMgxCFP2Po1NPrUeiK8kM2\"")
-            + HelpExampleRpc("getaccount", "\"LEr4hNAefWYhBMgxCFP2Po1NPrUeiK8kM2\"")
+            + HelpExampleCli("getaccount", "\"P1r4hNAefWYhBMgxCFP2Po1NPrUeiK8kM2\"")
+            + HelpExampleRpc("getaccount", "\"7CFP2Po1NPrEr4hNAefWYhBMgxUeiK8kM2\"")
         );
 
     LOCK2(cs_main, pwallet->cs_wallet);
