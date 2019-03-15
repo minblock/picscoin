@@ -127,11 +127,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x2cc06d170c33cdbf144e3e597a97a8786fcd84b04a0b3283c054c559646dc855"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("seed-a.picscoins.org");
-        //vSeeds.emplace_back("dnsseed.thrasher.io");
-        //vSeeds.emplace_back("dnsseed.picscointools.com");
-        //vSeeds.emplace_back("dnsseed.picscoinpool.org");
-        //vSeeds.emplace_back("dnsseed.koin-project.com");
+        vSeeds.emplace_back("seed-na.picscoins.org");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -159,6 +155,8 @@ public:
                 {  19485, uint256S("0xe7b2231dd7cdc1921faa2f2dbfd648f176883f6afe40f75a7bdd4f71bfc7d7fb")},
                 {  21337, uint256S("0xfde57aa89a5034023309b1d2374fcfb92301f146519819eacc541ab2254e8f08")},
                 {  25695, uint256S("0x3ec7eac396e7392f2410b6aea3680144a27bb81a998c1c5d44423c5c1397a8be")},
+                {  25695, uint256S("0x3ec7eac396e7392f2410b6aea3680144a27bb81a998c1c5d44423c5c1397a8be")},
+                {  32301, uint256S("0x3ec7eac396e7392f2410b6aea3680144a27bb81a998c1c5d44423c5c1397a8be")},
             }
         };
 
