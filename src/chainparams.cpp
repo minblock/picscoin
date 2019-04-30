@@ -104,10 +104,10 @@ public:
 
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000bcee91d4d0a");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000001f19c3a4464c");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xe7b2231dd7cdc1921faa2f2dbfd648f176883f6afe40f75a7bdd4f71bfc7d7fb"); //19485
+        consensus.defaultAssumeValid = uint256S("0x887f3738a6a5031c49f2838996c8194ff9a3fc0dbd6a94f98b29c0fc4c45db02"); //55394
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -127,7 +127,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x2cc06d170c33cdbf144e3e597a97a8786fcd84b04a0b3283c054c559646dc855"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("seed-na.picscoins.org");
+        vSeeds.emplace_back("seed.picscoins.org");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -157,13 +157,15 @@ public:
                 {  25695, uint256S("0x3ec7eac396e7392f2410b6aea3680144a27bb81a998c1c5d44423c5c1397a8be")},
                 {  25695, uint256S("0x3ec7eac396e7392f2410b6aea3680144a27bb81a998c1c5d44423c5c1397a8be")},
                 {  32301, uint256S("0x3ec7eac396e7392f2410b6aea3680144a27bb81a998c1c5d44423c5c1397a8be")},
+                {  41337, uint256S("0x5547e972db634e9a19f7a633c1abab500dbf015a792cd7c1ca893302bdf8898d")},
+                {  51337, uint256S("0xcaaa8492dd084eacd6cd6390435428a9a0581fd9b6873923baa19d32cebfee1a")},                
             }
         };
 
         chainTxData = ChainTxData{
-            // Data as of block 032b0e81b51adb13855a796ecc86849d1719cabf8c4ea3e07783ddffe404785a (height 12176).
-            1551536653, // * UNIX timestamp of last known number of transactions
-            26483,  // * total number of transactions between genesis and that timestamp
+            // Data as of block 887f3738a6a5031c49f2838996c8194ff9a3fc0dbd6a94f98b29c0fc4c45db02 (height 55394).
+            1556589099, // * UNIX timestamp of last known number of transactions
+            57069,  // * total number of transactions between genesis and that timestamp
                     //   (the tx=... number in the SetBestChain debug.log lines)
             0.06     // * estimated number of transactions per second after that timestamp
         };
