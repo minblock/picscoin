@@ -82,8 +82,8 @@ public:
         consensus.BIP65Height = 0; // bab3041e8977e0dc3eeff63fe707b92bde1dd449d8efafb248c27c8264cc311a
         consensus.BIP66Height = 0; // 7aceee012833fa8952f8835d8b1b3ae233cd6ab08fdb27a771d2bd7bdc491894
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 1 * 24 * 60 * 60; // 1 day
-        consensus.nPowTargetSpacing =  1 * 43;
+        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
+        consensus.nPowTargetSpacing = 2.5 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 1916; // 95% of 2016 After 95% Of Picscoin Users switch over, Segwit is deployed
@@ -104,7 +104,7 @@ public:
 
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000001e7594c75368");
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000023a4dd86b114");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0xcaaa8492dd084eacd6cd6390435428a9a0581fd9b6873923baa19d32cebfee1a"); //51337
@@ -158,7 +158,8 @@ public:
                 {  25695, uint256S("0x3ec7eac396e7392f2410b6aea3680144a27bb81a998c1c5d44423c5c1397a8be")},
                 {  32301, uint256S("0x3ec7eac396e7392f2410b6aea3680144a27bb81a998c1c5d44423c5c1397a8be")},
                 {  41337, uint256S("0x5547e972db634e9a19f7a633c1abab500dbf015a792cd7c1ca893302bdf8898d")},
-                {  51337, uint256S("0xcaaa8492dd084eacd6cd6390435428a9a0581fd9b6873923baa19d32cebfee1a")},                
+                {  51337, uint256S("0xcaaa8492dd084eacd6cd6390435428a9a0581fd9b6873923baa19d32cebfee1a")},    
+                {  58462, uint256S("0xe1dd389dce130474da90a36b4b4a07aa51690934bb540dff1e9e32508547aa79")},                    
             }
         };
 
