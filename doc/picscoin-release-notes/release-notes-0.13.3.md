@@ -17,8 +17,8 @@ an OS initially released in 2001. This means that not even critical security
 updates will be released anymore. Without security updates, using a picscoin
 wallet on a XP machine is irresponsible at least.
 
-In addition to that, with 0.12.x there have been varied reports of Bitcoin Core
-randomly crashing on Windows XP. It is [not clear](https://github.com/bitcoin/bitcoin/issues/7681#issuecomment-217439891)
+In addition to that, with 0.12.x there have been varied reports of Picscoin Core
+randomly crashing on Windows XP. It is [not clear](https://github.com/picscoin/picscoin/issues/7681#issuecomment-217439891)
 what the source of these crashes is, but it is likely that upstream
 libraries such as Qt are no longer being tested on XP.
 
@@ -71,7 +71,7 @@ Credits
 
 Thanks to everyone who directly contributed to this release:
 
-- [The Bitcoin Core Developers](/doc/release-notes)
+- [The Picscoin Core Developers](/doc/release-notes)
 - Adrian Gallagher
 - Shaolin Fry
 - Xinxi Wang

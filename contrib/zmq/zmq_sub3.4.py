@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2018 The Bitcoin Core developers
+# Copyright (c) 2014-2018 The Picscoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,10 +8,10 @@
 
     Picscoin should be started with the command line arguments:
         picscoind -testnet -daemon \
-                -zmqpubrawtx=tcp://127.0.0.1:28332 \
-                -zmqpubrawblock=tcp://127.0.0.1:28332 \
-                -zmqpubhashtx=tcp://127.0.0.1:28332 \
-                -zmqpubhashblock=tcp://127.0.0.1:28332
+                -zmqpubrawtx=tcp://127.0.0.1:21336 \
+                -zmqpubrawblock=tcp://127.0.0.1:21336 \
+                -zmqpubhashtx=tcp://127.0.0.1:21336 \
+                -zmqpubhashblock=tcp://127.0.0.1:21336
 
     We use the asyncio library here.  `self.handle()` installs itself as a
     future at the end of the function.  Since it never returns with the event
@@ -23,7 +23,7 @@
     and `await` keywords respectively.
 
     A blocking example using python 2.7 can be obtained from the git history:
-    https://github.com/bitcoin/bitcoin/blob/37a7fe9e440b83e2364d5498931253937abe9294/contrib/zmq/zmq_sub.py
+    https://github.com/picscoin/picscoin/blob/37a7fe9e440b83e2364d5498931253937abe9294/contrib/zmq/zmq_sub.py
 """
 
 import binascii
@@ -38,7 +38,7 @@ if (sys.version_info.major, sys.version_info.minor) < (3, 4):
     print("This example only works with Python 3.4 and greater")
     sys.exit(1)
 
-port = 28332
+port = 21336
 
 class ZMQHandler():
     def __init__(self):

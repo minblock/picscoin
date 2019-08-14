@@ -1,24 +1,48 @@
 # It is not recommended to modify this file in-place, because it will
 # be overwritten during package upgrades. If you want to add further
 # options or overwrite existing ones then use
-# $ systemctl edit bitcoind.service
+# $ systemctl edit picscoind.service
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
-# /etc/bitcoin/bitcoin.conf
+# /etc/picscoin/picscoin.conf, except for those explicitly specified as arguments
+# in ExecStart=
 
 [Unit]
-Description=Bitcoin daemon
+Description=Picscoin daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/bitcoind -daemon -conf=/etc/bitcoin/bitcoin.conf -pid=/run/bitcoind/bitcoind.pid
-# Creates /run/bitcoind owned by bitcoin
-RuntimeDirectory=bitcoind
-User=bitcoin
+ExecStart=/usr/bin/picscoind -daemon \
+                            -pid=/run/picscoind/picscoind.pid \
+                            -conf=/etc/picscoin/picscoin.conf \
+                            -datadir=/var/lib/picscoind
+
+# Process management
+####################
+
 Type=forking
-PIDFile=/run/bitcoind/bitcoind.pid
+PIDFile=/run/picscoind/picscoind.pid
 Restart=on-failure
+
+# Directory creation and permissions
+####################################
+
+# Run as picscoin:picscoin
+User=picscoin
+Group=picscoin
+
+# /run/picscoind
+RuntimeDirectory=picscoind
+RuntimeDirectoryMode=0710
+
+# /etc/picscoin
+ConfigurationDirectory=picscoin
+ConfigurationDirectoryMode=0710
+
+# /var/lib/picscoind
+StateDirectory=picscoind
+StateDirectoryMode=0710
 
 # Hardening measures
 ####################

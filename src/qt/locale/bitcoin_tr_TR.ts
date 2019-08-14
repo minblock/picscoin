@@ -30,6 +30,10 @@
         <translation>Seçili adresi listeden sil</translation>
     </message>
     <message>
+        <source>Enter address or label to search</source>
+        <translation>Aramak için adres veya etiket girin</translation>
+    </message>
+    <message>
         <source>Export the data in the current tab to a file</source>
         <translation>Seçili sekmedeki veriyi dosya olarak dışa aktar</translation>
     </message>
@@ -132,6 +136,10 @@
         <translation>Yeni parolayı tekrarla</translation>
     </message>
     <message>
+        <source>Show password</source>
+        <translation>Şifreyi göster</translation>
+    </message>
+    <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation>Yeni parolayı cüzdana girin.&lt;br/&gt;Lütfen &lt;b&gt;on yada daha fazla karakter&lt;/b&gt; veya &lt;b&gt;sekiz yada daha fazla kelime&lt;/b&gt;içeren bir parola kullanın. </translation>
     </message>
@@ -168,8 +176,8 @@
         <translation>Cüzdan Şifrelemesini Onaylayın</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PICSCOINS&lt;/b&gt;!</source>
-        <translation>Uyarı: Eğer cüzdanınızı şifreleyip parolanızı kaybederseniz (unutursanız) , &lt;b&gt;BÜTÜN PICSCOIN'LERINIZI KAYBEDECEKSINIZ&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <translation>Uyarı: Eğer cüzdanınızı şifreleyip parolanızı kaybederseniz (unutursanız) , &lt;b&gt;BÜTÜN BITCOIN'LERINIZI KAYBEDECEKSINIZ&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -192,6 +200,10 @@
         <translation>Cüzdan şifreleme başarısız oldu</translation>
     </message>
     <message>
+        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
+        <translation>Cüzdan şifreleme dahili bir hata nedeniyle başarısız oldu. Cüzdanınız şifrelenemedi.</translation>
+    </message>
+    <message>
         <source>The supplied passphrases do not match.</source>
         <translation>Girilen parolalar eşleşmiyor.</translation>
     </message>
@@ -208,7 +220,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>PicscoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>İmza &amp;mesaj</translation>
@@ -1385,7 +1397,7 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>picscoin-core</name>
     <message>
         <source>Picscoin Core</source>
         <translation>Picscoin Çekirdeği</translation>

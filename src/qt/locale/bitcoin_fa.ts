@@ -216,7 +216,7 @@
     </message>
 </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>PicscoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>&amp;امضای پیام...</translation>
@@ -319,7 +319,7 @@
     </message>
     <message>
         <source>Send coins to a Picscoin address</source>
-        <translation>ارسال وجه به نشانی Picscoin</translation>
+        <translation>ارسال وجه به نشانی بیت‌کوین</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -343,7 +343,7 @@
     </message>
     <message>
         <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <translation>بیت‌کوین</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -371,11 +371,11 @@
     </message>
     <message>
         <source>Sign messages with your Picscoin addresses to prove you own them</source>
-        <translation>برای اثبات اینکه پیام‌ها به شما تعلق دارند، آن‌ها را با نشانی Picscoin خود امضا کنید</translation>
+        <translation>برای اثبات اینکه پیام‌ها به شما تعلق دارند، آن‌ها را با نشانی بیت‌کوین خود امضا کنید</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Picscoin addresses</source>
-        <translation>برای حصول اطمینان از اینکه پیام با نشانی Picscoin مشخص شده امضا است یا خیر، پیام را شناسایی کنید</translation>
+        <translation>برای حصول اطمینان از اینکه پیام با نشانی بیت‌کوین مشخص شده امضا است یا خیر، پیام را شناسایی کنید</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -395,7 +395,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and picscoin: URIs)</source>
-        <translation>درخواست پرداخت ( تولید کد کیوار و ادرس picscoin)</translation>
+        <translation>درخواست پرداخت ( تولید کد کیوار و ادرس بیت کوین)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -407,7 +407,7 @@
     </message>
     <message>
         <source>Open a picscoin: URI or payment request</source>
-        <translation>بازکردن یک picscoin: آدرس یا درخواست پرداخت</translation>
+        <translation>بازکردن یک بیت کوین: آدرس یا درخواست پرداخت</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -415,7 +415,7 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Picscoin network</source>
-        <translation><numerusform>%n ارتباط فعال با شبکهٔ Picscoin</numerusform><numerusform>%n ارتباط فعال با شبکهٔ Picscoin</numerusform></translation>
+        <translation><numerusform>%n ارتباط فعال با شبکهٔ بیت‌کوین</numerusform><numerusform>%n ارتباط فعال با شبکهٔ بیت‌کوین</numerusform></translation>
     </message>
     <message>
         <source>Processing blocks on disk...</source>
@@ -659,7 +659,7 @@
     </message>
     <message>
         <source>The entered address "%1" is not a valid Picscoin address.</source>
-        <translation>نشانی وارد شده "%1" یک نشانی معتبر Picscoin نیست.</translation>
+        <translation>نشانی وارد شده "%1" یک نشانی معتبر بیت‌کوین نیست.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -732,7 +732,7 @@
     </message>
     <message>
         <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <translation>بیت‌کوین</translation>
     </message>
     <message>
         <source>Error</source>
@@ -837,7 +837,7 @@
     </message>
     <message>
         <source>Automatically open the Picscoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>باز کردن خودکار درگاه شبکهٔ Picscoin روی روترها. تنها زمانی کار می‌کند که روتر از پروتکل UPnP پشتیبانی کند و این پروتکل فعال باشد.</translation>
+        <translation>باز کردن خودکار درگاه شبکهٔ بیت‌کوین روی روترها. تنها زمانی کار می‌کند که روتر از پروتکل UPnP پشتیبانی کند و این پروتکل فعال باشد.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -940,7 +940,7 @@
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Picscoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>اطلاعات نمایش‌داده شده ممکن است قدیمی باشند. بعد از این که یک اتصال با شبکه برقرار شد، کیف پول شما به‌صورت خودکار با شبکهٔ Picscoin همگام‌سازی می‌شود. اما این روند هنوز کامل نشده است.</translation>
+        <translation>اطلاعات نمایش‌داده شده ممکن است قدیمی باشند. بعد از این که یک اتصال با شبکه برقرار شد، کیف پول شما به‌صورت خودکار با شبکهٔ بیت‌کوین همگام‌سازی می‌شود. اما این روند هنوز کامل نشده است.</translation>
     </message>
     <message>
         <source>Available:</source>
@@ -997,6 +997,10 @@
 <context>
     <name>PeerTableModel</name>
     <message>
+        <source>Ping</source>
+        <translation>پینگ</translation>
+    </message>
+    <message>
         <source>Sent</source>
         <translation>ارسال شده</translation>
     </message>
@@ -1013,7 +1017,7 @@
     </message>
     <message>
         <source>Enter a Picscoin address (e.g. %1)</source>
-        <translation>یک آدرس Picscoin وارد کنید (مثلاً %1)</translation>
+        <translation>یک آدرس بیت‌کوین وارد کنید (مثلاً %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1493,7 +1497,7 @@
     </message>
     <message>
         <source>The Picscoin address to send the payment to</source>
-        <translation>نشانی Picscoin برای ارسال پرداخت به آن</translation>
+        <translation>نشانی بیت‌کوین برای ارسال پرداخت به آن</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -1546,7 +1550,7 @@
     </message>
     <message>
         <source>The Picscoin address to sign the message with</source>
-        <translation>نشانی Picscoin برای امضاء پیغام با آن</translation>
+        <translation>نشانی بیت‌کوین برای امضاء پیغام با آن</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1598,11 +1602,11 @@
     </message>
     <message>
         <source>The Picscoin address the message was signed with</source>
-        <translation>نشانی Picscoin که پیغام با آن امضاء شده</translation>
+        <translation>نشانی بیت‌کوین که پیغام با آن امضاء شده</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Picscoin address</source>
-        <translation>برای حصول اطمینان از اینکه پیام با نشانی Picscoin مشخص شده امضا است یا خیر، پیام را شناسایی کنید</translation>
+        <translation>برای حصول اطمینان از اینکه پیام با نشانی بیت‌کوین مشخص شده امضا است یا خیر، پیام را شناسایی کنید</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -1811,16 +1815,36 @@
     </context>
 <context>
     <name>WalletModel</name>
+    <message>
+        <source>Send Coins</source>
+        <translation>فرستادن سکه ها</translation>
+    </message>
+    <message>
+        <source>Current fee:</source>
+        <translation>دستمزد فعلی</translation>
+    </message>
+    <message>
+        <source>Increase:</source>
+        <translation>افزایش</translation>
+    </message>
+    <message>
+        <source>New fee:</source>
+        <translation>تعرفه جدید</translation>
+    </message>
     </context>
 <context>
     <name>WalletView</name>
+    <message>
+        <source>&amp;Export</source>
+        <translation>و صدور</translation>
+    </message>
     <message>
         <source>Export the data in the current tab to a file</source>
         <translation>صدور داده‌های برگهٔ فعلی به یک پرونده</translation>
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>picscoin-core</name>
     <message>
         <source>Picscoin Core</source>
         <translation> هسته Picscoin </translation>

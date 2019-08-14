@@ -1,4 +1,4 @@
-# TOR SUPPORT IN PICSCOIN
+# TOR SUPPORT IN BITCOIN
 
 It is possible to run Picscoin Core as a Tor hidden service, and connect to such services.
 
@@ -16,7 +16,7 @@ outgoing connections, but more is possible.
 
 	-onion=ip:port  Set the proxy server to use for Tor hidden services. You do not
 	                need to set this if it's the same as -proxy. You can use -noonion
-	                to explicitly disable access to hidden service.
+	                to explicitly disable access to hidden services.
 
 	-listen         When using -proxy, listening is disabled by default. If you want
 	                to run a hidden service (see next section), you'll need to enable
@@ -26,6 +26,11 @@ outgoing connections, but more is possible.
 	-addnode=X      of IP addresses or hostnames in these parameters. It requires
 	-seednode=X     SOCKS5. In Tor mode, such addresses can also be exchanged with
 	                other P2P nodes.
+
+	-onlynet=onion  Make outgoing connections only to .onion addresses. Incoming
+	                connections are not affected by this option. This option can be
+	                specified multiple times to allow multiple network types, e.g.
+	                ipv4, ipv6, or onion.
 
 In a typical situation, this suffices to run behind a Tor proxy:
 
@@ -41,7 +46,7 @@ versions of Tor see [Section 3](#3-automatically-listen-on-tor).*
 
 	HiddenServiceDir /var/lib/tor/picscoin-service/
 	HiddenServicePort 1337 127.0.0.1:1337
-	HiddenServicePort 11336 127.0.0.1:11336
+	HiddenServicePort 11337 127.0.0.1:11337
 
 The directory can be different of course, but (both) port numbers should be equal to
 your picscoind's P2P listen port (1337 by default).
@@ -93,7 +98,7 @@ API, to create and destroy 'ephemeral' hidden services programmatically.
 Picscoin Core has been updated to make use of this.
 
 This means that if Tor is running (and proper authentication has been configured),
-Picscoin Core automatically creates a hidden service to listen on. This will positively 
+Picscoin Core automatically creates a hidden service to listen on. This will positively
 affect the number of available .onion nodes.
 
 This new feature is enabled by default if Picscoin Core is listening (`-listen`), and
@@ -102,15 +107,20 @@ and, if not disabled, configured using the `-torcontrol` and `-torpassword` sett
 To show verbose debugging information, pass `-debug=tor`.
 
 Connecting to Tor's control socket API requires one of two authentication methods to be
-configured. For cookie authentication the user running picscoind must have write access
-to the `CookieAuthFile` specified in Tor configuration. In some cases, this is
+configured. It also requires the control socket to be enabled, e.g. put `ControlPort 9051`
+in `torrc` config file. For cookie authentication the user running picscoind must have read
+access to the `CookieAuthFile` specified in Tor configuration. In some cases this is
 preconfigured and the creation of a hidden service is automatic. If permission problems
 are seen with `-debug=tor` they can be resolved by adding both the user running Tor and
 the user running picscoind to the same group and setting permissions appropriately. On
 Debian-based systems the user running picscoind can be added to the debian-tor group,
-which has the appropriate permissions. An alternative authentication method is the use
-of the `-torpassword` flag and a `hash-password` which can be enabled and specified in
-Tor configuration.
+which has the appropriate permissions.
+
+An alternative authentication method is the use
+of the `-torpassword=password` option. The `password` is the clear text form that
+was used when generating the hashed password for the `HashedControlPassword` option
+in the tor configuration file. The hashed password can be obtained with the command
+`tor --hash-password password` (read the tor manual for more details).
 
 ## 4. Privacy recommendations
 

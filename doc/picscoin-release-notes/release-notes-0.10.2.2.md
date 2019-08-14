@@ -46,15 +46,15 @@ This does not affect wallet forward or backward compatibility.
 
 Picscoin 0.10.2.2 Change log
 ============================
-This release is based upon Bitcoin Core v0.10.2.  Their upstream changelog applies to us and
+This release is based upon Picscoin Core v0.10.2.  Their upstream changelog applies to us and
 is included in as separate release-notes.  This section describes the Picscoin-specific differences.
 
 Protocol:
 - Scrypt Proof-of-Work instead of sha256d, however block hashes are sha256d for performance reasons.
-- Picscoin TCP port 1337 (instead of 8333)
-- RPC TCP port 1336 (instead of 8332)
-- Testnet TCP port 11336 (instead of 18333)
-- Testnet RPC TCP port 11336 (instead of 18332)
+- Picscoin TCP port 1337 (instead of 1337)
+- RPC TCP port 1336 (instead of 1336)
+- Testnet TCP port 11336 (instead of 11337)
+- Testnet RPC TCP port 11336 (instead of 11336)
 - 84 million coin limit  (instead of 21 million)
 - Magic 0xfbc0b6db       (instead of 0xf9beb4d9)
 - Target Block Time 2.5 minutes (instead of 10 minutes)
@@ -66,7 +66,7 @@ Protocol:
 
 Relay:
 - Picscoin Core rounds transaction size up to the nearest 1000 bytes before calculating fees.  This size rounding behavior is to mimic fee calculation of Picscoin v0.6 and v0.8.
-- Bitcoin's IsDust() is disabled in favor of Picscoin's fee-based dust penalty.
+- Picscoin's IsDust() is disabled in favor of Picscoin's fee-based dust penalty.
 - Fee-based Dust Penalty: For each transaction output smaller than DUST_THRESHOLD (currently 0.001 PIC) the default relay/mining policy will expect an additional 1000 bytes of fee.  Otherwise the transaction will be rejected from relay/mining.  Such transactions are also disqualified from the free/high-priority transaction rule.
 - Miners and relays can adjust the expected fee per-KB with the -minrelaytxfee parameter.
 

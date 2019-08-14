@@ -1,0 +1,7 @@
+[main]
+host = https://www.transifex.com
+
+[picscoin.qt-translation-018x]
+file_filter = src/qt/locale/picscoin_<lang>.ts
+source_file = src/qt/locale/picscoin_en.ts
+source_lang = en

@@ -24,10 +24,10 @@ Build Tools and Keys
 ### Packaging ###
 The [Debian](/contrib/debian) subfolder contains the copyright file.
 
-All other packaging related files can be found in the [bitcoin-core/packaging](https://github.com/bitcoin-core/packaging) repository.
+All other packaging related files can be found in the [picscoin-core/packaging](https://github.com/picscoin-core/packaging) repository.
 
 ### [Gitian-descriptors](/contrib/gitian-descriptors) ###
-Files used during the gitian build process. For more information about gitian, see the [the Bitcoin Core documentation repository](https://github.com/bitcoin-core/docs).
+Files used during the gitian build process. For more information about gitian, see the [the Picscoin Core documentation repository](https://github.com/picscoin-core/docs).
 
 ### [Gitian-keys](/contrib/gitian-keys)
 PGP keys used for signing Picscoin Core [Gitian release](/doc/release-process.md) results.
@@ -45,4 +45,4 @@ Test and Verify Tools
 Utilities to generate test vectors for the data-driven Picscoin tests.
 
 ### [Verify Binaries](/contrib/verifybinaries) ###
-This script attempts to download and verify the signature file SHA256SUMS.asc from picscoins.org.
+This script attempts to download and verify the signature file SHA256SUMS.asc from picscoin.org.

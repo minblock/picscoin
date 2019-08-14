@@ -67,11 +67,11 @@
     </message>
     <message>
         <source>These are your Picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Тут знаходзяцца Picscoin-адрасы для высылання плацяжоў. Заўсёды спраўджвайце колькасць і адрас прызначэння перад здзяйсненнем транзакцыі.</translation>
+        <translation>Тут знаходзяцца Біткойн-адрасы для высылання плацяжоў. Заўсёды спраўджвайце колькасць і адрас прызначэння перад здзяйсненнем транзакцыі.</translation>
     </message>
     <message>
         <source>These are your Picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Тут знаходзяцца Picscoin-адрасы для прымання плацяжоў. Пажадана выкарыстоўваць новы адрас для кожнай транзакцыі.</translation>
+        <translation>Тут знаходзяцца Біткойн-адрасы для прымання плацяжоў. Пажадана выкарыстоўваць новы адрас для кожнай транзакцыі.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -172,7 +172,7 @@
         <translation>Пацвердзіце шыфраванне гаманца</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PICSCOINS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
         <translation>Увага: калі вы зашыфруеце свой гаманец і страціце парольную фразу, то &lt;b&gt;СТРАЦІЦЕ ЎСЕ СВАЕ БІТКОЙНЫ&lt;/b&gt;!</translation>
     </message>
     <message>
@@ -224,7 +224,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>PicscoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Падпісаць паведамленне...</translation>
@@ -303,7 +303,7 @@
     </message>
     <message>
         <source>Send coins to a Picscoin address</source>
-        <translation>Даслаць манеты на Picscoin-адрас</translation>
+        <translation>Даслаць манеты на Біткойн-адрас</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -327,7 +327,7 @@
     </message>
     <message>
         <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <translation>Біткойн</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -355,11 +355,11 @@
     </message>
     <message>
         <source>Sign messages with your Picscoin addresses to prove you own them</source>
-        <translation>Падпісаць паведамленне з дапамогай Picscoin-адраса каб даказаць, што яно належыць вам</translation>
+        <translation>Падпісаць паведамленне з дапамогай Біткойн-адраса каб даказаць, што яно належыць вам</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Picscoin addresses</source>
-        <translation>Спраўдзіць паведамленне з дапамогай Picscoin-адраса каб даказаць, што яно належыць вам</translation>
+        <translation>Спраўдзіць паведамленне з дапамогай Біткойн-адраса каб даказаць, што яно належыць вам</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -375,7 +375,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and picscoin: URIs)</source>
-        <translation>Запатрабаваць плацёж (генеруецца QR-код для picscoin URI)</translation>
+        <translation>Запатрабаваць плацёж (генеруецца QR-код для біткойн URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -387,7 +387,7 @@
     </message>
     <message>
         <source>Open a picscoin: URI or payment request</source>
-        <translation>Адкрыць picscoin: URI ці запыт плацяжу</translation>
+        <translation>Адкрыць біткойн: URI ці запыт плацяжу</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -660,7 +660,7 @@
     </message>
     <message>
         <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <translation>Біткойн</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1224,7 +1224,7 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>picscoin-core</name>
     <message>
         <source>Picscoin Core</source>
         <translation>Picscoin Core</translation>

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2018 The Bitcoin Core developers
+# Copyright (c) 2015-2018 The Picscoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test behavior of -maxuploadtarget.
@@ -15,7 +15,7 @@ import time
 
 from test_framework.messages import CInv, msg_getdata
 from test_framework.mininode import P2PInterface
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import PicscoinTestFramework
 from test_framework.util import assert_equal, mine_large_block
 
 class TestP2PConn(P2PInterface):
@@ -30,12 +30,12 @@ class TestP2PConn(P2PInterface):
         message.block.calc_sha256()
         self.block_receive_map[message.block.sha256] += 1
 
-class MaxUploadTest(BitcoinTestFramework):
+class MaxUploadTest(PicscoinTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
-        self.extra_args = [["-maxuploadtarget=800"]]
+        self.extra_args = [["-maxuploadtarget=800", "-acceptnonstdtxn=1"]]
 
         # Cache for utxos, as the listunspent may take a long time later in the test
         self.utxo_cache = []

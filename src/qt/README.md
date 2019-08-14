@@ -30,7 +30,7 @@ Resources such as the icon.
 
 Tests.
 
-### bitcoingui.(h/cpp)
+### picscoingui.(h/cpp)
 
 Represents the main window of the Picscoin UI.
 
@@ -38,7 +38,7 @@ Represents the main window of the Picscoin UI.
 
 The model. When it has a corresponding controller, it generally inherits from  [QAbstractTableModel](https://doc.qt.io/qt-5/qabstracttablemodel.html). Models that are used by controllers as helpers inherit from other Qt classes like [QValidator](https://doc.qt.io/qt-5/qvalidator.html).
 
-ClientModel is used by the main application `bitcoingui` and several models like `peertablemodel`.
+ClientModel is used by the main application `picscoingui` and several models like `peertablemodel`.
 
 ### \*page.(h/cpp)
 
@@ -50,7 +50,7 @@ Various dialogs, e.g. to open a URL. Inherit from [QDialog](https://doc.qt.io/qt
 
 ### paymentserver.(h/cpp)
 
-Used to process BIP21 and BIP70 (see https://github.com/bitcoin/bitcoin/pull/11622) payment URI / requests. Also handles URI based application switching (e.g. when following a picscoin:... link from a browser).
+Used to process BIP21 and BIP70 (see https://github.com/picscoin/picscoin/pull/11622) payment URI / requests. Also handles URI based application switching (e.g. when following a picscoin:... link from a browser).
 
 ### walletview.(h/cpp)
 
@@ -58,20 +58,20 @@ Represents the view to a single wallet.
 
 ### Other .h/cpp files
 
-* UI elements like BitcoinAmountField, which inherit from QWidget.
-* `bitcoinstrings.cpp`: automatically generated
-* `bitcoinunits.(h/cpp)`: BTC / mBTC / etc handling
+* UI elements like PicscoinAmountField, which inherit from QWidget.
+* `picscoinstrings.cpp`: automatically generated
+* `picscoinunits.(h/cpp)`: BTC / mBTC / etc handling
 * `callback.h`
 * `guiconstants.h`: UI colors, app name, etc
 * `guiutil.h`: several helper functions
-* `macdockiconhandler.(h/cpp)`
-* `macdockiconhandler.(h/cpp)`: display notifications in macOS
+* `macdockiconhandler.(h/mm)`: macOS dock icon handler
+* `macnotificationhandler.(h/mm)`: display notifications in macOS
 
 ## Contribute
 
 See [CONTRIBUTING.md](/CONTRIBUTING.md) for general guidelines. Specifically for Qt:
 
-* don't change `local/bitcoin_en.ts`; this happens [automatically](/doc/translation_process.md#writing-code-with-translations)
+* don't change `local/picscoin_en.ts`; this happens [automatically](/doc/translation_process.md#writing-code-with-translations)
 
 ## Using Qt Creator as IDE
 

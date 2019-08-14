@@ -1,10 +1,10 @@
-package org.bitcoin;
+package org.picscoin;
 
 import com.google.common.io.BaseEncoding;
 import java.util.Arrays;
 import java.math.BigInteger;
 import javax.xml.bind.DatatypeConverter;
-import static org.bitcoin.NativeSecp256k1Util.*;
+import static org.picscoin.NativeSecp256k1Util.*;
 
 /**
  * This class holds test cases defined for testing this library.
@@ -52,7 +52,7 @@ public class NativeSecp256k1Test {
     }
 
     /**
-      * This tests secret key verify() for a invalid secretkey
+      * This tests secret key verify() for an invalid secretkey
       */
     public static void testSecKeyVerifyNeg() throws AssertFailException{
         boolean result = false;

@@ -1052,7 +1052,7 @@ TINYFORMAT_FOREACH_ARGNUM(TINYFORMAT_MAKE_FORMAT_FUNCS)
 
 #endif
 
-// Added for Bitcoin Core
+// Added for Picscoin Core
 template<typename... Args>
 std::string format(const std::string &fmt, const Args&... args)
 {
@@ -1063,6 +1063,7 @@ std::string format(const std::string &fmt, const Args&... args)
 
 } // namespace tinyformat
 
+/** Format arguments and return the string or write to given std::ostream (see tinyformat::format doc for details) */
 #define strprintf tfm::format
 
 #endif // TINYFORMAT_H_INCLUDED

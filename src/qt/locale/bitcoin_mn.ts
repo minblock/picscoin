@@ -64,7 +64,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>PicscoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>&amp;Зурвас хавсаргах...</translation>
@@ -131,7 +131,7 @@
     </message>
     <message>
         <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <translation>Биткойн</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -234,7 +234,7 @@
     <name>Intro</name>
     <message>
         <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <translation>Биткойн</translation>
     </message>
     <message>
         <source>Error</source>
@@ -562,7 +562,7 @@
     <name>WalletView</name>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>picscoin-core</name>
     <message>
         <source>Information</source>
         <translation>Мэдээллэл</translation>

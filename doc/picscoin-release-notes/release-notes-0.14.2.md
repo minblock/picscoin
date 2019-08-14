@@ -262,7 +262,7 @@ Low-level RPC changes
 
  - A new RPC command `getmemoryinfo` has been added which will return information
    about the memory usage of Picscoin Core. This was added in conjunction with
-   optimizations to memory management. See [Pull #8753](https://github.com/bitcoin/bitcoin/pull/8753)
+   optimizations to memory management. See [Pull #8753](https://github.com/picscoin/picscoin/pull/8753)
    for more information.
 
  - A new RPC command `bumpfee` has been added which allows replacing an
@@ -413,15 +413,15 @@ the same cache performance as prior releases.  Users on low-memory systems
 this parameter.
 
 Additional information relating to running on low-memory systems can be found
-here, originally written for Bitcoin but can also be used for Picscoin:
-[reducing-bitcoind-memory-usage.md](https://gist.github.com/laanwj/efe29c7661ce9b6620a7).
+here, originally written for Picscoin but can also be used for Picscoin:
+[reducing-picscoind-memory-usage.md](https://gist.github.com/laanwj/efe29c7661ce9b6620a7).
 
 Credits
 =======
 
 Thanks to everyone who directly contributed to this release:
 
-- [The Bitcoin Core Developers](/doc/release-notes)
+- [The Picscoin Core Developers](/doc/release-notes)
 - Adrian Gallagher
 - Charlie Lee
 - Loshan T

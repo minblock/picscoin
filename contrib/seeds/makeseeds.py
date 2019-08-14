@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2013-2018 The Bitcoin Core developers
+# Copyright (c) 2013-2018 The Picscoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #
@@ -30,7 +30,7 @@ SUSPICIOUS_HOSTS = {
 PATTERN_IPV4 = re.compile(r"^((\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})):(\d+)$")
 PATTERN_IPV6 = re.compile(r"^\[([0-9a-z:]+)\]:(\d+)$")
 PATTERN_ONION = re.compile(r"^([abcdefghijklmnopqrstuvwxyz234567]{16}\.onion):(\d+)$")
-PATTERN_AGENT = re.compile(r"^(/PicscoinCore:0.14.(0|1|2|99)/|/PicscoinCore:0.15.(0|1|2|99)|/PicscoinCore:0.16.(0|1|2|99)/)$")
+PATTERN_AGENT = re.compile(r"^(/Satoshi:0.14.(0|1|2|99)/|/Satoshi:0.15.(0|1|2|99)|/Satoshi:0.16.(0|1|2|99)/)$")
 
 def parseline(line):
     sline = line.split()
@@ -109,18 +109,30 @@ def filtermultiport(ips):
 # Based on Greg Maxwell's seed_filter.py
 def filterbyasn(ips, max_per_asn, max_total):
     # Sift out ips by type
-    ips_ipv4 = [ip for ip in ips if ip['net'] == 'ipv4']
-    ips_ipv6 = [ip for ip in ips if ip['net'] == 'ipv6']
+    ips_ipv46 = [ip for ip in ips if ip['net'] in ['ipv4', 'ipv6']]
     ips_onion = [ip for ip in ips if ip['net'] == 'onion']
 
-    # Filter IPv4 by ASN
+    # Filter IPv46 by ASN
     result = []
     asn_count = {}
-    for ip in ips_ipv4:
+    for ip in ips_ipv46:
         if len(result) == max_total:
             break
         try:
-            asn = int([x.to_text() for x in dns.resolver.query('.'.join(reversed(ip['ip'].split('.'))) + '.origin.asn.cymru.com', 'TXT').response.answer][0].split('\"')[1].split(' ')[0])
+            if ip['net'] == 'ipv4':
+                ipaddr = ip['ip']
+                prefix = '.origin'
+            else:                  # http://www.team-cymru.com/IP-ASN-mapping.html
+                res = str()                         # 2001:4860:b002:23::68
+                for nb in ip['ip'].split(':')[:4]:  # pick the first 4 nibbles
+                    for c in nb.zfill(4):           # right padded with '0'
+                        res += c + '.'              # 2001 4860 b002 0023
+                ipaddr = res.rstrip('.')            # 2.0.0.1.4.8.6.0.b.0.0.2.0.0.2.3
+                prefix = '.origin6'
+
+            asn = int([x.to_text() for x in dns.resolver.query('.'.join(
+                       reversed(ipaddr.split('.'))) + prefix + '.asn.cymru.com',
+                       'TXT').response.answer][0].split('\"')[1].split(' ')[0])
             if asn not in asn_count:
                 asn_count[asn] = 0
             if asn_count[asn] == max_per_asn:
@@ -130,10 +142,7 @@ def filterbyasn(ips, max_per_asn, max_total):
         except:
             sys.stderr.write('ERR: Could not resolve ASN for "' + ip['ip'] + '"\n')
 
-    # TODO: filter IPv6 by ASN
-
-    # Add back non-IPv4
-    result.extend(ips_ipv6)
+    # Add back Onions
     result.extend(ips_onion)
     return result
 
@@ -155,7 +164,7 @@ def main():
     ips = [ip for ip in ips if PATTERN_AGENT.match(ip['agent'])]
     # Sort by availability (and use last success as tie breaker)
     ips.sort(key=lambda x: (x['uptime'], x['lastsuccess'], x['ip']), reverse=True)
-    # Filter out hosts with multiple bitcoin ports, these are likely abusive
+    # Filter out hosts with multiple picscoin ports, these are likely abusive
     ips = filtermultiport(ips)
     # Look up ASNs and limit results, both per ASN and globally.
     ips = filterbyasn(ips, MAX_SEEDS_PER_ASN, NSEEDS)

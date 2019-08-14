@@ -44,11 +44,11 @@ related to the DNS seed operation.
 If these expectations cannot be satisfied the operator should
 discontinue providing services and contact the active Picscoin
 Core development team as well as posting on
-[picscoin-dev](https://groups.google.com/forum/#!forum/picscoin-dev).
+[picscoin-dev](https://lists.linuxfoundation.org/mailman/listinfo/picscoin-dev).
 
 Behavior outside of these expectations may be reasonable in some
 situations but should be discussed in public in advance.
 
 See also
 ----------
-- [picscoin-seeder](https://github.com/pooler/picscoin-seeder) is a reference implementation of a DNS seed.
+- [picscoin-seeder](https://github.com/sipa/picscoin-seeder) is a reference implementation of a DNS seed.

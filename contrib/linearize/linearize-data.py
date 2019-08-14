@@ -2,12 +2,11 @@
 #
 # linearize-data.py: Construct a linear, no-fork version of the chain.
 #
-# Copyright (c) 2013-2018 The Bitcoin Core developers
+# Copyright (c) 2013-2018 The Picscoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #
 
-from __future__ import print_function, division
 import struct
 import re
 import os
@@ -17,7 +16,7 @@ import hashlib
 import datetime
 import time
 from collections import namedtuple
-from binascii import hexlify, unhexlify
+from binascii import unhexlify
 
 settings = {}
 
@@ -62,7 +61,7 @@ def calc_hash_str(blk_hdr):
     hash = calc_hdr_hash(blk_hdr)
     hash = bufreverse(hash)
     hash = wordreverse(hash)
-    hash_str = hexlify(hash).decode('utf-8')
+    hash_str = hash.hex()
     return hash_str
 
 def get_blk_dt(blk_hdr):
@@ -214,7 +213,7 @@ class BlockDataCopier:
 
             inMagic = inhdr[:4]
             if (inMagic != self.settings['netmagic']):
-                print("Invalid magic: " + hexlify(inMagic).decode('utf-8'))
+                print("Invalid magic: " + inMagic.hex())
                 return
             inLenLE = inhdr[4:]
             su = struct.unpack("<I", inLenLE)

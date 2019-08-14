@@ -176,8 +176,8 @@
         <translation>تأكيد تشفير المحفظة</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PICSCOINS&lt;/b&gt;!</source>
-        <translation>تحذير: إذا قمت بتشفير محفظتك وفقدت كلمة المرور الخاص بك, ستفقد كل عملات PICSCOINS الخاصة بك.</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <translation>تحذير: إذا قمت بتشفير محفظتك وفقدت كلمة المرور الخاص بك, ستفقد كل عملات BITCOINS الخاصة بك.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -240,7 +240,7 @@
     </message>
 </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>PicscoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>التوقيع و الرسائل</translation>
@@ -347,7 +347,7 @@
     </message>
     <message>
         <source>Send coins to a Picscoin address</source>
-        <translation>ارسل عملات الى عنوان Picscoin</translation>
+        <translation>ارسل عملات الى عنوان بيتكوين</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -551,7 +551,7 @@
     </message>
     <message>
         <source>A fatal error occurred. Picscoin can no longer continue safely and will quit.</source>
-        <translation>خطأ فادح حدث . لا يمكن اتمام Picscoin بامان سيتم الخروج</translation>
+        <translation>خطأ فادح حدث . لا يمكن اتمام بيتكوين بامان سيتم الخروج</translation>
     </message>
 </context>
 <context>
@@ -857,7 +857,7 @@
     </message>
     <message>
         <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the picscoin network, as detailed below.</source>
-        <translation>قد لا تكون المعاملات الأخيرة مرئية بعد، وبالتالي قد يكون رصيد محفظتك غير صحيح. ستكون هذه المعلومات صحيحة بمجرد الانتهاء من محفظتك مع شبكة الPicscoin، كما هو مفصل أدناه.</translation>
+        <translation>قد لا تكون المعاملات الأخيرة مرئية بعد، وبالتالي قد يكون رصيد محفظتك غير صحيح. ستكون هذه المعلومات صحيحة بمجرد الانتهاء من محفظتك مع شبكة البيتكوين، كما هو مفصل أدناه.</translation>
     </message>
     <message>
         <source>Attempting to spend picscoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
@@ -2906,7 +2906,7 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>picscoin-core</name>
     <message>
         <source>Error: A fatal internal error occurred, see debug.log for details</source>
         <translation>خطأ: حدث خطأ داخلي فادح، راجع debug.log للحصول على التفاصيل</translation>
@@ -2921,7 +2921,7 @@
     </message>
     <message>
         <source>Picscoin Core</source>
-        <translation>جوهر Picscoin</translation>
+        <translation>جوهر بيتكوين</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
@@ -2934,6 +2934,11 @@
     <message>
         <source>Please contribute if you find %s useful. Visit %s for further information about the software.</source>
         <translation>يرجى المساهمة إذا وجدت %s مفيداً. تفضل بزيارة %s لمزيد من المعلومات حول البرنامج.</translation>
+    </message>
+    <message>
+        <source>%s corrupt, salvage failed</source>
+        <translation>
+%s تالف, فشل الانقاذ.</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -2960,6 +2965,18 @@
         <translation>خطأ في تحميل %s</translation>
     </message>
     <message>
+        <source>Error loading %s: Private keys can only be disabled during creation</source>
+        <translation>خطأ في تحميل %s:  لا يمكن تعطيل المفاتيح الخاصة إلا أثناء الإنشاء.</translation>
+    </message>
+    <message>
+        <source>Error loading %s: Wallet corrupted</source>
+        <translation>خطأ في التحميل %s: المحفظة تالفة.</translation>
+    </message>
+    <message>
+        <source>Error loading %s: Wallet requires newer version of %s</source>
+        <translation>خطا تحميل %s: المحفظة تتطلب النسخة الجديدة من %s.</translation>
+    </message>
+    <message>
         <source>Error loading block database</source>
         <translation>خطأ في تحميل قاعدة بيانات الكتل</translation>
     </message>
@@ -2974,6 +2991,10 @@
     <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
         <translation>فشل في الاستماع على أي منفذ. استخدام الاستماع = 0 إذا كنت تريد هذا.</translation>
+    </message>
+    <message>
+        <source>Failed to rescan the wallet during initialization</source>
+        <translation>فشل في اعادة مسح المحفظة خلال عملية التهيئة.</translation>
     </message>
     <message>
         <source>Importing...</source>
@@ -3018,6 +3039,10 @@
     <message>
         <source>The source code is available from %s.</source>
         <translation>شفرة المصدر متاحة من %s.</translation>
+    </message>
+    <message>
+        <source>Unable to generate keys</source>
+        <translation> غير قادر على توليد مفاتيح.</translation>
     </message>
     <message>
         <source>Unsupported argument -tor found, use -onion.</source>
@@ -3128,12 +3153,20 @@
         <translation>يجب ألا تكون قيمة المعاملة سلبية</translation>
     </message>
     <message>
+        <source>Transaction has too long of a mempool chain</source>
+        <translation>المعاملات طويلة جداً على حجم سلسلة الذاكرة </translation>
+    </message>
+    <message>
         <source>Transaction must have at least one recipient</source>
         <translation>يجب أن تحتوي المعاملة على مستلم واحد على الأقل</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
         <translation>اموال غير كافية</translation>
+    </message>
+    <message>
+        <source>Cannot write to data directory '%s'; check permissions.</source>
+        <translation>لايمكن الكتابة على دليل البيانات '%s'؛ تحقق من السماحيات.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

@@ -1,10 +1,11 @@
-// Copyright (c) 2012-2018 The Bitcoin Core developers
+// Copyright (c) 2012-2019 The Picscoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <netbase.h>
-#include <test/test_bitcoin.h>
-#include <utilstrencodings.h>
+#include <net_permissions.h>
+#include <test/setup_common.h>
+#include <util/strencodings.h>
 
 #include <string>
 
@@ -59,6 +60,7 @@ BOOST_AUTO_TEST_CASE(netbase_properties)
     BOOST_CHECK(ResolveIP("FC00::").IsRFC4193());
     BOOST_CHECK(ResolveIP("2001::2").IsRFC4380());
     BOOST_CHECK(ResolveIP("2001:10::").IsRFC4843());
+    BOOST_CHECK(ResolveIP("2001:20::").IsRFC7343());
     BOOST_CHECK(ResolveIP("FE80::").IsRFC4862());
     BOOST_CHECK(ResolveIP("64:FF9B::").IsRFC6052());
     BOOST_CHECK(ResolveIP("FD87:D87E:EB43:edb1:8e4:3588:e546:35ca").IsTor());
@@ -67,7 +69,7 @@ BOOST_AUTO_TEST_CASE(netbase_properties)
     BOOST_CHECK(ResolveIP("8.8.8.8").IsRoutable());
     BOOST_CHECK(ResolveIP("2001::1").IsRoutable());
     BOOST_CHECK(ResolveIP("127.0.0.1").IsValid());
-    BOOST_CHECK(CreateInternal("FD6C:E9FE:4549:edb1:8e4:3588:e546:35ca").IsInternal());
+    BOOST_CHECK(CreateInternal("FD6B:88C0:8724:edb1:8e4:3588:e546:35ca").IsInternal());
     BOOST_CHECK(CreateInternal("bar.com").IsInternal());
 
 }
@@ -82,20 +84,20 @@ bool static TestSplitHost(std::string test, std::string host, int port)
 
 BOOST_AUTO_TEST_CASE(netbase_splithost)
 {
-    BOOST_CHECK(TestSplitHost("www.bitcoincore.org", "www.bitcoincore.org", -1));
-    BOOST_CHECK(TestSplitHost("[www.bitcoincore.org]", "www.bitcoincore.org", -1));
-    BOOST_CHECK(TestSplitHost("www.bitcoincore.org:80", "www.bitcoincore.org", 80));
-    BOOST_CHECK(TestSplitHost("[www.bitcoincore.org]:80", "www.bitcoincore.org", 80));
+    BOOST_CHECK(TestSplitHost("www.picscoins.org", "www.picscoins.org", -1));
+    BOOST_CHECK(TestSplitHost("[www.picscoins.org]", "www.picscoins.org", -1));
+    BOOST_CHECK(TestSplitHost("www.picscoins.org:80", "www.picscoins.org", 80));
+    BOOST_CHECK(TestSplitHost("[www.picscoins.org]:80", "www.picscoins.org", 80));
     BOOST_CHECK(TestSplitHost("127.0.0.1", "127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("127.0.0.1:8333", "127.0.0.1", 8333));
+    BOOST_CHECK(TestSplitHost("127.0.0.1:1337", "127.0.0.1", 1337));
     BOOST_CHECK(TestSplitHost("[127.0.0.1]", "127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("[127.0.0.1]:8333", "127.0.0.1", 8333));
+    BOOST_CHECK(TestSplitHost("[127.0.0.1]:1337", "127.0.0.1", 1337));
     BOOST_CHECK(TestSplitHost("::ffff:127.0.0.1", "::ffff:127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:8333", "::ffff:127.0.0.1", 8333));
-    BOOST_CHECK(TestSplitHost("[::]:8333", "::", 8333));
-    BOOST_CHECK(TestSplitHost("::8333", "::8333", -1));
-    BOOST_CHECK(TestSplitHost(":8333", "", 8333));
-    BOOST_CHECK(TestSplitHost("[]:8333", "", 8333));
+    BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:1337", "::ffff:127.0.0.1", 1337));
+    BOOST_CHECK(TestSplitHost("[::]:1337", "::", 1337));
+    BOOST_CHECK(TestSplitHost("::1337", "::1337", -1));
+    BOOST_CHECK(TestSplitHost(":1337", "", 1337));
+    BOOST_CHECK(TestSplitHost("[]:1337", "", 1337));
     BOOST_CHECK(TestSplitHost("", "", -1));
 }
 
@@ -108,17 +110,17 @@ bool static TestParse(std::string src, std::string canon)
 BOOST_AUTO_TEST_CASE(netbase_lookupnumeric)
 {
     BOOST_CHECK(TestParse("127.0.0.1", "127.0.0.1:65535"));
-    BOOST_CHECK(TestParse("127.0.0.1:8333", "127.0.0.1:8333"));
+    BOOST_CHECK(TestParse("127.0.0.1:1337", "127.0.0.1:1337"));
     BOOST_CHECK(TestParse("::ffff:127.0.0.1", "127.0.0.1:65535"));
     BOOST_CHECK(TestParse("::", "[::]:65535"));
-    BOOST_CHECK(TestParse("[::]:8333", "[::]:8333"));
+    BOOST_CHECK(TestParse("[::]:1337", "[::]:1337"));
     BOOST_CHECK(TestParse("[127.0.0.1]", "127.0.0.1:65535"));
     BOOST_CHECK(TestParse(":::", "[::]:0"));
 
     // verify that an internal address fails to resolve
-    BOOST_CHECK(TestParse("[fd6c:e9fe:4549:1:2:3:4:5]", "[::]:0"));
+    BOOST_CHECK(TestParse("[fd6b:88c0:8724:1:2:3:4:5]", "[::]:0"));
     // and that a one-off resolves correctly
-    BOOST_CHECK(TestParse("[fd6d:e9fe:4549:1:2:3:4:5]", "[fd6d:e9fe:4549:1:2:3:4:5]:65535"));
+    BOOST_CHECK(TestParse("[fd6c:88c0:8724:1:2:3:4:5]", "[fd6c:88c0:8724:1:2:3:4:5]:65535"));
 }
 
 BOOST_AUTO_TEST_CASE(onioncat_test)
@@ -300,6 +302,102 @@ BOOST_AUTO_TEST_CASE(netbase_getgroup)
     // baz.net sha256 hash: 12929400eb4607c4ac075f087167e75286b179c693eb059a01774b864e8fe505
     std::vector<unsigned char> internal_group = {NET_INTERNAL, 0x12, 0x92, 0x94, 0x00, 0xeb, 0x46, 0x07, 0xc4, 0xac, 0x07};
     BOOST_CHECK(CreateInternal("baz.net").GetGroup() == internal_group);
+}
+
+BOOST_AUTO_TEST_CASE(netbase_parsenetwork)
+{
+    BOOST_CHECK_EQUAL(ParseNetwork("ipv4"), NET_IPV4);
+    BOOST_CHECK_EQUAL(ParseNetwork("ipv6"), NET_IPV6);
+    BOOST_CHECK_EQUAL(ParseNetwork("onion"), NET_ONION);
+    BOOST_CHECK_EQUAL(ParseNetwork("tor"), NET_ONION);
+
+    BOOST_CHECK_EQUAL(ParseNetwork("IPv4"), NET_IPV4);
+    BOOST_CHECK_EQUAL(ParseNetwork("IPv6"), NET_IPV6);
+    BOOST_CHECK_EQUAL(ParseNetwork("ONION"), NET_ONION);
+    BOOST_CHECK_EQUAL(ParseNetwork("TOR"), NET_ONION);
+
+    BOOST_CHECK_EQUAL(ParseNetwork(":)"), NET_UNROUTABLE);
+    BOOST_CHECK_EQUAL(ParseNetwork("tÖr"), NET_UNROUTABLE);
+    BOOST_CHECK_EQUAL(ParseNetwork("\xfe\xff"), NET_UNROUTABLE);
+    BOOST_CHECK_EQUAL(ParseNetwork(""), NET_UNROUTABLE);
+}
+
+BOOST_AUTO_TEST_CASE(netpermissions_test)
+{
+    std::string error;
+    NetWhitebindPermissions whitebindPermissions;
+    NetWhitelistPermissions whitelistPermissions;
+
+    // Detect invalid white bind
+    BOOST_CHECK(!NetWhitebindPermissions::TryParse("", whitebindPermissions, error));
+    BOOST_CHECK(error.find("Cannot resolve -whitebind address") != std::string::npos);
+    BOOST_CHECK(!NetWhitebindPermissions::TryParse("127.0.0.1", whitebindPermissions, error));
+    BOOST_CHECK(error.find("Need to specify a port with -whitebind") != std::string::npos);
+    BOOST_CHECK(!NetWhitebindPermissions::TryParse("", whitebindPermissions, error));
+
+    // If no permission flags, assume backward compatibility
+    BOOST_CHECK(NetWhitebindPermissions::TryParse("1.2.3.4:32", whitebindPermissions, error));
+    BOOST_CHECK(error.empty());
+    BOOST_CHECK_EQUAL(whitebindPermissions.m_flags, PF_ISIMPLICIT);
+    BOOST_CHECK(NetPermissions::HasFlag(whitebindPermissions.m_flags, PF_ISIMPLICIT));
+    NetPermissions::ClearFlag(whitebindPermissions.m_flags, PF_ISIMPLICIT);
+    BOOST_CHECK(!NetPermissions::HasFlag(whitebindPermissions.m_flags, PF_ISIMPLICIT));
+    BOOST_CHECK_EQUAL(whitebindPermissions.m_flags, PF_NONE);
+    NetPermissions::AddFlag(whitebindPermissions.m_flags, PF_ISIMPLICIT);
+    BOOST_CHECK(NetPermissions::HasFlag(whitebindPermissions.m_flags, PF_ISIMPLICIT));
+
+    // Can set one permission
+    BOOST_CHECK(NetWhitebindPermissions::TryParse("bloom@1.2.3.4:32", whitebindPermissions, error));
+    BOOST_CHECK_EQUAL(whitebindPermissions.m_flags, PF_BLOOMFILTER);
+    BOOST_CHECK(NetWhitebindPermissions::TryParse("@1.2.3.4:32", whitebindPermissions, error));
+    BOOST_CHECK_EQUAL(whitebindPermissions.m_flags, PF_NONE);
+
+    // Happy path, can parse flags
+    BOOST_CHECK(NetWhitebindPermissions::TryParse("bloom,forcerelay@1.2.3.4:32", whitebindPermissions, error));
+    // forcerelay should also activate the relay permission
+    BOOST_CHECK_EQUAL(whitebindPermissions.m_flags, PF_BLOOMFILTER | PF_FORCERELAY | PF_RELAY);
+    BOOST_CHECK(NetWhitebindPermissions::TryParse("bloom,relay,noban@1.2.3.4:32", whitebindPermissions, error));
+    BOOST_CHECK_EQUAL(whitebindPermissions.m_flags, PF_BLOOMFILTER | PF_RELAY | PF_NOBAN);
+    BOOST_CHECK(NetWhitebindPermissions::TryParse("bloom,forcerelay,noban@1.2.3.4:32", whitebindPermissions, error));
+    BOOST_CHECK(NetWhitebindPermissions::TryParse("all@1.2.3.4:32", whitebindPermissions, error));
+    BOOST_CHECK_EQUAL(whitebindPermissions.m_flags, PF_ALL);
+
+    // Allow dups
+    BOOST_CHECK(NetWhitebindPermissions::TryParse("bloom,relay,noban,noban@1.2.3.4:32", whitebindPermissions, error));
+    BOOST_CHECK_EQUAL(whitebindPermissions.m_flags, PF_BLOOMFILTER | PF_RELAY | PF_NOBAN);
+
+    // Allow empty
+    BOOST_CHECK(NetWhitebindPermissions::TryParse("bloom,relay,,noban@1.2.3.4:32", whitebindPermissions, error));
+    BOOST_CHECK_EQUAL(whitebindPermissions.m_flags, PF_BLOOMFILTER | PF_RELAY | PF_NOBAN);
+    BOOST_CHECK(NetWhitebindPermissions::TryParse(",@1.2.3.4:32", whitebindPermissions, error));
+    BOOST_CHECK_EQUAL(whitebindPermissions.m_flags, PF_NONE);
+    BOOST_CHECK(NetWhitebindPermissions::TryParse(",,@1.2.3.4:32", whitebindPermissions, error));
+    BOOST_CHECK_EQUAL(whitebindPermissions.m_flags, PF_NONE);
+
+    // Detect invalid flag
+    BOOST_CHECK(!NetWhitebindPermissions::TryParse("bloom,forcerelay,oopsie@1.2.3.4:32", whitebindPermissions, error));
+    BOOST_CHECK(error.find("Invalid P2P permission") != std::string::npos);
+
+    // Check whitelist error
+    BOOST_CHECK(!NetWhitelistPermissions::TryParse("bloom,forcerelay,noban@1.2.3.4:32", whitelistPermissions, error));
+    BOOST_CHECK(error.find("Invalid netmask specified in -whitelist") != std::string::npos);
+
+    // Happy path for whitelist parsing
+    BOOST_CHECK(NetWhitelistPermissions::TryParse("noban@1.2.3.4", whitelistPermissions, error));
+    BOOST_CHECK_EQUAL(whitelistPermissions.m_flags, PF_NOBAN);
+    BOOST_CHECK(NetWhitelistPermissions::TryParse("bloom,forcerelay,noban,relay@1.2.3.4/32", whitelistPermissions, error));
+    BOOST_CHECK_EQUAL(whitelistPermissions.m_flags, PF_BLOOMFILTER | PF_FORCERELAY | PF_NOBAN | PF_RELAY);
+    BOOST_CHECK(error.empty());
+    BOOST_CHECK_EQUAL(whitelistPermissions.m_subnet.ToString(), "1.2.3.4/32");
+    BOOST_CHECK(NetWhitelistPermissions::TryParse("bloom,forcerelay,noban,relay,mempool@1.2.3.4/32", whitelistPermissions, error));
+
+    const auto strings = NetPermissions::ToStrings(PF_ALL);
+    BOOST_CHECK_EQUAL(strings.size(), 5);
+    BOOST_CHECK(std::find(strings.begin(), strings.end(), "bloomfilter") != strings.end());
+    BOOST_CHECK(std::find(strings.begin(), strings.end(), "forcerelay") != strings.end());
+    BOOST_CHECK(std::find(strings.begin(), strings.end(), "relay") != strings.end());
+    BOOST_CHECK(std::find(strings.begin(), strings.end(), "noban") != strings.end());
+    BOOST_CHECK(std::find(strings.begin(), strings.end(), "mempool") != strings.end());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

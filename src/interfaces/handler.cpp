@@ -1,10 +1,10 @@
-// Copyright (c) 2018 The Bitcoin Core developers
+// Copyright (c) 2018 The Picscoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <interfaces/handler.h>
 
-#include <utilmemory.h>
+#include <util/memory.h>
 
 #include <boost/signals2/connection.hpp>
 #include <utility>
@@ -15,7 +15,7 @@ namespace {
 class HandlerImpl : public Handler
 {
 public:
-    HandlerImpl(boost::signals2::connection connection) : m_connection(std::move(connection)) {}
+    explicit HandlerImpl(boost::signals2::connection connection) : m_connection(std::move(connection)) {}
 
     void disconnect() override { m_connection.disconnect(); }
 

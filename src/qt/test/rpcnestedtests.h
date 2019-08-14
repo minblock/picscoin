@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2018 The Bitcoin Core developers
+// Copyright (c) 2016-2018 The Picscoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,9 +7,6 @@
 
 #include <QObject>
 #include <QTest>
-
-#include <txdb.h>
-#include <txmempool.h>
 
 class RPCNestedTests : public QObject
 {

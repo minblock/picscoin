@@ -71,7 +71,7 @@
     </message>
     <message>
         <source>These are your Picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Това са Вашите Picscoin адреси,благодарение на които ще получавате плащания.Препоръчително е да използвате нови адреси за получаване на всяка транзакция.</translation>
+        <translation>Това са Вашите Биткойн адреси,благодарение на които ще получавате плащания.Препоръчително е да използвате нови адреси за получаване на всяка транзакция.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -136,6 +136,10 @@
         <translation>Въведете новата парола повторно</translation>
     </message>
     <message>
+        <source>Show password</source>
+        <translation>Покажи парола</translation>
+    </message>
+    <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation>Въведете новата парола към портфейла.&lt;br/&gt;Моля ползвайте парола съставена от &lt;b&gt;десет или повече произволни символа&lt;/b&gt;, или &lt;b&gt;осем или повече думи&lt;/b&gt;.</translation>
     </message>
@@ -172,7 +176,7 @@
         <translation>Потвърдете на шифрирането на портфейла</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PICSCOINS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
         <translation>ВНИМАНИЕ: Ако шифрирате вашият портфейл и изгубите паролата си, &lt;b&gt;ЩЕ ИЗГУБИТЕ ВСИЧКИТЕ СИ БИТКОИНИ&lt;/b&gt;!</translation>
     </message>
     <message>
@@ -232,7 +236,7 @@
     </message>
 </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>PicscoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Подписване на &amp;съобщение...</translation>
@@ -318,6 +322,14 @@
         <translation>Отвори &amp;URI...</translation>
     </message>
     <message>
+        <source>Wallet:</source>
+        <translation>Портфейл</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>Портфейл по подразбиране</translation>
+    </message>
+    <message>
         <source>Click to disable network activity.</source>
         <translation>Натиснете за деактивиране на мрежата</translation>
     </message>
@@ -328,6 +340,10 @@
     <message>
         <source>Click to enable network activity again.</source>
         <translation>Натиснете за повторно активиране на мрежата.</translation>
+    </message>
+    <message>
+        <source>Syncing Headers (%1%)...</source>
+        <translation>Синхронизиране на хедъри (%1%)</translation>
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
@@ -387,11 +403,11 @@
     </message>
     <message>
         <source>Sign messages with your Picscoin addresses to prove you own them</source>
-        <translation>Пишете съобщения със своя Picscoin адрес за да докажете,че е ваш.</translation>
+        <translation>Пишете съобщения със своя Биткойн адрес за да докажете,че е ваш.</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Picscoin addresses</source>
-        <translation>Потвърждаване на съобщения  за да се знае,че са написани с дадените Picscoin адреси.</translation>
+        <translation>Потвърждаване на съобщения  за да се знае,че са написани с дадените Биткойн адреси.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -411,7 +427,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and picscoin: URIs)</source>
-        <translation>Изискване на плащания(генерира QR кодове и Picscoin: URIs)</translation>
+        <translation>Изискване на плащания(генерира QR кодове и биткойн: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -423,7 +439,7 @@
     </message>
     <message>
         <source>Open a picscoin: URI or payment request</source>
-        <translation>Отворете Picscoin: URI  или заявка за плащане</translation>
+        <translation>Отворете биткойн: URI  или заявка за плащане</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -467,7 +483,7 @@
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible Picscoin command-line options</source>
-        <translation>Покажи %1 помощно съобщение за да получиш лист с възможни Picscoin команди</translation>
+        <translation>Покажи %1 помощно съобщение за да получиш лист с възможни Биткойн команди</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -529,7 +545,7 @@
     </message>
     <message>
         <source>A fatal error occurred. Picscoin can no longer continue safely and will quit.</source>
-        <translation>Възникна фатална грешка. Picscoin не може да продължи безопасно и ще се изключи.</translation>
+        <translation>Възникна фатална грешка. Биткойн не може да продължи безопасно и ще се изключи.</translation>
     </message>
 </context>
 <context>
@@ -876,6 +892,10 @@
         <translation>&amp;Мрежа</translation>
     </message>
     <message>
+        <source>GB</source>
+        <translation>ГБ</translation>
+    </message>
+    <message>
         <source>W&amp;allet</source>
         <translation>По&amp;ртфейл</translation>
     </message>
@@ -900,8 +920,16 @@
         <translation>Отваряне на входящия порт чрез &amp;UPnP</translation>
     </message>
     <message>
+        <source>Accept connections from outside.</source>
+        <translation>Позволи външни връзки</translation>
+    </message>
+    <message>
+        <source>Allow incomin&amp;g connections</source>
+        <translation>Позволи входящи връзки</translation>
+    </message>
+    <message>
         <source>Connect to the Picscoin network through a SOCKS5 proxy.</source>
-        <translation>Свързване с Picscoin мрежата чрез SOCKS5  прокси.</translation>
+        <translation>Свързване с Биткойн мрежата чрез SOCKS5  прокси.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -918,6 +946,10 @@
     <message>
         <source>Port of the proxy (e.g. 9050)</source>
         <translation>Порт на прокси сървъра (пр. 9050)</translation>
+    </message>
+    <message>
+        <source>Tor</source>
+        <translation>Тор</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -978,6 +1010,10 @@
     <message>
         <source>Client restart required to activate changes.</source>
         <translation>Изисква се рестартиране на клиента за активиране на извършените промени.</translation>
+    </message>
+    <message>
+        <source>Client will be shut down. Do you want to proceed?</source>
+        <translation>Клиентът ще бъде изключен. Искате ли да продължите?</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1055,7 +1091,7 @@
     </message>
     <message>
         <source>Cannot start picscoin: click-to-pay handler</source>
-        <translation>Picscoin не можe да се стартира: click-to-pay handler</translation>
+        <translation>Биткойн не можe да се стартира: click-to-pay handler</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1137,7 +1173,7 @@
     </message>
     <message>
         <source>Enter a Picscoin address (e.g. %1)</source>
-        <translation>Въведете Picscoin адрес (например: %1)</translation>
+        <translation>Въведете Биткойн адрес (например: %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1347,6 +1383,10 @@
     <message>
         <source>Clear console</source>
         <translation>Изчисти конзолата</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>Портфейл по подразбиране</translation>
     </message>
     <message>
         <source>via %1</source>
@@ -1678,7 +1718,7 @@
     </message>
     <message>
         <source>Warning: Invalid Picscoin address</source>
-        <translation>Внимание: Невалиден Picscoin адрес</translation>
+        <translation>Внимание: Невалиден Биткойн адрес</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2296,10 +2336,10 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>picscoin-core</name>
     <message>
         <source>Picscoin Core</source>
-        <translation>Picscoin ядро</translation>
+        <translation>Биткойн ядро</translation>
     </message>
     <message>
         <source>Do you want to rebuild the block database now?</source>
