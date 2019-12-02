@@ -282,6 +282,7 @@ public:
 class CRegTestParams : public CChainParams {
 public:
     CRegTestParams() {
+    explicit CRegTestParams(const ArgsManager& args) {		
         strNetworkID = "regtest";
         consensus.nSubsidyHalvingInterval = 150;
         consensus.BIP16Height = 0; // always enforce P2SH BIP16 on regtest
