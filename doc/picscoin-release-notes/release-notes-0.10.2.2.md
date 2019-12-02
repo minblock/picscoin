@@ -1,6 +1,6 @@
 Picscoin Core version 0.10.2.2 is now available from:
 
-  <https://download.picscoins.org/picscoin-0.10.2.2/>
+  <https://download.picscoin.org/picscoin-0.10.2.2/>
 
 This is a new major version release, bringing bug fixes and translation 
 updates. It is recommended to upgrade to this version.
@@ -53,7 +53,7 @@ Protocol:
 - Scrypt Proof-of-Work instead of sha256d, however block hashes are sha256d for performance reasons.
 - Picscoin TCP port 1337 (instead of 8333)
 - RPC TCP port 1336 (instead of 8332)
-- Testnet TCP port 11336 (instead of 18333)
+- Testnet TCP port 11337 (instead of 18333)
 - Testnet RPC TCP port 11336 (instead of 18332)
 - 84 million coin limit  (instead of 21 million)
 - Magic 0xfbc0b6db       (instead of 0xf9beb4d9)

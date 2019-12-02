@@ -1,6 +1,6 @@
 Picscoin Core version 0.16.0 is now available from:
 
-  <https://download.picscoins.org/picscoin-0.16.0/>
+  <https://download.picscoin.org/picscoin-0.16.0/>
 
 This is a new major version release, including new features, various bugfixes
 and performance improvements, as well as updated translations.
@@ -67,7 +67,7 @@ Note that some RPCs do not yet support segwit addresses. Notably, `signmessage`/
 
 P2WPKH change outputs are now used by default if any destination in the transaction is a P2WPKH or P2WSH output. This is done to ensure the change output is as indistinguishable from the other outputs as possible in either case.
 
-### BIP173 (Bech32) Address support ("pic1..." addresses)
+### BIP173 (Bech32) Address support ("ltc1..." addresses)
 
 Full support for native segwit addresses (BIP173 / Bech32) has now been added.
 This includes the ability to send to BIP173 addresses (including non-v0 ones), and generating these
@@ -149,7 +149,7 @@ used to create `rpcauth` credentials for a JSON-RPC user.
 ### Validateaddress improvements
 
 The `validateaddress` RPC output has been extended with a few new fields, and support for segwit addresses (both P2SH and Bech32). Specifically:
-* A new field `iswitness` is True for P2WPKH and P2WSH addresses ("pic1..." addresses), but not for P2SH-wrapped segwit addresses (see below).
+* A new field `iswitness` is True for P2WPKH and P2WSH addresses ("ltc1..." addresses), but not for P2SH-wrapped segwit addresses (see below).
 * The existing field `isscript` will now also report True for P2WSH addresses.
 * A new field `embedded` is present for all script addresses where the script is known and matches something that can be interpreted as a known address. This is particularly true for P2SH-P2WPKH and P2SH-P2WSH addresses. The value for `embedded` includes much of the information `validateaddress` would report if invoked directly on the embedded address.
 * For multisig scripts a new `pubkeys` field was added that reports the full public keys involved in the script (if known). This is a replacement for the existing `addresses` field (which reports the same information but encoded as P2PKH addresses), represented in a more useful and less confusing way. The `addresses` field remains present for non-segwit addresses for backward compatibility.
@@ -556,7 +556,7 @@ Testing changes
 - #11603 `a933cb1` Move RPC registration out of AppInitParameterInteraction (ryanofsky)
 - #11722 `26efc22` Switched sync.{cpp,h} to std threading primitives (tjps)
 - #10493 `fbce66a` Use range-based for loops (C++11) when looping over map elements (practicalswift)
-- #11336 `0d7e0a3` Fix code constness in CBlockIndex::GetAncestor() overloads (danra)
+- #11337 `0d7e0a3` Fix code constness in CBlockIndex::GetAncestor() overloads (danra)
 - #11516 `0e722e8` crypto: Add test cases covering the relevant HMAC-SHA{256,512} key length boundaries (practicalswift)
 - #10574 `5d132e8` Remove includes in .cpp files for things the corresponding .h file already included (practicalswift)
 - #11884 `66479c0` Remove unused include in hash.cpp (kallewoof)

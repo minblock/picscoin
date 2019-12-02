@@ -50,5 +50,9 @@ static const int MAX_URI_LENGTH = 255;
 #define QAPP_ORG_DOMAIN "picscoin.org"
 #define QAPP_APP_NAME_DEFAULT "Picscoin-Qt"
 #define QAPP_APP_NAME_TESTNET "Picscoin-Qt-testnet"
+#define QAPP_APP_NAME_REGTEST "Picscoin-Qt-regtest"
+
+/* One gigabyte (GB) in bytes */
+static constexpr uint64_t GB_BYTES{1000000000};
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

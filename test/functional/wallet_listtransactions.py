@@ -25,12 +25,16 @@ def tx_from_hex(hexstring):
 class ListTransactionsTest(BitcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
-        self.enable_mocktime()
+        self.extra_args = [[
+            "-mempoolreplacement=1",
+        ] for i in range(self.num_nodes)]
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
 
     def run_test(self):
+        self.nodes[0].generate(1)  # Get out of IBD
+        self.sync_all()
         # Simple send, 0 to 1:
         txid = self.nodes[0].sendtoaddress(self.nodes[1].getnewaddress(), 0.1)
         self.sync_all()
@@ -97,13 +101,11 @@ class ListTransactionsTest(BitcoinTestFramework):
         txid = self.nodes[1].sendtoaddress(multisig["address"], 0.1)
         self.nodes[1].generate(1)
         self.sync_all()
-        assert len(self.nodes[0].listtransactions(label="watchonly", count=100, skip=0, include_watchonly=False)) == 0
-        assert_array_result(self.nodes[0].listtransactions(label="watchonly", count=100, skip=0, include_watchonly=True),
+        assert len(self.nodes[0].listtransactions(label="watchonly", count=100, include_watchonly=False)) == 0
+        assert_array_result(self.nodes[0].listtransactions(label="watchonly", count=100, include_watchonly=True),
                             {"category": "receive", "amount": Decimal("0.1")},
                             {"txid": txid, "label": "watchonly"})
-
-        # Picscoin has RBF disabled
-        # self.run_rbf_opt_in_test()
+        self.run_rbf_opt_in_test()
 
     # Check that the opt-in-rbf flag works properly, for sent and received
     # transactions.

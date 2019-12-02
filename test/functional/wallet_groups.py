@@ -10,7 +10,7 @@ from test_framework.util import (
     assert_equal,
 )
 
-def assert_approx(v, vexp, vspan=0.00001):
+def assert_approx(v, vexp, vspan=0.0001):
     if v < vexp - vspan:
         raise AssertionError("%s < [%s..%s]" % (str(v), str(vexp - vspan), str(vexp + vspan)))
     if v > vexp + vspan:
@@ -21,7 +21,7 @@ class WalletGroupTest(BitcoinTestFramework):
         self.setup_clean_chain = True
         self.num_nodes = 3
         self.extra_args = [[], [], ['-avoidpartialspends']]
-        self.rpc_timewait = 120
+        self.rpc_timeout = 120
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()

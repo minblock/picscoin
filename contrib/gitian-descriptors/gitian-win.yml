@@ -1,5 +1,5 @@
 ---
-name: "picscoin-win-0.17"
+name: "picscoin-win-0.18"
 enable_cache: true
 suites:
 - "bionic"
@@ -23,10 +23,12 @@ packages:
 - "python"
 - "rename"
 remotes:
-- "url": "https://github.com/picscoin-project/picscoin.git"
+- "url": "https://github.com/minblock/picscoin.git"
   "dir": "picscoin"
 files: []
 script: |
+  set -e -o pipefail
+
   WRAP_DIR=$HOME/wrapped
   HOSTS="i686-w64-mingw32 x86_64-w64-mingw32"
   CONFIGFLAGS="--enable-reduce-exports --disable-bench --disable-gui-tests"

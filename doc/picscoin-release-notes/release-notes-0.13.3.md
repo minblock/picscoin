@@ -1,6 +1,6 @@
 Picscoin Core version 0.13.3 is now available from:
 
-  <https://download.picscoins.org/picscoin-0.13.3/>
+  <https://download.picscoin.org/picscoin-0.13.3/>
 
 This is a new minor version release, including new features, various bugfixes and performance improvements.
 It is recommended to upgrade to this version.
@@ -57,7 +57,7 @@ If you use this option, it is recommended to upgrade to this version as soon as 
 Reset Testnet
 -------------
 
-Testnet3 has been deprecated and replaced with Testnet4. The server port has been changed to 11336 however the RPC port remains
+Testnet3 has been deprecated and replaced with Testnet4. The server port has been changed to 25567 however the RPC port remains
 the same (11336).
 
 Testnet faucets can be located at:

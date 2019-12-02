@@ -1,6 +1,6 @@
 Picscoin Core version *0.15.1* is now available from:
 
-  <https://download.picscoins.org/picscoin-0.15.1/>
+  <https://download.picscoin.org/picscoin-0.15.1/>
 
 This is a new minor version release, including various bugfixes and
 performance improvements, as well as updated translations.
@@ -92,7 +92,7 @@ descends from an invalid block is marked as such.
 Minimum relay fee lowered
 -------------------------
 
-The minimum relay fee `-minrelayfee` has been lowered to 0.01 pixels per kB (0.00001 PIC). This is to prepare for dropping the minimum transaction fee to 0.1 pixels per kB (0.0001 PIC) in the next release.
+The minimum relay fee `-minrelayfee` has been lowered to 0.01 lites per kB (0.00001 PIC). This is to prepare for dropping the minimum transaction fee to 0.1 lites per kB (0.0001 PIC) in the next release.
 
 Mempool replacement disabled by default
 ---------------------------------------

@@ -8,6 +8,16 @@ if ENABLE_QT
   dist_man1_MANS+=picscoin-qt.1
 endif
 
-if BUILD_BITCOIN_UTILS
-  dist_man1_MANS+=picscoin-cli.1 picscoin-tx.1
+if BUILD_BITCOIN_CLI
+  dist_man1_MANS+=picscoin-cli.1
+endif
+
+if BUILD_BITCOIN_TX
+  dist_man1_MANS+=picscoin-tx.1
+endif
+
+if ENABLE_WALLET
+if BUILD_BITCOIN_WALLET
+  dist_man1_MANS+=picscoin-wallet.1
+endif
 endif
