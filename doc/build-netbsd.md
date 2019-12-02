@@ -25,7 +25,7 @@ python27
 
 Download the source code:
 ```
-git clone https://github.com/minblock/picscoin
+git clone https://github.com/picscoin-project/picscoin
 ```
 
 See [dependencies.md](dependencies.md) for a complete overview.

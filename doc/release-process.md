@@ -5,7 +5,7 @@ Before every release candidate:
 
 * Update translations (ping wumpus on IRC) see [translation_process.md](https://github.com/bitcoin/bitcoin/blob/master/doc/translation_process.md#synchronising-translations).
 
-* Update manpages, see [gen-manpages.sh](https://github.com/minblock/picscoin/blob/master/contrib/devtools/README.md#gen-manpagessh).
+* Update manpages, see [gen-manpages.sh](https://github.com/picscoin-project/picscoin/blob/master/contrib/devtools/README.md#gen-manpagessh).
 
 Before every minor and major release:
 
@@ -34,10 +34,10 @@ If you're using the automated script (found in [contrib/gitian-build.py](/contri
 Check out the source code in the following directory hierarchy.
 
     cd /path/to/your/toplevel/build
-    git clone https://github.com/minblock/gitian.sigs.pic.git
-    git clone https://github.com/minblock/picscoin-detached-sigs.git
+    git clone https://github.com/picscoin-project/gitian.sigs.ltc.git
+    git clone https://github.com/picscoin-project/picscoin-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
-    git clone https://github.com/minblock/picscoin.git
+    git clone https://github.com/picscoin-project/picscoin.git
 
 ### Picscoin maintainers/release engineers, suggestion for writing release notes
 
@@ -69,9 +69,9 @@ Setup Gitian descriptors:
     git checkout v${VERSION}
     popd
 
-Ensure your gitian.sigs.pic are up-to-date if you wish to gverify your builds against other Gitian signatures.
+Ensure your gitian.sigs.ltc are up-to-date if you wish to gverify your builds against other Gitian signatures.
 
-    pushd ./gitian.sigs.pic
+    pushd ./gitian.sigs.ltc
     git pull
     popd
 
@@ -113,18 +113,21 @@ The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 
 ### Build and sign Picscoin Core for Linux, Windows, and macOS:
 
+    export GITIAN_THREADS=2
+    export GITIAN_MEMORY=3000
+    
     pushd ./gitian-builder
-    ./bin/gbuild --num-make 2 --memory 3000 --commit picscoin=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gbuild --num-make $GITIAN_THREADS --memory $GITIAN_MEMORY --commit picscoin=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
     mv build/out/picscoin-*.tar.gz build/out/src/picscoin-*.tar.gz ../
 
-    ./bin/gbuild --num-make 2 --memory 3000 --commit picscoin=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gbuild --num-make $GITIAN_THREADS --memory $GITIAN_MEMORY --commit picscoin=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-win.yml
     mv build/out/picscoin-*-win-unsigned.tar.gz inputs/picscoin-win-unsigned.tar.gz
     mv build/out/picscoin-*.zip build/out/picscoin-*.exe ../
 
-    ./bin/gbuild --num-make 2 --memory 3000 --commit picscoin=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gbuild --num-make $GITIAN_THREADS --memory $GITIAN_MEMORY --commit picscoin=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
     mv build/out/picscoin-*-osx-unsigned.tar.gz inputs/picscoin-osx-unsigned.tar.gz
     mv build/out/picscoin-*.tar.gz build/out/picscoin-*.dmg ../
     popd
@@ -135,7 +138,7 @@ Build output expected:
   2. linux 32-bit and 64-bit dist tarballs (`picscoin-${VERSION}-linux[32|64].tar.gz`)
   3. windows 32-bit and 64-bit unsigned installers and dist zips (`picscoin-${VERSION}-win[32|64]-setup-unsigned.exe`, `picscoin-${VERSION}-win[32|64].zip`)
   4. macOS unsigned installer and dist tarball (`picscoin-${VERSION}-osx-unsigned.dmg`, `picscoin-${VERSION}-osx64.tar.gz`)
-  5. Gitian signatures (in `gitian.sigs.pic/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/`)
+  5. Gitian signatures (in `gitian.sigs.ltc/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/`)
 
 ### Verify other gitian builders signatures to your own. (Optional)
 
@@ -144,16 +147,16 @@ Add other gitian builders keys to your gpg keyring, and/or refresh keys: See `..
 Verify the signatures
 
     pushd ./gitian-builder
-    ./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-linux ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-win-unsigned ../picscoin/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-osx-unsigned ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-linux ../picscoin/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-win-unsigned ../picscoin/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-osx-unsigned ../picscoin/contrib/gitian-descriptors/gitian-osx.yml
     popd
 
 ### Next steps:
 
-Commit your signature to gitian.sigs.pic:
+Commit your signature to gitian.sigs.ltc:
 
-    pushd gitian.sigs.pic
+    pushd gitian.sigs.ltc
     git add ${VERSION}-linux/"${SIGNER}"
     git add ${VERSION}-win-unsigned/"${SIGNER}"
     git add ${VERSION}-osx-unsigned/"${SIGNER}"
@@ -195,14 +198,14 @@ Codesigner only: Commit the detached codesign payloads:
 Non-codesigners: wait for Windows/macOS detached signatures:
 
 - Once the Windows/macOS builds each have 3 matching signatures, they will be signed with their respective release keys.
-- Detached signatures will then be committed to the [picscoin-detached-sigs](https://github.com/minblock/picscoin-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+- Detached signatures will then be committed to the [picscoin-detached-sigs](https://github.com/picscoin-project/picscoin-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
 Create (and optionally verify) the signed macOS binary:
 
     pushd ./gitian-builder
     ./bin/gbuild -i --commit signature=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-osx-signed ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-osx-signed ../picscoin/contrib/gitian-descriptors/gitian-osx-signer.yml
     mv build/out/picscoin-osx-signed.dmg ../picscoin-${VERSION}-osx.dmg
     popd
 
@@ -210,19 +213,19 @@ Create (and optionally verify) the signed Windows binaries:
 
     pushd ./gitian-builder
     ./bin/gbuild -i --commit signature=v${VERSION} ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs.pic/ ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs.pic/ -r ${VERSION}-win-signed ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs.ltc/ ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs.ltc/ -r ${VERSION}-win-signed ../picscoin/contrib/gitian-descriptors/gitian-win-signer.yml
     mv build/out/picscoin-*win64-setup.exe ../picscoin-${VERSION}-win64-setup.exe
     mv build/out/picscoin-*win32-setup.exe ../picscoin-${VERSION}-win32-setup.exe
     popd
 
 Commit your signature for the signed macOS/Windows binaries:
 
-    pushd gitian.sigs.pic
+    pushd gitian.sigs.ltc
     git add ${VERSION}-osx-signed/"${SIGNER}"
     git add ${VERSION}-win-signed/"${SIGNER}"
     git commit -a
-    git push  # Assuming you can push to the gitian.sigs.pic tree
+    git push  # Assuming you can push to the gitian.sigs.ltc tree
     popd
 
 ### After 3 or more people have gitian-built and their results match:
@@ -251,7 +254,7 @@ The `*-debug*` files generated by the gitian build contain debug symbols
 for troubleshooting by developers. It is assumed that anyone that is interested
 in debugging can run gitian to generate the files for themselves. To avoid
 end-user confusion about which file to pick, as well as save storage
-space *do not upload these to the picscoins.org server, nor put them in the torrent*.
+space *do not upload these to the picscoin.org server, nor put them in the torrent*.
 
 - GPG-sign it, delete the unsigned file:
 ```
@@ -261,16 +264,16 @@ rm SHA256SUMS
 (the digest algorithm is forced to sha256 to avoid confusion of the `Hash:` header that GPG adds with the SHA256 used for the files)
 Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spurious/nonsensical entry.
 
-- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the picscoins.org server.
+- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the picscoin.org server.
 
 ```
-- Update picscoins.org version
+- Update picscoin.org version
 
 - Announce the release:
 
   - picscoin-dev and picscoin-dev mailing list
 
-  - blog.picscoins.org blog post
+  - blog.picscoin.org blog post
 
   - Update title of #picscoin and #picscoin-dev on Freenode IRC
 
@@ -278,6 +281,6 @@ Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spur
 
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
-  - Create a [new GitHub release](https://github.com/minblock/picscoin/releases/new) with a link to the archived release notes.
+  - Create a [new GitHub release](https://github.com/picscoin-project/picscoin/releases/new) with a link to the archived release notes.
 
   - Celebrate

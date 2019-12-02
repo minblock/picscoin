@@ -168,16 +168,19 @@ public:
                {  147751, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
             }
         };
-
+		
         chainTxData = ChainTxData{
-            // Data as of block 5930aa967e17ca7e157184e99b769ee3861607890cca12685928d4beee3499fc (height 90036).
-            1575244374, // * UNIX timestamp of last known number of transactions
-            223277,  // * total number of transactions between genesis and that timestamp
-                    //   (the tx=... number in the SetBestChain debug.log lines)
-            0.09     // * estimated number of transactions per second after that timestamp
+            // Data from rpc: getchaintxstats 4096 a601455787cb65ffc325dda4751a99cf01d1567799ec4b04f45bb05f9ef0cbde
+            /* nTime    */ 1575244374,
+            /* nTxCount */ 223277,
+            /* dTxRate  */ 0.09
         };
+
+        /* disable fallback fee on mainnet */
+        m_fallback_fee_enabled = false;
     }
 };
+
 
 /**
  * Testnet (v3)
@@ -260,12 +263,14 @@ public:
         };
 
         chainTxData = ChainTxData{
-            // Data as of block 1ce* (height 0)
-            1486949366,
-            0,
-            0.01
+            // Data from rpc: getchaintxstats 4096 438b7e1c86f58b4e62e8cf2d0f9f256e3dddaebc5d1cc568e633a38e0db6c025
+            /* nTime    */ 1538637952,
+            /* nTxCount */ 1845705,
+            /* dTxRate  */ 1.907
         };
 
+        /* enable fallback fee on testnet */
+        m_fallback_fee_enabled = true;
     }
 };
 

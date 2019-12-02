@@ -24,7 +24,7 @@ See [dependencies.md](dependencies.md) for a complete overview.
 
 Download the source code:
 ```
-git clone https://github.com/minblock/picscoin
+git clone https://github.com/picscoin-project/picscoin
 ```
 
 ## Building Picscoin Core
