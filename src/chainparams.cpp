@@ -104,10 +104,10 @@ public:
 
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000003a201ad8e204");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000002e5fb5ed46078");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xbafcbdbc01043208daa2ac7f94eab3d32062fc4d76556420b0480b2a005344ed"); //116251
+        consensus.defaultAssumeValid = uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02"); //147751
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -163,15 +163,18 @@ public:
                 {  60032, uint256S("0x9250a2c237c601f68040dda54443f7d28638d730bbbe2dab35773ca3907f9da3")},
                 {  90036, uint256S("0x5930aa967e17ca7e157184e99b769ee3861607890cca12685928d4beee3499fc")},
                {  116251, uint256S("0xbafcbdbc01043208daa2ac7f94eab3d32062fc4d76556420b0480b2a005344ed")},
+               {  123337, uint256S("0x47e873b5af91c291037a37033cf2aa8765f098fafce8de1944ba4b5823d9ec06")},
+               {  133337, uint256S("0xedffab16cf04d55971b77445ecfab4f12ebd17e58686c57a346acdb8e14c22f8")},
+               {  147751, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data as of block 5930aa967e17ca7e157184e99b769ee3861607890cca12685928d4beee3499fc (height 90036).
-            1568987788, // * UNIX timestamp of last known number of transactions
-            126357,  // * total number of transactions between genesis and that timestamp
+            1575244374, // * UNIX timestamp of last known number of transactions
+            223277,  // * total number of transactions between genesis and that timestamp
                     //   (the tx=... number in the SetBestChain debug.log lines)
-            0.06     // * estimated number of transactions per second after that timestamp
+            0.09     // * estimated number of transactions per second after that timestamp
         };
     }
 };
