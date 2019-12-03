@@ -256,7 +256,7 @@ public:
         fRequireStandard = false;
         fMineBlocksOnDemand = false;
 
-        checkpointData = (CCheckpointData) {
+        checkpointData = {
             {
                 {0, uint256S("1cef4a5283b4e4848cb85ad719312e50f7b63eebbce6627b53db498196fe302e")},
             }
@@ -279,7 +279,6 @@ public:
  */
 class CRegTestParams : public CChainParams {
 public:
-    CRegTestParams() {
     explicit CRegTestParams(const ArgsManager& args) {		
         strNetworkID = "regtest";
         consensus.nSubsidyHalvingInterval = 150;
