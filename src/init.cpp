@@ -556,7 +556,7 @@ void SetupServerArgs()
 std::string LicenseInfo()
 {
     const std::string URL_SOURCE_CODE = "<https://github.com/minblock/picscoin>";
-    const std::string URL_WEBSITE = "<https://picscoin.org>";
+    const std::string URL_WEBSITE = "<https://picscoins.org>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2011, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

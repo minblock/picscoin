@@ -2,7 +2,7 @@
 
 General picscoin questions and/or support requests and are best directed to the [picscointalk.io forums](https://picscointalk.io/).
 
-For reporting security issues, please contact the Picscoin developers on the #picscoin-dev Freenode IRC channel or alternatively you can email us at contact@picscoin.org.
+For reporting security issues, please contact the Picscoin developers on the #picscoin-dev Freenode IRC channel or alternatively you can email us at contact@picscoins.org.
 
 If the node is "stuck" during sync or giving "block checksum mismatch" errors, please ensure your hardware is stable by running memtest and observe CPU temperature with a load-test tool such as linpack before creating an issue! -->
 

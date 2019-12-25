@@ -1,6 +1,6 @@
 Picscoin Core version 0.16.2 is now available from:
 
-  <https://download.picscoin.org/picscoin-0.16.2/>
+  <https://download.picscoins.org/picscoin-0.16.2/>
 
 This is a new minor version release, with various bugfixes
 as well as updated translations.

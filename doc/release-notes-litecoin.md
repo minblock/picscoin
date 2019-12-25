@@ -1,6 +1,6 @@
 Picscoin Core version 0.18.1 is now available from:
 
-  <<https://download.picscoin.org/picscoin-0.18.1/>
+  <<https://download.picscoins.org/picscoin-0.18.1/>
 
 This is a major version release, including new features, various bug
 fixes and performance improvements, as well as updated translations.
@@ -110,7 +110,7 @@ Configuration option changes
   disconnect/ban behavior will not cause a node that is whitelisting
   another to be dropped by peers.  Users can still explicitly enable
   this behavior with the command line option (and may want to consider
-  [contacting](mailto:contact@picscoin.org) the Picscoin Core
+  [contacting](mailto:contact@picscoins.org) the Picscoin Core
   project to let us know about their use-case, as this feature could be
   deprecated in the future).
 
