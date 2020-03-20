@@ -100,10 +100,10 @@ public:
 
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000002e5fb5ed46078");
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000308b8316ca9a0");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02"); //147751
+        consensus.defaultAssumeValid = uint256S("0x28fba9838ff57700721267626856d69a85a4cc42fbca2df5f1bc86f2961b39ef"); //148703
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -116,8 +116,8 @@ public:
         pchMessageStart[3] = 0x74;
         nDefaultPort = 1337;
         nPruneAfterHeight = 100000;
-        m_assumed_blockchain_size = 0.1267;
-        m_assumed_chain_state_size = 0.0127;
+        m_assumed_blockchain_size = 0.1355;
+        m_assumed_chain_state_size = 0.0131;
 
         genesis = CreateGenesisBlock(1545183172, 3633462, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
@@ -126,6 +126,9 @@ public:
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.emplace_back("seed.picscoins.org");
+        vSeeds.emplace_back("seed.pgn.one");
+        vSeeds.emplace_back("mpos.picscoins.org");
+        vSeeds.emplace_back("stratum.provgn.com");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -164,13 +167,14 @@ public:
                {  123337, uint256S("0x47e873b5af91c291037a37033cf2aa8765f098fafce8de1944ba4b5823d9ec06")},
                {  133337, uint256S("0xedffab16cf04d55971b77445ecfab4f12ebd17e58686c57a346acdb8e14c22f8")},
                {  147751, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
+               {  148703, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
             }
         };
 		
         chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats 4096 a601455787cb65ffc325dda4751a99cf01d1567799ec4b04f45bb05f9ef0cbde
-            /* nTime    */ 1575244374,
-            /* nTxCount */ 223277,
+            /* nTime    */ 1584668613,
+            /* nTxCount */ 224237,
             /* dTxRate  */ 0.09
         };
 
