@@ -693,8 +693,8 @@
         <translation>Tento štítok sa zmení na červený ak nejaký prijímateľ obdrží čiastku menšiu ako je aktuálny prah prachu</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Môže sa kolísať o +/- %1 satoshi() za vstup</translation>
+        <source>Can vary +/- %1 sevtokie(s) per input.</source>
+        <translation>Môže sa kolísať o +/- %1 sevtokie() za vstup</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -2089,10 +2089,10 @@
     <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 sevtokies per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 sevtokies.</source>
         <translation>Špecifikujte vlastný transakčný polatok za 1 kB (1000 bajtov) virtuálnej veľkosti transakcie.
 
-Zapamätajte si: Keďže cena poplatku je počítaná za bajt, tak poplatok o hodnote ''100 satoshi za kB'' pri veľkosti transakcie 500 bajtov (polovica z 1kB) by stál len 50 satoshi.</translation>
+Zapamätajte si: Keďže cena poplatku je počítaná za bajt, tak poplatok o hodnote ''100 sevtokie za kB'' pri veľkosti transakcie 500 bajtov (polovica z 1kB) by stál len 50 sevtokie.</translation>
     </message>
     <message>
         <source>per kilobyte</source>

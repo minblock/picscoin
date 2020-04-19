@@ -675,8 +675,8 @@
         <translation>Ez a címke pirosra változik, ha valamelyik fogadó fél kisebb összeget kap, mint a jelenlegi porszem határérték.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Változó +/- %1 satoshi(k) megadott értékenként.</translation>
+        <source>Can vary +/- %1 sevtokie(s) per input.</source>
+        <translation>Változó +/- %1 sevtokie(k) megadott értékenként.</translation>
     </message>
     <message>
         <source>(no label)</source>

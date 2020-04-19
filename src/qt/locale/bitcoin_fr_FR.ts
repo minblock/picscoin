@@ -729,8 +729,8 @@
         <translation>Cette étiquette devient rouge si un bénéficiaire reçoit une somme plus basse que la limite actuelle de poussière.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Peut varier de +/- %1 satoshi(s) par entrée.</translation>
+        <source>Can vary +/- %1 sevtokie(s) per input.</source>
+        <translation>Peut varier de +/- %1 sevtokie(s) par entrée.</translation>
     </message>
     <message>
         <source>(no label)</source>

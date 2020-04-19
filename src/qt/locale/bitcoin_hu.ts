@@ -680,8 +680,8 @@ Kérem a kulcsmondatban használjon &lt;b&gt; tíz vagy több véletlenszerű ka
         <translation>Ez a címke pirosra változik, ha bármely fogadóhoz, a porszem határértéknél kevesebb összeg érkezik.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Megadott értékenként  +/- %1 satoshi-val változhat.</translation>
+        <source>Can vary +/- %1 sevtokie(s) per input.</source>
+        <translation>Megadott értékenként  +/- %1 sevtokie-val változhat.</translation>
     </message>
     <message>
         <source>(no label)</source>

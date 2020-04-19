@@ -748,7 +748,7 @@
         <translation>Ta oznaka se spremeni v rdeče, če katerikoli prejemnik prejme znesek, ki je manjši od trenutnega praga za prah.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
+        <source>Can vary +/- %1 sevtokie(s) per input.</source>
         <translation>Se lahko razlikuje +/- %1 satošijev na vnos.</translation>
     </message>
     <message>

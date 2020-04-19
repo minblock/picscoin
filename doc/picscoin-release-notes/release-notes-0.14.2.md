@@ -289,8 +289,8 @@ Minimum Fee Rate Policies
 -------------------------
 
 Since the changes in 0.13 to automatically limit the size of the mempool and improve the performance of block creation in mining code it has not been important for relay nodes or miners to set `-minrelaytxfee`. With this release the following concepts that were tied to this option have been separated out:
-- calculation of threshold for a dust output. (effectively 3 * 1000 satoshis/kB)
-- minimum fee rate of a package of transactions to be included in a block created by the mining code. If miners wish to set this minimum they can use the new `-blockmintxfee` option.  (defaults to 1000 satoshis/kB)
+- calculation of threshold for a dust output. (effectively 3 * 1000 sevtokies/kB)
+- minimum fee rate of a package of transactions to be included in a block created by the mining code. If miners wish to set this minimum they can use the new `-blockmintxfee` option.  (defaults to 1000 sevtokies/kB)
 
 The `-minrelaytxfee` option continues to exist but is recommended to be left unset.
 

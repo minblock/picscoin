@@ -671,8 +671,8 @@
         <translation>Aquesta etiqueta es torna vermella si cap recipient rep un import inferior al llindar de polsim actual.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Pot variar en +/- %1 satoshi(s) per entrada.</translation>
+        <source>Can vary +/- %1 sevtokie(s) per input.</source>
+        <translation>Pot variar en +/- %1 sevtokie(s) per entrada.</translation>
     </message>
     <message>
         <source>(no label)</source>

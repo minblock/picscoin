@@ -1,4 +1,4 @@
-// Copyright (c) 2010 Satoshi Nakamoto
+// Copyright (c) 2010 Sevtokie Nakamokie
 // Copyright (c) 2009-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -1685,7 +1685,7 @@ static UniValue getblockstats(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 4) {
         throw std::runtime_error(
             "getblockstats hash_or_height ( stats )\n"
-            "\nCompute per block statistics for a given window. All amounts are in satoshis.\n"
+            "\nCompute per block statistics for a given window. All amounts are in sevtokies.\n"
             "It won't work for some heights with pruning.\n"
             "It won't work without -txindex for utxo_size_inc, *fee or *feerate stats.\n"
             "\nArguments:\n"
@@ -1699,10 +1699,10 @@ static UniValue getblockstats(const JSONRPCRequest& request)
             "\nResult:\n"
             "{                           (json object)\n"
             "  \"avgfee\": xxxxx,          (numeric) Average fee in the block\n"
-            "  \"avgfeerate\": xxxxx,      (numeric) Average feerate (in satoshis per virtual byte)\n"
+            "  \"avgfeerate\": xxxxx,      (numeric) Average feerate (in sevtokies per virtual byte)\n"
             "  \"avgtxsize\": xxxxx,       (numeric) Average transaction size\n"
             "  \"blockhash\": xxxxx,       (string) The block hash (to check for potential reorgs)\n"
-            "  \"feerate_percentiles\": [  (array of numeric) Feerates at the 10th, 25th, 50th, 75th, and 90th percentile weight unit (in satoshis per virtual byte)\n"
+            "  \"feerate_percentiles\": [  (array of numeric) Feerates at the 10th, 25th, 50th, 75th, and 90th percentile weight unit (in sevtokies per virtual byte)\n"
             "      \"10th_percentile_feerate\",      (numeric) The 10th percentile feerate\n"
             "      \"25th_percentile_feerate\",      (numeric) The 25th percentile feerate\n"
             "      \"50th_percentile_feerate\",      (numeric) The 50th percentile feerate\n"
@@ -1712,13 +1712,13 @@ static UniValue getblockstats(const JSONRPCRequest& request)
             "  \"height\": xxxxx,          (numeric) The height of the block\n"
             "  \"ins\": xxxxx,             (numeric) The number of inputs (excluding coinbase)\n"
             "  \"maxfee\": xxxxx,          (numeric) Maximum fee in the block\n"
-            "  \"maxfeerate\": xxxxx,      (numeric) Maximum feerate (in satoshis per virtual byte)\n"
+            "  \"maxfeerate\": xxxxx,      (numeric) Maximum feerate (in sevtokies per virtual byte)\n"
             "  \"maxtxsize\": xxxxx,       (numeric) Maximum transaction size\n"
             "  \"medianfee\": xxxxx,       (numeric) Truncated median fee in the block\n"
             "  \"mediantime\": xxxxx,      (numeric) The block median time past\n"
             "  \"mediantxsize\": xxxxx,    (numeric) Truncated median transaction size\n"
             "  \"minfee\": xxxxx,          (numeric) Minimum fee in the block\n"
-            "  \"minfeerate\": xxxxx,      (numeric) Minimum feerate (in satoshis per virtual byte)\n"
+            "  \"minfeerate\": xxxxx,      (numeric) Minimum feerate (in sevtokies per virtual byte)\n"
             "  \"mintxsize\": xxxxx,       (numeric) Minimum transaction size\n"
             "  \"outs\": xxxxx,            (numeric) The number of outputs\n"
             "  \"subsidy\": xxxxx,         (numeric) The block subsidy\n"
@@ -1881,7 +1881,7 @@ static UniValue getblockstats(const JSONRPCRequest& request)
             minfee = std::min(minfee, txfee);
             totalfee += txfee;
 
-            // New feerate uses satoshis per virtual byte instead of per serialized byte
+            // New feerate uses sevtokies per virtual byte instead of per serialized byte
             CAmount feerate = weight ? (txfee * WITNESS_SCALE_FACTOR) / weight : 0;
             if (do_feerate_percentiles) {
                 feerate_array.emplace_back(std::make_pair(feerate, weight));

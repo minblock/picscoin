@@ -685,8 +685,8 @@
         <translation>Ang label na ito ay magiging pula kung ang sinumang tatanggap ay tumanggap ng halagang mas mababa sa kasalukuyang dust threshold.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Maaaring magbago ng +/- %1 satoshi(s) kada input. </translation>
+        <source>Can vary +/- %1 sevtokie(s) per input.</source>
+        <translation>Maaaring magbago ng +/- %1 sevtokie(s) kada input. </translation>
     </message>
     <message>
         <source>(no label)</source>

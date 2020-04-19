@@ -753,8 +753,8 @@
         <translation>This label turns red if any recipient receives an amount smaller than the current dust threshold.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Can vary +/- %1 satoshi(s) per input.</translation>
+        <source>Can vary +/- %1 sevtokie(s) per input.</source>
+        <translation>Can vary +/- %1 sevtokie(s) per input.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -2193,10 +2193,10 @@
     <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 sevtokies per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 sevtokies.</source>
         <translation>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</translation>
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 sevtokies per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 sevtokies.</translation>
     </message>
     <message>
         <source>per kilobyte</source>

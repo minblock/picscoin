@@ -709,8 +709,8 @@
         <translation>Esta etiqueta se vuelve roja si algún destinatario recibe una cantidad inferior a la actual puerta polvorienta.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Puede variar +/- %1 satoshi(s) por entrada.</translation>
+        <source>Can vary +/- %1 sevtokie(s) per input.</source>
+        <translation>Puede variar +/- %1 sevtokie(s) por entrada.</translation>
     </message>
     <message>
         <source>(no label)</source>

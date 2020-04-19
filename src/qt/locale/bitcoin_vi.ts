@@ -719,8 +719,8 @@
         <translation>Label này chuyển sang đỏ nếu bất cứ giao dịch nhận nào có số lượng nhỏ hơn ngưỡng dust.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Có thể thay đổi +/-%1 satoshi(s) trên input.</translation>
+        <source>Can vary +/- %1 sevtokie(s) per input.</source>
+        <translation>Có thể thay đổi +/-%1 sevtokie(s) trên input.</translation>
     </message>
     <message>
         <source>(no label)</source>

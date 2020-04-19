@@ -103,7 +103,7 @@ its maximum size, the transaction that (along with in-mempool descendants) has
 the lowest total feerate (as a package) will be evicted and the node's effective
 minimum relay feerate will be increased to match this feerate plus the initial
 minimum relay feerate. The initial minimum relay feerate is set to
-1000 satoshis per kB.
+1000 sevtokies per kB.
 
 Picscoin Core 0.13.2 also introduces new default policy limits on the length and
 size of unconfirmed transaction chains that are allowed in the mempool
@@ -231,7 +231,7 @@ At all times, Picscoin Core will cap fees at `-maxtxfee=<x>` (default:
 Furthermore, Picscoin Core will never create transactions paying less than
 the current minimum relay fee.
 Finally, a user can set the minimum fee rate for all transactions with
-`-mintxfee=<i>`, which defaults to 1000 satoshis per kB.
+`-mintxfee=<i>`, which defaults to 1000 sevtokies per kB.
 
 Wallet: Negative confirmations and conflict detection
 -----------------------------------------------------
@@ -848,14 +848,14 @@ covered by the txid. This provides several immediate benefits:
   believed to be provided by Picscoin's choice of parameters for its Elliptic
   Curve Digital Security Algorithm [ECDSA].)
 
-- **More efficient almost-full-node security** Satoshi Nakamoto's original
+- **More efficient almost-full-node security** Sevtokie Nakamokie's original
   Bitcoin paper describes a method for allowing newly-started full nodes to
   skip downloading and validating some data from historic blocks that are
-  protected by large amounts of proof of work.  Unfortunately, Nakamoto's
+  protected by large amounts of proof of work.  Unfortunately, Nagamokie's
   method can't guarantee that a newly-started node using this method will
   produce an accurate copy of Picscoin's current ledger (called the UTXO set),
   making the node vulnerable to falling out of consensus with other nodes.
-  Although the problems with Nakamoto's method can't be fixed in a soft fork,
+  Although the problems with Nagamokie's method can't be fixed in a soft fork,
   Segwit accomplishes something similar to his original proposal: it makes it
   possible for a node to optionally skip downloading some blockchain data
   (specifically, the segregated witnesses) while still ensuring that the node

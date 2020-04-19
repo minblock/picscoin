@@ -15,7 +15,7 @@ from test_framework.messages import BlockTransactions, BlockTransactionsRequest,
 from test_framework.mininode import mininode_lock, P2PInterface
 from test_framework.script import CScript, OP_TRUE, OP_DROP
 from test_framework.test_framework import BitcoinTestFramework
-from test_framework.util import assert_equal, get_bip9_status, satoshi_round, sync_blocks, wait_until
+from test_framework.util import assert_equal, get_bip9_status, sevtokie_round, sync_blocks, wait_until
 
 VB_TOP_BITS = 0x20000000
 
@@ -268,7 +268,7 @@ class CompactBlocksTest(BitcoinTestFramework):
             # a witness address.
             address = node.getnewaddress(address_type='bech32')
             value_to_send = node.getbalance()
-            node.sendtoaddress(address, satoshi_round(value_to_send - Decimal(0.1)))
+            node.sendtoaddress(address, sevtokie_round(value_to_send - Decimal(0.1)))
             node.generate(1)
 
         segwit_tx_generated = False
