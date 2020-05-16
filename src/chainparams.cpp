@@ -100,11 +100,10 @@ public:
 
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000308b8316ca9a0");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000030f8aff5cdc91");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x28fba9838ff57700721267626856d69a85a4cc42fbca2df5f1bc86f2961b39ef"); //148703
-
+        consensus.defaultAssumeValid = uint256S("0x9f9b282944bb6ab5ae436dadf6b9ccabbb442f513ceb5bcb96f679570dde384b"); //148890
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -166,16 +165,16 @@ public:
                {  116251, uint256S("0xbafcbdbc01043208daa2ac7f94eab3d32062fc4d76556420b0480b2a005344ed")},
                {  123337, uint256S("0x47e873b5af91c291037a37033cf2aa8765f098fafce8de1944ba4b5823d9ec06")},
                {  133337, uint256S("0xedffab16cf04d55971b77445ecfab4f12ebd17e58686c57a346acdb8e14c22f8")},
-               {  147751, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
-               {  148703, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
+	       {  147751, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
+               {  148890, uint256S("0x9f9b282944bb6ab5ae436dadf6b9ccabbb442f513ceb5bcb96f679570dde384b")},
             }
         };
 		
         chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats 4096 a601455787cb65ffc325dda4751a99cf01d1567799ec4b04f45bb05f9ef0cbde
-            /* nTime    */ 1584668613,
-            /* nTxCount */ 224237,
-            /* dTxRate  */ 0.09
+            /* nTime    */ 1589250768,
+            /* nTxCount */ 224425,
+            /* dTxRate  */ 0.01
         };
 
         /* disable fallback fee on mainnet */
