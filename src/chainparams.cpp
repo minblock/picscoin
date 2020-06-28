@@ -100,10 +100,10 @@ public:
 
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000030f8aff5cdc91");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000031907b5a6b89d");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x9f9b282944bb6ab5ae436dadf6b9ccabbb442f513ceb5bcb96f679570dde384b"); //148890
+        consensus.defaultAssumeValid = uint256S("0xed9b5354e6a2a1f756c525662c6b2bbbfdec5ade90f07e5e38ef0da62607479e"); //149150
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -114,7 +114,7 @@ public:
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0x74;
         nDefaultPort = 1337;
-        nPruneAfterHeight = 100000;
+        nPruneAfterHeight = 1000000;
         m_assumed_blockchain_size = 0.1355;
         m_assumed_chain_state_size = 0.0131;
 
@@ -140,7 +140,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-        fDefaultConsistencyChecks = false;
+        fDefaultConsistencyChecks = true;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
 
@@ -167,14 +167,15 @@ public:
                {  133337, uint256S("0xedffab16cf04d55971b77445ecfab4f12ebd17e58686c57a346acdb8e14c22f8")},
 	       {  147751, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
                {  148890, uint256S("0x9f9b282944bb6ab5ae436dadf6b9ccabbb442f513ceb5bcb96f679570dde384b")},
-            }
+               { 149150, uint256S("0xed9b5354e6a2a1f756c525662c6b2bbbfdec5ade90f07e5e38ef0da62607479e")},
+         
         };
 		
         chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats 4096 a601455787cb65ffc325dda4751a99cf01d1567799ec4b04f45bb05f9ef0cbde
-            /* nTime    */ 1589250768,
-            /* nTxCount */ 224425,
-            /* dTxRate  */ 0.01
+            /* nTime    */ 1593031973,
+            /* nTxCount */ 224685,
+            /* dTxRate  */ 0.0014
         };
 
         /* disable fallback fee on mainnet */
