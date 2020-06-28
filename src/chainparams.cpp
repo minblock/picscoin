@@ -126,8 +126,7 @@ public:
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.emplace_back("seed.picscoins.org");
         vSeeds.emplace_back("seed.pgn.one");
-        vSeeds.emplace_back("mpos.picscoins.org");
-        vSeeds.emplace_back("stratum.provgn.com");
+
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -241,7 +240,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testnet-seed.picscoins.org");
+       // vSeeds.emplace_back("testnet-seed.picscoins.org");
         //vSeeds.emplace_back("seed-b.picscoin.loshan.co.uk");
         //vSeeds.emplace_back("dnsseed-testnet.thrasher.io");
 
