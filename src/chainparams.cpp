@@ -100,10 +100,10 @@ public:
 
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000003583ed7f45dfc");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000035a40d452684e");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xc0222c5b5dc517379f2db7a0f8cd12301830002b276612afeda6a84abe4d0af9"); //286932
+        consensus.defaultAssumeValid = uint256S("0x662567587304e7df1c1e0694e92b35ae8c2c242b83d5bbf0fd356ce4e5049d93");
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -124,7 +124,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x2cc06d170c33cdbf144e3e597a97a8786fcd84b04a0b3283c054c559646dc855"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("seed.pgn.one");
+        vSeeds.emplace_back("seed.picsco.in");
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
@@ -164,17 +164,16 @@ public:
                {  123337, uint256S("0x47e873b5af91c291037a37033cf2aa8765f098fafce8de1944ba4b5823d9ec06")},
                {  133337, uint256S("0xedffab16cf04d55971b77445ecfab4f12ebd17e58686c57a346acdb8e14c22f8")},
 	       {  147751, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
-               {  148890, uint256S("0x9f9b282944bb6ab5ae436dadf6b9ccabbb442f513ceb5bcb96f679570dde384b")},
-               { 149150, uint256S("0xed9b5354e6a2a1f756c525662c6b2bbbfdec5ade90f07e5e38ef0da62607479e")},
                { 286932, uint256S("0xc0222c5b5dc517379f2db7a0f8cd12301830002b276612afeda6a84abe4d0af9")},
+               { 304604, uint256S("0x662567587304e7df1c1e0694e92b35ae8c2c242b83d5bbf0fd356ce4e5049d93")},
 	    }
         };
 		
         chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats 4096 a601455787cb65ffc325dda4751a99cf01d1567799ec4b04f45bb05f9ef0cbde
-            /* nTime    */ 1626026590,
-            /* nTxCount */ 135982,
-            /* dTxRate  */ 0.0014
+            /* nTime    */ 1629464538,
+            /* nTxCount */ 380162,
+            /* dTxRate  */ 0.03
         };
 
         /* enable fallback fee on mainnet */
