@@ -66,12 +66,8 @@
         <translation>Gavimo adresai</translation>
     </message>
     <message>
-        <source>These are your Picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Tai yra jūsų Picscoin adresai išeinantiems mokėjimams. Visada pasitikrinkite sumą ir gavėjo adresą prieš siunčiant lėšas. </translation>
-    </message>
-    <message>
-        <source>These are your Picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Tai yra Jūsų Picscoin adresai įeinantiems mokėjimams. Kiekvienam mokėjimui rekomenduojama naudoti naują adresą. </translation>
+        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Tai yra jūsų Bitcoin adresai išeinantiems mokėjimams. Visada pasitikrinkite sumą ir gavėjo adresą prieš siunčiant lėšas.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -136,12 +132,8 @@
         <translation>Pakartokite naują slaptafrazę</translation>
     </message>
     <message>
-        <source>Show password</source>
-        <translation>Rodyti slaptažodį</translation>
-    </message>
-    <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Įveskite naują piniginės slaptafrazę.&lt;br/&gt;Prašome naudoti slaptafrazę iš &lt;b&gt; 10 ar daugiau atsitiktinių simbolių&lt;/b&gt; arba &lt;b&gt;aštuonių ar daugiau žodžių&lt;/b&gt;.</translation>
+        <source>Show passphrase</source>
+        <translation>Rodyti slaptafrazę</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
@@ -168,16 +160,12 @@
         <translation>Pakeisti slaptafrazę</translation>
     </message>
     <message>
-        <source>Enter the old passphrase and new passphrase to the wallet.</source>
-        <translation>Įveskite seną ir naują piniginės slaptafrazes.</translation>
-    </message>
-    <message>
         <source>Confirm wallet encryption</source>
         <translation>Patvirtinkite piniginės užšifravimą</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PICSCOINS&lt;/b&gt;!</source>
-        <translation>Dėmesio: jei užšifruosite savo piniginę ir pamesite slaptafrazę, jūs&lt;b&gt;PRARASITE VISUS SAVO PICSCOINUS&lt;/b&gt;! </translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <translation>Dėmesio: jei užšifruosite savo piniginę ir pamesite slaptafrazę, jūs&lt;b&gt;PRARASITE VISUS SAVO BITCOINUS&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -188,12 +176,12 @@
         <translation>Piniginė užšifruota</translation>
     </message>
     <message>
-        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your picscoins from being stolen by malware infecting your computer.</source>
-        <translation>Jūsų piniginė yra užšifruota. Prisiminkite kad pinigės užšifravimas neapsaugos jūsų picscoins nuo kenkėjiškų programų užkrėtusių jūsų kompiuterį.</translation>
+        <source>Enter the old passphrase and new passphrase for the wallet.</source>
+        <translation>Įveskite seną ir naują slaptažodį.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>SVARBU: Betkokios ankstesnės jūsų piniginės atsarginės kopijos turėtų būti pakeistos naujai sugeneruotu, užšifruotu piniginės failu. Dėl saugumo sumetimų, anstesnės neužšifruotos piniginės kopijos failas taps nenaudingu nuo momento, kai nauja ir užšifruota piniginė bus pradėta naudoti. </translation>
+        <translation>SVARBU: Betkokios ankstesnės jūsų piniginės atsarginės kopijos turėtų būti pakeistos naujai sugeneruotu, užšifruotu piniginės failu. Dėl saugumo sumetimų, anstesnės neužšifruotos piniginės kopijos failas taps nenaudingu nuo momento, kai nauja ir užšifruota piniginė bus pradėta naudoti.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -314,6 +302,14 @@
         <translation>Atidaryti &amp;URI...</translation>
     </message>
     <message>
+        <source>Create Wallet...</source>
+        <translation>Sukurti piniginę...</translation>
+    </message>
+    <message>
+        <source>Create a new wallet</source>
+        <translation>Sukurti naują piniginę</translation>
+    </message>
+    <message>
         <source>Wallet:</source>
         <translation>Piniginė</translation>
     </message>
@@ -342,8 +338,8 @@
         <translation>Tarpinis serveris yra &lt;b&gt;įgalintas&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Picscoin address</source>
-        <translation>Siųsti monetas Picscoin adresui</translation>
+        <source>Send coins to a Bitcoin address</source>
+        <translation>Siųsti monetas Bitcoin adresui</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -354,20 +350,8 @@
         <translation>Pakeisti slaptafrazę naudojamą piniginės užšifravimui</translation>
     </message>
     <message>
-        <source>&amp;Debug window</source>
-        <translation>&amp;Derinimo langas</translation>
-    </message>
-    <message>
-        <source>Open debugging and diagnostic console</source>
-        <translation>Atverti derinimo ir diagnostikos konsolę</translation>
-    </message>
-    <message>
         <source>&amp;Verify message...</source>
         <translation>&amp;Tikrinti žinutę...</translation>
-    </message>
-    <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -390,12 +374,12 @@
         <translation>Užšifruoti privačius raktus, kurie priklauso jūsų piniginei</translation>
     </message>
     <message>
-        <source>Sign messages with your Picscoin addresses to prove you own them</source>
-        <translation>Pasirašydami žinutes su savo Picscoin adresais įrodysite jog esate jų savininkas </translation>
+        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <translation>Pasirašydami žinutes su savo Bitcoin adresais įrodysite jog esate jų savininkas</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Picscoin addresses</source>
-        <translation>Patikrinkite žinutę, jog įsitikintumėte, kad ją pasirašė nurodytas Picscoin adresas</translation>
+        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <translation>Patikrinkite žinutę, jog įsitikintumėte, kad ją pasirašė nurodytas Bitcoin adresas</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -414,8 +398,8 @@
         <translation>Kortelių įrankinė</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and picscoin: URIs)</source>
-        <translation>Reikalauti mokėjimų (sukuria QR kodus ir picscoin: URI)</translation>
+        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
+        <translation>Reikalauti mokėjimų (sukuria QR kodus ir bitcoin: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -426,16 +410,12 @@
         <translation>Rodyti sąrašą panaudotų gavimo adresų ir žymių</translation>
     </message>
     <message>
-        <source>Open a picscoin: URI or payment request</source>
-        <translation>Atidaryti picscoin: URI ar apmokėjimo reikalavimą</translation>
-    </message>
-    <message>
         <source>&amp;Command-line options</source>
         <translation>Komandinės eilutės parametrai</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Picscoin network</source>
-        <translation><numerusform>%n Picscoin tinklo aktyvus ryšys</numerusform><numerusform>%n Picscoin tinklo aktyvūs ryšiai</numerusform><numerusform>%n Picscoin tinklo aktyvūs ryšiai</numerusform><numerusform>%n Picscoin tinklo aktyvūs ryšiai</numerusform></translation>
+        <source>%n active connection(s) to Bitcoin network</source>
+        <translation><numerusform>%n Bitcoin tinklo aktyvus ryšys</numerusform><numerusform>%n Bitcoin tinklo aktyvūs ryšiai</numerusform><numerusform>%n Bitcoin tinklo aktyvūs ryšiai</numerusform><numerusform>%n Bitcoin tinklo aktyvūs ryšiai</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -459,7 +439,7 @@
     </message>
     <message>
         <source>Transactions after this will not yet be visible.</source>
-        <translation>Sekančios operacijos dar nebus matomos. </translation>
+        <translation>Sekančios operacijos dar nebus matomos.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -502,20 +482,16 @@
         <translation>Uždaryti Piniginę</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Picscoin command-line options</source>
-        <translation>Rodyti %1 pagalbos žinutę su Picscoin pasirinkimo komandomis</translation>
+        <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
+        <translation>Rodyti %1 pagalbos žinutę su Bitcoin pasirinkimo komandomis</translation>
     </message>
     <message>
         <source>default wallet</source>
         <translation>numatyta piniginė</translation>
     </message>
     <message>
-        <source>Opening Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
-        <translation>Atidaroma Piniginė &lt;b&gt;%1&lt;/b&gt;...</translation>
-    </message>
-    <message>
-        <source>Open Wallet Failed</source>
-        <translation>Nepavyko atidaryti piniginę</translation>
+        <source>No wallets available</source>
+        <translation>Piniginių nėra</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -528,10 +504,6 @@
     <message>
         <source>Zoom</source>
         <translation>Priartinti</translation>
-    </message>
-    <message>
-        <source>Restore</source>
-        <translation>Atkurti</translation>
     </message>
     <message>
         <source>Main Window</source>
@@ -548,6 +520,14 @@
     <message>
         <source>Catching up...</source>
         <translation>Vejamasi...</translation>
+    </message>
+    <message>
+        <source>Error: %1</source>
+        <translation>Klaida: %1</translation>
+    </message>
+    <message>
+        <source>Warning: %1</source>
+        <translation>Įspėjimas: %1</translation>
     </message>
     <message>
         <source>Date: %1
@@ -613,11 +593,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Piniginė &lt;b&gt;užšifruota&lt;/b&gt; ir šiuo metu &lt;b&gt;užrakinta&lt;/b&gt;</translation>
     </message>
-    <message>
-        <source>A fatal error occurred. Picscoin can no longer continue safely and will quit.</source>
-        <translation>Kritinė klaida. Picscoin nebegali tęsti saugiai ir bus išjungtas.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -753,8 +729,8 @@
         <translation>Ši etiketė tampa raudona, jei bet kuris gavėjas gauna mažesnę sumą nei dabartinė dulkių slenkstis.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 sevtokie(s) per input.</source>
-        <translation>Gali svyruoti nuo +/-%1 sevtokie(-ų) vienam įvedimui.</translation>
+        <source>Can vary +/- %1 satoshi(s) per input.</source>
+        <translation>Gali svyruoti nuo +/-%1 satoshi(-ų) vienam įvedimui.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -769,6 +745,52 @@
         <translation>(graža)</translation>
     </message>
 </context>
+<context>
+    <name>CreateWalletActivity</name>
+    <message>
+        <source>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
+        <translation>Sukuriama Piniginė &lt;b&gt;%1&lt;/b&gt;...</translation>
+    </message>
+    <message>
+        <source>Create wallet failed</source>
+        <translation>Piniginės sukurimas nepavyko</translation>
+    </message>
+    <message>
+        <source>Create wallet warning</source>
+        <translation>Piniginės sukurimo įspėjimas</translation>
+    </message>
+</context>
+<context>
+    <name>CreateWalletDialog</name>
+    <message>
+        <source>Create Wallet</source>
+        <translation>Sukurti Piniginę</translation>
+    </message>
+    <message>
+        <source>Wallet Name</source>
+        <translation>Piniginės Pavadinimas</translation>
+    </message>
+    <message>
+        <source>Encrypt the wallet. The wallet will be encrypted with a passphrase of your choice.</source>
+        <translation>Užkoduoti piniginę. Piniginė bus užkoduota jūsų pasirinkta slapta fraze.</translation>
+    </message>
+    <message>
+        <source>Encrypt Wallet</source>
+        <translation>Užkoduoti Piniginę</translation>
+    </message>
+    <message>
+        <source>Disable Private Keys</source>
+        <translation>Atjungti Privačius Raktus</translation>
+    </message>
+    <message>
+        <source>Make Blank Wallet</source>
+        <translation>Sukurti Tuščia Piniginę</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation>Sukurti</translation>
+    </message>
+    </context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -804,8 +826,8 @@
         <translation>Keisti siuntimo adresą</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Picscoin address.</source>
-        <translation>Įvestas adresas „%1“ nėra galiojantis Picscoin adresas.</translation>
+        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <translation>Įvestas adresas „%1“ nėra galiojantis Bitcoin adresas.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -854,10 +876,6 @@
         <translation>versija</translation>
     </message>
     <message>
-        <source>(%1-bit)</source>
-        <translation>(%1-bit)</translation>
-    </message>
-    <message>
         <source>About %1</source>
         <translation>&amp;Apie %1</translation>
     </message>
@@ -901,8 +919,12 @@
         <translation>Naudoti kitą duomenų katalogą:</translation>
     </message>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <source>Bitcoin</source>
+        <translation>Bitcoin</translation>
+    </message>
+    <message>
+        <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
+        <translation>Ištrinti blokus po patikrinimo, išskyrus paskutinius %1 GB (nukarpimas)</translation>
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
@@ -913,8 +935,8 @@
         <translation>Šiame kataloge bus saugoma maždaug apie %1 GB duomenų.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Picscoin block chain.</source>
-        <translation>%1 bus atsisiųsta ir išsaugota Picscoin blokų grandinės kopiją.</translation>
+        <source>%1 will download and store a copy of the Bitcoin block chain.</source>
+        <translation>%1 bus atsisiųsta ir išsaugota Bitcoin blokų grandinės kopiją.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -936,7 +958,7 @@
         <source>(of %n GB needed)</source>
         <translation><numerusform>(reikalinga %n GB)</numerusform><numerusform>(reikalinga %n GB)</numerusform><numerusform>(reikalinga %n GB)</numerusform><numerusform>(reikalinga %n GB)</numerusform></translation>
     </message>
-</context>
+    </context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -944,12 +966,12 @@
         <translation>Forma</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the picscoin network, as detailed below.</source>
-        <translation>Naujausi sandoriai gali būti dar nematomi, todėl jūsų piniginės likutis gali būti neteisingas. Ši informacija bus teisinga, kai jūsų piniginė bus baigta sinchronizuoti su picscoin tinklu, kaip nurodyta žemiau.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <translation>Naujausi sandoriai gali būti dar nematomi, todėl jūsų piniginės likutis gali būti neteisingas. Ši informacija bus teisinga, kai jūsų piniginė bus baigta sinchronizuoti su bitcoin tinklu, kaip nurodyta žemiau.</translation>
     </message>
     <message>
-        <source>Attempting to spend picscoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Tinklas nepriims bandymų išleisti picscoinus, kurie yra vis dar nematomi.</translation>
+        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>Tinklas nepriims bandymų išleisti bitcoinus, kurie yra vis dar nematomi.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -991,24 +1013,27 @@
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open URI</source>
-        <translation>Atidaryti URI</translation>
-    </message>
-    <message>
-        <source>Open payment request from URI or file</source>
-        <translation>Atidaryti mokėjimo užklausą iš URI arba failo</translation>
-    </message>
-    <message>
         <source>URI:</source>
         <translation>URI:</translation>
     </message>
+</context>
+<context>
+    <name>OpenWalletActivity</name>
     <message>
-        <source>Select payment request file</source>
-        <translation>Pasirinkite mokėjimo užklausos failą</translation>
+        <source>Open wallet failed</source>
+        <translation>Piniginės atidarymas nepavyko</translation>
     </message>
     <message>
-        <source>Select payment request file to open</source>
-        <translation>Pasirinkite mokėjimo užklausos failą</translation>
+        <source>Open wallet warning</source>
+        <translation>Piniginės atidarymo įspėjimas</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>numatyta piniginė</translation>
+    </message>
+    <message>
+        <source>Opening Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
+        <translation>Atidaroma Piniginė &lt;b&gt;%1&lt;/b&gt;...</translation>
     </message>
 </context>
 <context>
@@ -1026,6 +1051,10 @@
         <translation>Automatiškai paleisti %1 po prisijungimo prie sistemos.</translation>
     </message>
     <message>
+        <source>&amp;Start %1 on system login</source>
+        <translation>&amp;Pradėti %1 sistemos prisijungimo metu</translation>
+    </message>
+    <message>
         <source>Size of &amp;database cache</source>
         <translation>&amp;Duomenų bazės talpyklos dydis</translation>
     </message>
@@ -1040,10 +1069,6 @@
     <message>
         <source>Shows if the supplied default SOCKS5 proxy is used to reach peers via this network type.</source>
         <translation>Rodo, ar pridedamas numatytasis SOCKS5 proxy naudojamas pasiekti Peers per šį tinklo tipą.</translation>
-    </message>
-    <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor hidden services:</source>
-        <translation>Naudokite atskirą SOCKS&amp;5 tarpinius serverius, kad pasiektumėte Peers per „Tor“ paslėptas paslaugas:</translation>
     </message>
     <message>
         <source>Hide the icon from the system tray.</source>
@@ -1126,8 +1151,8 @@
         <translation>&amp;Išleiskite nepatvirtintus pakeitimus</translation>
     </message>
     <message>
-        <source>Automatically open the Picscoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatiškai atidaryti Picscoin kliento prievadą maršrutizatoriuje. Tai veikia tik tada, kai jūsų maršrutizatorius palaiko UPnP ir ji įjungta.</translation>
+        <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatiškai atidaryti Bitcoin kliento prievadą maršrutizatoriuje. Tai veikia tik tada, kai jūsų maršrutizatorius palaiko UPnP ir ji įjungta.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1142,8 +1167,8 @@
         <translation>Leisti gaunamu&amp;s ryšius</translation>
     </message>
     <message>
-        <source>Connect to the Picscoin network through a SOCKS5 proxy.</source>
-        <translation>Prisijunkite prie „Picscoin“ tinklo per SOCKS5 proxy.</translation>
+        <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
+        <translation>Prisijunkite prie „Bitcoin“ tinklo per SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1176,10 +1201,6 @@
     <message>
         <source>Tor</source>
         <translation>Tor</translation>
-    </message>
-    <message>
-        <source>Connect to the Picscoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Prisijunkite prie „Picscoin“ tinklo per atskirą „SOCKS5“ proxy „Tor“ paslėptas paslaugas.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1289,8 +1310,8 @@
         <translation>Forma</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Picscoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Rodoma informacija gali būti pasenusi. Piniginė automatiškai sinchronizuojasi su „Picscoin“ tinklu po ryšio užmezgimo, tačiau šis procesas dar nebaigtas.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Rodoma informacija gali būti pasenusi. Piniginė automatiškai sinchronizuojasi su „Bitcoin“ tinklu po ryšio užmezgimo, tačiau šis procesas dar nebaigtas.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1356,7 +1377,22 @@
         <source>Current total balance in watch-only addresses</source>
         <translation>Dabartinis visas balansas tik stebimų adresų</translation>
     </message>
-</context>
+    </context>
+<context>
+    <name>PSBTOperationsDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation>Dialogas</translation>
+    </message>
+    <message>
+        <source>Total Amount</source>
+        <translation>Visas kiekis</translation>
+    </message>
+    <message>
+        <source>or</source>
+        <translation>ar</translation>
+    </message>
+    </context>
 <context>
     <name>PaymentServer</name>
     <message>
@@ -1364,100 +1400,28 @@
         <translation>Mokėjimo užklausos klaida</translation>
     </message>
     <message>
-        <source>Cannot start picscoin: click-to-pay handler</source>
-        <translation>Negalima paleisti picscoin: paspauskite sumokėti tvarkytojui</translation>
+        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <translation>Negalima paleisti bitcoin: paspauskite sumokėti tvarkytojui</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>URI tvarkymas</translation>
     </message>
     <message>
-        <source>'picscoin://' is not a valid URI. Use 'picscoin:' instead.</source>
-        <translation>„picscoin: //“ nėra galiojantis URI. Vietoj to naudokite „picscoin:“.</translation>
-    </message>
-    <message>
-        <source>You are using a BIP70 URL which will be unsupported in the future.</source>
-        <translation>Jūs naudojate BIP70 URL, kuris ateityje nebus palaikomas.</translation>
-    </message>
-    <message>
-        <source>Payment request fetch URL is invalid: %1</source>
-        <translation>Mokėjimo užklausos atsiuntimo URL neteisingas: %1</translation>
-    </message>
-    <message>
-        <source>Cannot process payment request because BIP70 support was not compiled in.</source>
-        <translation>Nepavyksta apdoroti mokėjimo užklausos, nes „BIP70“ pagalba nebuvo surinkta.</translation>
+        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
+        <translation>„bitcoin: //“ nėra galiojantis URI. Vietoj to naudokite „bitcoin:“.</translation>
     </message>
     <message>
         <source>Invalid payment address %1</source>
         <translation>Neteisingas mokėjimo adresas %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Picscoin address or malformed URI parameters.</source>
-        <translation>URI negalima perskaityti! Tai gali sukelti negaliojantys „Picscoin“ adresas arba netinkami URI parametrai.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <translation>URI negalima perskaityti! Tai gali sukelti negaliojantys „Bitcoin“ adresas arba netinkami URI parametrai.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
         <translation>Mokėjimo užklausos failų tvarkymas</translation>
-    </message>
-    <message>
-        <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>Mokėjimo užklausos failo negalima skaityti! Tai gali sukelti neteisingas mokėjimo užklausos failas.</translation>
-    </message>
-    <message>
-        <source>Payment request rejected</source>
-        <translation>Mokėjimo prašymas atmestas</translation>
-    </message>
-    <message>
-        <source>Payment request network doesn't match client network.</source>
-        <translation>Mokėjimo užklausų tinklas neatitinka klientų tinklo.</translation>
-    </message>
-    <message>
-        <source>Payment request expired.</source>
-        <translation>Mokėjimo prašymas pasibaigė</translation>
-    </message>
-    <message>
-        <source>Payment request is not initialized.</source>
-        <translation>Mokėjimo prašymas nėra inicijuotas.</translation>
-    </message>
-    <message>
-        <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>Nepatvirtinti mokėjimo prašymai pagal individualius mokėjimo scenarijus nepalaikomi.</translation>
-    </message>
-    <message>
-        <source>Invalid payment request.</source>
-        <translation>Neteisingas mokėjimo prašymas.</translation>
-    </message>
-    <message>
-        <source>Requested payment amount of %1 is too small (considered dust).</source>
-        <translation>Prašoma %1 mokėjimo suma yra per maža (laikoma kaip dulkės).</translation>
-    </message>
-    <message>
-        <source>Refund from %1</source>
-        <translation>Grąžinimas iš %1</translation>
-    </message>
-    <message>
-        <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
-        <translation>Mokėjimo užklausa %1 yra per didelė (%2 baitai, leidžiama %3 baitų).</translation>
-    </message>
-    <message>
-        <source>Error communicating with %1: %2</source>
-        <translation>Ryšio klaida su %1: %2</translation>
-    </message>
-    <message>
-        <source>Payment request cannot be parsed!</source>
-        <translation>Mokėjimo užklausos negalima perskaityti!</translation>
-    </message>
-    <message>
-        <source>Bad response from server %1</source>
-        <translation>Blogas atsakymas iš serverio %1</translation>
-    </message>
-    <message>
-        <source>Network request error</source>
-        <translation>Tinklo užklausos klaida</translation>
-    </message>
-    <message>
-        <source>Payment acknowledged</source>
-        <translation>Mokėjimas patvirtintas</translation>
     </message>
 </context>
 <context>
@@ -1494,8 +1458,8 @@
         <translation>Suma</translation>
     </message>
     <message>
-        <source>Enter a Picscoin address (e.g. %1)</source>
-        <translation>Įveskite Picscoin adresą (pvz., %1)</translation>
+        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <translation>Įveskite Bitcoin adresą (pvz., %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1570,21 +1534,6 @@
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
-        <translation>%1 dar neišėjo saugiai...</translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>nežinomas</translation>
-    </message>
-</context>
-<context>
-    <name>QObject::QObject</name>
-    <message>
-        <source>Error parsing command line arguments: %1.</source>
-        <translation>Klaida komanduojant eilutės argumentus: %1.</translation>
-    </message>
-    <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
         <translation>Klaida: nurodytas duomenų katalogas „%1“ neegzistuoja.</translation>
     </message>
@@ -1596,6 +1545,14 @@
         <source>Error: %1</source>
         <translation>Klaida: %1</translation>
     </message>
+    <message>
+        <source>%1 didn't yet exit safely...</source>
+        <translation>%1 dar neišėjo saugiai...</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>nežinomas</translation>
+    </message>
 </context>
 <context>
     <name>QRImageWidget</name>
@@ -1606,6 +1563,18 @@
     <message>
         <source>&amp;Copy Image</source>
         <translation>Kopijuoti nuotrauką</translation>
+    </message>
+    <message>
+        <source>Resulting URI too long, try to reduce the text for label / message.</source>
+        <translation>Gautas URI per ilgas, pabandykite sumažinti etiketės / pranešimo tekstą.</translation>
+    </message>
+    <message>
+        <source>Error encoding URI into QR Code.</source>
+        <translation>Klaida koduojant URI į QR kodą.</translation>
+    </message>
+    <message>
+        <source>QR code support not available.</source>
+        <translation>QR kodas nepalaikomas</translation>
     </message>
     <message>
         <source>Save QR Code</source>
@@ -1631,10 +1600,6 @@
         <translation>&amp;Informacija</translation>
     </message>
     <message>
-        <source>Debug window</source>
-        <translation>Derinimo langas</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Bendras</translation>
     </message>
@@ -1647,12 +1612,16 @@
         <translation>Datadir</translation>
     </message>
     <message>
+        <source>To specify a non-default location of the data directory use the '%1' option.</source>
+        <translation>Jei norite nurodyti duomenų katalogo vietą, naudokite parinktį „ %1“.</translation>
+    </message>
+    <message>
         <source>Blocksdir</source>
         <translation>Blocksdir</translation>
     </message>
     <message>
         <source>To specify a non-default location of the blocks directory use the '%1' option.</source>
-        <translation>Jei norite nurodyti blokų katalogo vietą, naudokite parinktį „%1“.</translation>
+        <translation>Jei norite nurodyti blokų katalogo vietą, naudokite parinktį "%1".</translation>
     </message>
     <message>
         <source>Startup time</source>
@@ -1673,10 +1642,6 @@
     <message>
         <source>Block chain</source>
         <translation>Blokų grandinė</translation>
-    </message>
-    <message>
-        <source>Current number of blocks</source>
-        <translation>Dabartinis blokų skaičius</translation>
     </message>
     <message>
         <source>Memory Pool</source>
@@ -1723,10 +1688,6 @@
         <translation>Pasirinkite peer, kad galėtumėte peržiūrėti išsamią informaciją.</translation>
     </message>
     <message>
-        <source>Whitelisted</source>
-        <translation>Baltasis sąrašas</translation>
-    </message>
-    <message>
         <source>Direction</source>
         <translation>Kryptis</translation>
     </message>
@@ -1765,10 +1726,6 @@
     <message>
         <source>Services</source>
         <translation>Paslaugos</translation>
-    </message>
-    <message>
-        <source>Ban Score</source>
-        <translation>Uždraudimo balas</translation>
     </message>
     <message>
         <source>Connection Time</source>
@@ -1919,14 +1876,6 @@
         <translation>Išsiunčiamas</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation>Taip</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation>Ne</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Nežinomas</translation>
     </message>
@@ -1946,8 +1895,8 @@
         <translation>Žinutė:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Picscoin network.</source>
-        <translation>Neprivalomas pranešimas, pridedamas prie mokėjimo prašymo, kuris bus rodomas atidarius užklausą. Pastaba: pranešimas nebus išsiųstas su mokėjimu per „Picscoin“ tinklą.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
+        <translation>Neprivalomas pranešimas, pridedamas prie mokėjimo prašymo, kuris bus rodomas atidarius užklausą. Pastaba: pranešimas nebus išsiųstas su mokėjimu per „Bitcoin“ tinklą.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -1982,10 +1931,6 @@
         <translation>Prašyta mokėjimų istorija</translation>
     </message>
     <message>
-        <source>&amp;Request payment</source>
-        <translation>&amp;Reikalauti mokėjimo</translation>
-    </message>
-    <message>
         <source>Show the selected request (does the same as double clicking an entry)</source>
         <translation>Rodyti pasirinktą užklausą (atlieką tą pačią funkciją, kaip dukart spustelėjus įrašą)</translation>
     </message>
@@ -2017,12 +1962,28 @@
         <source>Copy amount</source>
         <translation>Kopijuoti sumą</translation>
     </message>
-</context>
+    <message>
+        <source>Could not unlock wallet.</source>
+        <translation>Nepavyko atrakinti piniginės.</translation>
+    </message>
+    </context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
-        <source>QR Code</source>
-        <translation>QR kodas</translation>
+        <source>Amount:</source>
+        <translation>Suma:</translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation>Žymė:</translation>
+    </message>
+    <message>
+        <source>Message:</source>
+        <translation>Žinutė:</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>Piniginė</translation>
     </message>
     <message>
         <source>Copy &amp;URI</source>
@@ -2043,38 +2004,6 @@
     <message>
         <source>Payment information</source>
         <translation>Mokėjimo informacija</translation>
-    </message>
-    <message>
-        <source>URI</source>
-        <translation>URI</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Adresas</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Suma</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Žymė</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation>Žinutė</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Piniginė</translation>
-    </message>
-    <message>
-        <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation>Gautas URI per ilgas, pabandykite sumažinti etiketės / pranešimo tekstą.</translation>
-    </message>
-    <message>
-        <source>Error encoding URI into QR Code.</source>
-        <translation>Klaida koduojant URI į QR kodą.</translation>
     </message>
 </context>
 <context>
@@ -2179,13 +2108,9 @@
         <translation>Įspėjimas: šiuo metu neįmanoma apskaičiuoti mokesčio.</translation>
     </message>
     <message>
-        <source>collapse fee-settings</source>
-        <translation>sumažinti mokesčio nustatymus</translation>
-    </message>
-    <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 sevtokies per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 sevtokies.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>Nurodykite individualų mokestį už kB (1000 baitų) nuo sandorio virtualaus dydžio.
 
 Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 satošių per kB“ už 500 baitų (pusę 1 kB) sandorio dydžio galiausiai sudarytų tik 50 satošių mokestį.</translation>
@@ -2227,8 +2152,8 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Dulkės:</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for picscoin transactions than the network can process.</source>
-        <translation>Kai sandorių apimtis yra mažesnė nei erdvės blokuose, kasėjai ir perduodantys mazgai gali užtikrinti minimalų mokestį. Mokėti tik šį minimalų mokestį yra galima, tačiau atkreipkite dėmesį, kad dėl to gali atsirasti niekada nepatvirtinamas sandoris, kai bus daugiau paklausos picscoin operacijoms, nei tinklas gali apdoroti.</translation>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
+        <translation>Kai sandorių apimtis yra mažesnė nei erdvės blokuose, kasėjai ir perduodantys mazgai gali užtikrinti minimalų mokestį. Mokėti tik šį minimalų mokestį yra galima, tačiau atkreipkite dėmesį, kad dėl to gali atsirasti niekada nepatvirtinamas sandoris, kai bus daugiau paklausos bitcoin operacijoms, nei tinklas gali apdoroti.</translation>
     </message>
     <message>
         <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
@@ -2295,6 +2220,14 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>%1 (%2 blokai)</translation>
     </message>
     <message>
+        <source> from wallet '%1'</source>
+        <translation>iš piniginės '%1'</translation>
+    </message>
+    <message>
+        <source>%1 to '%2'</source>
+        <translation>'%1' į '%2'</translation>
+    </message>
+    <message>
         <source>%1 to %2</source>
         <translation>%1 iki %2</translation>
     </message>
@@ -2309,10 +2242,6 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     <message>
         <source>You can increase the fee later (signals Replace-By-Fee, BIP-125).</source>
         <translation>Vėliau galite padidinti mokestį (signalai Pakeisti mokesčius, BIP-125).</translation>
-    </message>
-    <message>
-        <source>from wallet %1</source>
-        <translation>iš Piniginės %1</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -2355,10 +2284,6 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Sandorio sudarymas nepavyko!</translation>
     </message>
     <message>
-        <source>The transaction was rejected with the following reason: %1</source>
-        <translation>Sandoris buvo atmestas dėl šios priežasties: %1</translation>
-    </message>
-    <message>
         <source>A fee higher than %1 is considered an absurdly high fee.</source>
         <translation>Mokestis, didesnis nei %1, laikomas absurdiškai aukštu mokesčiu.</translation>
     </message>
@@ -2371,8 +2296,8 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation><numerusform>Apskaičiuota, kad bus pradėtas patvirtinimas per %n bloką.</numerusform><numerusform>Apskaičiuota, kad bus pradėtas patvirtinimas per %n blokus.</numerusform><numerusform>Apskaičiuota, kad bus pradėtas patvirtinimas per %n blokus.</numerusform><numerusform>Apskaičiuota, kad bus pradėtas patvirtinimas per %n blokus.</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid Picscoin address</source>
-        <translation>Įspėjimas: neteisingas Picscoin adresas</translation>
+        <source>Warning: Invalid Bitcoin address</source>
+        <translation>Įspėjimas: neteisingas Bitcoin adresas</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2410,12 +2335,8 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Pasirinkite anksčiau naudojamą adresą</translation>
     </message>
     <message>
-        <source>This is a normal payment.</source>
-        <translation>Tai įprastas mokėjimas.</translation>
-    </message>
-    <message>
-        <source>The Picscoin address to send the payment to</source>
-        <translation>Picscoin adresas, į kurį siunčiamas mokėjimas</translation>
+        <source>The Bitcoin address to send the payment to</source>
+        <translation>Bitcoin adresas, į kurį siunčiamas mokėjimas</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2434,8 +2355,8 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Pašalinti šį įrašą</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less picscoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>Mokestis bus atimamas iš siunčiamos sumos. Gavėjas gaus mažiau picscoinų nei įvesite sumos lauke. Jei pasirenkami keli gavėjai, mokestis padalijamas lygiai.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>Mokestis bus atimamas iš siunčiamos sumos. Gavėjas gaus mažiau bitcoinų nei įvesite sumos lauke. Jei pasirenkami keli gavėjai, mokestis padalijamas lygiai.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2462,8 +2383,8 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Įveskite šio adreso etiketę, kad ją pridėtumėte prie naudojamų adresų sąrašo</translation>
     </message>
     <message>
-        <source>A message that was attached to the picscoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Picscoin network.</source>
-        <translation>Pranešimas, kuris buvo pridėtas prie picscoin: URI, kuris bus saugomas kartu su sandoriu jūsų nuoroda. Pastaba: šis pranešimas nebus išsiųstas per „Picscoin“ tinklą.</translation>
+        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
+        <translation>Pranešimas, kuris buvo pridėtas prie bitcoin: URI, kuris bus saugomas kartu su sandoriu jūsų nuoroda. Pastaba: šis pranešimas nebus išsiųstas per „Bitcoin“ tinklą.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2472,17 +2393,6 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     <message>
         <source>Memo:</source>
         <translation>Atmintinė:</translation>
-    </message>
-    <message>
-        <source>Enter a label for this address to add it to your address book</source>
-        <translation>Įveskite šio adreso etiketę, kad ją pridėtumėte prie adresų knygos</translation>
-    </message>
-</context>
-<context>
-    <name>SendConfirmationDialog</name>
-    <message>
-        <source>Yes</source>
-        <translation>Taip</translation>
     </message>
 </context>
 <context>
@@ -2507,8 +2417,8 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>&amp;Pasirašyti žinutę</translation>
     </message>
     <message>
-        <source>The Picscoin address to sign the message with</source>
-        <translation>Picscoin adresas, kuriuo bus pasirašytas pranešimas su</translation>
+        <source>The Bitcoin address to sign the message with</source>
+        <translation>Bitcoin adresas, kuriuo bus pasirašytas pranešimas su</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2539,7 +2449,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Nukopijuokite dabartinį parašą į sistemos iškarpinę</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Picscoin address</source>
+        <source>Sign the message to prove you own this Bitcoin address</source>
         <translation>Registruotis žinute įrodymuii, kad turite šį adresą</translation>
     </message>
     <message>
@@ -2559,12 +2469,12 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>&amp;Patikrinti žinutę</translation>
     </message>
     <message>
-        <source>The Picscoin address the message was signed with</source>
-        <translation>Picscoin adresas, kuriuo buvo pasirašytas pranešimas</translation>
+        <source>The Bitcoin address the message was signed with</source>
+        <translation>Bitcoin adresas, kuriuo buvo pasirašytas pranešimas</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Picscoin address</source>
-        <translation>Patikrinkite žinutę, jog įsitikintumėte, kad ją pasirašė nurodytas Picscoin adresas</translation>
+        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <translation>Patikrinkite žinutę, jog įsitikintumėte, kad ją pasirašė nurodytas Bitcoin adresas</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -2625,13 +2535,6 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     <message>
         <source>Message verified.</source>
         <translation>Žinutė patikrinta.</translation>
-    </message>
-</context>
-<context>
-    <name>SplashScreen</name>
-    <message>
-        <source>[testnet]</source>
-        <translation>[testavimotinklas]</translation>
     </message>
 </context>
 <context>
@@ -2744,12 +2647,20 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Sandorio mokestis</translation>
     </message>
     <message>
+        <source>Net amount</source>
+        <translation>Neto suma</translation>
+    </message>
+    <message>
         <source>Message</source>
         <translation>Žinutė</translation>
     </message>
     <message>
         <source>Comment</source>
         <translation>Komentaras</translation>
+    </message>
+    <message>
+        <source>Transaction ID</source>
+        <translation>Sandorio ID</translation>
     </message>
     <message>
         <source>Merchant</source>
@@ -3067,15 +2978,15 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Uždaryti Piniginę</translation>
     </message>
     <message>
-        <source>Are you sure you wish to close wallet &lt;i&gt;%1&lt;/i&gt;?</source>
+        <source>Are you sure you wish to close the wallet &lt;i&gt;%1&lt;/i&gt;?</source>
         <translation>Ar tikrai norite uždaryti piniginę &lt;i&gt;%1&lt;/i&gt;?</translation>
     </message>
     </context>
 <context>
     <name>WalletFrame</name>
     <message>
-        <source>No wallet has been loaded.</source>
-        <translation>Piniginė nebuvo įkelta.</translation>
+        <source>Create a new wallet</source>
+        <translation>Sukurti naują piniginę</translation>
     </message>
 </context>
 <context>
@@ -3136,6 +3047,10 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Eksportuokite duomenis iš dabartinio skirtuko į failą</translation>
     </message>
     <message>
+        <source>Error</source>
+        <translation>Klaida</translation>
+    </message>
+    <message>
         <source>Backup Wallet</source>
         <translation>Sukurti Piniginės atsarginę kopiją</translation>
     </message>
@@ -3167,16 +3082,8 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Picscoin Core</source>
-        <translation>Picscoin branduolys</translation>
-    </message>
-    <message>
         <source>The %s developers</source>
         <translation>%s kūrėjai</translation>
-    </message>
-    <message>
-        <source>%s corrupt, salvage failed</source>
-        <translation>%s sugadintas, išgelbėjimas nepavyko</translation>
     </message>
     <message>
         <source>-maxmempool must be at least %d MB</source>
@@ -3189,6 +3096,10 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     <message>
         <source>Change index out of range</source>
         <translation>Pakeiskite indeksą iš diapazono</translation>
+    </message>
+    <message>
+        <source>Config setting for %s only applied on %s network when in [%s] section.</source>
+        <translation>%s konfigūravimo nustatymas taikomas tik %s tinkle, kai yra [%s] skiltyje.</translation>
     </message>
     <message>
         <source>Copyright (C) %i-%i</source>
@@ -3235,12 +3146,12 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Klaida atveriant blokų duombazę</translation>
     </message>
     <message>
-        <source>Error: Disk space is low!</source>
-        <translation>Įspėjimas: Nepakanka vietos diske!</translation>
-    </message>
-    <message>
         <source>Importing...</source>
         <translation>Importuojama...</translation>
+    </message>
+    <message>
+        <source>Unknown address type '%s'</source>
+        <translation>Nežinomas adreso tipas '%s'</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
@@ -3283,10 +3194,6 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Tikrinami blokai...</translation>
     </message>
     <message>
-        <source>Information</source>
-        <translation>Informacija</translation>
-    </message>
-    <message>
         <source>This is experimental software.</source>
         <translation>Tai eksperimentinė programinė įranga.</translation>
     </message>
@@ -3307,20 +3214,8 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Tikrinama piniginė(s)...</translation>
     </message>
     <message>
-        <source>Warning</source>
-        <translation>Įspėjimas</translation>
-    </message>
-    <message>
-        <source>Zapping all transactions from wallet...</source>
-        <translation>Visų operacijų sulaikymas iš piniginės...</translation>
-    </message>
-    <message>
         <source>%s is set very high!</source>
         <translation>%s labai aukštas!</translation>
-    </message>
-    <message>
-        <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
-        <translation>Įkeliant piniginę %s įvyko klaida. Dvigubo -wallet pavadinimas.</translation>
     </message>
     <message>
         <source>Starting network threads...</source>
@@ -3373,10 +3268,6 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     <message>
         <source>Done loading</source>
         <translation>Įkėlimas baigtas</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Klaida</translation>
     </message>
 </context>
 </TS>

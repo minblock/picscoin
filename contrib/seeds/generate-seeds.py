@@ -74,7 +74,7 @@ def name_to_ipv6(addr):
         raise ValueError('Could not parse address %s' % addr)
 
 def parse_spec(s, defaultport):
-    match = re.match('\[([0-9a-fA-F:]+)\](?::([0-9]+))?$', s)
+    match = re.match(r'\[([0-9a-fA-F:]+)\](?::([0-9]+))?$', s)
     if match: # ipv6
         host = match.group(1)
         port = match.group(2)
@@ -131,9 +131,8 @@ def main():
         process_nodes(g, f, 'pnSeed6_main', 1337)
     g.write('\n')
     with open(os.path.join(indir,'nodes_test.txt'), 'r', encoding="utf8") as f:
-        process_nodes(g, f, 'pnSeed6_test', 25567)
+        process_nodes(g, f, 'pnSeed6_test', 11336)
     g.write('#endif // BITCOIN_CHAINPARAMSSEEDS_H\n')
 
 if __name__ == '__main__':
     main()
-

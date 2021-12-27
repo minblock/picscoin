@@ -90,10 +90,6 @@
         <translation>Vhura &amp;URI</translation>
     </message>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
-    </message>
-    <message>
         <source>&amp;Send</source>
         <translation>&amp;Tumira</translation>
     </message>
@@ -130,7 +126,7 @@
     <name>CoinControlDialog</name>
     <message>
         <source>Amount</source>
-        <translation>Marii </translation>
+        <translation>Marii</translation>
     </message>
     <message>
         <source>Date</source>
@@ -140,6 +136,12 @@
         <source>(no label)</source>
         <translation>(hapana zita)</translation>
     </message>
+    </context>
+<context>
+    <name>CreateWalletActivity</name>
+    </context>
+<context>
+    <name>CreateWalletDialog</name>
     </context>
 <context>
     <name>EditAddressDialog</name>
@@ -153,8 +155,8 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <source>Bitcoin</source>
+        <translation>Bitcoin</translation>
     </message>
     </context>
 <context>
@@ -164,10 +166,16 @@
     <name>OpenURIDialog</name>
     </context>
 <context>
+    <name>OpenWalletActivity</name>
+    </context>
+<context>
     <name>OptionsDialog</name>
     </context>
 <context>
     <name>OverviewPage</name>
+    </context>
+<context>
+    <name>PSBTOperationsDialog</name>
     </context>
 <context>
     <name>PaymentServer</name>
@@ -179,11 +187,11 @@
     <name>QObject</name>
     <message>
         <source>Amount</source>
-        <translation>Marii </translation>
+        <translation>Marii</translation>
     </message>
     <message>
-        <source>Enter a Picscoin address (e.g. %1)</source>
-        <translation>Nyora kero ye Picscoin (sekuti %1)</translation>
+        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <translation>Nyora kero ye Bitcoin (sekuti %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -207,11 +215,8 @@
     </message>
     <message>
         <source>N/A</source>
-        <translation>Hapana </translation>
+        <translation>Hapana</translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
     </context>
 <context>
     <name>QRImageWidget</name>
@@ -220,7 +225,7 @@
     <name>RPCConsole</name>
     <message>
         <source>N/A</source>
-        <translation>Hapana </translation>
+        <translation>Hapana</translation>
     </message>
     </context>
 <context>
@@ -228,22 +233,6 @@
     </context>
 <context>
     <name>ReceiveRequestDialog</name>
-    <message>
-        <source>Address</source>
-        <translation>Kero</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Marii </translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Zita</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Chikwama</translation>
-    </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
@@ -271,16 +260,10 @@
     <name>SendCoinsEntry</name>
     </context>
 <context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
     <name>ShutdownWindow</name>
     </context>
 <context>
     <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
     </context>
 <context>
     <name>TrafficGraphWidget</name>
@@ -293,7 +276,7 @@
     </message>
     <message>
         <source>Amount</source>
-        <translation>Marii </translation>
+        <translation>Marii</translation>
     </message>
     </context>
 <context>
@@ -346,13 +329,5 @@
     </context>
 <context>
     <name>bitcoin-core</name>
-    <message>
-        <source>Information</source>
-        <translation>Ruzivo</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>Hokoyo</translation>
-    </message>
     </context>
 </TS>

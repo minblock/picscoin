@@ -30,6 +30,10 @@
         <translation>把目前選擇的位址從列表中刪除</translation>
     </message>
     <message>
+        <source>Enter address or label to search</source>
+        <translation>輸入位址或標記以作搜尋</translation>
+    </message>
+    <message>
         <source>Export the data in the current tab to a file</source>
         <translation>把目前分頁的資料匯出至檔案</translation>
     </message>
@@ -62,12 +66,8 @@
         <translation>收款地址</translation>
     </message>
     <message>
-        <source>These are your Picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>這些是你要付款過去的 Picscoin 位址。在付款之前，務必要檢查金額和收款位址是否正確。</translation>
-    </message>
-    <message>
-        <source>These are your Picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>這些是你用來收款的 Picscoin 位址。建議在每次交易時，都使用一個新的收款位址。</translation>
+        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>這些是你要付款過去的 Bitcoin 位址。在付款之前，務必要檢查金額和收款位址是否正確。</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -132,10 +132,6 @@
         <translation>重複新密碼</translation>
     </message>
     <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>輸入錢包的新密碼。&lt;br/&gt;密碼請用&lt;b&gt;10 個或以上的隨機字元&lt;/b&gt;，或是&lt;b&gt;8 個或以上的字詞&lt;/b&gt;。</translation>
-    </message>
-    <message>
         <source>Encrypt wallet</source>
         <translation>加密錢包</translation>
     </message>
@@ -160,16 +156,12 @@
         <translation>更改密碼</translation>
     </message>
     <message>
-        <source>Enter the old passphrase and new passphrase to the wallet.</source>
-        <translation>輸入舊密碼和新密碼至錢包。</translation>
-    </message>
-    <message>
         <source>Confirm wallet encryption</source>
         <translation>確認錢包加密</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PICSCOINS&lt;/b&gt;!</source>
-        <translation>警告: 如果你將錢包加密後又忘記密碼，你就會&lt;b&gt;失去所有 Picscoin 了&lt;/b&gt;！</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <translation>警告: 如果你將錢包加密後又忘記密碼，你就會&lt;b&gt;失去所有 Bitcoin 了&lt;/b&gt;！</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -306,8 +298,8 @@
         <translation>正在為磁碟區塊重建索引...</translation>
     </message>
     <message>
-        <source>Send coins to a Picscoin address</source>
-        <translation>付款至一個 Picscoin 位址</translation>
+        <source>Send coins to a Bitcoin address</source>
+        <translation>付款至一個 Bitcoin 位址</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -318,20 +310,8 @@
         <translation>改變錢包加密用的密碼</translation>
     </message>
     <message>
-        <source>&amp;Debug window</source>
-        <translation>除錯視窗 &amp;D</translation>
-    </message>
-    <message>
-        <source>Open debugging and diagnostic console</source>
-        <translation>開啓除錯和診斷主控台</translation>
-    </message>
-    <message>
         <source>&amp;Verify message...</source>
         <translation>驗證訊息... &amp;V</translation>
-    </message>
-    <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -362,8 +342,8 @@
         <translation>說明 &amp;H</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and picscoin: URIs)</source>
-        <translation>要求付款 (產生QR碼 picscoin: URIs)</translation>
+        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
+        <translation>要求付款 (產生QR碼 bitcoin: URIs)</translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -396,6 +376,12 @@
     </message>
     </context>
 <context>
+    <name>CreateWalletActivity</name>
+    </context>
+<context>
+    <name>CreateWalletDialog</name>
+    </context>
+<context>
     <name>EditAddressDialog</name>
     </context>
 <context>
@@ -407,8 +393,8 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <source>Bitcoin</source>
+        <translation>Bitcoin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -422,6 +408,9 @@
     <name>OpenURIDialog</name>
     </context>
 <context>
+    <name>OpenWalletActivity</name>
+    </context>
+<context>
     <name>OptionsDialog</name>
     <message>
         <source>Error</source>
@@ -430,6 +419,9 @@
     </context>
 <context>
     <name>OverviewPage</name>
+    </context>
+<context>
+    <name>PSBTOperationsDialog</name>
     </context>
 <context>
     <name>PaymentServer</name>
@@ -448,8 +440,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Enter a Picscoin address (e.g. %1)</source>
-        <translation>輸入一個 Picscoin 位址 (例如 %1)</translation>
+        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <translation>輸入一個 Bitcoin 位址 (例如 %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -509,9 +501,6 @@
     </message>
     </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
     <name>QRImageWidget</name>
     <message>
         <source>Save QR Code</source>
@@ -531,10 +520,6 @@
     <message>
         <source>&amp;Information</source>
         <translation>資訊 &amp;I</translation>
-    </message>
-    <message>
-        <source>Debug window</source>
-        <translation>除錯視窗</translation>
     </message>
     <message>
         <source>General</source>
@@ -558,18 +543,6 @@
     </context>
 <context>
     <name>ReceiveRequestDialog</name>
-    <message>
-        <source>Address</source>
-        <translation>地址</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>標記</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>錢包</translation>
-    </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
@@ -593,16 +566,10 @@
     <name>SendCoinsEntry</name>
     </context>
 <context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
     <name>ShutdownWindow</name>
     </context>
 <context>
     <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
     </context>
 <context>
     <name>TrafficGraphWidget</name>
@@ -673,20 +640,12 @@
         <source>Export the data in the current tab to a file</source>
         <translation>把目前分頁的資料匯出至檔案</translation>
     </message>
-    </context>
-<context>
-    <name>bitcoin-core</name>
-    <message>
-        <source>Information</source>
-        <translation>資訊</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>警告</translation>
-    </message>
     <message>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
-</context>
+    </context>
+<context>
+    <name>bitcoin-core</name>
+    </context>
 </TS>

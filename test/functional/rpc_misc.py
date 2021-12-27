@@ -19,9 +19,17 @@ from test_framework.authproxy import JSONRPCException
 class RpcMiscTest(BitcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
+        self.supports_cli = False
 
     def run_test(self):
         node = self.nodes[0]
+
+        self.log.info("test CHECK_NONFATAL")
+        assert_raises_rpc_error(
+            -1,
+            'Internal bug detected: \'request.params[9].get_str() != "trigger_internal_bug"\'',
+            lambda: node.echo(arg9='trigger_internal_bug'),
+        )
 
         self.log.info("test getmemoryinfo")
         memory = node.getmemoryinfo()['locked']
@@ -45,6 +53,42 @@ class RpcMiscTest(BitcoinTestFramework):
             assert_raises_rpc_error(-8, 'mallocinfo is only available when compiled with glibc 2.10+', node.getmemoryinfo, mode="mallocinfo")
 
         assert_raises_rpc_error(-8, "unknown mode foobar", node.getmemoryinfo, mode="foobar")
+
+        self.log.info("test logging")
+        assert_equal(node.logging()['qt'], True)
+        node.logging(exclude=['qt'])
+        assert_equal(node.logging()['qt'], False)
+        node.logging(include=['qt'])
+        assert_equal(node.logging()['qt'], True)
+
+        self.log.info("test getindexinfo")
+        # Without any indices running the RPC returns an empty object
+        assert_equal(node.getindexinfo(), {})
+
+        # Restart the node with indices and wait for them to sync
+        self.restart_node(0, ["-txindex", "-blockfilterindex"])
+        self.wait_until(lambda: all(i["synced"] for i in node.getindexinfo().values()))
+
+        # Returns a list of all running indices by default
+        assert_equal(
+            node.getindexinfo(),
+            {
+                "txindex": {"synced": True, "best_block_height": 200},
+                "basic block filter index": {"synced": True, "best_block_height": 200}
+            }
+        )
+
+        # Specifying an index by name returns only the status of that index
+        assert_equal(
+            node.getindexinfo("txindex"),
+            {
+                "txindex": {"synced": True, "best_block_height": 200},
+            }
+        )
+
+        # Specifying an unknown index name returns an empty result
+        assert_equal(node.getindexinfo("foo"), {})
+
 
 if __name__ == '__main__':
     RpcMiscTest().main()

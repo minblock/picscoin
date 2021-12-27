@@ -2,9 +2,13 @@
 
 General picscoin questions and/or support requests and are best directed to the [picscointalk.io forums](https://picscointalk.io/).
 
-For reporting security issues, please contact the Picscoin developers on the #picscoin-dev Freenode IRC channel or alternatively you can email us at contact@picscoins.org.
+For reporting security issues, please contact the Picscoin developers on the #picscoin-dev Freenode IRC channel or alternatively you can email us at contact@picsco.in.
 
-If the node is "stuck" during sync or giving "block checksum mismatch" errors, please ensure your hardware is stable by running memtest and observe CPU temperature with a load-test tool such as linpack before creating an issue! -->
+If the node is "stuck" during sync or giving "block checksum mismatch" errors, please ensure your hardware is stable by running memtest and observe CPU temperature with a load-test tool such as linpack before creating an issue!
+
+Any report, issue or feature request related to the GUI should be reported at
+https://github.com/bitcoin-core/gui/issues/
+-->
 
 <!-- Describe the issue -->
 <!--- What behavior did you expect? -->
@@ -16,6 +20,8 @@ If the node is "stuck" during sync or giving "block checksum mismatch" errors, p
 <!-- What version of Picscoin Core are you using, where did you get it (website, self-compiled, etc)? -->
 
 <!-- What type of machine are you observing the error on (OS/CPU and disk type)? -->
+
+<!-- GUI-related issue? What is your operating system and its version? If Linux, what is your desktop environment and graphical shell? -->
 
 <!-- Any extra information that might be useful in the debugging process. -->
 <!--- This is normally the contents of a `debug.log` or `config.log` file. Raw text or a link to a pastebin type site are preferred. -->

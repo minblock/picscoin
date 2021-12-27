@@ -122,12 +122,12 @@ its maximum size, the transaction that (along with in-mempool descendants) has
 the lowest total feerate (as a package) will be evicted and the node's effective
 minimum relay feerate will be increased to match this feerate plus the initial
 minimum relay feerate. The initial minimum relay feerate is set to
-1000 sevtokies per kB.
+1000 satoshis per kB.
 
 Bitcoin Core 0.12 also introduces new default policy limits on the length and
 size of unconfirmed transaction chains that are allowed in the mempool
 (generally limiting the length of unconfirmed chains to 25 transactions, with a
-total size of 101 KB).  These limits can be overriden using command line
+total size of 101 KB).  These limits can be overridden using command line
 arguments; see the extended help (`--help -help-debug`) for more information.
 
 Opt-in Replace-by-fee transactions
@@ -280,7 +280,7 @@ At all times, Bitcoin Core will cap fees at `-maxtxfee=<x>` (default:
 Furthermore, Bitcoin Core will never create transactions paying less than
 the current minimum relay fee.
 Finally, a user can set the minimum fee rate for all transactions with
-`-mintxfee=<i>`, which defaults to 1000 sevtokies per kB.
+`-mintxfee=<i>`, which defaults to 1000 satoshis per kB.
 
 Wallet: Negative confirmations and conflict detection
 -----------------------------------------------------

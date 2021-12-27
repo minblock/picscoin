@@ -66,12 +66,8 @@
         <translation>Adrese primalaca</translation>
     </message>
     <message>
-        <source>These are your Picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ovo su vaše Picscoin adrese za slanje novca. Uvijek provjerite iznos i adresu primaoca prije slanja novca.</translation>
-    </message>
-    <message>
-        <source>These are your Picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Ovo su vaše Picscoin adrese za primanje novca. Preporučljivo je da koristite novu adresu primaoca za svaku transakciju.</translation>
+        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ovo su vaše Bitcoin adrese za slanje novca. Uvijek provjerite iznos i adresu primaoca prije slanja novca.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -113,13 +109,15 @@
     </context>
 <context>
     <name>BitcoinGUI</name>
-    <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
-    </message>
     </context>
 <context>
     <name>CoinControlDialog</name>
+    </context>
+<context>
+    <name>CreateWalletActivity</name>
+    </context>
+<context>
+    <name>CreateWalletDialog</name>
     </context>
 <context>
     <name>EditAddressDialog</name>
@@ -133,8 +131,12 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
+        <translation>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</translation>
+    </message>
+    <message>
+        <source>Bitcoin</source>
+        <translation>Bitcoin</translation>
     </message>
     </context>
 <context>
@@ -144,10 +146,16 @@
     <name>OpenURIDialog</name>
     </context>
 <context>
+    <name>OpenWalletActivity</name>
+    </context>
+<context>
     <name>OptionsDialog</name>
     </context>
 <context>
     <name>OverviewPage</name>
+    </context>
+<context>
+    <name>PSBTOperationsDialog</name>
     </context>
 <context>
     <name>PaymentServer</name>
@@ -157,9 +165,6 @@
     </context>
 <context>
     <name>QObject</name>
-    </context>
-<context>
-    <name>QObject::QObject</name>
     </context>
 <context>
     <name>QRImageWidget</name>
@@ -191,9 +196,6 @@
     </message>
     </context>
 <context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
     <name>ShutdownWindow</name>
     </context>
 <context>
@@ -206,9 +208,6 @@
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
-    </context>
-<context>
-    <name>SplashScreen</name>
     </context>
 <context>
     <name>TrafficGraphWidget</name>
@@ -278,9 +277,5 @@
     </context>
 <context>
     <name>bitcoin-core</name>
-    <message>
-        <source>Picscoin Core</source>
-        <translation>Picscoin Jezrga</translation>
-    </message>
     </context>
 </TS>

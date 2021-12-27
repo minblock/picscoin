@@ -66,12 +66,8 @@
         <translation>Adresy ôdbiyraniŏ</translation>
     </message>
     <message>
-        <source>These are your Picscoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Tukej sōm adresy Picscoin na kere posyłŏsz płaty. Dycki wybaduj wielość i adresã ôdbiyrŏcza przed posłaniym mōnet.</translation>
-    </message>
-    <message>
-        <source>These are your Picscoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Tukej sōm adresy Picscoin do ôdbiyraniŏ płatōw. Zalycŏ sie używaniŏ nowych adres ôdbiorczych dlŏ kożdyj transakcyje.</translation>
+        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Tukej sōm adresy Bitcoin na kere posyłŏsz płaty. Dycki wybaduj wielość i adresã ôdbiyrŏcza przed posłaniym mōnet.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -136,14 +132,6 @@
         <translation>Powtōrz nowe hasło</translation>
     </message>
     <message>
-        <source>Show password</source>
-        <translation>Pokŏż hasło</translation>
-    </message>
-    <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Wkludź nowe hasło do portmanyja.&lt;br/&gt;Proszã używać hasła słożōnego z &lt;b&gt;10 abo wiyncyj losowych liter&lt;/b&gt; abo &lt;b&gt;8 abo wiyncyj słōw.&lt;/b&gt;.</translation>
-    </message>
-    <message>
         <source>Encrypt wallet</source>
         <translation>Zaszyfruj portmanyj</translation>
     </message>
@@ -168,16 +156,12 @@
         <translation>Pōmiyń hasło</translation>
     </message>
     <message>
-        <source>Enter the old passphrase and new passphrase to the wallet.</source>
-        <translation>Podej stare i nowe hasło do portmanyja.</translation>
-    </message>
-    <message>
         <source>Confirm wallet encryption</source>
         <translation>Przituplikuj szyfrowanie portmanyja</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PICSCOINS&lt;/b&gt;!</source>
-        <translation>Pozōr: jeźli zaszyfrujesz swōj portmanyj i stracisz hasło &lt;b&gt;STRACISZ WSZYJSKE SWOJE PICSCOINY&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <translation>Pozōr: jeźli zaszyfrujesz swōj portmanyj i stracisz hasło &lt;b&gt;STRACISZ WSZYJSKE SWOJE BITCOINY&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -338,8 +322,8 @@
         <translation>Proxy je &lt;b&gt;zapuszczone&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Picscoin address</source>
-        <translation>Poślij mōnety na adresã Picscoin</translation>
+        <source>Send coins to a Bitcoin address</source>
+        <translation>Poślij mōnety na adresã Bitcoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -350,20 +334,8 @@
         <translation>Pōmiyń hasło użyte do szyfrowaniŏ portmanyja</translation>
     </message>
     <message>
-        <source>&amp;Debug window</source>
-        <translation>Ôkno &amp;debugowaniŏ</translation>
-    </message>
-    <message>
-        <source>Open debugging and diagnostic console</source>
-        <translation>Ôdewrzij kōnsolã debugowaniŏ i diagnostyki</translation>
-    </message>
-    <message>
         <source>&amp;Verify message...</source>
         <translation>&amp;Weryfikuj wiadōmość...</translation>
-    </message>
-    <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -386,12 +358,12 @@
         <translation>Szyfruj klucze prywatne, kere sōm we twojim portmanyju</translation>
     </message>
     <message>
-        <source>Sign messages with your Picscoin addresses to prove you own them</source>
+        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
         <translation>Podpisz wiadōmości swojōm adresōm coby dowiyść jejich posiadanie</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Picscoin addresses</source>
-        <translation>Zweryfikuj wiadōmość, coby wejzdrzeć sie, iże ôstała podpisanŏ podanōm adresōm Picscoin.</translation>
+        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <translation>Zweryfikuj wiadōmość, coby wejzdrzeć sie, iże ôstała podpisanŏ podanōm adresōm Bitcoin.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -410,8 +382,8 @@
         <translation>Lajsta szkart</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and picscoin: URIs)</source>
-        <translation>Żōndej płatu (gyneruje kod QR jak tyż URI picscoin:)</translation>
+        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
+        <translation>Żōndej płatu (gyneruje kod QR jak tyż URI bitcoin:)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -422,16 +394,12 @@
         <translation>Pokŏż wykŏz adres i etyket użytych do ôdbiyraniŏ</translation>
     </message>
     <message>
-        <source>Open a picscoin: URI or payment request</source>
-        <translation>Ôdewrzij URI picscoin: abo żōndanie płatu</translation>
-    </message>
-    <message>
         <source>&amp;Command-line options</source>
         <translation>Ôp&amp;cyje piski nakŏzań</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Picscoin network</source>
-        <translation><numerusform>%n aktywne połōnczynie do necu Picscoin</numerusform><numerusform>%n aktywnych połōnczyń do necu Picscoin</numerusform><numerusform>%n aktywnych skuplowań do necu Picscoin</numerusform></translation>
+        <source>%n active connection(s) to Bitcoin network</source>
+        <translation><numerusform>%n aktywne połōnczynie do necu Bitcoin</numerusform><numerusform>%n aktywnych połōnczyń do necu Bitcoin</numerusform><numerusform>%n aktywnych skuplowań do necu Bitcoin</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -478,7 +446,7 @@
         <translation>&amp;Adresy posyłaniŏ</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Picscoin command-line options</source>
+        <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation>Pokŏż pōmoc %1 coby zobŏczyć wykŏz wszyjskich ôpcyji piski nakŏzań.</translation>
     </message>
     <message>
@@ -496,6 +464,10 @@
     <message>
         <source>Catching up...</source>
         <translation>Trwŏ synchrōnizacyjŏ...</translation>
+    </message>
+    <message>
+        <source>Error: %1</source>
+        <translation>Feler: %1</translation>
     </message>
     <message>
         <source>Date: %1
@@ -557,11 +529,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Portmanyj je &lt;b&gt;zaszyfrowany&lt;/b&gt; i terŏźnie &lt;b&gt;zaszperowany&lt;/b&gt;</translation>
     </message>
-    <message>
-        <source>A fatal error occurred. Picscoin can no longer continue safely and will quit.</source>
-        <translation>Przitrefiōł sie krytyczny feler. Picscoin niy poradzi kōntynuować bezpiycznie i ôstanie zawrzity.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -697,8 +665,8 @@
         <translation>Ta etyketa stŏwŏ sie czyrwōnŏ jeźli keryś z ôdbiyrŏczy dostŏwŏ kwotã myńszõ aniżeli terŏźny prōg sztaubu.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 sevtokie(s) per input.</source>
-        <translation>Chwiyrŏ sie +/- %1 sevtokie na wchōd.</translation>
+        <source>Can vary +/- %1 satoshi(s) per input.</source>
+        <translation>Chwiyrŏ sie +/- %1 satoshi na wchōd.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -713,6 +681,12 @@
         <translation>(wydŏwka)</translation>
     </message>
 </context>
+<context>
+    <name>CreateWalletActivity</name>
+    </context>
+<context>
+    <name>CreateWalletDialog</name>
+    </context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -748,8 +722,8 @@
         <translation>Edytuj adresã posyłaniŏ</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Picscoin address.</source>
-        <translation>Wkludzōnŏ adresa "%1" niyma nŏleżnōm adresōm Picscoin.</translation>
+        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <translation>Wkludzōnŏ adresa "%1" niyma nŏleżnōm adresōm Bitcoin.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -792,10 +766,6 @@
     <message>
         <source>version</source>
         <translation>wersyjŏ</translation>
-    </message>
-    <message>
-        <source>(%1-bit)</source>
-        <translation>(%1-bit)</translation>
     </message>
     <message>
         <source>About %1</source>
@@ -841,8 +811,8 @@
         <translation>Użyj ôbranego folderu datōw</translation>
     </message>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <source>Bitcoin</source>
+        <translation>Bitcoin</translation>
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
@@ -853,8 +823,8 @@
         <translation>Kole %1 GB datōw ôstanie spamiyntane w tym katalogu.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Picscoin block chain.</source>
-        <translation>%1 sebiere i spamiyntŏ kopijõ kety blokōw Picscoin.</translation>
+        <source>%1 will download and store a copy of the Bitcoin block chain.</source>
+        <translation>%1 sebiere i spamiyntŏ kopijõ kety blokōw Bitcoin.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -876,7 +846,7 @@
         <source>(of %n GB needed)</source>
         <translation><numerusform>(z %n GB przidajnego)</numerusform><numerusform>(z %n GB przidajnych)</numerusform><numerusform>(z %n GB przidajnych)</numerusform></translation>
     </message>
-</context>
+    </context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -884,12 +854,12 @@
         <translation>Formular</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the picscoin network, as detailed below.</source>
-        <translation>Świyże transakcyje mogōm niy być jeszcze widzialne, a tedyć saldo portmanyja może być niynŏleżne. Te detale bydōm nŏleżne, kej portmanyj zakōńczy synchrōnizacyjõ z necym picscoin, zgodnie z miyniōnym ôpisym.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <translation>Świyże transakcyje mogōm niy być jeszcze widzialne, a tedyć saldo portmanyja może być niynŏleżne. Te detale bydōm nŏleżne, kej portmanyj zakōńczy synchrōnizacyjõ z necym bitcoin, zgodnie z miyniōnym ôpisym.</translation>
     </message>
     <message>
-        <source>Attempting to spend picscoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Prōba wydaniŏ picscoinōw kere niy sōm jeszcze wyświytlōne za transakcyjŏ ôstanie ôdciepniyntŏ bez nec.</translation>
+        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>Prōba wydaniŏ bitcoinōw kere niy sōm jeszcze wyświytlōne za transakcyjŏ ôstanie ôdciepniyntŏ bez nec.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -927,26 +897,17 @@
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open URI</source>
-        <translation>Ôdewrzij URI</translation>
-    </message>
-    <message>
-        <source>Open payment request from URI or file</source>
-        <translation>Ôdewrzij żōndanie płatu z URI abo zbioru</translation>
-    </message>
-    <message>
         <source>URI:</source>
         <translation>URI:</translation>
     </message>
-    <message>
-        <source>Select payment request file</source>
-        <translation>Ôtwōrz żōndanie płatu ze zbioru</translation>
-    </message>
-    <message>
-        <source>Select payment request file to open</source>
-        <translation>Ôbier zbiōr żōndaniŏ płatu do ôdewrzyniŏ</translation>
-    </message>
 </context>
+<context>
+    <name>OpenWalletActivity</name>
+    <message>
+        <source>default wallet</source>
+        <translation>wychodny portmanyj</translation>
+    </message>
+    </context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -1042,8 +1003,8 @@
         <translation>&amp;Wydej niyprzituplowanõ wydŏwkã</translation>
     </message>
     <message>
-        <source>Automatically open the Picscoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Autōmatycznie ôdewrzij port klijynta Picscoin na routerze. Ta ôpcyjŏ funguje ino jeźli twōj router podpiyrŏ UPnP i je ôno zapuszczone.</translation>
+        <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Autōmatycznie ôdewrzij port klijynta Bitcoin na routerze. Ta ôpcyjŏ funguje ino jeźli twōj router podpiyrŏ UPnP i je ôno zapuszczone.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1058,8 +1019,8 @@
         <translation>Zwōl na skuplowania przichodzōnce</translation>
     </message>
     <message>
-        <source>Connect to the Picscoin network through a SOCKS5 proxy.</source>
-        <translation>Skupluj sie z necym Picscoin bez SOCKS5 proxy.</translation>
+        <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
+        <translation>Skupluj sie z necym Bitcoin bez SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1088,10 +1049,6 @@
     <message>
         <source>Tor</source>
         <translation>Tor</translation>
-    </message>
-    <message>
-        <source>Connect to the Picscoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Skupluj sie z necym Picscoin ze pōmocōm ôsobnego proxy SOCKS5 dlŏ necu TOR</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1137,8 +1094,8 @@
         <translation>Formular</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Picscoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Wyświytlanŏ informacyjŏ może być niyterŏźnŏ. Twōj portmanyj synchrōnizuje sie autōmatycznie z necym picscoin zarŏz po tym, jak zrychtowane je skuplowanie, ale proces tyn niy ôstoł jeszcze skōńczōny.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Wyświytlanŏ informacyjŏ może być niyterŏźnŏ. Twōj portmanyj synchrōnizuje sie autōmatycznie z necym bitcoin zarŏz po tym, jak zrychtowane je skuplowanie, ale proces tyn niy ôstoł jeszcze skōńczōny.</translation>
     </message>
     <message>
         <source>Available:</source>
@@ -1162,6 +1119,13 @@
     </message>
     </context>
 <context>
+    <name>PSBTOperationsDialog</name>
+    <message>
+        <source>or</source>
+        <translation>abo</translation>
+    </message>
+    </context>
+<context>
     <name>PaymentServer</name>
     <message>
         <source>Payment request error</source>
@@ -1172,30 +1136,10 @@
         <translation>Bedynōng URI</translation>
     </message>
     <message>
-        <source>'picscoin://' is not a valid URI. Use 'picscoin:' instead.</source>
-        <translation>'picscoin://' to niyma nŏleżne URI. Użyj 'picscoin:'.</translation>
+        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
+        <translation>'bitcoin://' to niyma nŏleżne URI. Użyj 'bitcoin:'.</translation>
     </message>
-    <message>
-        <source>Payment request network doesn't match client network.</source>
-        <translation>Nec żōndaniŏ płatu niy ôdpadŏ necu klijynta.</translation>
-    </message>
-    <message>
-        <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>Niyzweryfikowane żōndaniŏ płatu do włŏsnych skryptōw płatu sōm niypodpiyrane.</translation>
-    </message>
-    <message>
-        <source>Error communicating with %1: %2</source>
-        <translation>Feler kōmunikacyje z %1: %2</translation>
-    </message>
-    <message>
-        <source>Network request error</source>
-        <translation>Feler żōndaniŏ necu</translation>
-    </message>
-    <message>
-        <source>Payment acknowledged</source>
-        <translation>Płat przituplowany</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>PeerTableModel</name>
     <message>
@@ -1218,8 +1162,8 @@
         <translation>Kwota</translation>
     </message>
     <message>
-        <source>Enter a Picscoin address (e.g. %1)</source>
-        <translation>Wkludź adresã Picscoin (bp. %1)</translation>
+        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <translation>Wkludź adresã Bitcoin (bp. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1262,15 +1206,12 @@
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>unknown</source>
-        <translation>niyznōme</translation>
-    </message>
-</context>
-<context>
-    <name>QObject::QObject</name>
-    <message>
         <source>Error: %1</source>
         <translation>Feler: %1</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>niyznōme</translation>
     </message>
 </context>
 <context>
@@ -1303,10 +1244,6 @@
         <translation>Wersyjŏ klijynta</translation>
     </message>
     <message>
-        <source>Debug window</source>
-        <translation>Ôkno debugowaniŏ</translation>
-    </message>
-    <message>
         <source>Using BerkeleyDB version</source>
         <translation>Używanie wersyje BerkeleyDB</translation>
     </message>
@@ -1335,16 +1272,12 @@
         <translation>Keta blokōw</translation>
     </message>
     <message>
-        <source>Current number of blocks</source>
-        <translation>Terŏźniŏ wielość blokōw</translation>
-    </message>
-    <message>
         <source>Current number of transactions</source>
         <translation>Terŏźniŏ wielość transakcyji</translation>
     </message>
     <message>
         <source>Wallet: </source>
-        <translation>Portmanyj: </translation>
+        <translation>Portmanyj:</translation>
     </message>
     <message>
         <source>Received</source>
@@ -1422,14 +1355,6 @@
         <source>Outbound</source>
         <translation>Wychodowy</translation>
     </message>
-    <message>
-        <source>Yes</source>
-        <translation>Ja</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation>Niy</translation>
-    </message>
     </context>
 <context>
     <name>ReceiveCoinsDialog</name>
@@ -1438,8 +1363,8 @@
         <translation>&amp;Etyketa:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Picscoin network.</source>
-        <translation>Ôpcyjōnalnŏ wiadōmość do prziwstōniŏ do żōndaniŏ płatu, kerŏ bydzie wyświytlanŏ, kej żōndanie ôstanie ôdewrzōne. Napōmniynie: wiadōmość ta niy ôstanie wysłanŏ z płatym w nec Picscoin.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
+        <translation>Ôpcyjōnalnŏ wiadōmość do prziwstōniŏ do żōndaniŏ płatu, kerŏ bydzie wyświytlanŏ, kej żōndanie ôstanie ôdewrzōne. Napōmniynie: wiadōmość ta niy ôstanie wysłanŏ z płatym w nec Bitcoin.</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -1473,12 +1398,24 @@
         <source>Copy amount</source>
         <translation>Kopiyruj kwotã</translation>
     </message>
-</context>
+    <message>
+        <source>Could not unlock wallet.</source>
+        <translation>Niy idzie było ôdszperować portmanyja.</translation>
+    </message>
+    </context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
-        <source>QR Code</source>
-        <translation>Kod QR</translation>
+        <source>Amount:</source>
+        <translation>Kwota:</translation>
+    </message>
+    <message>
+        <source>Message:</source>
+        <translation>Wiadōmość:</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>Portmanyj:</translation>
     </message>
     <message>
         <source>Copy &amp;URI</source>
@@ -1496,31 +1433,7 @@
         <source>Payment information</source>
         <translation>Informacyje ô płacie</translation>
     </message>
-    <message>
-        <source>URI</source>
-        <translation>URI</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Adresa</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Kwota</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Etyketa</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation>Wiadōmość</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Portmanyj</translation>
-    </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -1643,8 +1556,8 @@
         <translation>Utworzynie transakcyje niy podarziło sie!</translation>
     </message>
     <message>
-        <source>Warning: Invalid Picscoin address</source>
-        <translation>Pozōr: niynŏleżnŏ adresa Picscoin</translation>
+        <source>Warning: Invalid Bitcoin address</source>
+        <translation>Pozōr: niynŏleżnŏ adresa Bitcoin</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -1662,12 +1575,8 @@
         <translation>&amp;Etyketa:</translation>
     </message>
     <message>
-        <source>This is a normal payment.</source>
-        <translation>To je normalny płat.</translation>
-    </message>
-    <message>
-        <source>The Picscoin address to send the payment to</source>
-        <translation>Adresa Picscoin, na kerõ chcesz posłać płat</translation>
+        <source>The Bitcoin address to send the payment to</source>
+        <translation>Adresa Bitcoin, na kerõ chcesz posłać płat</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -1686,17 +1595,10 @@
         <translation>Wiadōmość:</translation>
     </message>
     <message>
-        <source>A message that was attached to the picscoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Picscoin network.</source>
-        <translation>Wiadōmość, kerŏ ôstała prziwstōnŏ do URI picscoin:, kerŏ bydzie przechowowanŏ z transakcyjōm w cylach informacyjnych. Napōmniynie: Ta wiadōmość niy bydzie rozszyrzowanŏ w necu Picscoin.</translation>
+        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
+        <translation>Wiadōmość, kerŏ ôstała prziwstōnŏ do URI bitcoin:, kerŏ bydzie przechowowanŏ z transakcyjōm w cylach informacyjnych. Napōmniynie: Ta wiadōmość niy bydzie rozszyrzowanŏ w necu Bitcoin.</translation>
     </message>
     </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    <message>
-        <source>Yes</source>
-        <translation>Ja</translation>
-    </message>
-</context>
 <context>
     <name>ShutdownWindow</name>
     </context>
@@ -1739,13 +1641,6 @@
         <translation>Weryfikacyjŏ wiadōmości niy podarziła sie.</translation>
     </message>
     </context>
-<context>
-    <name>SplashScreen</name>
-    <message>
-        <source>[testnet]</source>
-        <translation>[testnet]</translation>
-    </message>
-</context>
 <context>
     <name>TrafficGraphWidget</name>
     <message>
@@ -1940,8 +1835,16 @@
 <context>
     <name>WalletView</name>
     <message>
+        <source>&amp;Export</source>
+        <translation>&amp;Eksportuj</translation>
+    </message>
+    <message>
         <source>Export the data in the current tab to a file</source>
         <translation>Eksportuj dane z aktywnyj szkarty do zbioru</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Feler</translation>
     </message>
     <message>
         <source>Backup Failed</source>
@@ -1954,10 +1857,6 @@
 </context>
 <context>
     <name>bitcoin-core</name>
-    <message>
-        <source>Picscoin Core</source>
-        <translation>Picscoin Core</translation>
-    </message>
     <message>
         <source>The %s developers</source>
         <translation>Twōrcy %s</translation>
@@ -1991,10 +1890,6 @@
         <translation>Feler wgrŏwaniŏ bazy blokōw</translation>
     </message>
     <message>
-        <source>Error: Disk space is low!</source>
-        <translation>Feler: Za mało wolnego placu na dysku!</translation>
-    </message>
-    <message>
         <source>Loading P2P addresses...</source>
         <translation>Wgrŏwanie adres P2P...</translation>
     </message>
@@ -2015,10 +1910,6 @@
         <translation>Feler: Za mało wolnego placu na dysku dlŏ %s</translation>
     </message>
     <message>
-        <source>Information</source>
-        <translation>Informacyjŏ</translation>
-    </message>
-    <message>
         <source>Signing transaction failed</source>
         <translation>Szkryftniyńcie transakcyji niy podarziło sie</translation>
     </message>
@@ -2035,24 +1926,12 @@
         <translation>Weryfikacyjŏ portmanyja(ōw)...</translation>
     </message>
     <message>
-        <source>Warning</source>
-        <translation>Pozōr</translation>
-    </message>
-    <message>
         <source>Warning: unknown new rules activated (versionbit %i)</source>
         <translation>Pozōr: aktywowano było niyznōme nowe prawidła (versionbit %i)</translation>
     </message>
     <message>
         <source>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</source>
         <translation>Imyntnŏ dugość kety wersyje (%i) przekrŏczŏ maksymalnõ dopuszczalnõ dugość (%i). Zmyńsz wielość abo miara parametra uacomment.</translation>
-    </message>
-    <message>
-        <source>Warning: Wallet file corrupt, data salvaged! Original %s saved as %s in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>Pozōr: Ôdtworzōno było dane z poprzniōnego zbioru portmanyja! Ôryginalny %s ôstoł zapisany za %s w %s; jeźli twoje saldo abo transakcyje sōm niynŏleżne winiyn żeś prziwrōcić kopijõ ibrycznõ.</translation>
-    </message>
-    <message>
-        <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
-        <translation>Feler w czasie wgrŏwaniŏ portmanyja %s. Podanŏ tuplowane miano zbioru w -wallet.</translation>
     </message>
     <message>
         <source>Starting network threads...</source>
@@ -2081,10 +1960,6 @@
     <message>
         <source>Done loading</source>
         <translation>Wgrŏwanie zakōńczōne</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Feler</translation>
     </message>
 </context>
 </TS>

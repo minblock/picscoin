@@ -34,13 +34,13 @@ public:
     /** If allow empty is set to false the field will be set to the minimum allowed value if left empty. **/
     void SetAllowEmpty(bool allow);
 
-    /** Set the minimum value in sevtokies **/
+    /** Set the minimum value in satoshis **/
     void SetMinValue(const CAmount& value);
 
-    /** Set the maximum value in sevtokies **/
+    /** Set the maximum value in satoshis **/
     void SetMaxValue(const CAmount& value);
 
-    /** Set single step in sevtokies **/
+    /** Set single step in satoshis **/
     void setSingleStep(const CAmount& step);
 
     /** Make read-only **/
@@ -70,7 +70,7 @@ Q_SIGNALS:
 
 protected:
     /** Intercept focus-in event and ',' key presses */
-    bool eventFilter(QObject *object, QEvent *event);
+    bool eventFilter(QObject *object, QEvent *event) override;
 
 private:
     AmountSpinBox *amount;

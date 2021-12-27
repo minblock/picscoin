@@ -38,10 +38,6 @@
         <translation>Билдирүүнү &amp;текшерүү...</translation>
     </message>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
-    </message>
-    <message>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
@@ -82,6 +78,12 @@
     </message>
     </context>
 <context>
+    <name>CreateWalletActivity</name>
+    </context>
+<context>
+    <name>CreateWalletDialog</name>
+    </context>
+<context>
     <name>EditAddressDialog</name>
     <message>
         <source>&amp;Address</source>
@@ -101,8 +103,8 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Picscoin</source>
-        <translation>Picscoin</translation>
+        <source>Bitcoin</source>
+        <translation>Bitcoin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -114,6 +116,9 @@
     </context>
 <context>
     <name>OpenURIDialog</name>
+    </context>
+<context>
+    <name>OpenWalletActivity</name>
     </context>
 <context>
     <name>OptionsDialog</name>
@@ -158,6 +163,9 @@
     <name>OverviewPage</name>
     </context>
 <context>
+    <name>PSBTOperationsDialog</name>
+    </context>
+<context>
     <name>PaymentServer</name>
     </context>
 <context>
@@ -165,9 +173,6 @@
     </context>
 <context>
     <name>QObject</name>
-    </context>
-<context>
-    <name>QObject::QObject</name>
     </context>
 <context>
     <name>QRImageWidget</name>
@@ -213,16 +218,8 @@
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
-        <source>Address</source>
-        <translation>Дарек</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation>Билдирүү</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Капчык</translation>
+        <source>Message:</source>
+        <translation>Билдирүү:</translation>
     </message>
     </context>
 <context>
@@ -267,9 +264,6 @@
     </message>
     </context>
 <context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
     <name>ShutdownWindow</name>
     </context>
 <context>
@@ -282,9 +276,6 @@
         <source>Clear &amp;All</source>
         <translation>&amp;Бардыгын тазалоо</translation>
     </message>
-    </context>
-<context>
-    <name>SplashScreen</name>
     </context>
 <context>
     <name>TrafficGraphWidget</name>
@@ -339,20 +330,12 @@
     </context>
 <context>
     <name>WalletView</name>
-    </context>
-<context>
-    <name>bitcoin-core</name>
-    <message>
-        <source>Information</source>
-        <translation>Маалымат</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>Эскертүү</translation>
-    </message>
     <message>
         <source>Error</source>
         <translation>Ката</translation>
     </message>
-</context>
+    </context>
+<context>
+    <name>bitcoin-core</name>
+    </context>
 </TS>

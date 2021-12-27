@@ -1,12 +1,17 @@
 *.tar.gz
 
 *.exe
+*.pdb
 src/picscoin
 src/picscoind
 src/picscoin-cli
+src/picscoin-gui
+src/picscoin-node
 src/picscoin-tx
+src/picscoin-wallet
+src/test/fuzz/*
+!src/test/fuzz/*.*
 src/test/test_picscoin
-src/test/test_picscoin_fuzzy
 src/qt/test/test_picscoin-qt
 
 # autoreconf
@@ -26,6 +31,7 @@ build-aux/m4/ltversion.m4
 build-aux/missing
 build-aux/compile
 build-aux/test-driver
+config.cache
 config.log
 config.status
 configure
@@ -33,6 +39,7 @@ libtool
 src/config/bitcoin-config.h
 src/config/bitcoin-config.h.in
 src/config/stamp-h1
+src/obj
 share/setup.nsi
 share/qt/Info.plist
 
@@ -53,6 +60,7 @@ src/qt/bitcoin-qt.includes
 .deps
 .dirstamp
 .libs
+.vscode
 .*.swp
 *.*~*
 *.bak
@@ -61,10 +69,10 @@ src/qt/bitcoin-qt.includes
 *.pyc
 *.o
 *.o-*
-*.patch
 *.a
 *.pb.cc
 *.pb.h
+*.dat
 
 *.log
 *.trs
@@ -73,6 +81,10 @@ src/qt/bitcoin-qt.includes
 *.json.h
 *.raw.h
 
+# Only ignore unexpected patches
+*.patch
+!depends/patches/**/*.patch
+
 #libtool object files
 *.lo
 *.la
@@ -80,9 +92,13 @@ src/qt/bitcoin-qt.includes
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-picscoin-qt
-picscoin-Qt.app
+!depends/Makefile
+src/qt/picscoin-qt
+Picscoin-Qt.app
 background.tiff*
+
+# Qt Creator
+Makefile.am.user
 
 # Unit-tests
 Makefile.test
@@ -94,13 +110,19 @@ qrc_*.cpp
 .DS_Store
 build
 
+# Previous releases
+releases
+
 #lcov
 *.gcno
 *.gcda
 /*.info
 test_picscoin.coverage/
 total.coverage/
+fuzz.coverage/
 coverage_percent.txt
+/cov_tool_wrapper.sh
+qa-assets/
 
 #build tests
 linux-coverage-build
@@ -108,6 +130,7 @@ linux-build
 win32-build
 test/config.ini
 test/cache/*
+test/.mypy_cache/
 
 !src/leveldb*/Makefile
 
@@ -115,3 +138,13 @@ test/cache/*
 
 libbitcoinconsensus.pc
 contrib/devtools/split-debug.sh
+
+# Output from running db4 installation
+db4/
+
+# clang-check
+*.plist
+
+osx_volname
+dist/
+*.background.tiff
