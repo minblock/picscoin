@@ -172,7 +172,7 @@ class ZMQTest (BitcoinTestFramework):
             self.log.info("Skipping reorg test because wallet is disabled")
             return
 
-        address = 'tcp://127.0.0.1:28333'
+        address = 'tcp://127.0.0.1:21337'
 
         services = [b"hashblock", b"hashtx"]
         sockets = []
@@ -240,7 +240,7 @@ class ZMQTest (BitcoinTestFramework):
         <32-byte hash>A<8-byte LE uint> : Transactionhash added mempool
         """
         self.log.info("Testing 'sequence' publisher")
-        address = 'tcp://127.0.0.1:28333'
+        address = 'tcp://127.0.0.1:21337'
         socket = self.ctx.socket(zmq.SUB)
         socket.set(zmq.RCVTIMEO, 60000)
         seq = ZMQSubscriber(socket, b'sequence')
@@ -399,7 +399,7 @@ class ZMQTest (BitcoinTestFramework):
             return
 
         self.log.info("Testing 'mempool sync' usage of sequence notifier")
-        address = 'tcp://127.0.0.1:28333'
+        address = 'tcp://127.0.0.1:21337'
         socket = self.ctx.socket(zmq.SUB)
         socket.set(zmq.RCVTIMEO, 60000)
         seq = ZMQSubscriber(socket, b'sequence')
