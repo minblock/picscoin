@@ -2,10 +2,6 @@
 <context>
     <name>AddressBookPage</name>
     <message>
-        <source>Right-click to edit address or label</source>
-        <translation>Spiediet labo peles klikšķi, lai labotu adresi vai birku</translation>
-    </message>
-    <message>
         <source>Create a new address</source>
         <translation>Izveidot jaunu adresi</translation>
     </message>
@@ -66,10 +62,6 @@
         <translation>Adrešu saņemšana</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Šīs ir jūsu Bitcoin adreses, kuras izmantojamas maksājumu veikšanai. Vienmēr pārbaudiet summu un saņēmēja adresi pirms monētu nosūtīšanas.</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation>&amp;Kopēt adresi</translation>
     </message>
@@ -86,18 +78,10 @@
         <translation>Eksportēt Adrešu Sarakstu</translation>
     </message>
     <message>
-        <source>Comma separated file (*.csv)</source>
-        <translation>Ar komatiem atdalīts fails (*.csv)</translation>
-    </message>
-    <message>
         <source>Exporting Failed</source>
         <translation>Eksportēšana Neizdevās</translation>
     </message>
-    <message>
-        <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Mēģinot saglabāt adrešu sarakstu %1 radās kļūda. Mēģiniet vēlreiz.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -140,16 +124,8 @@
         <translation>Šifrēt maciņu</translation>
     </message>
     <message>
-        <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Lai veiktu šo darbību, nepieciešama jūsu maciņa slepenā frāze maciņa atvēršanai.</translation>
-    </message>
-    <message>
         <source>Unlock wallet</source>
         <translation>Atslēgt maciņu</translation>
-    </message>
-    <message>
-        <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Lai veiktu šo darbību, nepieciešama jūsu maciņa slepenā frāze maciņa dekriptēšanai.</translation>
     </message>
     <message>
         <source>Decrypt wallet</source>
@@ -164,10 +140,6 @@
         <translation>Apstiprināt maciņa šifrēšanu</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>Brīdinājums: Šifrējot Jūsu maciņu, gadījumā ja aizmirsīsiet savu paroli, Jūs NEATGRIEZENISKI ZAUDĒSIET VISUS SAVUS "BITKOINUS"!</translation>
-    </message>
-    <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Vai tu tiešām vēlies šifrēt savu maciņu?</translation>
     </message>
@@ -176,32 +148,12 @@
         <translation>Maciņš šifrēts</translation>
     </message>
     <message>
-        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Ievadiet savu paroli Jūsu maciņam, lūdzu lietojiet vismaz desmit simbolus, astoņus vai vairāk vārdus.</translation>
-    </message>
-    <message>
-        <source>Enter the old passphrase and new passphrase for the wallet.</source>
-        <translation>Ievadiet veco un jauno paroli Jūsu maciņam</translation>
-    </message>
-    <message>
-        <source>Wallet to be encrypted</source>
-        <translation>Maciņu nepieciešams šifrēt.</translation>
-    </message>
-    <message>
         <source>Your wallet is now encrypted. </source>
         <translation>Maciņš tagad šifrēts</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
         <translation>Maciņa šifrēšana neizdevās</translation>
-    </message>
-    <message>
-        <source>Wallet unlock failed</source>
-        <translation>Maciņa atslēgšana neizdevās</translation>
-    </message>
-    <message>
-        <source>Wallet decryption failed</source>
-        <translation>Maciņa atšifrēšana neizdevās</translation>
     </message>
     </context>
 <context>
@@ -240,10 +192,6 @@
     <message>
         <source>Quit application</source>
         <translation>Aizvērt programmu</translation>
-    </message>
-    <message>
-        <source>&amp;About %1</source>
-        <translation>&amp;Par %1</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
@@ -1211,10 +1159,6 @@
     </context>
 <context>
     <name>TransactionView</name>
-    <message>
-        <source>Comma separated file (*.csv)</source>
-        <translation>Ar komatiem atdalīts fails (*.csv)</translation>
-    </message>
     <message>
         <source>Confirmed</source>
         <translation>Apstiprināts</translation>

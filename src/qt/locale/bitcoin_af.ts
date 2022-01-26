@@ -3,11 +3,11 @@
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>Regsklik om adres of etiket te verander</translation>
+        <translation>Right-click to edit address or label</translation>
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>Skep ’n nuwe adres</translation>
+        <translation>Create a new address</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -68,11 +68,6 @@
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</translation>
-    </message>
-    <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>Hierdie is die adresse waar u Bitcoins sal ontvang. Ons beveel aan dat u 'n nuwe adres kies vir elke transaksie</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -483,10 +478,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation>Up to date</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file...</source>
-        <translation>Laai PSBT van lêer....</translation>
-    </message>
-    <message>
         <source>Node window</source>
         <translation>Node window</translation>
     </message>
@@ -839,7 +830,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <source>Create</source>
         <translation>Create</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -3675,6 +3666,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>%s is set very high!</source>
         <translation>%s is set very high!</translation>
+    </message>
+    <message>
+        <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
+        <translation>Error loading wallet %s. Duplicate -wallet filename specified.</translation>
     </message>
     <message>
         <source>Starting network threads...</source>

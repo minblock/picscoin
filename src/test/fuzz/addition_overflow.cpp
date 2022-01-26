@@ -5,6 +5,7 @@
 #include <test/fuzz/FuzzedDataProvider.h>
 #include <test/fuzz/fuzz.h>
 #include <test/fuzz/util.h>
+#include <util/overflow.h>
 
 #include <cstdint>
 #include <string>
@@ -14,7 +15,7 @@
 #if __has_builtin(__builtin_add_overflow)
 #define HAVE_BUILTIN_ADD_OVERFLOW
 #endif
-#elif defined(__GNUC__) && (__GNUC__ >= 5)
+#elif defined(__GNUC__)
 #define HAVE_BUILTIN_ADD_OVERFLOW
 #endif
 
@@ -40,7 +41,7 @@ void TestAdditionOverflow(FuzzedDataProvider& fuzzed_data_provider)
 }
 } // namespace
 
-void test_one_input(const std::vector<uint8_t>& buffer)
+FUZZ_TARGET(addition_overflow)
 {
     FuzzedDataProvider fuzzed_data_provider(buffer.data(), buffer.size());
     TestAdditionOverflow<int64_t>(fuzzed_data_provider);

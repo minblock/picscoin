@@ -22,10 +22,6 @@
         <translation>&amp;Kopjo</translation>
     </message>
     <message>
-        <source>C&amp;lose</source>
-        <translation>afer</translation>
-    </message>
-    <message>
         <source>Delete the currently selected address from the list</source>
         <translation>Fshi adresen e selektuar nga lista</translation>
     </message>
@@ -68,11 +64,6 @@
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>Këto janë Bitcoin adresat e juaja për të dërguar pagesa. Gjithmon kontrolloni shumën dhe adresën pranuese para se të dërgoni monedha.</translation>
-    </message>
-    <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>Këto janë adresat tuaja të Bitcoin për të marrë pagesa. Përdorni butonin 'Krijo adresë të re marrëse' në skedën e marrjes për të krijuar adresa të reja. Nënshkrimi është i mundur vetëm me adresa të tipit 'trashëgimi'.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -120,10 +111,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 </context>
 <context>
     <name>AskPassphraseDialog</name>
-    <message>
-        <source>Passphrase Dialog</source>
-        <translation>Dialog i Fjalëkalimit</translation>
-    </message>
     <message>
         <source>Enter passphrase</source>
         <translation>Futni fjalëkalimin</translation>

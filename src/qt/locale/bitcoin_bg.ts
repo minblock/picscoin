@@ -176,16 +176,8 @@
         <translation>портфейлa е шифрован</translation>
     </message>
     <message>
-        <source>Enter the old passphrase and new passphrase for the wallet.</source>
-        <translation>Въведете старата и новата паролна фраза за портфейла.</translation>
-    </message>
-    <message>
         <source>Wallet to be encrypted</source>
         <translation>Портфейл за криптиране</translation>
-    </message>
-    <message>
-        <source>Your wallet is about to be encrypted. </source>
-        <translation>Портфейлът ви е на път да бъде шифрован.</translation>
     </message>
     <message>
         <source>Your wallet is now encrypted. </source>
@@ -458,14 +450,6 @@
         <translation>Актуално</translation>
     </message>
     <message>
-        <source>Node window</source>
-        <translation>Прозорец на възела</translation>
-    </message>
-    <message>
-        <source>Open Wallet</source>
-        <translation>Отворете портфейл</translation>
-    </message>
-    <message>
         <source>Close Wallet...</source>
         <translation>Затвори Портфейла</translation>
     </message>
@@ -695,10 +679,6 @@
         <translation>не</translation>
     </message>
     <message>
-        <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
-        <translation>Този етикет става червен ако някой получател получи количество, по-малко от текущия праг на прах</translation>
-    </message>
-    <message>
         <source>(no label)</source>
         <translation>(без етикет)</translation>
     </message>
@@ -713,17 +693,9 @@
 </context>
 <context>
     <name>CreateWalletActivity</name>
-    <message>
-        <source>Create wallet failed</source>
-        <translation>Създаването на портфейл не бе успешен</translation>
-    </message>
     </context>
 <context>
     <name>CreateWalletDialog</name>
-    <message>
-        <source>Create Wallet</source>
-        <translation>Създайте портфейл</translation>
-    </message>
     </context>
 <context>
     <name>EditAddressDialog</name>
@@ -1328,10 +1300,6 @@
     <message>
         <source>User Agent</source>
         <translation>Потребителски агент</translation>
-    </message>
-    <message>
-        <source>Node window</source>
-        <translation>Прозорец на възела</translation>
     </message>
     <message>
         <source>Services</source>

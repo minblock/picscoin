@@ -478,15 +478,6 @@
         <translation>தேதி வரை</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file...</source>
-        <translation>118&amp; கோப்பிலிருந்து PSBT ஐ ஏற்றவும் ..</translation>
-    </message>
-    <message>
-        <source>Load Partially Signed Bitcoin Transaction</source>
-        <translation> ஓரளவு கையொப்பமிடப்பட்ட பிட்காயின் பரிவர்த்தனையை ஏற்றவும்
-</translation>
-    </message>
-    <message>
         <source>Node window</source>
         <translation>நோட் விண்டோ</translation>
     </message>
@@ -651,7 +642,7 @@
     </message>
     <message>
         <source>Amount:</source>
-        <translation>தொகை:</translation>
+        <translation>விலை:</translation>
     </message>
     <message>
         <source>Fee:</source>
@@ -683,7 +674,7 @@
     </message>
     <message>
         <source>Amount</source>
-        <translation>தொகை</translation>
+        <translation>விலை</translation>
     </message>
     <message>
         <source>Received with label</source>
@@ -839,7 +830,7 @@
         <source>Create</source>
         <translation>உருவாக்கு</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -1433,10 +1424,6 @@
     </context>
 <context>
     <name>PSBTOperationsDialog</name>
-    <message>
-        <source>Close</source>
-        <translation>நெருக்கமான</translation>
-    </message>
     <message>
         <source>Total Amount</source>
         <translation>முழு தொகை</translation>

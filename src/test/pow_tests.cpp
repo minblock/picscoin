@@ -1,4 +1,4 @@
-// Copyright (c) 2015-2019 The Bitcoin Core developers
+// Copyright (c) 2015-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,48 +15,48 @@ BOOST_FIXTURE_TEST_SUITE(pow_tests, BasicTestingSetup)
 BOOST_AUTO_TEST_CASE(get_next_work)
 {
     const auto chainParams = CreateChainParams(*m_node.args, CBaseChainParams::MAIN);
-    int64_t nLastRetargetTime = 1358118740; // Block #30240
+    int64_t nLastRetargetTime = 1261130161; // Block #30240
     CBlockIndex pindexLast;
-    pindexLast.nHeight = 280223;
-    pindexLast.nTime = 1358378777;  // Block #280223
-    pindexLast.nBits = 0x1c0ac141;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1c093f8dU);
+    pindexLast.nHeight = 32255;
+    pindexLast.nTime = 1262152739;  // Block #32255
+    pindexLast.nBits = 0x1d00ffff;
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1d00d86aU);
 }
 
 /* Test the constraint on the upper bound for next work */
 BOOST_AUTO_TEST_CASE(get_next_work_pow_limit)
 {
     const auto chainParams = CreateChainParams(*m_node.args, CBaseChainParams::MAIN);
-    int64_t nLastRetargetTime = 1317972665; // Block #0
+    int64_t nLastRetargetTime = 1231006505; // Block #0
     CBlockIndex pindexLast;
     pindexLast.nHeight = 2015;
-    pindexLast.nTime = 1318480354;  // Block #2015
-    pindexLast.nBits = 0x1e0ffff0;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1e0fffffU);
+    pindexLast.nTime = 1233061996;  // Block #2015
+    pindexLast.nBits = 0x1d00ffff;
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1d00ffffU);
 }
 
 /* Test the constraint on the lower bound for actual time taken */
 BOOST_AUTO_TEST_CASE(get_next_work_lower_limit_actual)
 {
     const auto chainParams = CreateChainParams(*m_node.args, CBaseChainParams::MAIN);
-    int64_t nLastRetargetTime = 1401682934; // Block #66528
+    int64_t nLastRetargetTime = 1279008237; // Block #66528
     CBlockIndex pindexLast;
-    pindexLast.nHeight = 578591;
-    pindexLast.nTime = 1401757934;  // Block #578591
-    pindexLast.nBits = 0x1b075cf1;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1b01d73cU);
+    pindexLast.nHeight = 68543;
+    pindexLast.nTime = 1279297671;  // Block #68543
+    pindexLast.nBits = 0x1c05a3f4;
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1c0168fdU);
 }
 
 /* Test the constraint on the upper bound for actual time taken */
 BOOST_AUTO_TEST_CASE(get_next_work_upper_limit_actual)
 {
     const auto chainParams = CreateChainParams(*m_node.args, CBaseChainParams::MAIN);
-    int64_t nLastRetargetTime = 1463690315; // NOTE: Not an actual block time
+    int64_t nLastRetargetTime = 1263163443; // NOTE: Not an actual block time
     CBlockIndex pindexLast;
-    pindexLast.nHeight = 1001951;
-    pindexLast.nTime = 1464900315;  // Block #46367
-    pindexLast.nBits = 0x1b015318;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1b054c60U);
+    pindexLast.nHeight = 46367;
+    pindexLast.nTime = 1269211443;  // Block #46367
+    pindexLast.nBits = 0x1c387f6f;
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1d00e1fdU);
 }
 
 BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_negative_target)
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_overflow_target)
 {
     const auto consensus = CreateChainParams(*m_node.args, CBaseChainParams::MAIN)->GetConsensus();
     uint256 hash;
-    unsigned int nBits = ~0x00800000;
+    unsigned int nBits{~0x00800000U};
     hash.SetHex("0x1");
     BOOST_CHECK(!CheckProofOfWork(hash, nBits, consensus));
 }
@@ -155,13 +155,11 @@ void sanity_check_chainparams(const ArgsManager& args, std::string chainName)
     BOOST_CHECK(UintToArith256(consensus.powLimit) >= pow_compact);
 
     // check max target * 4*nPowTargetTimespan doesn't overflow -- see pow.cpp:CalculateNextWorkRequired()
-    /* Picscoin: we allow overflowing by 1 bit
     if (!consensus.fPowNoRetargeting) {
         arith_uint256 targ_max("0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
         targ_max /= consensus.nPowTargetTimespan*4;
         BOOST_CHECK(UintToArith256(consensus.powLimit) < targ_max);
     }
-    */
 }
 
 BOOST_AUTO_TEST_CASE(ChainParams_MAIN_sanity)

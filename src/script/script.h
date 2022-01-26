@@ -1,11 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2020 The Bitcoin Core developers
+// Copyright (c) 2009-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_SCRIPT_SCRIPT_H
 #define BITCOIN_SCRIPT_SCRIPT_H
 
+#include <attributes.h>
 #include <crypto/common.h>
 #include <prevector.h>
 #include <serialize.h>
@@ -438,9 +439,9 @@ public:
     /** Delete non-existent operator to defend against future introduction */
     CScript& operator<<(const CScript& b) = delete;
 
-    CScript& operator<<(int64_t b) { return push_int64(b); }
+    CScript& operator<<(int64_t b) LIFETIMEBOUND { return push_int64(b); }
 
-    CScript& operator<<(opcodetype opcode)
+    CScript& operator<<(opcodetype opcode) LIFETIMEBOUND
     {
         if (opcode < 0 || opcode > 0xff)
             throw std::runtime_error("CScript::operator<<(): invalid opcode");
@@ -448,13 +449,13 @@ public:
         return *this;
     }
 
-    CScript& operator<<(const CScriptNum& b)
+    CScript& operator<<(const CScriptNum& b) LIFETIMEBOUND
     {
         *this << b.getvch();
         return *this;
     }
 
-    CScript& operator<<(const std::vector<unsigned char>& b)
+    CScript& operator<<(const std::vector<unsigned char>& b) LIFETIMEBOUND
     {
         if (b.size() < OP_PUSHDATA1)
         {

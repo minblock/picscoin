@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2019 The Bitcoin Core developers
+// Copyright (c) 2011-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,6 +18,7 @@
 
 #include <QAbstractItemDelegate>
 #include <QApplication>
+#include <QDateTime>
 #include <QPainter>
 #include <QStatusTipEvent>
 
@@ -68,18 +69,17 @@ public:
             foreground = brush.color();
         }
 
+        if (index.data(TransactionTableModel::WatchonlyRole).toBool()) {
+            QIcon iconWatchonly = qvariant_cast<QIcon>(index.data(TransactionTableModel::WatchonlyDecorationRole));
+            QRect watchonlyRect(addressRect.left(), addressRect.top(), 16, addressRect.height());
+            iconWatchonly = platformStyle->TextColorIcon(iconWatchonly);
+            iconWatchonly.paint(painter, watchonlyRect);
+            addressRect.setLeft(addressRect.left() + watchonlyRect.width() + 5);
+        }
+
         painter->setPen(foreground);
         QRect boundingRect;
         painter->drawText(addressRect, Qt::AlignLeft | Qt::AlignVCenter, address, &boundingRect);
-        int address_rect_min_width = boundingRect.width();
-
-        if (index.data(TransactionTableModel::WatchonlyRole).toBool())
-        {
-            QIcon iconWatchonly = qvariant_cast<QIcon>(index.data(TransactionTableModel::WatchonlyDecorationRole));
-            QRect watchonlyRect(boundingRect.right() + 5, mainRect.top()+ypad+halfheight, 16, halfheight);
-            iconWatchonly.paint(painter, watchonlyRect);
-            address_rect_min_width += 5 + watchonlyRect.width();
-        }
 
         if(amount < 0)
         {
@@ -107,7 +107,8 @@ public:
         QRect date_bounding_rect;
         painter->drawText(amountRect, Qt::AlignLeft | Qt::AlignVCenter, GUIUtil::dateTimeStr(date), &date_bounding_rect);
 
-        const int minimum_width = std::max(address_rect_min_width, amount_bounding_rect.width() + date_bounding_rect.width());
+        // 0.4*date_bounding_rect.width() is used to visually distinguish a date from an amount.
+        const int minimum_width = 1.4 * date_bounding_rect.width() + amount_bounding_rect.width();
         const auto search = m_minimum_width.find(index.row());
         if (search == m_minimum_width.end() || search->second != minimum_width) {
             m_minimum_width[index.row()] = minimum_width;
@@ -142,6 +143,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     ui(new Ui::OverviewPage),
     clientModel(nullptr),
     walletModel(nullptr),
+    m_platform_style{platformStyle},
     txdelegate(new TxViewDelegate(platformStyle, this))
 {
     ui->setupUi(this);
@@ -149,8 +151,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     m_balances.balance = -1;
 
     // use a SingleColorIcon for the "out of sync warning" icon
-    QIcon icon = platformStyle->SingleColorIcon(":/icons/warning");
-    icon.addPixmap(icon.pixmap(QSize(64,64), QIcon::Normal), QIcon::Disabled); // also set the disabled icon because we are using a disabled QPushButton to work around missing HiDPI support of QLabel (https://bugreports.qt.io/browse/QTBUG-42503)
+    QIcon icon = m_platform_style->SingleColorIcon(QStringLiteral(":/icons/warning"));
     ui->labelTransactionsStatus->setIcon(icon);
     ui->labelWalletStatus->setIcon(icon);
 
@@ -164,19 +165,14 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
 
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
-    connect(ui->labelWalletStatus, &QPushButton::clicked, this, &OverviewPage::handleOutOfSyncWarningClicks);
-    connect(ui->labelTransactionsStatus, &QPushButton::clicked, this, &OverviewPage::handleOutOfSyncWarningClicks);
+    connect(ui->labelWalletStatus, &QPushButton::clicked, this, &OverviewPage::outOfSyncWarningClicked);
+    connect(ui->labelTransactionsStatus, &QPushButton::clicked, this, &OverviewPage::outOfSyncWarningClicked);
 }
 
 void OverviewPage::handleTransactionClicked(const QModelIndex &index)
 {
     if(filter)
         Q_EMIT transactionClicked(filter->mapToSource(index));
-}
-
-void OverviewPage::handleOutOfSyncWarningClicks()
-{
-    Q_EMIT outOfSyncWarningClicked();
 }
 
 void OverviewPage::setPrivacy(bool privacy)
@@ -257,6 +253,9 @@ void OverviewPage::setClientModel(ClientModel *model)
         // Show warning, for example if this is a prerelease version
         connect(model, &ClientModel::alertsChanged, this, &OverviewPage::updateAlerts);
         updateAlerts(model->getStatusBarWarnings());
+
+        connect(model->getOptionsModel(), &OptionsModel::useEmbeddedMonospacedFontChanged, this, &OverviewPage::setMonospacedFont);
+        setMonospacedFont(model->getOptionsModel()->getUseEmbeddedMonospacedFont());
     }
 }
 
@@ -295,6 +294,17 @@ void OverviewPage::setWalletModel(WalletModel *model)
     updateDisplayUnit();
 }
 
+void OverviewPage::changeEvent(QEvent* e)
+{
+    if (e->type() == QEvent::PaletteChange) {
+        QIcon icon = m_platform_style->SingleColorIcon(QStringLiteral(":/icons/warning"));
+        ui->labelTransactionsStatus->setIcon(icon);
+        ui->labelWalletStatus->setIcon(icon);
+    }
+
+    QWidget::changeEvent(e);
+}
+
 void OverviewPage::updateDisplayUnit()
 {
     if(walletModel && walletModel->getOptionsModel())
@@ -320,4 +330,18 @@ void OverviewPage::showOutOfSyncWarning(bool fShow)
 {
     ui->labelWalletStatus->setVisible(fShow);
     ui->labelTransactionsStatus->setVisible(fShow);
+}
+
+void OverviewPage::setMonospacedFont(bool use_embedded_font)
+{
+    QFont f = GUIUtil::fixedPitchFont(use_embedded_font);
+    f.setWeight(QFont::Bold);
+    ui->labelBalance->setFont(f);
+    ui->labelUnconfirmed->setFont(f);
+    ui->labelImmature->setFont(f);
+    ui->labelTotal->setFont(f);
+    ui->labelWatchAvailable->setFont(f);
+    ui->labelWatchPending->setFont(f);
+    ui->labelWatchImmature->setFont(f);
+    ui->labelWatchTotal->setFont(f);
 }

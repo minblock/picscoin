@@ -2,10 +2,6 @@
 <context>
     <name>AddressBookPage</name>
     <message>
-        <source>Right-click to edit address or label</source>
-        <translation>Right-click to edit address or label</translation>
-    </message>
-    <message>
         <source>Create a new address</source>
         <translation>Crea novam inscriptionem</translation>
     </message>

@@ -1,12 +1,16 @@
-// Copyright (c) 2011-2019 The Bitcoin Core developers
+// Copyright (c) 2011-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <qt/bitcoinunits.h>
 
+#include <consensus/amount.h>
+
 #include <QStringList>
 
 #include <cassert>
+
+static constexpr auto MAX_DIGITS_BTC = 16;
 
 BitcoinUnits::BitcoinUnits(QObject *parent):
         QAbstractListModel(parent),
@@ -42,10 +46,10 @@ QString BitcoinUnits::longName(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("PIC");
-    case mBTC: return QString("bitmaps");
-    case uBTC: return QString("pixels");
-    case SAT: return QString("picstoshi");
+    case BTC: return QString("BTC");
+    case mBTC: return QString("mBTC");
+    case uBTC: return QString::fromUtf8("µBTC (bits)");
+    case SAT: return QString("Satoshi (sat)");
     default: return QString("???");
     }
 }
@@ -64,10 +68,10 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Picscoins");
-    case mBTC: return QString("Lites (1 / 1" THIN_SP_UTF8 "000)");
-    case uBTC: return QString("Photons (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-    case SAT: return QString("Liteoshis (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case BTC: return QString("Bitcoins");
+    case mBTC: return QString("Milli-Bitcoins (1 / 1" THIN_SP_UTF8 "000)");
+    case uBTC: return QString("Micro-Bitcoins (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case SAT: return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
@@ -108,7 +112,9 @@ QString BitcoinUnits::format(int unit, const CAmount& nIn, bool fPlus, Separator
     qint64 n_abs = (n > 0 ? n : -n);
     qint64 quotient = n_abs / coin;
     QString quotient_str = QString::number(quotient);
-    if (justify) quotient_str = quotient_str.rightJustified(16 - num_decimals, ' ');
+    if (justify) {
+        quotient_str = quotient_str.rightJustified(MAX_DIGITS_BTC - num_decimals, ' ');
+    }
 
     // Use SI-style thin space separators as these are locale independent and can't be
     // confused with the decimal marker.

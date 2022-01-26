@@ -1,21 +1,23 @@
-// Copyright (c) 2018-2019 The Bitcoin Core developers
+// Copyright (c) 2018-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <fs.h>
+#include <univalue.h>
 #include <util/check.h>
 #include <util/system.h>
 
 #include <wallet/test/init_test_fixture.h>
 
+namespace wallet {
 InitWalletDirTestingSetup::InitWalletDirTestingSetup(const std::string& chainName) : BasicTestingSetup(chainName)
 {
-    m_wallet_client = MakeWalletClient(*m_chain, *Assert(m_node.args));
+    m_wallet_loader = MakeWalletLoader(*m_node.chain, *Assert(m_node.args));
 
     std::string sep;
     sep += fs::path::preferred_separator;
 
-    m_datadir = GetDataDir();
+    m_datadir = gArgs.GetDataDirNet();
     m_cwd = fs::current_path();
 
     m_walletdir_path_cases["default"] = m_datadir / "wallets";
@@ -31,16 +33,20 @@ InitWalletDirTestingSetup::InitWalletDirTestingSetup(const std::string& chainNam
     fs::create_directories(m_walletdir_path_cases["default"]);
     fs::create_directories(m_walletdir_path_cases["custom"]);
     fs::create_directories(m_walletdir_path_cases["relative"]);
-    std::ofstream f(m_walletdir_path_cases["file"].BOOST_FILESYSTEM_C_STR);
+    fs::ofstream f(m_walletdir_path_cases["file"]);
     f.close();
 }
 
 InitWalletDirTestingSetup::~InitWalletDirTestingSetup()
 {
+    gArgs.LockSettings([&](util::Settings& settings) {
+        settings.forced_settings.erase("walletdir");
+    });
     fs::current_path(m_cwd);
 }
 
 void InitWalletDirTestingSetup::SetWalletDir(const fs::path& walletdir_path)
 {
-    gArgs.ForceSetArg("-walletdir", walletdir_path.string());
+    gArgs.ForceSetArg("-walletdir", fs::PathToString(walletdir_path));
 }
+} // namespace wallet
