@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2009-2010 Sever Neacsu
 // Copyright (c) 2009-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -29,13 +29,13 @@ enum class FeeEstimateMode {
 class CFeeRate
 {
 private:
-    CAmount nSatoshisPerK; // unit is satoshis-per-1,000-bytes
+    CAmount nSeversPerK; // unit is satoshis-per-1,000-bytes
 
 public:
     /** Fee rate of 0 satoshis per kB */
-    CFeeRate() : nSatoshisPerK(0) { }
+    CFeeRate() : nSeversPerK(0) { }
     template<typename I>
-    explicit CFeeRate(const I _nSatoshisPerK): nSatoshisPerK(_nSatoshisPerK) {
+    explicit CFeeRate(const I _nSeversPerK): nSeversPerK(_nSeversPerK) {
         // We've previously had bugs creep in from silent double->int conversion...
         static_assert(std::is_integral<I>::value, "CFeeRate should be used without floats");
     }
@@ -55,16 +55,16 @@ public:
      * Return the fee in satoshis for a size of 1000 bytes
      */
     CAmount GetFeePerK() const { return GetFee(1000); }
-    friend bool operator<(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK < b.nSatoshisPerK; }
-    friend bool operator>(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK > b.nSatoshisPerK; }
-    friend bool operator==(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK == b.nSatoshisPerK; }
-    friend bool operator<=(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK <= b.nSatoshisPerK; }
-    friend bool operator>=(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK >= b.nSatoshisPerK; }
-    friend bool operator!=(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK != b.nSatoshisPerK; }
-    CFeeRate& operator+=(const CFeeRate& a) { nSatoshisPerK += a.nSatoshisPerK; return *this; }
+    friend bool operator<(const CFeeRate& a, const CFeeRate& b) { return a.nSeversPerK < b.nSeversPerK; }
+    friend bool operator>(const CFeeRate& a, const CFeeRate& b) { return a.nSeversPerK > b.nSeversPerK; }
+    friend bool operator==(const CFeeRate& a, const CFeeRate& b) { return a.nSeversPerK == b.nSeversPerK; }
+    friend bool operator<=(const CFeeRate& a, const CFeeRate& b) { return a.nSeversPerK <= b.nSeversPerK; }
+    friend bool operator>=(const CFeeRate& a, const CFeeRate& b) { return a.nSeversPerK >= b.nSeversPerK; }
+    friend bool operator!=(const CFeeRate& a, const CFeeRate& b) { return a.nSeversPerK != b.nSeversPerK; }
+    CFeeRate& operator+=(const CFeeRate& a) { nSeversPerK += a.nSeversPerK; return *this; }
     std::string ToString(const FeeEstimateMode& fee_estimate_mode = FeeEstimateMode::BTC_KVB) const;
 
-    SERIALIZE_METHODS(CFeeRate, obj) { READWRITE(obj.nSatoshisPerK); }
+    SERIALIZE_METHODS(CFeeRate, obj) { READWRITE(obj.nSeversPerK); }
 };
 
 #endif // BITCOIN_POLICY_FEERATE_H

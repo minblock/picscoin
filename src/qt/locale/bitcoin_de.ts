@@ -808,7 +808,7 @@ Das Signieren ist nur mit Adressen vom Typ 'Legacy' möglich.</translation>
     </message>
     <message>
         <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Kann pro Eingabe um +/- %1 Satoshi(s) abweichen.</translation>
+        <translation>Kann pro Eingabe um +/- %1 Sever(s) abweichen.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -2403,7 +2403,7 @@ Das Signieren ist nur mit Adressen vom Typ 'Legacy' möglich.</translation>
 Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>Geben sie eine angepasste Gebühr pro kB (1.000 Byte) virtueller Größe der Transaktion an.
 
-Hinweis: Eine Gebühr von "100 Satoshis pro kB" bei einer Größe der Transaktion von 500 Byte (einem halben kB) würde eine Gebühr von 50 Satoshis ergeben, da die Gebühr pro Byte berechnet wird.</translation>
+Hinweis: Eine Gebühr von "100 Severs pro kB" bei einer Größe der Transaktion von 500 Byte (einem halben kB) würde eine Gebühr von 50 Severs ergeben, da die Gebühr pro Byte berechnet wird.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
