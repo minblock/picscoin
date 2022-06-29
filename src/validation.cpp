@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2010 Sever Neacsu
+// Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -20,6 +20,9 @@
 #include <index/txindex.h>
 #include <logging.h>
 #include <logging/timer.h>
+#include <mw/node/CoinsView.h>
+#include <mweb/mweb_db.h>
+#include <mweb/mweb_node.h>
 #include <node/ui_interface.h>
 #include <optional.h>
 #include <policy/fees.h>
@@ -382,7 +385,7 @@ static void UpdateMempoolForReorg(CTxMemPool& mempool, DisconnectedBlockTransact
     while (it != disconnectpool.queuedTx.get<insertion_order>().rend()) {
         // ignore validation errors in resurrected transactions
         TxValidationState stateDummy;
-        if (!fAddToMempool || (*it)->IsCoinBase() ||
+        if (!fAddToMempool || (*it)->IsCoinBase() || (*it)->IsHogEx() ||
             !AcceptToMemoryPool(mempool, stateDummy, *it,
                                 nullptr /* plTxnReplaced */, true /* bypass_limits */)) {
             // If the transaction doesn't make it in to the mempool, remove any
@@ -449,7 +452,7 @@ namespace {
 class MemPoolAccept
 {
 public:
-    MemPoolAccept(CTxMemPool& mempool) : m_pool(mempool), m_view(&m_dummy), m_viewmempool(&::ChainstateActive().CoinsTip(), m_pool),
+    MemPoolAccept(CTxMemPool& mempool) : m_pool(mempool), m_dummy{}, m_view(&m_dummy), m_viewmempool(&::ChainstateActive().CoinsTip(), m_pool),
         m_limit_ancestors(gArgs.GetArg("-limitancestorcount", DEFAULT_ANCESTOR_LIMIT)),
         m_limit_ancestor_size(gArgs.GetArg("-limitancestorsize", DEFAULT_ANCESTOR_SIZE_LIMIT)*1000),
         m_limit_descendants(gArgs.GetArg("-limitdescendantcount", DEFAULT_DESCENDANT_LIMIT)),
@@ -470,7 +473,7 @@ public:
          * additions if the associated transaction ends up being rejected by
          * the mempool.
          */
-        std::vector<COutPoint>& m_coins_to_uncache;
+        std::vector<OutputIndex>& m_coins_to_uncache;
         const bool m_test_accept;
         CAmount* m_fee_out;
     };
@@ -519,24 +522,24 @@ private:
     bool Finalize(ATMPArgs& args, Workspace& ws) EXCLUSIVE_LOCKS_REQUIRED(cs_main, m_pool.cs);
 
     // Compare a package's feerate against minimum allowed.
-    bool CheckFeeRate(size_t package_size, CAmount package_fee, TxValidationState& state)
+    bool CheckFeeRate(size_t package_size, uint64_t mweb_weight, CAmount package_fee, TxValidationState& state)
     {
-        CAmount mempoolRejectFee = m_pool.GetMinFee(gArgs.GetArg("-maxmempool", DEFAULT_MAX_MEMPOOL_SIZE) * 1000000).GetFee(package_size);
+        CAmount mempoolRejectFee = m_pool.GetMinFee(gArgs.GetArg("-maxmempool", DEFAULT_MAX_MEMPOOL_SIZE) * 1000000).GetTotalFee(package_size, mweb_weight);
         if (mempoolRejectFee > 0 && package_fee < mempoolRejectFee) {
             return state.Invalid(TxValidationResult::TX_MEMPOOL_POLICY, "mempool min fee not met", strprintf("%d < %d", package_fee, mempoolRejectFee));
         }
 
-        if (package_fee < ::minRelayTxFee.GetFee(package_size)) {
-            return state.Invalid(TxValidationResult::TX_MEMPOOL_POLICY, "min relay fee not met", strprintf("%d < %d", package_fee, ::minRelayTxFee.GetFee(package_size)));
+        if (package_fee < ::minRelayTxFee.GetTotalFee(package_size, mweb_weight)) {
+            return state.Invalid(TxValidationResult::TX_MEMPOOL_POLICY, "min relay fee not met", strprintf("%d < %d", package_fee, ::minRelayTxFee.GetTotalFee(package_size, mweb_weight)));
         }
         return true;
     }
 
 private:
     CTxMemPool& m_pool;
+    CCoinsView m_dummy;
     CCoinsViewCache m_view;
     CCoinsViewMemPool m_viewmempool;
-    CCoinsView m_dummy;
 
     // The package limits in effect at the time of invocation.
     const size_t m_limit_ancestors;
@@ -557,7 +560,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     TxValidationState &state = args.m_state;
     const int64_t nAcceptTime = args.m_accept_time;
     const bool bypass_limits = args.m_bypass_limits;
-    std::vector<COutPoint>& coins_to_uncache = args.m_coins_to_uncache;
+    std::vector<OutputIndex>& coins_to_uncache = args.m_coins_to_uncache;
 
     // Alias what we need out of ws
     std::set<uint256>& setConflicts = ws.m_conflicts;
@@ -573,10 +576,24 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
         return false; // state filled in by CheckTransaction
     }
 
+    // MWEB: Don't accept MWEB transactions before activation.
+    if (tx.HasMWEBTx() && !IsMWEBEnabled(::ChainActive().Tip(), args.m_chainparams.GetConsensus())) {
+        return state.Invalid(TxValidationResult::TX_NOT_STANDARD, "mweb-before-activation");
+    }
+
+    // MWEB: Check MWEB tx
+    if (!MWEB::Node::CheckTransaction(tx, state)) {
+        return false; // state filled in by CheckTransaction
+    }
+
     // Coinbase is only valid in a block, not as a loose transaction
     if (tx.IsCoinBase())
         return state.Invalid(TxValidationResult::TX_CONSENSUS, "coinbase");
 
+    // HogEx is only valid in a block, not as a loose transaction
+    if (tx.IsHogEx())
+        return state.Invalid(TxValidationResult::TX_CONSENSUS, "hogex");
+		
     // Rather not work on nonstandard transactions (unless -testnet/-regtest)
     std::string reason;
     if (fRequireStandard && !IsStandardTx(tx, reason))
@@ -586,8 +603,10 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     // A transaction with 1 segwit input and 1 P2WPHK output has non-witness size of 82 bytes.
     // Transactions smaller than this are not relayed to mitigate CVE-2017-12842 by not relaying
     // 64-byte transactions.
-    if (::GetSerializeSize(tx, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS) < MIN_STANDARD_TX_NONWITNESS_SIZE)
-        return state.Invalid(TxValidationResult::TX_NOT_STANDARD, "tx-size-small");
+    if (!tx.IsMWEBOnly()) {
+        if (::GetSerializeSize(tx, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS | SERIALIZE_NO_MWEB) < MIN_STANDARD_TX_NONWITNESS_SIZE)
+            return state.Invalid(TxValidationResult::TX_NOT_STANDARD, "tx-size-small");
+    }
 
     // Only accept nLockTime-using transactions that can be mined in the next
     // block; we don't want our mempool filled up with transactions that can't
@@ -601,9 +620,9 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     }
 
     // Check for conflicts with in-memory transactions
-    for (const CTxIn &txin : tx.vin)
+    for (const CTxInput& txin : tx.GetInputs())
     {
-        const CTransaction* ptxConflicting = m_pool.GetConflictTx(txin.prevout);
+        const CTransaction* ptxConflicting = m_pool.GetConflictTx(txin.GetIndex());
         if (ptxConflicting) {
             if (!setConflicts.count(ptxConflicting->GetHash()))
             {
@@ -620,12 +639,16 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
                 // unconfirmed ancestors anyway; doing otherwise is hopelessly
                 // insecure.
                 bool fReplacementOptOut = true;
-                for (const CTxIn &_txin : ptxConflicting->vin)
-                {
-                    if (_txin.nSequence <= MAX_BIP125_RBF_SEQUENCE)
+
+                // Litecoin: Only support BIP125 RBF when -mempoolreplacement arg is set
+                if (gArgs.GetArg("-mempoolreplacement", DEFAULT_ENABLE_REPLACEMENT)) {
+                    for (const CTxIn &_txin : ptxConflicting->vin)
                     {
-                        fReplacementOptOut = false;
-                        break;
+                        if (_txin.nSequence <= MAX_BIP125_RBF_SEQUENCE)
+                        {
+                            fReplacementOptOut = false;
+                            break;
+                        }
                     }
                 }
                 if (fReplacementOptOut) {
@@ -642,19 +665,19 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
 
     CCoinsViewCache& coins_cache = ::ChainstateActive().CoinsTip();
     // do all inputs exist?
-    for (const CTxIn& txin : tx.vin) {
-        if (!coins_cache.HaveCoinInCache(txin.prevout)) {
-            coins_to_uncache.push_back(txin.prevout);
+    for (const CTxInput& txin : tx.GetInputs()) {
+        if (!coins_cache.HaveCoinInCache(txin.GetIndex())) {
+            coins_to_uncache.push_back(txin.GetIndex());
         }
 
         // Note: this call may add txin.prevout to the coins cache
         // (coins_cache.cacheCoins) by way of FetchCoin(). It should be removed
         // later (via coins_to_uncache) if this tx turns out to be invalid.
-        if (!m_view.HaveCoin(txin.prevout)) {
+        if (!m_view.HaveCoin(txin.GetIndex())) {
             // Are inputs missing because we already have the tx?
-            for (size_t out = 0; out < tx.vout.size(); out++) {
+            for (const CTxOutput& txout : tx.GetOutputs()) {
                 // Optimistically just do efficient check of cache for outputs
-                if (coins_cache.HaveCoinInCache(COutPoint(hash, out))) {
+                if (coins_cache.HaveCoinInCache(txout.GetIndex())) {
                     return state.Invalid(TxValidationResult::TX_CONFLICT, "txn-already-known");
                 }
             }
@@ -669,7 +692,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     // we have all inputs cached now, so switch back to dummy (to protect
     // against bugs where we pull more inputs from disk that miss being added
     // to coins_to_uncache)
-    m_view.SetBackend(m_dummy);
+    // MW: TODO - m_view.SetBackend(m_dummy);
 
     // Only accept BIP68 sequence locked transactions that can be mined in the next
     // block; we don't want our mempool filled up with transactions that can't
@@ -711,7 +734,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     bool fSpendsCoinbase = false;
     for (const CTxIn &txin : tx.vin) {
         const Coin &coin = m_view.AccessCoin(txin.prevout);
-        if (coin.IsCoinBase()) {
+        if (coin.IsCoinBase() || coin.IsPegout()) {
             fSpendsCoinbase = true;
             break;
         }
@@ -720,6 +743,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     entry.reset(new CTxMemPoolEntry(ptx, nFees, nAcceptTime, ::ChainActive().Height(),
             fSpendsCoinbase, nSigOpsCost, lp));
     unsigned int nSize = entry->GetTxSize();
+    uint64_t mweb_weight = entry->GetMWEBWeight();
 
     if (nSigOpsCost > MAX_STANDARD_TX_SIGOPS_COST)
         return state.Invalid(TxValidationResult::TX_NOT_STANDARD, "bad-txns-too-many-sigops",
@@ -727,7 +751,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
 
     // No transactions are allowed below minRelayTxFee except from disconnected
     // blocks
-    if (!bypass_limits && !CheckFeeRate(nSize, nModifiedFees, state)) return false;
+    if (!bypass_limits && !CheckFeeRate(nSize, mweb_weight, nModifiedFees, state)) return false;
 
     const CTxMemPool::setEntries setIterConflicting = m_pool.GetIterSet(setConflicts);
     // Calculate in-mempool ancestors, up to a limit.
@@ -816,7 +840,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     fReplacementTransaction = setConflicts.size();
     if (fReplacementTransaction)
     {
-        CFeeRate newFeeRate(nModifiedFees, nSize);
+    	CFeeRate newFeeRate(nModifiedFees, nSize, mweb_weight);
         std::set<uint256> setConflictsParents;
         const int maxDescendantsToVisit = 100;
         for (const auto& mi : setIterConflicting) {
@@ -834,7 +858,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
             // mean high feerate children are ignored when deciding whether
             // or not to replace, we do require the replacement to pay more
             // overall fees too, mitigating most cases.
-            CFeeRate oldFeeRate(mi->GetModifiedFee(), mi->GetTxSize());
+            CFeeRate oldFeeRate(mi->GetModifiedFee(), mi->GetTxSize(), mi->GetMWEBWeight());
             if (newFeeRate <= oldFeeRate)
             {
                 return state.Invalid(TxValidationResult::TX_MEMPOOL_POLICY, "insufficient fee",
@@ -844,9 +868,15 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
                             oldFeeRate.ToString()));
             }
 
-            for (const CTxIn &txin : mi->GetTx().vin)
-            {
-                setConflictsParents.insert(txin.prevout.hash);
+            for (const CTxInput& txin : mi->GetTx().GetInputs()) {
+                if (txin.IsMWEB()) {
+                    auto parent_iter = m_pool.mapTxOutputs_MWEB.find(txin.ToMWEB());
+                    if (parent_iter != m_pool.mapTxOutputs_MWEB.end()) {
+                        setConflictsParents.insert(parent_iter->second->GetHash());
+                    }
+                } else {
+                    setConflictsParents.insert(txin.GetTxIn().prevout.hash);
+                }
             }
 
             nConflictingCount += mi->GetCountWithDescendants();
@@ -909,13 +939,13 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
         // Finally in addition to paying more fees than the conflicts the
         // new transaction must pay for its own bandwidth.
         CAmount nDeltaFees = nModifiedFees - nConflictingFees;
-        if (nDeltaFees < ::incrementalRelayFee.GetFee(nSize))
+        if (nDeltaFees < ::incrementalRelayFee.GetTotalFee(nSize, mweb_weight))
         {
             return state.Invalid(TxValidationResult::TX_MEMPOOL_POLICY, "insufficient fee",
                     strprintf("rejecting replacement %s, not enough additional fees to relay; %s < %s",
                         hash.ToString(),
                         FormatMoney(nDeltaFees),
-                        FormatMoney(::incrementalRelayFee.GetFee(nSize))));
+                        FormatMoney(::incrementalRelayFee.GetTotalFee(nSize, mweb_weight))));
         }
     }
     return true;
@@ -1063,7 +1093,7 @@ static bool AcceptToMemoryPoolWithTime(const CChainParams& chainparams, CTxMemPo
                         int64_t nAcceptTime, std::list<CTransactionRef>* plTxnReplaced,
                         bool bypass_limits, bool test_accept, CAmount* fee_out=nullptr) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
 {
-    std::vector<COutPoint> coins_to_uncache;
+    std::vector<OutputIndex> coins_to_uncache;
     MemPoolAccept::ATMPArgs args { chainparams, state, nAcceptTime, plTxnReplaced, bypass_limits, coins_to_uncache, test_accept, fee_out };
     bool res = MemPoolAccept(pool).AcceptSingleTransaction(tx, args);
     if (!res) {
@@ -1072,7 +1102,7 @@ static bool AcceptToMemoryPoolWithTime(const CChainParams& chainparams, CTxMemPo
         // invalid transactions that attempt to overrun the in-memory coins cache
         // (`CCoinsViewCache::cacheCoins`).
 
-        for (const COutPoint& hashTx : coins_to_uncache)
+        for (const OutputIndex& hashTx : coins_to_uncache)
             ::ChainstateActive().CoinsTip().Uncache(hashTx);
     }
     // After we've (potentially) uncached entries, ensure our coins cache is still within its size limits
@@ -1239,7 +1269,6 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     // Force block reward to zero when right shift is undefined.
     if (halvings >= 64)
         return 0;
-	
     if (nHeight == 1) return COIN * 1000000;
     CAmount nSubsidy = 50 * COIN;
     // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
@@ -1277,6 +1306,22 @@ void CChainState::InitCoinsDB(
 
     m_coins_views = MakeUnique<CoinsViews>(
         leveldb_name, cache_size_bytes, in_memory, should_wipe);
+
+    CBlock block;
+    CBlockIndex* pindex = LookupBlockIndex(CoinsDB().GetBestBlock());
+    if (pindex != nullptr) {
+        if (!ReadBlockFromDisk(block, pindex, Params().GetConsensus())) {
+            // MW: TODO - Throw? return error("AppInitMain(): ReadBlockFromDisk() failed at %d, hash=%s", pindex->nHeight, pindex->GetBlockHash().ToString());
+        }
+    }
+
+    // MWEB: Initialize MWEB node APIs
+    mw::CoinsViewDB::Ptr mweb_dbview = mw::CoinsViewDB::Open(
+        FilePath{GetDataDir()},
+        block.mweb_block.GetMWEBHeader(),
+        std::make_shared<MWEB::DBWrapper>(CoinsDB().GetDB())
+    );
+    CoinsDB().SetMWEBView(mweb_dbview);
 }
 
 void CChainState::InitCoinsCache(size_t cache_size_bytes)
@@ -1311,6 +1356,11 @@ bool CChainState::IsInitialBlockDownload() const
     LogPrintf("Leaving InitialBlockDownload (latching to false)\n");
     m_cached_finished_ibd.store(true, std::memory_order_relaxed);
     return false;
+}
+
+bool CChainState::IsMWEBActive() const
+{
+    return m_chain.Tip() != nullptr && IsMWEBEnabled(m_chain.Tip(), Params().GetConsensus());
 }
 
 static CBlockIndex *pindexBestForkTip = nullptr, *pindexBestForkBase = nullptr;
@@ -1454,6 +1504,10 @@ void UpdateCoins(const CTransaction& tx, CCoinsViewCache& inputs, CTxUndo &txund
     }
     // add outputs
     AddCoins(inputs, tx, nHeight);
+
+    if (!tx.mweb_tx.IsNull()) {
+        inputs.GetMWEBCacheView()->AddTx(tx.mweb_tx.m_transaction);
+    }
 }
 
 void UpdateCoins(const CTransaction& tx, CCoinsViewCache& inputs, int nHeight)
@@ -1633,17 +1687,24 @@ bool UndoReadFromDisk(CBlockUndo& blockundo, const CBlockIndex* pindex)
         return error("%s: no undo data available", __func__);
     }
 
+    // Rewind 4 bytes in order to read the size
+    pos.nPos -= 4;
+
     // Open history file to read
     CAutoFile filein(OpenUndoFile(pos, true), SER_DISK, CLIENT_VERSION);
     if (filein.IsNull())
         return error("%s: OpenUndoFile failed", __func__);
+
+    // Read undo size
+    unsigned int undo_size = 0;
+    filein >> undo_size;
 
     // Read block
     uint256 hashChecksum;
     CHashVerifier<CAutoFile> verifier(&filein); // We need a CHashVerifier as reserializing may lose data
     try {
         verifier << pindex->pprev->GetBlockHash();
-        verifier >> blockundo;
+        UnserializeBlockUndo(blockundo, verifier, undo_size);
         filein >> hashChecksum;
     }
     catch (const std::exception& e) {
@@ -1761,6 +1822,15 @@ DisconnectResult CChainState::DisconnectBlock(const CBlock& block, const CBlockI
                 fClean = fClean && res != DISCONNECT_UNCLEAN;
             }
             // At this point, all of txundo.vprevout should have been moved out.
+        }
+    }
+
+    if (blockUndo.mwundo != nullptr) {
+        try {
+            view.GetMWEBCacheView()->UndoBlock(blockUndo.mwundo);
+        } catch (const std::exception& e) {
+            error("DisconnectBlock(): Failed to disconnect MWEB block");
+            return DISCONNECT_FAILED;
         }
     }
 
@@ -2206,8 +2276,25 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
     int64_t nTime4 = GetTimeMicros(); nTimeVerify += nTime4 - nTime2;
     LogPrint(BCLog::BENCH, "    - Verify %u txins: %.2fms (%.3fms/txin) [%.2fs (%.2fms/blk)]\n", nInputs - 1, MILLI * (nTime4 - nTime2), nInputs <= 1 ? 0 : MILLI * (nTime4 - nTime2) / (nInputs-1), nTimeVerify * MICRO, nTimeVerify * MILLI / nBlocksTotal);
 
+    // MWEB: Check activation
+    if (!MWEB::Node::ConnectBlock(block, chainparams.GetConsensus(), pindex->pprev, blockundo, *view.GetMWEBCacheView(), state)) {
+        return false;
+    }
+
     if (fJustCheck)
         return true;
+
+    // MWEB: Update BlockIndex
+    if (!block.mweb_block.IsNull()) {
+        auto pHogEx = block.GetHogEx();
+        if ((pindex->nStatus & BLOCK_HAVE_MWEB) == 0) {
+            pindex->nStatus |= BLOCK_HAVE_MWEB;
+            pindex->mweb_header = block.mweb_block.GetMWEBHeader();
+            pindex->hogex_hash = pHogEx->GetHash();
+            pindex->mweb_amount = pHogEx->vout.front().nValue;
+            setDirtyBlockIndex.insert(pindex);
+        }
+    }
 
     if (!WriteUndoDataForBlock(blockundo, state, pindex, chainparams))
         return false;
@@ -2516,6 +2603,14 @@ bool CChainState::DisconnectTip(BlockValidationState& state, const CChainParams&
         return false;
 
     if (disconnectpool) {
+        // MWEB: For each kernel, lookup kernel's txs in FIFO cache and add them back to the mempool.
+        for (const mw::Hash& kernel_id : block.mweb_block.GetKernelIDs()) {
+            if (m_mempool.recentTxsByKernel.Cached(kernel_id)) {
+                CTransactionRef ptx = m_mempool.recentTxsByKernel.Get(kernel_id);
+                disconnectpool->addTransaction(ptx);
+            }
+        }
+
         // Save transactions to re-add to mempool at end of reorg
         for (auto it = block.vtx.rbegin(); it != block.vtx.rend(); ++it) {
             disconnectpool->addTransaction(*it);
@@ -2634,8 +2729,7 @@ bool CChainState::ConnectTip(BlockValidationState& state, const CChainParams& ch
     int64_t nTime5 = GetTimeMicros(); nTimeChainState += nTime5 - nTime4;
     LogPrint(BCLog::BENCH, "  - Writing chainstate: %.2fms [%.2fs (%.2fms/blk)]\n", (nTime5 - nTime4) * MILLI, nTimeChainState * MICRO, nTimeChainState * MILLI / nBlocksTotal);
     // Remove conflicting transactions from the mempool.;
-    m_mempool.removeForBlock(blockConnecting.vtx, pindexNew->nHeight);
-    disconnectpool.removeForBlock(blockConnecting.vtx);
+    m_mempool.removeForBlock(blockConnecting, pindexNew->nHeight, &disconnectpool);
     // Update m_chain & related variables.
     m_chain.SetTip(pindexNew);
     UpdateTip(m_mempool, pindexNew, chainparams);
@@ -3369,7 +3463,7 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     // checks that use witness data may be performed here.
 
     // Size limits
-    if (block.vtx.empty() || block.vtx.size() * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT || ::GetSerializeSize(block, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS) * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT)
+    if (block.vtx.empty() || block.vtx.size() * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT || ::GetSerializeSize(block, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS | SERIALIZE_NO_MWEB) * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT)
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-length", "size limits failed");
 
     // First transaction must be coinbase, the rest must not be
@@ -3399,6 +3493,10 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     if (nSigOps * WITNESS_SCALE_FACTOR > MAX_BLOCK_SIGOPS_COST)
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-sigops", "out-of-bounds SigOpCount");
 
+    if (!MWEB::Node::CheckBlock(block, state)) {
+        return false;
+    }
+
     if (fCheckPOW && fCheckMerkleRoot)
         block.fChecked = true;
 
@@ -3409,6 +3507,12 @@ bool IsWitnessEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& pa
 {
     int height = pindexPrev == nullptr ? 0 : pindexPrev->nHeight + 1;
     return (height >= params.SegwitHeight);
+}
+
+bool IsMWEBEnabled(const CBlockIndex* pindexPrev, const Consensus::Params& params)
+{
+    LOCK(cs_main);
+    return (VersionBitsState(pindexPrev, params, Consensus::DEPLOYMENT_MWEB, versionbitscache) == ThresholdState::ACTIVE);
 }
 
 void UpdateUncommittedBlockStructures(CBlock& block, const CBlockIndex* pindexPrev, const Consensus::Params& consensusParams)
@@ -3605,6 +3709,10 @@ static bool ContextualCheckBlock(const CBlock& block, BlockValidationState& stat
     // failed).
     if (GetBlockWeight(block) > MAX_BLOCK_WEIGHT) {
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-weight", strprintf("%s : weight limit failed", __func__));
+    }
+
+    if (!MWEB::Node::ContextualCheckBlock(block, consensusParams, pindexPrev, state)) {
+        return false;
     }
 
     return true;
@@ -4666,7 +4774,7 @@ void LoadExternalBlockFile(const CChainParams& chainparams, FILE* fileIn, FlatFi
     int nLoaded = 0;
     try {
         // This takes over fileIn and calls fclose() on it in the CBufferedFile destructor
-        CBufferedFile blkdat(fileIn, 2*MAX_BLOCK_SERIALIZED_SIZE, MAX_BLOCK_SERIALIZED_SIZE+8, SER_DISK, CLIENT_VERSION);
+        CBufferedFile blkdat(fileIn, 2 * MAX_BLOCK_SERIALIZED_SIZE_WITH_MWEB, MAX_BLOCK_SERIALIZED_SIZE_WITH_MWEB + 8, SER_DISK, CLIENT_VERSION);
         uint64_t nRewind = blkdat.GetPos();
         while (!blkdat.eof()) {
             if (ShutdownRequested()) return;
@@ -4685,7 +4793,7 @@ void LoadExternalBlockFile(const CChainParams& chainparams, FILE* fileIn, FlatFi
                     continue;
                 // read size
                 blkdat >> nSize;
-                if (nSize < 80 || nSize > MAX_BLOCK_SERIALIZED_SIZE)
+                if (nSize < 80 || nSize > MAX_BLOCK_SERIALIZED_SIZE_WITH_MWEB)
                     continue;
             } catch (const std::exception&) {
                 // no valid block header found; don't complain
