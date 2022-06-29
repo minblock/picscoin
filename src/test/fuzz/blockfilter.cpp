@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 The Bitcoin Core developers
+// Copyright (c) 2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-FUZZ_TARGET(blockfilter)
+void test_one_input(const std::vector<uint8_t>& buffer)
 {
     FuzzedDataProvider fuzzed_data_provider(buffer.data(), buffer.size());
     const std::optional<BlockFilter> block_filter = ConsumeDeserializable<BlockFilter>(fuzzed_data_provider);
@@ -36,10 +36,9 @@ FUZZ_TARGET(blockfilter)
         (void)gcs_filter.GetEncoded();
         (void)gcs_filter.Match(ConsumeRandomLengthByteVector(fuzzed_data_provider));
         GCSFilter::ElementSet element_set;
-        LIMITED_WHILE(fuzzed_data_provider.ConsumeBool(), 30000)
-        {
+        while (fuzzed_data_provider.ConsumeBool()) {
             element_set.insert(ConsumeRandomLengthByteVector(fuzzed_data_provider));
+            gcs_filter.MatchAny(element_set);
         }
-        gcs_filter.MatchAny(element_set);
     }
 }

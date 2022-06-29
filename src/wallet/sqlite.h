@@ -10,8 +10,6 @@
 #include <sqlite3.h>
 
 struct bilingual_str;
-
-namespace wallet {
 class SQLiteDatabase;
 
 /** RAII class that provides access to a WalletDatabase */
@@ -39,7 +37,7 @@ public:
     explicit SQLiteBatch(SQLiteDatabase& database);
     ~SQLiteBatch() override { Close(); }
 
-    /* No-op. See comment on SQLiteDatabase::Flush */
+    /* No-op. See commeng on SQLiteDatabase::Flush */
     void Flush() override {}
 
     void Close() override;
@@ -115,9 +113,10 @@ public:
     sqlite3* m_db{nullptr};
 };
 
+bool ExistsSQLiteDatabase(const fs::path& path);
 std::unique_ptr<SQLiteDatabase> MakeSQLiteDatabase(const fs::path& path, const DatabaseOptions& options, DatabaseStatus& status, bilingual_str& error);
 
 std::string SQLiteDatabaseVersion();
-} // namespace wallet
+bool IsSQLiteFile(const fs::path& path);
 
 #endif // BITCOIN_WALLET_SQLITE_H

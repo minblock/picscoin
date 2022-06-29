@@ -1,11 +1,11 @@
-// Copyright (c) 2011-2021 The Bitcoin Core developers
+// Copyright (c) 2011-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_QT_BITCOINUNITS_H
 #define BITCOIN_QT_BITCOINUNITS_H
 
-#include <consensus/amount.h>
+#include <amount.h>
 
 #include <QAbstractListModel>
 #include <QString>
@@ -67,7 +67,7 @@ public:
     static QString shortName(int unit);
     //! Longer description
     static QString description(int unit);
-    //! Number of Severs (1e-8) per unit
+    //! Number of Satoshis (1e-8) per unit
     static qint64 factor(int unit);
     //! Number of decimals left
     static int decimals(int unit);
@@ -103,7 +103,7 @@ public:
         return text;
     }
 
-    //! Return maximum number of base units (Severs)
+    //! Return maximum number of base units (Satoshis)
     static CAmount maxMoney();
 
 private:

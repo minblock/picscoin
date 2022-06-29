@@ -12,28 +12,35 @@
 bool CCoinsView::GetCoin(const COutPoint &outpoint, Coin &coin) const { return false; }
 uint256 CCoinsView::GetBestBlock() const { return uint256(); }
 std::vector<uint256> CCoinsView::GetHeadBlocks() const { return std::vector<uint256>(); }
-bool CCoinsView::BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock) { return false; }
+bool CCoinsView::BatchWrite(CCoinsMap& mapCoins, const uint256& hashBlock, const mw::CoinsViewCache::Ptr& derivedView) { return false; }
 CCoinsViewCursor *CCoinsView::Cursor() const { return nullptr; }
 
-bool CCoinsView::HaveCoin(const COutPoint &outpoint) const
+bool CCoinsView::HaveCoin(const OutputIndex& index) const
 {
-    Coin coin;
-    return GetCoin(outpoint, coin);
+    if (index.type() == typeid(mw::Hash)) {
+        if (!GetMWEBView()) return false;
+        return GetMWEBView()->HasCoin(boost::get<mw::Hash>(index));
+    } else {
+        Coin coin;
+        return GetCoin(boost::get<COutPoint>(index), coin);
+    }
 }
 
 CCoinsViewBacked::CCoinsViewBacked(CCoinsView *viewIn) : base(viewIn) { }
 bool CCoinsViewBacked::GetCoin(const COutPoint &outpoint, Coin &coin) const { return base->GetCoin(outpoint, coin); }
-bool CCoinsViewBacked::HaveCoin(const COutPoint &outpoint) const { return base->HaveCoin(outpoint); }
+bool CCoinsViewBacked::HaveCoin(const OutputIndex& index) const { return base->HaveCoin(index); }
 uint256 CCoinsViewBacked::GetBestBlock() const { return base->GetBestBlock(); }
 std::vector<uint256> CCoinsViewBacked::GetHeadBlocks() const { return base->GetHeadBlocks(); }
-void CCoinsViewBacked::SetBackend(CCoinsView &viewIn) { base = &viewIn; }
-bool CCoinsViewBacked::BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock) { return base->BatchWrite(mapCoins, hashBlock); }
+void CCoinsViewBacked::SetBackend(CCoinsView& viewIn) { base = &viewIn; }
+bool CCoinsViewBacked::BatchWrite(CCoinsMap& mapCoins, const uint256& hashBlock, const mw::CoinsViewCache::Ptr& derivedView) { return base->BatchWrite(mapCoins, hashBlock, derivedView); }
 CCoinsViewCursor *CCoinsViewBacked::Cursor() const { return base->Cursor(); }
 size_t CCoinsViewBacked::EstimateSize() const { return base->EstimateSize(); }
+mw::ICoinsView::Ptr CCoinsViewBacked::GetMWEBView() const { return base->GetMWEBView(); }
+bool CCoinsViewBacked::GetMWEBCoin(const mw::Hash& output_id, Output& coin) const { return base->GetMWEBCoin(output_id, coin); }
 
 SaltedOutpointHasher::SaltedOutpointHasher() : k0(GetRand(std::numeric_limits<uint64_t>::max())), k1(GetRand(std::numeric_limits<uint64_t>::max())) {}
 
-CCoinsViewCache::CCoinsViewCache(CCoinsView *baseIn) : CCoinsViewBacked(baseIn), cachedCoinsUsage(0) {}
+CCoinsViewCache::CCoinsViewCache(CCoinsView* baseIn) : CCoinsViewBacked(baseIn), cachedCoinsUsage(0), mweb_view(baseIn->GetMWEBView() ? std::make_shared<mw::CoinsViewCache>(baseIn->GetMWEBView()) : nullptr) {}
 
 size_t CCoinsViewCache::DynamicMemoryUsage() const {
     return memusage::DynamicUsage(cacheCoins) + cachedCoinsUsage;
@@ -103,10 +110,13 @@ void AddCoins(CCoinsViewCache& cache, const CTransaction &tx, int nHeight, bool 
     bool fCoinbase = tx.IsCoinBase();
     const uint256& txid = tx.GetHash();
     for (size_t i = 0; i < tx.vout.size(); ++i) {
+        // MWEB: The first output in the HogEx transaction is the HogAddr.
+        // The HogAddr is always spent in the next HogEx, so should not be subjected to pegout maturity rules.
+        bool fPegout = tx.IsHogEx() && i > 0;
         bool overwrite = check_for_overwrite ? cache.HaveCoin(COutPoint(txid, i)) : fCoinbase;
         // Coinbase transactions can always be overwritten, in order to correctly
         // deal with the pre-BIP30 occurrences of duplicate coinbase transactions.
-        cache.AddCoin(COutPoint(txid, i), Coin(tx.vout[i], nHeight, fCoinbase), overwrite);
+        cache.AddCoin(COutPoint(txid, i), Coin(tx.vout[i], nHeight, fCoinbase, fPegout), overwrite);
     }
 }
 
@@ -137,14 +147,46 @@ const Coin& CCoinsViewCache::AccessCoin(const COutPoint &outpoint) const {
     }
 }
 
-bool CCoinsViewCache::HaveCoin(const COutPoint &outpoint) const {
-    CCoinsMap::const_iterator it = FetchCoin(outpoint);
-    return (it != cacheCoins.end() && !it->second.coin.IsSpent());
+bool CCoinsViewCache::HaveCoin(const OutputIndex& index) const {
+    if (index.type() == typeid(mw::Hash)) {
+        const mw::Hash& output_id = boost::get<mw::Hash>(index);
+        if (GetMWEBCacheView()->HasCoinInCache(output_id)) {
+            return true;
+        }
+
+        if (GetMWEBCacheView()->HasSpendInCache(output_id)) {
+            return false;
+        }
+
+        return base->HaveCoin(index);
+    } else {
+        CCoinsMap::const_iterator it = FetchCoin(boost::get<COutPoint>(index));
+        return (it != cacheCoins.end() && !it->second.coin.IsSpent());
+    }
 }
 
-bool CCoinsViewCache::HaveCoinInCache(const COutPoint &outpoint) const {
-    CCoinsMap::const_iterator it = cacheCoins.find(outpoint);
-    return (it != cacheCoins.end() && !it->second.coin.IsSpent());
+bool CCoinsViewCache::GetMWEBCoin(const mw::Hash& output_id, Output& coin) const {
+    if (GetMWEBCacheView()->HasCoinInCache(output_id)) {
+        UTXO::CPtr utxo = GetMWEBCacheView()->GetUTXO(output_id);
+        assert(utxo != nullptr);
+        coin = utxo->GetOutput();
+        return true;
+    }
+
+    if (GetMWEBCacheView()->HasSpendInCache(output_id)) {
+        return false;
+    }
+
+    return base->GetMWEBCoin(output_id, coin);
+}
+
+bool CCoinsViewCache::HaveCoinInCache(const OutputIndex& index) const {
+    if (index.type() == typeid(COutPoint)) {
+        CCoinsMap::const_iterator it = cacheCoins.find(boost::get<COutPoint>(index));
+        return (it != cacheCoins.end() && !it->second.coin.IsSpent());
+    }
+
+    return false;
 }
 
 uint256 CCoinsViewCache::GetBestBlock() const {
@@ -153,11 +195,17 @@ uint256 CCoinsViewCache::GetBestBlock() const {
     return hashBlock;
 }
 
+
+void CCoinsViewCache::SetBackend(CCoinsView& viewIn) {
+    base = &viewIn;
+    mweb_view = viewIn.GetMWEBView() ? std::make_shared<mw::CoinsViewCache>(viewIn.GetMWEBView()) : nullptr;
+}
+
 void CCoinsViewCache::SetBestBlock(const uint256 &hashBlockIn) {
     hashBlock = hashBlockIn;
 }
 
-bool CCoinsViewCache::BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlockIn) {
+bool CCoinsViewCache::BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlockIn, const mw::CoinsViewCache::Ptr& derivedView) {
     for (CCoinsMap::iterator it = mapCoins.begin(); it != mapCoins.end(); it = mapCoins.erase(it)) {
         // Ignore non-dirty entries (optimization).
         if (!(it->second.flags & CCoinsCacheEntry::DIRTY)) {
@@ -209,23 +257,29 @@ bool CCoinsViewCache::BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlockIn
             }
         }
     }
+
+    // MWEB: Flushes mweb coins
+    derivedView->Flush(nullptr);
+
     hashBlock = hashBlockIn;
     return true;
 }
 
 bool CCoinsViewCache::Flush() {
-    bool fOk = base->BatchWrite(cacheCoins, hashBlock);
+    bool fOk = base->BatchWrite(cacheCoins, hashBlock, mweb_view);
     cacheCoins.clear();
     cachedCoinsUsage = 0;
     return fOk;
 }
 
-void CCoinsViewCache::Uncache(const COutPoint& hash)
+void CCoinsViewCache::Uncache(const OutputIndex& coin)
 {
-    CCoinsMap::iterator it = cacheCoins.find(hash);
-    if (it != cacheCoins.end() && it->second.flags == 0) {
-        cachedCoinsUsage -= it->second.coin.DynamicMemoryUsage();
-        cacheCoins.erase(it);
+    if (coin.type() == typeid(COutPoint)) {
+        CCoinsMap::iterator it = cacheCoins.find(boost::get<COutPoint>(coin));
+        if (it != cacheCoins.end() && it->second.flags == 0) {
+            cachedCoinsUsage -= it->second.coin.DynamicMemoryUsage();
+            cacheCoins.erase(it);
+        }
     }
 }
 
@@ -236,8 +290,8 @@ unsigned int CCoinsViewCache::GetCacheSize() const {
 bool CCoinsViewCache::HaveInputs(const CTransaction& tx) const
 {
     if (!tx.IsCoinBase()) {
-        for (unsigned int i = 0; i < tx.vin.size(); i++) {
-            if (!HaveCoin(tx.vin[i].prevout)) {
+        for (const CTxInput& input : tx.GetInputs()) {
+            if (!HaveCoin(input.GetIndex())) {
                 return false;
             }
         }

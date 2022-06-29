@@ -79,6 +79,7 @@ TEST_FRAMEWORK_MODULES = [
 EXTENDED_SCRIPTS = [
     # These tests are not run by default.
     # Longest test should go first, to favor running tests in parallel
+    'mweb_weight.py',
     'feature_pruning.py',
     'feature_dbcrash.py',
 ]
@@ -203,6 +204,7 @@ BASE_SCRIPTS = [
     'rpc_getblockfilter.py',
     'rpc_invalidateblock.py',
     'feature_rbf.py',
+    'ltc_replacebyfee.py',
     'mempool_packages.py',
     'mempool_package_onemore.py',
     'rpc_createmultisig.py',
@@ -243,6 +245,15 @@ BASE_SCRIPTS = [
     'wallet_scriptaddress2.py',
     'feature_dersig.py',
     'feature_cltv.py',
+    'mweb_basic.py',
+    'mweb_mining.py',
+    'mweb_reorg.py',
+    'mweb_pegout_all.py',
+    'mweb_node_compatibility.py',
+    'mweb_wallet_address.py',
+    'mweb_wallet_basic.py',
+    'mweb_wallet_upgrade.py',
+    'wallet_listwallettransactions.py',
     'rpc_uptime.py',
     'wallet_resendwallettransactions.py',
     'wallet_resendwallettransactions.py --descriptors',
@@ -682,7 +693,7 @@ class TestResult():
 def check_script_prefixes():
     """Check that test scripts start with one of the allowed name prefixes."""
 
-    good_prefixes_re = re.compile("^(example|feature|interface|mempool|mining|p2p|rpc|wallet|tool)_")
+    good_prefixes_re = re.compile("(example|feature|interface|mempool|mining|p2p|rpc|wallet|tool|ltc|mweb)_")
     bad_script_names = [script for script in ALL_SCRIPTS if good_prefixes_re.match(script) is None]
 
     if bad_script_names:

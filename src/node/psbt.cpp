@@ -1,9 +1,9 @@
-// Copyright (c) 2009-2021 The Bitcoin Core developers
+// Copyright (c) 2009-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include <amount.h>
 #include <coins.h>
-#include <consensus/amount.h>
 #include <consensus/tx_verify.h>
 #include <node/psbt.h>
 #include <policy/policy.h>
@@ -12,7 +12,6 @@
 
 #include <numeric>
 
-namespace node {
 PSBTAnalysis AnalyzePSBT(PartiallySignedTransaction psbtx)
 {
     // Go through each input and build status
@@ -23,8 +22,6 @@ PSBTAnalysis AnalyzePSBT(PartiallySignedTransaction psbtx)
     CAmount in_amt = 0;
 
     result.inputs.resize(psbtx.tx->vin.size());
-
-    const PrecomputedTransactionData txdata = PrecomputePSBTData(psbtx);
 
     for (unsigned int i = 0; i < psbtx.tx->vin.size(); ++i) {
         PSBTInput& input = psbtx.inputs[i];
@@ -64,7 +61,7 @@ PSBTAnalysis AnalyzePSBT(PartiallySignedTransaction psbtx)
 
             // Figure out what is missing
             SignatureData outdata;
-            bool complete = SignPSBTInput(DUMMY_SIGNING_PROVIDER, psbtx, i, &txdata, 1, &outdata);
+            bool complete = SignPSBTInput(DUMMY_SIGNING_PROVIDER, psbtx, i, 1, &outdata);
 
             // Things are missing
             if (!complete) {
@@ -106,7 +103,7 @@ PSBTAnalysis AnalyzePSBT(PartiallySignedTransaction psbtx)
             }
         );
         if (!MoneyRange(out_amt)) {
-            result.SetInvalid("PSBT is not valid. Output amount invalid");
+            result.SetInvalid(strprintf("PSBT is not valid. Output amount invalid"));
             return result;
         }
 
@@ -124,7 +121,7 @@ PSBTAnalysis AnalyzePSBT(PartiallySignedTransaction psbtx)
             PSBTInput& input = psbtx.inputs[i];
             Coin newcoin;
 
-            if (!SignPSBTInput(DUMMY_SIGNING_PROVIDER, psbtx, i, nullptr, 1) || !psbtx.GetInputUTXO(newcoin.out, i)) {
+            if (!SignPSBTInput(DUMMY_SIGNING_PROVIDER, psbtx, i, 1, nullptr, true) || !psbtx.GetInputUTXO(newcoin.out, i)) {
                 success = false;
                 break;
             } else {
@@ -140,7 +137,7 @@ PSBTAnalysis AnalyzePSBT(PartiallySignedTransaction psbtx)
             size_t size = GetVirtualTransactionSize(ctx, GetTransactionSigOpCost(ctx, view, STANDARD_SCRIPT_VERIFY_FLAGS));
             result.estimated_vsize = size;
             // Estimate fee rate
-            CFeeRate feerate(fee, size);
+            CFeeRate feerate(fee, size, ctx.mweb_tx.GetMWEBWeight());
             result.estimated_feerate = feerate;
         }
 
@@ -148,4 +145,3 @@ PSBTAnalysis AnalyzePSBT(PartiallySignedTransaction psbtx)
 
     return result;
 }
-} // namespace node

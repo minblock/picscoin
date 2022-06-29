@@ -1,7 +1,8 @@
-// Copyright (c) 2020-2021 The Bitcoin Core developers
+// Copyright (c) 2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include <optional.h>
 #include <pubkey.h>
 #include <script/descriptor.h>
 #include <test/fuzz/FuzzedDataProvider.h>
@@ -9,15 +10,14 @@
 #include <test/fuzz/util.h>
 
 #include <cstdint>
-#include <optional>
 #include <string>
 #include <vector>
 
-FUZZ_TARGET(script_descriptor_cache)
+void test_one_input(const std::vector<uint8_t>& buffer)
 {
     FuzzedDataProvider fuzzed_data_provider(buffer.data(), buffer.size());
     DescriptorCache descriptor_cache;
-    LIMITED_WHILE(fuzzed_data_provider.ConsumeBool(), 10000) {
+    while (fuzzed_data_provider.ConsumeBool()) {
         const std::vector<uint8_t> code = fuzzed_data_provider.ConsumeBytes<uint8_t>(BIP32_EXTKEY_SIZE);
         if (code.size() == BIP32_EXTKEY_SIZE) {
             CExtPubKey xpub;

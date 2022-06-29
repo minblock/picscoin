@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2020 The Bitcoin Core developers
+// Copyright (c) 2011-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,6 +19,7 @@ public:
     void clear();
     void setCheckValidator(const QValidator *v);
     bool isValid();
+    void setValidating(bool validating);
 
 protected:
     void focusInEvent(QFocusEvent *evt) override;
@@ -26,6 +27,7 @@ protected:
 
 private:
     bool valid;
+    bool validating;
     const QValidator *checkValidator;
 
 public Q_SLOTS:

@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2021 The Bitcoin Core developers
+// Copyright (c) 2011-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,12 +9,14 @@
 #include <config/bitcoin-config.h>
 #endif
 
-#include <consensus/amount.h>
+#include <amount.h>
 #include <serialize.h>
 
 #include <string>
 
 #include <QString>
+
+class ReserveDestination;
 
 class SendCoinsRecipient
 {
@@ -39,7 +41,14 @@ public:
     // Empty if no authentication or invalid signature/cert/etc.
     QString authenticatedMerchant;
 
+    enum Type {
+        REGULAR = 0,
+        MWEB_PEGIN = 1,
+        MWEB_PEGOUT = 2
+    } type; // memory only
+
     bool fSubtractFeeFromAmount; // memory only
+    std::shared_ptr<ReserveDestination> reserved_dest;   // memory only
 
     static const int CURRENT_VERSION = 1;
     int nVersion;

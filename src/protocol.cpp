@@ -1,10 +1,11 @@
-// Copyright (c) 2009-2010 Sever Neacsu
+// Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <protocol.h>
 
+#include <chainparams.h>
 #include <util/strencodings.h>
 #include <util/system.h>
 
@@ -137,9 +138,9 @@ bool CMessageHeader::IsCommandValid() const
 
 ServiceFlags GetDesirableServiceFlags(ServiceFlags services) {
     if ((services & NODE_NETWORK_LIMITED) && g_initial_block_download_completed) {
-        return ServiceFlags(NODE_NETWORK_LIMITED | NODE_WITNESS);
+        return ServiceFlags(NODE_NETWORK_LIMITED | NODE_WITNESS | NODE_MWEB);
     }
-    return ServiceFlags(NODE_NETWORK | NODE_WITNESS);
+    return ServiceFlags(NODE_NETWORK | NODE_WITNESS | NODE_MWEB);
 }
 
 void SetServiceFlagsIBDCache(bool state) {
@@ -162,6 +163,8 @@ bool operator<(const CInv& a, const CInv& b)
 std::string CInv::GetCommand() const
 {
     std::string cmd;
+    if (type & MSG_MWEB_FLAG)
+        cmd.append("mweb-");
     if (type & MSG_WITNESS_FLAG)
         cmd.append("witness-");
     int masked = type & MSG_TYPE_MASK;
@@ -208,6 +211,7 @@ static std::string serviceFlagToStr(size_t bit)
     case NODE_WITNESS:         return "WITNESS";
     case NODE_COMPACT_FILTERS: return "COMPACT_FILTERS";
     case NODE_NETWORK_LIMITED: return "NETWORK_LIMITED";
+    case NODE_MWEB:            return "MWEB";
     // Not using default, so we get warned when a case is missing
     }
 

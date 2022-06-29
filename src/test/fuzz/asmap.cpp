@@ -1,10 +1,9 @@
-// Copyright (c) 2020-2021 The Bitcoin Core developers
+// Copyright (c) 2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <netaddress.h>
 #include <test/fuzz/fuzz.h>
-#include <util/asmap.h>
 
 #include <cstdint>
 #include <vector>
@@ -28,7 +27,7 @@ static const std::vector<bool> IPV4_PREFIX_ASMAP = {
     true, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true          // Match 0xFF
 };
 
-FUZZ_TARGET(asmap)
+void test_one_input(const std::vector<uint8_t>& buffer)
 {
     // Encoding: [7 bits: asmap size] [1 bit: ipv6?] [3-130 bytes: asmap] [4 or 16 bytes: addr]
     if (buffer.size() < 1 + 3 + 4) return;
@@ -43,13 +42,13 @@ FUZZ_TARGET(asmap)
             asmap.push_back((buffer[1 + i] >> j) & 1);
         }
     }
-    if (!SanityCheckASMap(asmap, 128)) return;
+    if (!SanityCheckASMap(asmap)) return;
 
     const uint8_t* addr_data = buffer.data() + 1 + asmap_size;
     CNetAddr net_addr;
     if (ipv6) {
         assert(addr_size == ADDR_IPV6_SIZE);
-        net_addr.SetLegacyIPv6({addr_data, addr_size});
+        net_addr.SetLegacyIPv6(Span<const uint8_t>(addr_data, addr_size));
     } else {
         assert(addr_size == ADDR_IPV4_SIZE);
         in_addr ipv4;

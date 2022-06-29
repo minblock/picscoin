@@ -4,7 +4,5 @@
 
 #include <wallet/context.h>
 
-namespace wallet {
 WalletContext::WalletContext() {}
 WalletContext::~WalletContext() {}
-} // namespace wallet

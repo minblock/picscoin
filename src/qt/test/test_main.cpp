@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2021 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,12 +6,12 @@
 #include <config/bitcoin-config.h>
 #endif
 
-#include <interfaces/init.h>
 #include <interfaces/node.h>
 #include <qt/bitcoin.h>
 #include <qt/test/apptests.h>
 #include <qt/test/rpcnestedtests.h>
 #include <qt/test/uritests.h>
+#include <qt/test/compattests.h>
 #include <test/util/setup_common.h>
 
 #ifdef ENABLE_WALLET
@@ -22,7 +22,6 @@
 #include <QApplication>
 #include <QObject>
 #include <QTest>
-#include <functional>
 
 #if defined(QT_STATICPLUGIN)
 #include <QtPlugin>
@@ -35,16 +34,10 @@ Q_IMPORT_PLUGIN(QXcbIntegrationPlugin);
 Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin);
 #elif defined(QT_QPA_PLATFORM_COCOA)
 Q_IMPORT_PLUGIN(QCocoaIntegrationPlugin);
-#elif defined(QT_QPA_PLATFORM_ANDROID)
-Q_IMPORT_PLUGIN(QAndroidPlatformIntegrationPlugin)
 #endif
 #endif
-
-using node::NodeContext;
 
 const std::function<void(const std::string&)> G_TEST_LOG_FUN{};
-
-const std::function<std::vector<const char*>()> G_TEST_COMMAND_LINE_ARGUMENTS{};
 
 // This is all you need to run all the tests
 int main(int argc, char* argv[])
@@ -59,14 +52,8 @@ int main(int argc, char* argv[])
         BasicTestingSetup dummy{CBaseChainParams::REGTEST};
     }
 
-    std::unique_ptr<interfaces::Init> init = interfaces::MakeGuiInit(argc, argv);
-    gArgs.ForceSetArg("-listen", "0");
-    gArgs.ForceSetArg("-listenonion", "0");
-    gArgs.ForceSetArg("-discover", "0");
-    gArgs.ForceSetArg("-dnsseed", "0");
-    gArgs.ForceSetArg("-fixedseeds", "0");
-    gArgs.ForceSetArg("-upnp", "0");
-    gArgs.ForceSetArg("-natpmp", "0");
+    NodeContext node_context;
+    std::unique_ptr<interfaces::Node> node = interfaces::MakeNode(&node_context);
 
     bool fInvalid = false;
 
@@ -76,15 +63,16 @@ int main(int argc, char* argv[])
     #if defined(WIN32)
         if (getenv("QT_QPA_PLATFORM") == nullptr) _putenv_s("QT_QPA_PLATFORM", "minimal");
     #else
-        setenv("QT_QPA_PLATFORM", "minimal", 0 /* overwrite */);
+        setenv("QT_QPA_PLATFORM", "minimal", /* overwrite */ 0);
     #endif
 
     // Don't remove this, it's needed to access
     // QApplication:: and QCoreApplication:: in the tests
     BitcoinApplication app;
-    app.setApplicationName("Bitcoin-Qt-test");
-    app.createNode(*init);
+    app.setNode(*node);
+    app.setApplicationName("Picscoin-Qt-test");
 
+    app.node().context()->args = &gArgs;     // Make gArgs available in the NodeContext
     AppTests app_tests(app);
     if (QTest::qExec(&app_tests) != 0) {
         fInvalid = true;
@@ -95,6 +83,10 @@ int main(int argc, char* argv[])
     }
     RPCNestedTests test3(app.node());
     if (QTest::qExec(&test3) != 0) {
+        fInvalid = true;
+    }
+    CompatTests test4;
+    if (QTest::qExec(&test4) != 0) {
         fInvalid = true;
     }
 #ifdef ENABLE_WALLET

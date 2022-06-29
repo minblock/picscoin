@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2021 The Bitcoin Core developers
+// Copyright (c) 2011-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,6 @@
 #include <qt/forms/ui_receivecoinsdialog.h>
 
 #include <qt/addresstablemodel.h>
-#include <qt/guiutil.h>
 #include <qt/optionsmodel.h>
 #include <qt/platformstyle.h>
 #include <qt/receiverequestdialog.h>
@@ -19,12 +18,12 @@
 #include <QCursor>
 #include <QMessageBox>
 #include <QScrollBar>
-#include <QSettings>
 #include <QTextDocument>
 
 ReceiveCoinsDialog::ReceiveCoinsDialog(const PlatformStyle *_platformStyle, QWidget *parent) :
-    QDialog(parent, GUIUtil::dialog_flags),
+    QDialog(parent),
     ui(new Ui::ReceiveCoinsDialog),
+    columnResizingFixer(nullptr),
     model(nullptr),
     platformStyle(_platformStyle)
 {
@@ -38,35 +37,34 @@ ReceiveCoinsDialog::ReceiveCoinsDialog(const PlatformStyle *_platformStyle, QWid
     } else {
         ui->clearButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove"));
         ui->receiveButton->setIcon(_platformStyle->SingleColorIcon(":/icons/receiving_addresses"));
-        ui->showRequestButton->setIcon(_platformStyle->SingleColorIcon(":/icons/eye"));
+        ui->showRequestButton->setIcon(_platformStyle->SingleColorIcon(":/icons/edit"));
         ui->removeRequestButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove"));
     }
 
+    // context menu actions
+    QAction *copyURIAction = new QAction(tr("Copy URI"), this);
+    QAction *copyLabelAction = new QAction(tr("Copy label"), this);
+    QAction *copyMessageAction = new QAction(tr("Copy message"), this);
+    QAction *copyAmountAction = new QAction(tr("Copy amount"), this);
+
     // context menu
     contextMenu = new QMenu(this);
-    contextMenu->addAction(tr("Copy &URI"), this, &ReceiveCoinsDialog::copyURI);
-    contextMenu->addAction(tr("&Copy address"), this, &ReceiveCoinsDialog::copyAddress);
-    copyLabelAction = contextMenu->addAction(tr("Copy &label"), this, &ReceiveCoinsDialog::copyLabel);
-    copyMessageAction = contextMenu->addAction(tr("Copy &message"), this, &ReceiveCoinsDialog::copyMessage);
-    copyAmountAction = contextMenu->addAction(tr("Copy &amount"), this, &ReceiveCoinsDialog::copyAmount);
+    contextMenu->addAction(copyURIAction);
+    contextMenu->addAction(copyLabelAction);
+    contextMenu->addAction(copyMessageAction);
+    contextMenu->addAction(copyAmountAction);
+
+    // context menu signals
     connect(ui->recentRequestsView, &QWidget::customContextMenuRequested, this, &ReceiveCoinsDialog::showMenu);
+    connect(copyURIAction, &QAction::triggered, this, &ReceiveCoinsDialog::copyURI);
+    connect(copyLabelAction, &QAction::triggered, this, &ReceiveCoinsDialog::copyLabel);
+    connect(copyMessageAction, &QAction::triggered, this, &ReceiveCoinsDialog::copyMessage);
+    connect(copyAmountAction, &QAction::triggered, this, &ReceiveCoinsDialog::copyAmount);
 
     connect(ui->clearButton, &QPushButton::clicked, this, &ReceiveCoinsDialog::clear);
 
-    QTableView* tableView = ui->recentRequestsView;
-    tableView->verticalHeader()->hide();
-    tableView->setAlternatingRowColors(true);
-    tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
-    tableView->setSelectionMode(QAbstractItemView::ContiguousSelection);
-
-    QSettings settings;
-    if (!tableView->horizontalHeader()->restoreState(settings.value("RecentRequestsViewHeaderState").toByteArray())) {
-        tableView->setColumnWidth(RecentRequestsTableModel::Date, DATE_COLUMN_WIDTH);
-        tableView->setColumnWidth(RecentRequestsTableModel::Label, LABEL_COLUMN_WIDTH);
-        tableView->setColumnWidth(RecentRequestsTableModel::Amount, AMOUNT_MINIMUM_COLUMN_WIDTH);
-        tableView->horizontalHeader()->setMinimumSectionSize(MINIMUM_COLUMN_WIDTH);
-        tableView->horizontalHeader()->setStretchLastSection(true);
-    }
+    connect(ui->useBech32, &QCheckBox::clicked, this, &ReceiveCoinsDialog::useBech32Clicked);
+    connect(ui->useMWEB, &QCheckBox::clicked, this, &ReceiveCoinsDialog::useMWEBClicked);
 }
 
 void ReceiveCoinsDialog::setModel(WalletModel *_model)
@@ -80,25 +78,27 @@ void ReceiveCoinsDialog::setModel(WalletModel *_model)
         updateDisplayUnit();
 
         QTableView* tableView = ui->recentRequestsView;
+
+        tableView->verticalHeader()->hide();
+        tableView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         tableView->setModel(_model->getRecentRequestsTableModel());
-        tableView->sortByColumn(RecentRequestsTableModel::Date, Qt::DescendingOrder);
+        tableView->setAlternatingRowColors(true);
+        tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tableView->setSelectionMode(QAbstractItemView::ContiguousSelection);
+        tableView->setColumnWidth(RecentRequestsTableModel::Date, DATE_COLUMN_WIDTH);
+        tableView->setColumnWidth(RecentRequestsTableModel::Label, LABEL_COLUMN_WIDTH);
+        tableView->setColumnWidth(RecentRequestsTableModel::Amount, AMOUNT_MINIMUM_COLUMN_WIDTH);
 
         connect(tableView->selectionModel(),
             &QItemSelectionModel::selectionChanged, this,
             &ReceiveCoinsDialog::recentRequestsView_selectionChanged);
+        // Last 2 columns are set by the columnResizingFixer, when the table geometry is ready.
+        columnResizingFixer = new GUIUtil::TableViewLastColumnResizingFixer(tableView, AMOUNT_MINIMUM_COLUMN_WIDTH, DATE_COLUMN_WIDTH, this);
 
-        // Populate address type dropdown and select default
-        auto add_address_type = [&](OutputType type, const QString& text, const QString& tooltip) {
-            const auto index = ui->addressType->count();
-            ui->addressType->addItem(text, (int) type);
-            ui->addressType->setItemData(index, tooltip, Qt::ToolTipRole);
-            if (model->wallet().getDefaultAddressType() == type) ui->addressType->setCurrentIndex(index);
-        };
-        add_address_type(OutputType::LEGACY, "Base58 (Legacy)", "Not recommended due to higher fees and less protection against typos.");
-        add_address_type(OutputType::P2SH_SEGWIT, "Base58 (P2SH-SegWit)", "Generates an address compatible with older wallets.");
-        add_address_type(OutputType::BECH32, "Bech32 (SegWit)", "Generates a native segwit address (BIP-173). Some old wallets don't support it.");
-        if (model->wallet().taprootEnabled()) {
-            add_address_type(OutputType::BECH32M, "Bech32m (Taproot)", "Bech32m (BIP-350) is an upgrade to Bech32, wallet support is still limited.");
+        if (model->wallet().getDefaultAddressType() == OutputType::BECH32) {
+            ui->useBech32->setCheckState(Qt::Checked);
+        } else {
+            ui->useBech32->setCheckState(Qt::Unchecked);
         }
 
         // Set the button to be enabled or disabled based on whether the wallet can give out new addresses.
@@ -113,8 +113,6 @@ void ReceiveCoinsDialog::setModel(WalletModel *_model)
 
 ReceiveCoinsDialog::~ReceiveCoinsDialog()
 {
-    QSettings settings;
-    settings.setValue("RecentRequestsViewHeaderState", ui->recentRequestsView->horizontalHeader()->saveState());
     delete ui;
 }
 
@@ -152,7 +150,17 @@ void ReceiveCoinsDialog::on_receiveButton_clicked()
     QString address;
     QString label = ui->reqLabel->text();
     /* Generate new receiving address */
-    const OutputType address_type = (OutputType)ui->addressType->currentData().toInt();
+    OutputType address_type;
+    if (ui->useBech32->isChecked()) {
+        address_type = OutputType::BECH32;
+    } else if (ui->useMWEB->isChecked()) {
+        address_type = OutputType::MWEB;
+    } else {
+        address_type = model->wallet().getDefaultAddressType();
+        if (address_type == OutputType::BECH32) {
+            address_type = OutputType::P2SH_SEGWIT;
+        }
+    }
     address = model->getAddressTableModel()->addRow(AddressTableModel::Receive, label, "", address_type);
 
     switch(model->getAddressTableModel()->getEditStatus())
@@ -176,11 +184,15 @@ void ReceiveCoinsDialog::on_receiveButton_clicked()
             tr("Could not unlock wallet."),
             QMessageBox::Ok, QMessageBox::Ok);
         break;
-    case AddressTableModel::EditStatus::KEY_GENERATION_FAILURE:
-        QMessageBox::critical(this, windowTitle(),
-            tr("Could not generate new %1 address").arg(QString::fromStdString(FormatOutputType(address_type))),
-            QMessageBox::Ok, QMessageBox::Ok);
+    case AddressTableModel::EditStatus::KEY_GENERATION_FAILURE: {
+        QString message = tr("Could not generate new %1 address.").arg(QString::fromStdString(FormatOutputType(address_type)));
+        if (address_type == OutputType::MWEB) {
+            message += tr("\nTry upgrading your wallet.");
+        }
+
+        QMessageBox::critical(this, windowTitle(), message, QMessageBox::Ok, QMessageBox::Ok);
         break;
+    }
     // These aren't valid return values for our action
     case AddressTableModel::EditStatus::INVALID_ADDRESS:
     case AddressTableModel::EditStatus::DUPLICATE_ADDRESS:
@@ -231,6 +243,14 @@ void ReceiveCoinsDialog::on_removeRequestButton_clicked()
     model->getRecentRequestsTableModel()->removeRows(firstIndex.row(), selection.length(), firstIndex.parent());
 }
 
+// We override the virtual resizeEvent of the QWidget to adjust tables column
+// sizes as the tables width is proportional to the dialogs width.
+void ReceiveCoinsDialog::resizeEvent(QResizeEvent *event)
+{
+    QWidget::resizeEvent(event);
+    columnResizingFixer->stretchColumnWidth(RecentRequestsTableModel::Message);
+}
+
 QModelIndex ReceiveCoinsDialog::selectedRow()
 {
     if(!model || !model->getRecentRequestsTableModel() || !ui->recentRequestsView->selectionModel())
@@ -256,18 +276,9 @@ void ReceiveCoinsDialog::copyColumnToClipboard(int column)
 // context menu
 void ReceiveCoinsDialog::showMenu(const QPoint &point)
 {
-    const QModelIndex sel = selectedRow();
-    if (!sel.isValid()) {
+    if (!selectedRow().isValid()) {
         return;
     }
-
-    // disable context menu actions when appropriate
-    const RecentRequestsTableModel* const submodel = model->getRecentRequestsTableModel();
-    const RecentRequestEntry& req = submodel->entry(sel.row());
-    copyLabelAction->setDisabled(req.recipient.label.isEmpty());
-    copyMessageAction->setDisabled(req.recipient.message.isEmpty());
-    copyAmountAction->setDisabled(req.recipient.amount == 0);
-
     contextMenu->exec(QCursor::pos());
 }
 
@@ -282,19 +293,6 @@ void ReceiveCoinsDialog::copyURI()
     const RecentRequestsTableModel * const submodel = model->getRecentRequestsTableModel();
     const QString uri = GUIUtil::formatBitcoinURI(submodel->entry(sel.row()).recipient);
     GUIUtil::setClipboard(uri);
-}
-
-// context menu action: copy address
-void ReceiveCoinsDialog::copyAddress()
-{
-    const QModelIndex sel = selectedRow();
-    if (!sel.isValid()) {
-        return;
-    }
-
-    const RecentRequestsTableModel* const submodel = model->getRecentRequestsTableModel();
-    const QString address = submodel->entry(sel.row()).recipient.address;
-    GUIUtil::setClipboard(address);
 }
 
 // context menu action: copy label
@@ -313,4 +311,14 @@ void ReceiveCoinsDialog::copyMessage()
 void ReceiveCoinsDialog::copyAmount()
 {
     copyColumnToClipboard(RecentRequestsTableModel::Amount);
+}
+
+void ReceiveCoinsDialog::useBech32Clicked()
+{
+    ui->useMWEB->setChecked(false);
+}
+
+void ReceiveCoinsDialog::useMWEBClicked()
+{
+    ui->useBech32->setChecked(false);
 }

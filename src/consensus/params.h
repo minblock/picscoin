@@ -1,5 +1,5 @@
-// Copyright (c) 2009-2010 Sever Neacsu
-// Copyright (c) 2009-2021 The Bitcoin Core developers
+// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,27 +11,14 @@
 
 namespace Consensus {
 
-/**
- * A buried deployment is one where the height of the activation has been hardcoded into
- * the client implementation long after the consensus change has activated. See BIP 90.
- */
-enum BuriedDeployment : int16_t {
-    // buried deployments get negative values to avoid overlap with DeploymentPos
-    DEPLOYMENT_HEIGHTINCB = std::numeric_limits<int16_t>::min(),
-    DEPLOYMENT_CLTV,
-    DEPLOYMENT_DERSIG,
-    DEPLOYMENT_CSV,
-    DEPLOYMENT_SEGWIT,
-};
-constexpr bool ValidDeployment(BuriedDeployment dep) { return dep <= DEPLOYMENT_SEGWIT; }
-
-enum DeploymentPos : uint16_t {
+enum DeploymentPos
+{
     DEPLOYMENT_TESTDUMMY,
     DEPLOYMENT_TAPROOT, // Deployment of Schnorr/Taproot (BIPs 340-342)
-    // NOTE: Also add new deployments to VersionBitsDeploymentInfo in deploymentinfo.cpp
+    DEPLOYMENT_MWEB, // Deployment of MWEB (LIPs 0002-0004)
+    // NOTE: Also add new deployments to VersionBitsDeploymentInfo in versionbits.cpp
     MAX_VERSION_BITS_DEPLOYMENTS
 };
-constexpr bool ValidDeployment(DeploymentPos dep) { return dep < MAX_VERSION_BITS_DEPLOYMENTS; }
 
 /**
  * Struct for each individual consensus rule change using BIP9.
@@ -40,14 +27,13 @@ struct BIP9Deployment {
     /** Bit position to select the particular bit in nVersion. */
     int bit;
     /** Start MedianTime for version bits miner confirmation. Can be a date in the past */
-    int64_t nStartTime;
+    int64_t nStartTime = 0;
     /** Timeout/expiry MedianTime for the deployment attempt. */
-    int64_t nTimeout;
-    /** If lock in occurs, delay activation until at least this block
-     *  height.  Note that activation will only occur on a retarget
-     *  boundary.
-     */
-    int min_activation_height{0};
+    int64_t nTimeout = 0;
+    /** Start block height for version bits miner confirmation. Should be a retarget block, can be in the past */
+    int64_t nStartHeight = 0;
+    /** Timeout/expiry block height for the deployment attempt. Should be a retarget block. */
+    int64_t nTimeoutHeight = 0;
 
     /** Constant for nTimeout very far in the future. */
     static constexpr int64_t NO_TIMEOUT = std::numeric_limits<int64_t>::max();
@@ -70,8 +56,8 @@ struct BIP9Deployment {
 struct Params {
     uint256 hashGenesisBlock;
     int nSubsidyHalvingInterval;
-    /* Block hash that is excepted from BIP16 enforcement */
-    uint256 BIP16Exception;
+    /** Block height at which BIP16 becomes active */
+    int BIP16Height;
     /** Block height and hash at which BIP34 becomes active */
     int BIP34Height;
     uint256 BIP34Hash;
@@ -114,25 +100,7 @@ struct Params {
      */
     bool signet_blocks{false};
     std::vector<uint8_t> signet_challenge;
-
-    int DeploymentHeight(BuriedDeployment dep) const
-    {
-        switch (dep) {
-        case DEPLOYMENT_HEIGHTINCB:
-            return BIP34Height;
-        case DEPLOYMENT_CLTV:
-            return BIP65Height;
-        case DEPLOYMENT_DERSIG:
-            return BIP66Height;
-        case DEPLOYMENT_CSV:
-            return CSVHeight;
-        case DEPLOYMENT_SEGWIT:
-            return SegwitHeight;
-        } // no default case, so the compiler can warn about missing cases
-        return std::numeric_limits<int>::max();
-    }
 };
-
 } // namespace Consensus
 
 #endif // BITCOIN_CONSENSUS_PARAMS_H

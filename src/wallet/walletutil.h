@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2021 The Bitcoin Core developers
+// Copyright (c) 2017-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,7 +10,6 @@
 
 #include <vector>
 
-namespace wallet {
 /** (client) version numbers for particular wallet features */
 enum WalletFeature
 {
@@ -27,7 +26,9 @@ enum WalletFeature
 
     FEATURE_PRE_SPLIT_KEYPOOL = 169900, // Upgraded to HD SPLIT and can have a pre-split keypool
 
-    FEATURE_LATEST = FEATURE_PRE_SPLIT_KEYPOOL
+    FEATURE_MWEB = 210000, // Wallet with MWEB keys and coins
+
+    FEATURE_LATEST = FEATURE_MWEB
 };
 
 bool IsFeatureSupported(int wallet_version, int feature_version);
@@ -43,9 +44,6 @@ enum WalletFlags : uint64_t {
 
     // Indicates that the metadata has already been upgraded to contain key origins
     WALLET_FLAG_KEY_ORIGIN_METADATA = (1ULL << 1),
-
-    // Indicates that the descriptor cache has been upgraded to cache last hardened xpubs
-    WALLET_FLAG_LAST_HARDENED_XPUB_CACHED = (1ULL << 2),
 
     // will enforce the rule that the wallet can't contain any private keys (only watch-only/pubkeys)
     WALLET_FLAG_DISABLE_PRIVATE_KEYS = (1ULL << 32),
@@ -64,13 +62,13 @@ enum WalletFlags : uint64_t {
 
     //! Indicate that this wallet supports DescriptorScriptPubKeyMan
     WALLET_FLAG_DESCRIPTORS = (1ULL << 34),
-
-    //! Indicates that the wallet needs an external signer
-    WALLET_FLAG_EXTERNAL_SIGNER = (1ULL << 35),
 };
 
 //! Get the path of the wallet directory.
 fs::path GetWalletDir();
+
+//! Get wallets in wallet directory.
+std::vector<fs::path> ListWalletDir();
 
 /** Descriptor with some wallet metadata */
 class WalletDescriptor
@@ -104,6 +102,5 @@ public:
     WalletDescriptor() {}
     WalletDescriptor(std::shared_ptr<Descriptor> descriptor, uint64_t creation_time, int32_t range_start, int32_t range_end, int32_t next_index) : descriptor(descriptor), creation_time(creation_time), range_start(range_start), range_end(range_end), next_index(next_index) {}
 };
-} // namespace wallet
 
 #endif // BITCOIN_WALLET_WALLETUTIL_H

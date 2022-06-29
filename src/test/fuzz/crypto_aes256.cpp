@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 The Bitcoin Core developers
+// Copyright (c) 2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +11,7 @@
 #include <cstdint>
 #include <vector>
 
-FUZZ_TARGET(crypto_aes256)
+void test_one_input(const std::vector<uint8_t>& buffer)
 {
     FuzzedDataProvider fuzzed_data_provider{buffer.data(), buffer.size()};
     const std::vector<uint8_t> key = ConsumeFixedLengthByteVector(fuzzed_data_provider, AES256_KEYSIZE);
@@ -19,7 +19,7 @@ FUZZ_TARGET(crypto_aes256)
     AES256Encrypt encrypt{key.data()};
     AES256Decrypt decrypt{key.data()};
 
-    LIMITED_WHILE(fuzzed_data_provider.ConsumeBool(), 10000) {
+    while (fuzzed_data_provider.ConsumeBool()) {
         const std::vector<uint8_t> plaintext = ConsumeFixedLengthByteVector(fuzzed_data_provider, AES_BLOCKSIZE);
         std::vector<uint8_t> ciphertext(AES_BLOCKSIZE);
         encrypt.Encrypt(ciphertext.data(), plaintext.data());

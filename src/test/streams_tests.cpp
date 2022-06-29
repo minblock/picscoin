@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2021 The Bitcoin Core developers
+// Copyright (c) 2012-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE(streams_vector_reader)
 {
     std::vector<unsigned char> vch = {1, 255, 3, 4, 5, 6};
 
-    SpanReader reader{SER_NETWORK, INIT_PROTO_VERSION, vch};
+    VectorReader reader(SER_NETWORK, INIT_PROTO_VERSION, vch, 0);
     BOOST_CHECK_EQUAL(reader.size(), 6U);
     BOOST_CHECK(!reader.empty());
 
@@ -101,7 +101,7 @@ BOOST_AUTO_TEST_CASE(streams_vector_reader)
     BOOST_CHECK_THROW(reader >> d, std::ios_base::failure);
 
     // Read a 4 bytes as a signed int from the beginning of the buffer.
-    SpanReader new_reader{SER_NETWORK, INIT_PROTO_VERSION, vch};
+    VectorReader new_reader(SER_NETWORK, INIT_PROTO_VERSION, vch, 0);
     new_reader >> d;
     BOOST_CHECK_EQUAL(d, 67370753); // 1,255,3,4 in little-endian base-256
     BOOST_CHECK_EQUAL(new_reader.size(), 2U);
@@ -110,17 +110,6 @@ BOOST_AUTO_TEST_CASE(streams_vector_reader)
     // Reading after end of byte vector throws an error even if the reader is
     // not totally empty.
     BOOST_CHECK_THROW(new_reader >> d, std::ios_base::failure);
-}
-
-BOOST_AUTO_TEST_CASE(streams_vector_reader_rvalue)
-{
-    std::vector<uint8_t> data{0x82, 0xa7, 0x31};
-    SpanReader reader{SER_NETWORK, INIT_PROTO_VERSION, data};
-    uint32_t varint = 0;
-    // Deserialize into r-value
-    reader >> VARINT(varint);
-    BOOST_CHECK_EQUAL(varint, 54321U);
-    BOOST_CHECK(reader.empty());
 }
 
 BOOST_AUTO_TEST_CASE(bitstream_reader_writer)
@@ -160,7 +149,7 @@ BOOST_AUTO_TEST_CASE(bitstream_reader_writer)
 
 BOOST_AUTO_TEST_CASE(streams_serializedata_xor)
 {
-    std::vector<uint8_t> in;
+    std::vector<char> in;
     std::vector<char> expected_xor;
     std::vector<unsigned char> key;
     CDataStream ds(in, 0, 0);
@@ -172,7 +161,7 @@ BOOST_AUTO_TEST_CASE(streams_serializedata_xor)
     ds.Xor(key);
     BOOST_CHECK_EQUAL(
             std::string(expected_xor.begin(), expected_xor.end()),
-            ds.str());
+            std::string(ds.begin(), ds.end()));
 
     in.push_back('\x0f');
     in.push_back('\xf0');
@@ -189,7 +178,7 @@ BOOST_AUTO_TEST_CASE(streams_serializedata_xor)
     ds.Xor(key);
     BOOST_CHECK_EQUAL(
             std::string(expected_xor.begin(), expected_xor.end()),
-            ds.str());
+            std::string(ds.begin(), ds.end()));
 
     // Multi character key
 
@@ -210,14 +199,12 @@ BOOST_AUTO_TEST_CASE(streams_serializedata_xor)
     ds.Xor(key);
     BOOST_CHECK_EQUAL(
             std::string(expected_xor.begin(), expected_xor.end()),
-            ds.str());
+            std::string(ds.begin(), ds.end()));
 }
 
 BOOST_AUTO_TEST_CASE(streams_buffered_file)
 {
-    fs::path streams_test_filename = m_args.GetDataDirBase() / "streams_test_tmp";
-    FILE* file = fsbridge::fopen(streams_test_filename, "w+b");
-
+    FILE* file = fsbridge::fopen("streams_test_tmp", "w+b");
     // The value at each offset is the offset.
     for (uint8_t j = 0; j < 40; ++j) {
         fwrite(&j, 1, 1, file);
@@ -345,7 +332,7 @@ BOOST_AUTO_TEST_CASE(streams_buffered_file)
     // We can explicitly close the file, or the destructor will do it.
     bf.fclose();
 
-    fs::remove(streams_test_filename);
+    fs::remove("streams_test_tmp");
 }
 
 BOOST_AUTO_TEST_CASE(streams_buffered_file_rand)
@@ -353,9 +340,8 @@ BOOST_AUTO_TEST_CASE(streams_buffered_file_rand)
     // Make this test deterministic.
     SeedInsecureRand(SeedRand::ZEROS);
 
-    fs::path streams_test_filename = m_args.GetDataDirBase() / "streams_test_tmp";
     for (int rep = 0; rep < 50; ++rep) {
-        FILE* file = fsbridge::fopen(streams_test_filename, "w+b");
+        FILE* file = fsbridge::fopen("streams_test_tmp", "w+b");
         size_t fileSize = InsecureRandRange(256);
         for (uint8_t i = 0; i < fileSize; ++i) {
             fwrite(&i, 1, 1, file);
@@ -456,7 +442,7 @@ BOOST_AUTO_TEST_CASE(streams_buffered_file_rand)
                 maxPos = currentPos;
         }
     }
-    fs::remove(streams_test_filename);
+    fs::remove("streams_test_tmp");
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -153,7 +153,6 @@ BITCOIN_QT_H = \
   qt/transactiondescdialog.h \
   qt/transactionfilterproxy.h \
   qt/transactionoverviewwidget.h \
-  qt/transactionrecord.h \
   qt/transactiontablemodel.h \
   qt/transactionview.h \
   qt/utilitydialog.h \
@@ -262,7 +261,6 @@ BITCOIN_QT_WALLET_CPP = \
   qt/transactiondesc.cpp \
   qt/transactiondescdialog.cpp \
   qt/transactionfilterproxy.cpp \
-  qt/transactionrecord.cpp \
   qt/transactiontablemodel.cpp \
   qt/transactionview.cpp \
   qt/walletcontroller.cpp \
@@ -323,7 +321,7 @@ if ENABLE_ZMQ
 picscoin_qt_ldadd += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 picscoin_qt_ldadd += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
-  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) $(CRYPTO_LIBS) \
+  $(LIBMW) $(MWEB_LIBS) $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) $(CRYPTO_LIBS) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(SQLITE_LIBS)
 picscoin_qt_ldflags = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 picscoin_qt_libtoolflags = $(AM_LIBTOOLFLAGS) --tag CXX

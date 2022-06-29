@@ -38,7 +38,7 @@ def assert_template(node, block, expect, rehash=True):
     rsp = node.getblocktemplate(template_request={
         'data': block.serialize().hex(),
         'mode': 'proposal',
-        'rules': ['segwit'],
+        'rules': ['mweb', 'segwit'],
     })
     assert_equal(rsp, expect)
 
@@ -111,7 +111,7 @@ class MiningTest(BitcoinTestFramework):
         block.vtx = [coinbase_tx]
 
         self.log.info("getblocktemplate: segwit rule must be set")
-        assert_raises_rpc_error(-8, "getblocktemplate must be called with the segwit rule set", node.getblocktemplate)
+        assert_raises_rpc_error(-8, "getblocktemplate must be called with the segwit & mweb rule sets", node.getblocktemplate)
 
         self.log.info("getblocktemplate: Test valid block")
         assert_template(node, block, None)
@@ -132,7 +132,7 @@ class MiningTest(BitcoinTestFramework):
         assert_raises_rpc_error(-22, "Block decode failed", node.getblocktemplate, {
             'data': block.serialize()[:-1].hex(),
             'mode': 'proposal',
-            'rules': ['segwit'],
+            'rules': ['mweb', 'segwit'],
         })
 
         self.log.info("getblocktemplate: Test duplicate transaction")
@@ -165,7 +165,7 @@ class MiningTest(BitcoinTestFramework):
         assert_raises_rpc_error(-22, "Block decode failed", node.getblocktemplate, {
             'data': bad_block_sn.hex(),
             'mode': 'proposal',
-            'rules': ['segwit'],
+            'rules': ['mweb', 'segwit'],
         })
 
         self.log.info("getblocktemplate: Test bad bits")

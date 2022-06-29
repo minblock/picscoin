@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2021 The Bitcoin Core developers
+// Copyright (c) 2011-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -35,7 +35,6 @@ class TransactionView : public QWidget
 
 public:
     explicit TransactionView(const PlatformStyle *platformStyle, QWidget *parent = nullptr);
-    ~TransactionView();
 
     void setModel(WalletModel *model);
 
@@ -60,9 +59,6 @@ public:
         MINIMUM_COLUMN_WIDTH = 23
     };
 
-protected:
-    void changeEvent(QEvent* e) override;
-
 private:
     WalletModel *model{nullptr};
     TransactionFilterProxy *transactionProxyModel{nullptr};
@@ -86,9 +82,11 @@ private:
 
     QWidget *createDateRangeWidget();
 
-    bool eventFilter(QObject *obj, QEvent *event) override;
+    GUIUtil::TableViewLastColumnResizingFixer *columnResizingFixer{nullptr};
 
-    const PlatformStyle* m_platform_style;
+    virtual void resizeEvent(QResizeEvent* event) override;
+
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 private Q_SLOTS:
     void contextualMenu(const QPoint &);
@@ -104,7 +102,7 @@ private Q_SLOTS:
     void openThirdPartyTxUrl(QString url);
     void updateWatchOnlyColumn(bool fHaveWatchOnly);
     void abandonTx();
-    void bumpFee(bool checked);
+    void bumpFee();
 
 Q_SIGNALS:
     void doubleClicked(const QModelIndex&);

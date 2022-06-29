@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2021 The Bitcoin Core developers
+// Copyright (c) 2011-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,7 +6,6 @@
 #include <policy/policy.h>
 #include <test/util/setup_common.h>
 #include <txmempool.h>
-#include <validation.h>
 
 #include <vector>
 
@@ -27,8 +26,14 @@ struct Available {
     Available(CTransactionRef& ref, size_t tx_count) : ref(ref), tx_count(tx_count){}
 };
 
-static std::vector<CTransactionRef> CreateOrderedCoins(FastRandomContext& det_rand, int childTxs, int min_ancestors)
+static void ComplexMemPool(benchmark::Bench& bench)
 {
+    int childTxs = 800;
+    if (bench.complexityN() > 1) {
+        childTxs = static_cast<int>(bench.complexityN());
+    }
+
+    FastRandomContext det_rand{true};
     std::vector<Available> available_coins;
     std::vector<CTransactionRef> ordered_coins;
     // Create some base transactions
@@ -53,10 +58,8 @@ static std::vector<CTransactionRef> CreateOrderedCoins(FastRandomContext& det_ra
             size_t idx = det_rand.randrange(available_coins.size());
             Available coin = available_coins[idx];
             uint256 hash = coin.ref->GetHash();
-            // biased towards taking min_ancestors parents, but maybe more
-            size_t n_to_take = det_rand.randrange(2) == 0 ?
-                               min_ancestors :
-                               min_ancestors + det_rand.randrange(coin.ref->vout.size() - coin.vin_left);
+            // biased towards taking just one ancestor, but maybe more
+            size_t n_to_take = det_rand.randrange(2) == 0 ? 1 : 1+det_rand.randrange(coin.ref->vout.size() - coin.vin_left);
             for (size_t i = 0; i < n_to_take; ++i) {
                 tx.vin.emplace_back();
                 tx.vin.back().prevout = COutPoint(hash, coin.vin_left++);
@@ -76,18 +79,7 @@ static std::vector<CTransactionRef> CreateOrderedCoins(FastRandomContext& det_ra
         ordered_coins.emplace_back(MakeTransactionRef(tx));
         available_coins.emplace_back(ordered_coins.back(), tx_counter++);
     }
-    return ordered_coins;
-}
-
-static void ComplexMemPool(benchmark::Bench& bench)
-{
-    FastRandomContext det_rand{true};
-    int childTxs = 800;
-    if (bench.complexityN() > 1) {
-        childTxs = static_cast<int>(bench.complexityN());
-    }
-    std::vector<CTransactionRef> ordered_coins = CreateOrderedCoins(det_rand, childTxs, /* min_ancestors */ 1);
-    const auto testing_setup = MakeNoLogFileContext<const TestingSetup>(CBaseChainParams::MAIN);
+    TestingSetup test_setup;
     CTxMemPool pool;
     LOCK2(cs_main, pool.cs);
     bench.run([&]() NO_THREAD_SAFETY_ANALYSIS {
@@ -99,21 +91,4 @@ static void ComplexMemPool(benchmark::Bench& bench)
     });
 }
 
-static void MempoolCheck(benchmark::Bench& bench)
-{
-    FastRandomContext det_rand{true};
-    const int childTxs = bench.complexityN() > 1 ? static_cast<int>(bench.complexityN()) : 2000;
-    const std::vector<CTransactionRef> ordered_coins = CreateOrderedCoins(det_rand, childTxs, /* min_ancestors */ 5);
-    const auto testing_setup = MakeNoLogFileContext<const TestingSetup>(CBaseChainParams::MAIN, {"-checkmempool=1"});
-    CTxMemPool pool;
-    LOCK2(cs_main, pool.cs);
-    const CCoinsViewCache& coins_tip = testing_setup.get()->m_node.chainman->ActiveChainstate().CoinsTip();
-    for (auto& tx : ordered_coins) AddTx(tx, pool);
-
-    bench.run([&]() NO_THREAD_SAFETY_ANALYSIS {
-        pool.check(coins_tip, /* spendheight */ 2);
-    });
-}
-
 BENCHMARK(ComplexMemPool);
-BENCHMARK(MempoolCheck);

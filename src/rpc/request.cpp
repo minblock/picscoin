@@ -1,5 +1,5 @@
-// Copyright (c) 2010 Sever Neacsu
-// Copyright (c) 2009-2021 The Bitcoin Core developers
+// Copyright (c) 2010 Satoshi Nakamoto
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -70,7 +70,7 @@ static fs::path GetAuthCookieFile(bool temp=false)
     if (temp) {
         arg += ".tmp";
     }
-    return AbsPathForConfigVal(fs::PathFromString(arg));
+    return AbsPathForConfigVal(fs::path(arg));
 }
 
 bool GenerateAuthCookie(std::string *cookie_out)
@@ -87,7 +87,7 @@ bool GenerateAuthCookie(std::string *cookie_out)
     fs::path filepath_tmp = GetAuthCookieFile(true);
     file.open(filepath_tmp);
     if (!file.is_open()) {
-        LogPrintf("Unable to open cookie authentication file %s for writing\n", fs::PathToString(filepath_tmp));
+        LogPrintf("Unable to open cookie authentication file %s for writing\n", filepath_tmp.string());
         return false;
     }
     file << cookie;
@@ -95,10 +95,10 @@ bool GenerateAuthCookie(std::string *cookie_out)
 
     fs::path filepath = GetAuthCookieFile(false);
     if (!RenameOver(filepath_tmp, filepath)) {
-        LogPrintf("Unable to rename cookie authentication file %s to %s\n", fs::PathToString(filepath_tmp), fs::PathToString(filepath));
+        LogPrintf("Unable to rename cookie authentication file %s to %s\n", filepath_tmp.string(), filepath.string());
         return false;
     }
-    LogPrintf("Generated RPC authentication cookie %s\n", fs::PathToString(filepath));
+    LogPrintf("Generated RPC authentication cookie %s\n", filepath.string());
 
     if (cookie_out)
         *cookie_out = cookie;

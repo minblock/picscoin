@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2021 The Bitcoin Core developers
+// Copyright (c) 2011-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,15 +13,13 @@
 #include <qt/guiutil.h>
 
 #include <interfaces/node.h>
-#include <mapport.h>
+#include <validation.h> // For DEFAULT_SCRIPTCHECK_THREADS
 #include <net.h>
 #include <netbase.h>
-#include <txdb.h>       // for -dbcache defaults
+#include <txdb.h> // for -dbcache defaults
 #include <util/string.h>
-#include <validation.h> // For DEFAULT_SCRIPTCHECK_THREADS
 
 #include <QDebug>
-#include <QLatin1Char>
 #include <QSettings>
 #include <QStringList>
 
@@ -56,15 +54,14 @@ void OptionsModel::Init(bool resetSettings)
     // These are Qt-only settings:
 
     // Window
-    if (!settings.contains("fHideTrayIcon")) {
+    if (!settings.contains("fHideTrayIcon"))
         settings.setValue("fHideTrayIcon", false);
-    }
-    m_show_tray_icon = !settings.value("fHideTrayIcon").toBool();
-    Q_EMIT showTrayIconChanged(m_show_tray_icon);
+    fHideTrayIcon = settings.value("fHideTrayIcon").toBool();
+    Q_EMIT hideTrayIconChanged(fHideTrayIcon);
 
     if (!settings.contains("fMinimizeToTray"))
         settings.setValue("fMinimizeToTray", false);
-    fMinimizeToTray = settings.value("fMinimizeToTray").toBool() && m_show_tray_icon;
+    fMinimizeToTray = settings.value("fMinimizeToTray").toBool() && !fHideTrayIcon;
 
     if (!settings.contains("fMinimizeOnClose"))
         settings.setValue("fMinimizeOnClose", false);
@@ -83,10 +80,9 @@ void OptionsModel::Init(bool resetSettings)
         settings.setValue("fCoinControlFeatures", false);
     fCoinControlFeatures = settings.value("fCoinControlFeatures", false).toBool();
 
-    if (!settings.contains("enable_psbt_controls")) {
-        settings.setValue("enable_psbt_controls", false);
-    }
-    m_enable_psbt_controls = settings.value("enable_psbt_controls", false).toBool();
+    if (!settings.contains("fMWEBFeatures"))
+        settings.setValue("fMWEBFeatures", false);
+    fMWEBFeatures = settings.value("fMWEBFeatures", false).toBool() && gArgs.IsArgSet("-debug");
 
     // These are shared with the core or have a command-line parameter
     // and we want command-line parameters to overwrite the GUI settings.
@@ -122,18 +118,6 @@ void OptionsModel::Init(bool resetSettings)
         settings.setValue("bSpendZeroConfChange", true);
     if (!gArgs.SoftSetBoolArg("-spendzeroconfchange", settings.value("bSpendZeroConfChange").toBool()))
         addOverriddenOption("-spendzeroconfchange");
-
-    if (!settings.contains("external_signer_path"))
-        settings.setValue("external_signer_path", "");
-
-    if (!gArgs.SoftSetArg("-signer", settings.value("external_signer_path").toString().toStdString())) {
-        addOverriddenOption("-signer");
-    }
-
-    if (!settings.contains("SubFeeFromAmount")) {
-        settings.setValue("SubFeeFromAmount", false);
-    }
-    m_sub_fee_from_amount = settings.value("SubFeeFromAmount", false).toBool();
 #endif
 
     // Network
@@ -142,24 +126,10 @@ void OptionsModel::Init(bool resetSettings)
     if (!gArgs.SoftSetBoolArg("-upnp", settings.value("fUseUPnP").toBool()))
         addOverriddenOption("-upnp");
 
-    if (!settings.contains("fUseNatpmp")) {
-        settings.setValue("fUseNatpmp", DEFAULT_NATPMP);
-    }
-    if (!gArgs.SoftSetBoolArg("-natpmp", settings.value("fUseNatpmp").toBool())) {
-        addOverriddenOption("-natpmp");
-    }
-
     if (!settings.contains("fListen"))
         settings.setValue("fListen", DEFAULT_LISTEN);
     if (!gArgs.SoftSetBoolArg("-listen", settings.value("fListen").toBool()))
         addOverriddenOption("-listen");
-
-    if (!settings.contains("server")) {
-        settings.setValue("server", false);
-    }
-    if (!gArgs.SoftSetBoolArg("-server", settings.value("server").toBool())) {
-        addOverriddenOption("-server");
-    }
 
     if (!settings.contains("fUseProxy"))
         settings.setValue("fUseProxy", false);
@@ -188,12 +158,6 @@ void OptionsModel::Init(bool resetSettings)
         addOverriddenOption("-lang");
 
     language = settings.value("language").toString();
-
-    if (!settings.contains("UseEmbeddedMonospacedFont")) {
-        settings.setValue("UseEmbeddedMonospacedFont", "true");
-    }
-    m_use_embedded_monospaced_font = settings.value("UseEmbeddedMonospacedFont").toBool();
-    Q_EMIT useEmbeddedMonospacedFontChanged(m_use_embedded_monospaced_font);
 }
 
 /** Helper function to copy contents from one QSettings to another.
@@ -209,8 +173,8 @@ static void CopySettings(QSettings& dst, const QSettings& src)
 /** Back up a QSettings to an ini-formatted file. */
 static void BackupSettings(const fs::path& filename, const QSettings& src)
 {
-    qInfo() << "Backing up GUI settings to" << GUIUtil::PathToQString(filename);
-    QSettings dst(GUIUtil::PathToQString(filename), QSettings::IniFormat);
+    qInfo() << "Backing up GUI settings to" << GUIUtil::boostPathToQString(filename);
+    QSettings dst(GUIUtil::boostPathToQString(filename), QSettings::IniFormat);
     dst.clear();
     CopySettings(dst, src);
 }
@@ -220,7 +184,7 @@ void OptionsModel::Reset()
     QSettings settings;
 
     // Backup old settings to chain-specific datadir for troubleshooting
-    BackupSettings(gArgs.GetDataDirNet() / "guisettings.ini.bak", settings);
+    BackupSettings(GetDataDir(true) / "guisettings.ini.bak", settings);
 
     // Save the strDataDir setting
     QString dataDir = GUIUtil::getDefaultDataDirectory();
@@ -259,7 +223,7 @@ static ProxySetting GetProxySetting(QSettings &settings, const QString &name)
         return default_val;
     }
     // contains IP at index 0 and port at index 1
-    QStringList ip_port = GUIUtil::SplitSkipEmptyParts(settings.value(name).toString(), ":");
+    QStringList ip_port = settings.value(name).toString().split(":", QString::SkipEmptyParts);
     if (ip_port.size() == 2) {
         return {true, ip_port.at(0), ip_port.at(1)};
     } else { // Invalid: return default
@@ -269,7 +233,7 @@ static ProxySetting GetProxySetting(QSettings &settings, const QString &name)
 
 static void SetProxySetting(QSettings &settings, const QString &name, const ProxySetting &ip_port)
 {
-    settings.setValue(name, QString{ip_port.ip + QLatin1Char(':') + ip_port.port});
+    settings.setValue(name, ip_port.ip + ":" + ip_port.port);
 }
 
 static const QString GetDefaultProxyAddress()
@@ -312,8 +276,8 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
         {
         case StartAtStartup:
             return GUIUtil::GetStartOnSystemStartup();
-        case ShowTrayIcon:
-            return m_show_tray_icon;
+        case HideTrayIcon:
+            return fHideTrayIcon;
         case MinimizeToTray:
             return fMinimizeToTray;
         case MapPortUPnP:
@@ -321,13 +285,7 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return settings.value("fUseUPnP");
 #else
             return false;
-#endif // USE_UPNP
-        case MapPortNatpmp:
-#ifdef USE_NATPMP
-            return settings.value("fUseNatpmp");
-#else
-            return false;
-#endif // USE_NATPMP
+#endif
         case MinimizeOnClose:
             return fMinimizeOnClose;
 
@@ -350,10 +308,6 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
 #ifdef ENABLE_WALLET
         case SpendZeroConfChange:
             return settings.value("bSpendZeroConfChange");
-        case ExternalSignerPath:
-            return settings.value("external_signer_path");
-        case SubFeeFromAmount:
-            return m_sub_fee_from_amount;
 #endif
         case DisplayUnit:
             return nDisplayUnit;
@@ -361,12 +315,10 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return strThirdPartyTxUrls;
         case Language:
             return settings.value("language");
-        case UseEmbeddedMonospacedFont:
-            return m_use_embedded_monospaced_font;
         case CoinControlFeatures:
             return fCoinControlFeatures;
-        case EnablePSBTControls:
-            return settings.value("enable_psbt_controls");
+        case MWEBFeatures:
+            return fMWEBFeatures;
         case Prune:
             return settings.value("bPrune");
         case PruneSize:
@@ -377,8 +329,6 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return settings.value("nThreadsScriptVerif");
         case Listen:
             return settings.value("fListen");
-        case Server:
-            return settings.value("server");
         default:
             return QVariant();
         }
@@ -398,10 +348,10 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
         case StartAtStartup:
             successful = GUIUtil::SetStartOnSystemStartup(value.toBool());
             break;
-        case ShowTrayIcon:
-            m_show_tray_icon = value.toBool();
-            settings.setValue("fHideTrayIcon", !m_show_tray_icon);
-            Q_EMIT showTrayIconChanged(m_show_tray_icon);
+        case HideTrayIcon:
+            fHideTrayIcon = value.toBool();
+            settings.setValue("fHideTrayIcon", fHideTrayIcon);
+    		Q_EMIT hideTrayIconChanged(fHideTrayIcon);
             break;
         case MinimizeToTray:
             fMinimizeToTray = value.toBool();
@@ -409,9 +359,7 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
             break;
         case MapPortUPnP: // core option - can be changed on-the-fly
             settings.setValue("fUseUPnP", value.toBool());
-            break;
-        case MapPortNatpmp: // core option - can be changed on-the-fly
-            settings.setValue("fUseNatpmp", value.toBool());
+            node().mapPort(value.toBool());
             break;
         case MinimizeOnClose:
             fMinimizeOnClose = value.toBool();
@@ -477,16 +425,6 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
                 setRestartRequired(true);
             }
             break;
-        case ExternalSignerPath:
-            if (settings.value("external_signer_path") != value.toString()) {
-                settings.setValue("external_signer_path", value.toString());
-                setRestartRequired(true);
-            }
-            break;
-        case SubFeeFromAmount:
-            m_sub_fee_from_amount = value.toBool();
-            settings.setValue("SubFeeFromAmount", m_sub_fee_from_amount);
-            break;
 #endif
         case DisplayUnit:
             setDisplayUnit(value);
@@ -504,19 +442,15 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
                 setRestartRequired(true);
             }
             break;
-        case UseEmbeddedMonospacedFont:
-            m_use_embedded_monospaced_font = value.toBool();
-            settings.setValue("UseEmbeddedMonospacedFont", m_use_embedded_monospaced_font);
-            Q_EMIT useEmbeddedMonospacedFontChanged(m_use_embedded_monospaced_font);
-            break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();
             settings.setValue("fCoinControlFeatures", fCoinControlFeatures);
             Q_EMIT coinControlFeaturesChanged(fCoinControlFeatures);
             break;
-        case EnablePSBTControls:
-            m_enable_psbt_controls = value.toBool();
-            settings.setValue("enable_psbt_controls", m_enable_psbt_controls);
+        case MWEBFeatures:
+            fMWEBFeatures = value.toBool();
+            settings.setValue("fMWEBFeatures", fMWEBFeatures);
+            Q_EMIT mwebFeaturesChanged(fMWEBFeatures);
             break;
         case Prune:
             if (settings.value("bPrune") != value) {
@@ -545,12 +479,6 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
         case Listen:
             if (settings.value("fListen") != value) {
                 settings.setValue("fListen", value);
-                setRestartRequired(true);
-            }
-            break;
-        case Server:
-            if (settings.value("server") != value) {
-                settings.setValue("server", value);
                 setRestartRequired(true);
             }
             break;

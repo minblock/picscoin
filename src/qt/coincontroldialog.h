@@ -1,11 +1,12 @@
-// Copyright (c) 2011-2021 The Bitcoin Core developers
+// Copyright (c) 2011-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_QT_COINCONTROLDIALOG_H
 #define BITCOIN_QT_COINCONTROLDIALOG_H
 
-#include <consensus/amount.h>
+#include <amount.h>
+#include <wallet/coinselection.h>
 
 #include <QAbstractButton>
 #include <QAction>
@@ -19,9 +20,7 @@
 class PlatformStyle;
 class WalletModel;
 
-namespace wallet {
 class CCoinControl;
-} // namespace wallet
 
 namespace Ui {
     class CoinControlDialog;
@@ -44,32 +43,35 @@ class CoinControlDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit CoinControlDialog(wallet::CCoinControl& coin_control, WalletModel* model, const PlatformStyle *platformStyle, QWidget *parent = nullptr);
+    explicit CoinControlDialog(CCoinControl& coin_control, WalletModel* model, const PlatformStyle *platformStyle, QWidget *parent = nullptr);
     ~CoinControlDialog();
 
     // static because also called from sendcoinsdialog
-    static void updateLabels(wallet::CCoinControl& m_coin_control, WalletModel*, QDialog*);
+    static void updateLabels(CCoinControl& m_coin_control, WalletModel*, QDialog*);
 
     static QList<CAmount> payAmounts;
     static bool fSubtractFeeFromAmount;
 
-protected:
-    void changeEvent(QEvent* e) override;
-
 private:
     Ui::CoinControlDialog *ui;
-    wallet::CCoinControl& m_coin_control;
+    CCoinControl& m_coin_control;
     WalletModel *model;
     int sortColumn;
     Qt::SortOrder sortOrder;
 
     QMenu *contextMenu;
     QTreeWidgetItem *contextMenuItem;
-    QAction* m_copy_transaction_outpoint_action;
+    QAction *copyTransactionHashAction;
     QAction *lockAction;
     QAction *unlockAction;
 
     const PlatformStyle *platformStyle;
+
+    CInputCoin BuildInputCoin(QTreeWidgetItem* item);
+    OutputIndex BuildOutputIndex(QTreeWidgetItem* item);
+
+    bool IsMWEB(QTreeWidgetItem* item);
+    bool IsCanonical(QTreeWidgetItem* item);
 
     void sortView(int, Qt::SortOrder);
     void updateView();
@@ -87,7 +89,9 @@ private:
     enum
     {
         TxHashRole = Qt::UserRole,
-        VOutRole
+        VOutRole,
+        PubKeyRole,
+        MWEBOutRole
     };
 
     friend class CCoinControlWidgetItem;
@@ -97,7 +101,7 @@ private Q_SLOTS:
     void copyAmount();
     void copyLabel();
     void copyAddress();
-    void copyTransactionOutpoint();
+    void copyTransactionHash();
     void lockCoin();
     void unlockCoin();
     void clipboardQuantity();

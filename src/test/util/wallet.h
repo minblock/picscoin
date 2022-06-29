@@ -7,9 +7,7 @@
 
 #include <string>
 
-namespace wallet {
 class CWallet;
-} // namespace wallet
 
 // Constants //
 
@@ -18,9 +16,9 @@ extern const std::string ADDRESS_BCRT1_UNSPENDABLE;
 // RPC-like //
 
 /** Import the address to the wallet */
-void importaddress(wallet::CWallet& wallet, const std::string& address);
+void importaddress(CWallet& wallet, const std::string& address);
 /** Returns a new address from the wallet */
-std::string getnewaddress(wallet::CWallet& w);
+std::string getnewaddress(CWallet& w);
 
 
 #endif // BITCOIN_TEST_UTIL_WALLET_H

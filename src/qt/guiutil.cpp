@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2021 The Bitcoin Core developers
+// Copyright (c) 2011-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,7 +6,6 @@
 
 #include <qt/bitcoinaddressvalidator.h>
 #include <qt/bitcoinunits.h>
-#include <qt/platformstyle.h>
 #include <qt/qvalidatedlineedit.h>
 #include <qt/sendcoinsrecipient.h>
 
@@ -20,7 +19,6 @@
 #include <script/script.h>
 #include <script/standard.h>
 #include <util/system.h>
-#include <util/time.h>
 
 #ifdef WIN32
 #ifndef NOMINMAX
@@ -31,28 +29,22 @@
 #include <shlwapi.h>
 #endif
 
-#include <QAbstractButton>
 #include <QAbstractItemView>
 #include <QApplication>
 #include <QClipboard>
 #include <QDateTime>
 #include <QDesktopServices>
-#include <QDialog>
 #include <QDoubleValidator>
 #include <QFileDialog>
 #include <QFont>
 #include <QFontDatabase>
 #include <QFontMetrics>
 #include <QGuiApplication>
-#include <QJsonObject>
 #include <QKeyEvent>
-#include <QLatin1String>
 #include <QLineEdit>
 #include <QList>
-#include <QLocale>
 #include <QMenu>
 #include <QMouseEvent>
-#include <QPluginLoader>
 #include <QProgressDialog>
 #include <QScreen>
 #include <QSettings>
@@ -63,9 +55,6 @@
 #include <QThread>
 #include <QUrlQuery>
 #include <QtGlobal>
-
-#include <cassert>
-#include <chrono>
 
 #if defined(Q_OS_MAC)
 
@@ -78,19 +67,16 @@ namespace GUIUtil {
 
 QString dateTimeStr(const QDateTime &date)
 {
-    return QLocale::system().toString(date.date(), QLocale::ShortFormat) + QString(" ") + date.toString("hh:mm");
+    return date.date().toString(Qt::SystemLocaleShortDate) + QString(" ") + date.toString("hh:mm");
 }
 
 QString dateTimeStr(qint64 nTime)
 {
-    return dateTimeStr(QDateTime::fromSecsSinceEpoch(nTime));
+    return dateTimeStr(QDateTime::fromTime_t((qint32)nTime));
 }
 
-QFont fixedPitchFont(bool use_embedded_font)
+QFont fixedPitchFont()
 {
-    if (use_embedded_font) {
-        return {"Roboto Mono"};
-    }
     return QFontDatabase::systemFont(QFontDatabase::FixedFont);
 }
 
@@ -119,21 +105,16 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
     widget->setFont(fixedPitchFont());
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Bitcoin address (e.g. %1)").arg(
+    widget->setPlaceholderText(QObject::tr("Enter a Picscoin address (e.g. %1)").arg(
         QString::fromStdString(DummyAddress(Params()))));
     widget->setValidator(new BitcoinAddressEntryValidator(parent));
     widget->setCheckValidator(new BitcoinAddressCheckValidator(parent));
 }
 
-void AddButtonShortcut(QAbstractButton* button, const QKeySequence& shortcut)
-{
-    QObject::connect(new QShortcut(shortcut, button), &QShortcut::activated, [button]() { button->animateClick(); });
-}
-
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
     // return if URI is not valid or is no bitcoin: URI
-    if(!uri.isValid() || uri.scheme() != QString("bitcoin"))
+    if(!uri.isValid() || uri.scheme() != QString("picscoin"))
         return false;
 
     SendCoinsRecipient rv;
@@ -197,7 +178,7 @@ QString formatBitcoinURI(const SendCoinsRecipient &info)
 {
     bool bech_32 = info.address.startsWith(QString::fromStdString(Params().Bech32HRP() + "1"));
 
-    QString ret = QString("bitcoin:%1").arg(bech_32 ? info.address.toUpper() : info.address);
+    QString ret = QString("picscoin:%1").arg(bech_32 ? info.address.toUpper() : info.address);
     int paramCount = 0;
 
     if (info.amount)
@@ -229,6 +210,16 @@ bool isDust(interfaces::Node& node, const QString& address, const CAmount& amoun
     CScript script = GetScriptForDestination(dest);
     CTxOut txOut(amount, script);
     return IsDust(txOut, node.getDustRelayFee());
+}
+
+bool isMWEBAddressBeforeActivated(interfaces::Node& node, const QString& address)
+{
+    CTxDestination dest = DecodeDestination(address.toStdString());
+    if (dest.type() == typeid(StealthAddress)) {
+        return !node.isMWEBActive();
+    }
+
+    return false;
 }
 
 QString HtmlEscape(const QString& str, bool fMultiLine)
@@ -273,15 +264,9 @@ bool hasEntryData(const QAbstractItemView *view, int column, int role)
     return !selection.at(0).data(role).toString().isEmpty();
 }
 
-void LoadFont(const QString& file_name)
-{
-    const int id = QFontDatabase::addApplicationFont(file_name);
-    assert(id != -1);
-}
-
 QString getDefaultDataDirectory()
 {
-    return PathToQString(GetDefaultDataDir());
+    return boostPathToQString(GetDefaultDataDir());
 }
 
 QString getSaveFileName(QWidget *parent, const QString &caption, const QString &dir,
@@ -414,11 +399,11 @@ void handleCloseWindowShortcut(QWidget* w)
 
 void openDebugLogfile()
 {
-    fs::path pathDebug = gArgs.GetDataDirNet() / "debug.log";
+    fs::path pathDebug = GetDataDir() / "debug.log";
 
     /* Open debug.log with the associated application */
     if (fs::exists(pathDebug))
-        QDesktopServices::openUrl(QUrl::fromLocalFile(PathToQString(pathDebug)));
+        QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathDebug)));
 }
 
 bool openBitcoinConf()
@@ -434,11 +419,11 @@ bool openBitcoinConf()
     configFile.close();
 
     /* Open bitcoin.conf with the associated application */
-    bool res = QDesktopServices::openUrl(QUrl::fromLocalFile(PathToQString(pathConfig)));
+    bool res = QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
 #ifdef Q_OS_MAC
     // Workaround for macOS-specific behavior; see #15409.
     if (!res) {
-        res = QProcess::startDetached("/usr/bin/open", QStringList{"-t", PathToQString(pathConfig)});
+        res = QProcess::startDetached("/usr/bin/open", QStringList{"-t", boostPathToQString(pathConfig)});
     }
 #endif
 
@@ -492,15 +477,129 @@ bool LabelOutOfFocusEventFilter::eventFilter(QObject* watched, QEvent* event)
     return QObject::eventFilter(watched, event);
 }
 
+void TableViewLastColumnResizingFixer::connectViewHeadersSignals()
+{
+    connect(tableView->horizontalHeader(), &QHeaderView::sectionResized, this, &TableViewLastColumnResizingFixer::on_sectionResized);
+    connect(tableView->horizontalHeader(), &QHeaderView::geometriesChanged, this, &TableViewLastColumnResizingFixer::on_geometriesChanged);
+}
+
+// We need to disconnect these while handling the resize events, otherwise we can enter infinite loops.
+void TableViewLastColumnResizingFixer::disconnectViewHeadersSignals()
+{
+    disconnect(tableView->horizontalHeader(), &QHeaderView::sectionResized, this, &TableViewLastColumnResizingFixer::on_sectionResized);
+    disconnect(tableView->horizontalHeader(), &QHeaderView::geometriesChanged, this, &TableViewLastColumnResizingFixer::on_geometriesChanged);
+}
+
+// Setup the resize mode, handles compatibility for Qt5 and below as the method signatures changed.
+// Refactored here for readability.
+void TableViewLastColumnResizingFixer::setViewHeaderResizeMode(int logicalIndex, QHeaderView::ResizeMode resizeMode)
+{
+    tableView->horizontalHeader()->setSectionResizeMode(logicalIndex, resizeMode);
+}
+
+void TableViewLastColumnResizingFixer::resizeColumn(int nColumnIndex, int width)
+{
+    tableView->setColumnWidth(nColumnIndex, width);
+    tableView->horizontalHeader()->resizeSection(nColumnIndex, width);
+}
+
+int TableViewLastColumnResizingFixer::getColumnsWidth()
+{
+    int nColumnsWidthSum = 0;
+    for (int i = 0; i < columnCount; i++)
+    {
+        nColumnsWidthSum += tableView->horizontalHeader()->sectionSize(i);
+    }
+    return nColumnsWidthSum;
+}
+
+int TableViewLastColumnResizingFixer::getAvailableWidthForColumn(int column)
+{
+    int nResult = lastColumnMinimumWidth;
+    int nTableWidth = tableView->horizontalHeader()->width();
+
+    if (nTableWidth > 0)
+    {
+        int nOtherColsWidth = getColumnsWidth() - tableView->horizontalHeader()->sectionSize(column);
+        nResult = std::max(nResult, nTableWidth - nOtherColsWidth);
+    }
+
+    return nResult;
+}
+
+// Make sure we don't make the columns wider than the table's viewport width.
+void TableViewLastColumnResizingFixer::adjustTableColumnsWidth()
+{
+    disconnectViewHeadersSignals();
+    resizeColumn(lastColumnIndex, getAvailableWidthForColumn(lastColumnIndex));
+    connectViewHeadersSignals();
+
+    int nTableWidth = tableView->horizontalHeader()->width();
+    int nColsWidth = getColumnsWidth();
+    if (nColsWidth > nTableWidth)
+    {
+        resizeColumn(secondToLastColumnIndex,getAvailableWidthForColumn(secondToLastColumnIndex));
+    }
+}
+
+// Make column use all the space available, useful during window resizing.
+void TableViewLastColumnResizingFixer::stretchColumnWidth(int column)
+{
+    disconnectViewHeadersSignals();
+    resizeColumn(column, getAvailableWidthForColumn(column));
+    connectViewHeadersSignals();
+}
+
+// When a section is resized this is a slot-proxy for ajustAmountColumnWidth().
+void TableViewLastColumnResizingFixer::on_sectionResized(int logicalIndex, int oldSize, int newSize)
+{
+    adjustTableColumnsWidth();
+    int remainingWidth = getAvailableWidthForColumn(logicalIndex);
+    if (newSize > remainingWidth)
+    {
+       resizeColumn(logicalIndex, remainingWidth);
+    }
+}
+
+// When the table's geometry is ready, we manually perform the stretch of the "Message" column,
+// as the "Stretch" resize mode does not allow for interactive resizing.
+void TableViewLastColumnResizingFixer::on_geometriesChanged()
+{
+    if ((getColumnsWidth() - this->tableView->horizontalHeader()->width()) != 0)
+    {
+        disconnectViewHeadersSignals();
+        resizeColumn(secondToLastColumnIndex, getAvailableWidthForColumn(secondToLastColumnIndex));
+        connectViewHeadersSignals();
+    }
+}
+
+/**
+ * Initializes all internal variables and prepares the
+ * the resize modes of the last 2 columns of the table and
+ */
+TableViewLastColumnResizingFixer::TableViewLastColumnResizingFixer(QTableView* table, int lastColMinimumWidth, int allColsMinimumWidth, QObject *parent) :
+    QObject(parent),
+    tableView(table),
+    lastColumnMinimumWidth(lastColMinimumWidth),
+    allColumnsMinimumWidth(allColsMinimumWidth)
+{
+    columnCount = tableView->horizontalHeader()->count();
+    lastColumnIndex = columnCount - 1;
+    secondToLastColumnIndex = columnCount - 2;
+    tableView->horizontalHeader()->setMinimumSectionSize(allColumnsMinimumWidth);
+    setViewHeaderResizeMode(secondToLastColumnIndex, QHeaderView::Interactive);
+    setViewHeaderResizeMode(lastColumnIndex, QHeaderView::Interactive);
+}
+
 #ifdef WIN32
 fs::path static StartupShortcutPath()
 {
     std::string chain = gArgs.GetChainName();
     if (chain == CBaseChainParams::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitcoin.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Picscoin.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitcoin (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Bitcoin (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Picscoin (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Picscoin (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -565,7 +664,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 #elif defined(Q_OS_LINUX)
 
 // Follow the Desktop Application Autostart Spec:
-// https://specifications.freedesktop.org/autostart-spec/autostart-spec-latest.html
+// http://standards.freedesktop.org/autostart-spec/autostart-spec-latest.html
 
 fs::path static GetAutostartDir()
 {
@@ -580,8 +679,8 @@ fs::path static GetAutostartFilePath()
 {
     std::string chain = gArgs.GetChainName();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "bitcoin.desktop";
-    return GetAutostartDir() / strprintf("bitcoin-%s.desktop", chain);
+        return GetAutostartDir() / "picscoin.desktop";
+    return GetAutostartDir() / strprintf("picscoin-%s.desktop", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -625,9 +724,9 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=Bitcoin\n";
+            optionFile << "Name=Picscoin\n";
         else
-            optionFile << strprintf("Name=Bitcoin (%s)\n", chain);
+            optionFile << strprintf("Name=Picscoin (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -chain=%s\n", chain);
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -645,70 +744,22 @@ bool SetStartOnSystemStartup(bool fAutoStart) { return false; }
 
 void setClipboard(const QString& str)
 {
-    QClipboard* clipboard = QApplication::clipboard();
-    clipboard->setText(str, QClipboard::Clipboard);
-    if (clipboard->supportsSelection()) {
-        clipboard->setText(str, QClipboard::Selection);
-    }
+    QApplication::clipboard()->setText(str, QClipboard::Clipboard);
+    QApplication::clipboard()->setText(str, QClipboard::Selection);
 }
 
-fs::path QStringToPath(const QString &path)
+fs::path qstringToBoostPath(const QString &path)
 {
-    return fs::u8path(path.toStdString());
+    return fs::path(path.toStdString());
 }
 
-QString PathToQString(const fs::path &path)
+QString boostPathToQString(const fs::path &path)
 {
-    return QString::fromStdString(path.u8string());
+    return QString::fromStdString(path.string());
 }
 
-QString NetworkToQString(Network net)
+QString formatDurationStr(int secs)
 {
-    switch (net) {
-    case NET_UNROUTABLE: return QObject::tr("Unroutable");
-    case NET_IPV4: return "IPv4";
-    case NET_IPV6: return "IPv6";
-    case NET_ONION: return "Onion";
-    case NET_I2P: return "I2P";
-    case NET_CJDNS: return "CJDNS";
-    case NET_INTERNAL: return QObject::tr("Internal");
-    case NET_MAX: assert(false);
-    } // no default case, so the compiler can warn about missing cases
-    assert(false);
-}
-
-QString ConnectionTypeToQString(ConnectionType conn_type, bool prepend_direction)
-{
-    QString prefix;
-    if (prepend_direction) {
-        prefix = (conn_type == ConnectionType::INBOUND) ?
-                     /*: An inbound connection from a peer. An inbound connection
-                         is a connection initiated by a peer. */
-                     QObject::tr("Inbound") :
-                     /*: An outbound connection to a peer. An outbound connection
-                         is a connection initiated by us. */
-                     QObject::tr("Outbound") + " ";
-    }
-    switch (conn_type) {
-    case ConnectionType::INBOUND: return prefix;
-    //: Peer connection type that relays all network information.
-    case ConnectionType::OUTBOUND_FULL_RELAY: return prefix + QObject::tr("Full Relay");
-    /*: Peer connection type that relays network information about
-        blocks and not transactions or addresses. */
-    case ConnectionType::BLOCK_RELAY: return prefix + QObject::tr("Block Relay");
-    //: Peer connection type established manually through one of several methods.
-    case ConnectionType::MANUAL: return prefix + QObject::tr("Manual");
-    //: Short-lived peer connection type that tests the aliveness of known addresses.
-    case ConnectionType::FEELER: return prefix + QObject::tr("Feeler");
-    //: Short-lived peer connection type that solicits known addresses from a peer.
-    case ConnectionType::ADDR_FETCH: return prefix + QObject::tr("Address Fetch");
-    } // no default case, so the compiler can warn about missing cases
-    assert(false);
-}
-
-QString formatDurationStr(std::chrono::seconds dur)
-{
-    const auto secs = count_seconds(dur);
     QStringList strList;
     int days = secs / 86400;
     int hours = (secs % 86400) / 3600;
@@ -716,13 +767,13 @@ QString formatDurationStr(std::chrono::seconds dur)
     int seconds = secs % 60;
 
     if (days)
-        strList.append(QObject::tr("%1 d").arg(days));
+        strList.append(QString(QObject::tr("%1 d")).arg(days));
     if (hours)
-        strList.append(QObject::tr("%1 h").arg(hours));
+        strList.append(QString(QObject::tr("%1 h")).arg(hours));
     if (mins)
-        strList.append(QObject::tr("%1 m").arg(mins));
+        strList.append(QString(QObject::tr("%1 m")).arg(mins));
     if (seconds || (!days && !hours && !mins))
-        strList.append(QObject::tr("%1 s").arg(seconds));
+        strList.append(QString(QObject::tr("%1 s")).arg(seconds));
 
     return strList.join(" ");
 }
@@ -736,21 +787,19 @@ QString formatServicesStr(quint64 mask)
     }
 
     if (strList.size())
-        return strList.join(", ");
+        return strList.join(" & ");
     else
         return QObject::tr("None");
 }
 
-QString formatPingTime(std::chrono::microseconds ping_time)
+QString formatPingTime(int64_t ping_usec)
 {
-    return (ping_time == std::chrono::microseconds::max() || ping_time == 0us) ?
-        QObject::tr("N/A") :
-        QObject::tr("%1 ms").arg(QString::number((int)(count_microseconds(ping_time) / 1000), 10));
+    return (ping_usec == std::numeric_limits<int64_t>::max() || ping_usec == 0) ? QObject::tr("N/A") : QString(QObject::tr("%1 ms")).arg(QString::number((int)(ping_usec / 1000), 10));
 }
 
 QString formatTimeOffset(int64_t nTimeOffset)
 {
-  return QObject::tr("%1 s").arg(QString::number((int)nTimeOffset, 10));
+  return QString(QObject::tr("%1 s")).arg(QString::number((int)nTimeOffset, 10));
 }
 
 QString formatNiceTimeOffset(qint64 secs)
@@ -792,14 +841,14 @@ QString formatNiceTimeOffset(qint64 secs)
 
 QString formatBytes(uint64_t bytes)
 {
-    if (bytes < 1'000)
-        return QObject::tr("%1 B").arg(bytes);
-    if (bytes < 1'000'000)
-        return QObject::tr("%1 kB").arg(bytes / 1'000);
-    if (bytes < 1'000'000'000)
-        return QObject::tr("%1 MB").arg(bytes / 1'000'000);
+    if(bytes < 1024)
+        return QString(QObject::tr("%1 B")).arg(bytes);
+    if(bytes < 1024 * 1024)
+        return QString(QObject::tr("%1 KB")).arg(bytes / 1024);
+    if(bytes < 1024 * 1024 * 1024)
+        return QString(QObject::tr("%1 MB")).arg(bytes / 1024 / 1024);
 
-    return QObject::tr("%1 GB").arg(bytes / 1'000'000'000);
+    return QString(QObject::tr("%1 GB")).arg(bytes / 1024 / 1024 / 1024);
 }
 
 qreal calculateIdealFontSize(int width, const QString& text, QFont font, qreal minPointSize, qreal font_size) {
@@ -812,39 +861,6 @@ qreal calculateIdealFontSize(int width, const QString& text, QFont font, qreal m
         font_size -= 0.5;
     }
     return font_size;
-}
-
-ThemedLabel::ThemedLabel(const PlatformStyle* platform_style, QWidget* parent)
-    : QLabel{parent}, m_platform_style{platform_style}
-{
-    assert(m_platform_style);
-}
-
-void ThemedLabel::setThemedPixmap(const QString& image_filename, int width, int height)
-{
-    m_image_filename = image_filename;
-    m_pixmap_width = width;
-    m_pixmap_height = height;
-    updateThemedPixmap();
-}
-
-void ThemedLabel::changeEvent(QEvent* e)
-{
-    if (e->type() == QEvent::PaletteChange) {
-        updateThemedPixmap();
-    }
-
-    QLabel::changeEvent(e);
-}
-
-void ThemedLabel::updateThemedPixmap()
-{
-    setPixmap(m_platform_style->SingleColorIcon(m_image_filename).pixmap(m_pixmap_width, m_pixmap_height));
-}
-
-ClickableLabel::ClickableLabel(const PlatformStyle* platform_style, QWidget* parent)
-    : ThemedLabel{platform_style, parent}
-{
 }
 
 void ClickableLabel::mouseReleaseEvent(QMouseEvent *event)
@@ -873,12 +889,10 @@ void PolishProgressDialog(QProgressDialog* dialog)
     // Workaround for macOS-only Qt bug; see: QTBUG-65750, QTBUG-70357.
     const int margin = TextWidth(dialog->fontMetrics(), ("X"));
     dialog->resize(dialog->width() + 2 * margin, dialog->height());
+    dialog->show();
+#else
+    Q_UNUSED(dialog);
 #endif
-    // QProgressDialog estimates the time the operation will take (based on time
-    // for steps), and only shows itself if that estimate is beyond minimumDuration.
-    // The default minimumDuration value is 4 seconds, and it could make users
-    // think that the GUI is frozen.
-    dialog->setMinimumDuration(0);
 }
 
 int TextWidth(const QFontMetrics& fm, const QString& text)
@@ -903,20 +917,6 @@ void LogQtInfo()
     const std::string plugin_link{"dynamic"};
 #endif
     LogPrintf("Qt %s (%s), plugin=%s (%s)\n", qVersion(), qt_link, QGuiApplication::platformName().toStdString(), plugin_link);
-    const auto static_plugins = QPluginLoader::staticPlugins();
-    if (static_plugins.empty()) {
-        LogPrintf("No static plugins.\n");
-    } else {
-        LogPrintf("Static plugins:\n");
-        for (const QStaticPlugin& p : static_plugins) {
-            QJsonObject meta_data = p.metaData();
-            const std::string plugin_class = meta_data.take(QString("className")).toString().toStdString();
-            const int plugin_version = meta_data.take(QString("version")).toInt();
-            LogPrintf(" %s, version %d\n", plugin_class, plugin_version);
-        }
-    }
-
-    LogPrintf("Style: %s / %s\n", QApplication::style()->objectName().toStdString(), QApplication::style()->metaObject()->className());
     LogPrintf("System: %s, %s\n", QSysInfo::prettyProductName().toStdString(), QSysInfo::buildAbi().toStdString());
     for (const QScreen* s : QGuiApplication::screens()) {
         LogPrintf("Screen: %s %dx%d, pixel ratio=%.1f\n", s->name().toStdString(), s->size().width(), s->size().height(), s->devicePixelRatio());
@@ -928,62 +928,6 @@ void PopupMenu(QMenu* menu, const QPoint& point, QAction* at_action)
     // The qminimal plugin does not provide window system integration.
     if (QApplication::platformName() == "minimal") return;
     menu->popup(point, at_action);
-}
-
-QDateTime StartOfDay(const QDate& date)
-{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-    return date.startOfDay();
-#else
-    return QDateTime(date);
-#endif
-}
-
-bool HasPixmap(const QLabel* label)
-{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
-    return !label->pixmap(Qt::ReturnByValue).isNull();
-#else
-    return label->pixmap() != nullptr;
-#endif
-}
-
-QImage GetImage(const QLabel* label)
-{
-    if (!HasPixmap(label)) {
-        return QImage();
-    }
-
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
-    return label->pixmap(Qt::ReturnByValue).toImage();
-#else
-    return label->pixmap()->toImage();
-#endif
-}
-
-QString MakeHtmlLink(const QString& source, const QString& link)
-{
-    return QString(source).replace(
-        link,
-        QLatin1String("<a href=\"") + link + QLatin1String("\">") + link + QLatin1String("</a>"));
-}
-
-void PrintSlotException(
-    const std::exception* exception,
-    const QObject* sender,
-    const QObject* receiver)
-{
-    std::string description = sender->metaObject()->className();
-    description += "->";
-    description += receiver->metaObject()->className();
-    PrintExceptionContinue(exception, description.c_str());
-}
-
-void ShowModalDialogAndDeleteOnClose(QDialog* dialog)
-{
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->setWindowModality(Qt::ApplicationModal);
-    dialog->show();
 }
 
 } // namespace GUIUtil

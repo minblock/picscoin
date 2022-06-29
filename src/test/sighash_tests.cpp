@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2021 The Bitcoin Core developers
+// Copyright (c) 2013-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -21,7 +21,7 @@
 
 #include <univalue.h>
 
-UniValue read_json(const std::string& jsondata);
+extern UniValue read_json(const std::string& jsondata);
 
 // Old script.cpp SignatureHash function
 uint256 static SignatureHashOld(CScript scriptCode, const CTransaction& txTo, unsigned int nIn, int nHashType)
@@ -78,7 +78,7 @@ uint256 static SignatureHashOld(CScript scriptCode, const CTransaction& txTo, un
     }
 
     // Serialize and hash
-    CHashWriter ss(SER_GETHASH, SERIALIZE_TRANSACTION_NO_WITNESS);
+    CHashWriter ss(SER_GETHASH, SERIALIZE_TRANSACTION_NO_WITNESS | SERIALIZE_NO_MWEB);
     ss << txTmp << nHashType;
     return ss.GetHash();
 }
@@ -88,12 +88,11 @@ void static RandomScript(CScript &script) {
     script = CScript();
     int ops = (InsecureRandRange(10));
     for (int i=0; i<ops; i++)
-        script << oplist[InsecureRandRange(std::size(oplist))];
+        script << oplist[InsecureRandRange(sizeof(oplist)/sizeof(oplist[0]))];
 }
 
-void static RandomTransaction(CMutableTransaction& tx, bool fSingle)
-{
-    tx.nVersion = int(InsecureRand32());
+void static RandomTransaction(CMutableTransaction &tx, bool fSingle) {
+    tx.nVersion = InsecureRand32();
     tx.vin.clear();
     tx.vout.clear();
     tx.nLockTime = (InsecureRandBool()) ? InsecureRand32() : 0;
@@ -127,7 +126,7 @@ BOOST_AUTO_TEST_CASE(sighash_test)
     int nRandomTests = 50000;
     #endif
     for (int i=0; i<nRandomTests; i++) {
-        int nHashType{int(InsecureRand32())};
+        int nHashType = InsecureRand32();
         CMutableTransaction txTo;
         RandomTransaction(txTo, (nHashType & 0x1f) == SIGHASH_SINGLE);
         CScript scriptCode;

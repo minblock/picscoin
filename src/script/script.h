@@ -1,13 +1,13 @@
-// Copyright (c) 2009-2010 Sever Neacsu
-// Copyright (c) 2009-2021 The Bitcoin Core developers
+// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2009-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_SCRIPT_SCRIPT_H
 #define BITCOIN_SCRIPT_SCRIPT_H
 
-#include <attributes.h>
 #include <crypto/common.h>
+#include <mw/models/crypto/Hash.h>
 #include <prevector.h>
 #include <serialize.h>
 
@@ -19,6 +19,18 @@
 #include <string.h>
 #include <string>
 #include <vector>
+
+// MWEB: Size of the witness program of the first output in HogEx transactions
+static constexpr size_t WITNESS_MWEB_HEADERHASH_SIZE = 32;
+
+// MWEB: Size of the witness program for peg-in transactions
+static constexpr size_t WITNESS_MWEB_PEGIN_SIZE = 32;
+
+// MWEB: Version of MWEB witness programs for HogAddr outputs
+static constexpr int MWEB_HOG_ADDR_WITNESS_VERSION = 8;
+
+// MWEB: Version of MWEB witness programs for peg-in transactions
+static constexpr int MWEB_PEGIN_WITNESS_VERSION = 9;
 
 // Maximum number of bytes pushable to the stack
 static const unsigned int MAX_SCRIPT_ELEMENT_SIZE = 520;
@@ -439,9 +451,9 @@ public:
     /** Delete non-existent operator to defend against future introduction */
     CScript& operator<<(const CScript& b) = delete;
 
-    CScript& operator<<(int64_t b) LIFETIMEBOUND { return push_int64(b); }
+    CScript& operator<<(int64_t b) { return push_int64(b); }
 
-    CScript& operator<<(opcodetype opcode) LIFETIMEBOUND
+    CScript& operator<<(opcodetype opcode)
     {
         if (opcode < 0 || opcode > 0xff)
             throw std::runtime_error("CScript::operator<<(): invalid opcode");
@@ -449,13 +461,13 @@ public:
         return *this;
     }
 
-    CScript& operator<<(const CScriptNum& b) LIFETIMEBOUND
+    CScript& operator<<(const CScriptNum& b)
     {
         *this << b.getvch();
         return *this;
     }
 
-    CScript& operator<<(const std::vector<unsigned char>& b) LIFETIMEBOUND
+    CScript& operator<<(const std::vector<unsigned char>& b)
     {
         if (b.size() < OP_PUSHDATA1)
         {
@@ -528,6 +540,9 @@ public:
     bool IsPayToScriptHash() const;
     bool IsPayToWitnessScriptHash() const;
     bool IsWitnessProgram(int& version, std::vector<unsigned char>& program) const;
+
+    bool IsMWEBPegin(mw::Hash* const kernel_id = nullptr) const;
+    bool IsMWEBHogAddr(mw::Hash* const header_hash) const;
 
     /** Called by IsStandardTx and P2SH/BIP62 VerifyScript (which makes it consensus-critical). */
     bool IsPushOnly(const_iterator pc) const;

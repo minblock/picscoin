@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2010 Sever Neacsu
+// Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -27,12 +27,18 @@
 #include <boost/multi_index/hashed_index.hpp>
 #include <boost/multi_index/ordered_index.hpp>
 #include <boost/multi_index/sequenced_index.hpp>
+#include <caches/Cache.h>
 
+class CBlock;
 class CBlockIndex;
+struct DisconnectedBlockTransactions;
 extern RecursiveMutex cs_main;
 
 /** Fake height value used in Coin to signify they are only in the memory pool (since 0.8) */
 static const uint32_t MEMPOOL_HEIGHT = 0x7FFFFFFF;
+
+/** Default size of CMemPool's recentTxsByKernel cache */
+static const unsigned int DEFAULT_MEMPOOL_MWEB_CACHE_SIZE = 1000;
 
 struct LockPoints
 {
@@ -89,6 +95,7 @@ private:
     mutable Children m_children;
     const CAmount nFee;             //!< Cached to avoid expensive parent-transaction lookups
     const size_t nTxWeight;         //!< ... and avoid recomputing tx weight (also used for GetTxSize())
+    const uint64_t mweb_weight;
     const size_t nUsageSize;        //!< ... and total memory usage
     const int64_t nTime;            //!< Local time when entering the mempool
     const unsigned int entryHeight; //!< Chain height when entering the mempool
@@ -103,12 +110,14 @@ private:
     uint64_t nCountWithDescendants;  //!< number of descendant transactions
     uint64_t nSizeWithDescendants;   //!< ... and size
     CAmount nModFeesWithDescendants; //!< ... and total fees (all including us)
+    uint64_t nMWEBWeightWithDescendants;
 
     // Analogous statistics for ancestor transactions
     uint64_t nCountWithAncestors;
     uint64_t nSizeWithAncestors;
     CAmount nModFeesWithAncestors;
     int64_t nSigOpCostWithAncestors;
+    int64_t nMWEBWeightWithAncestors;
 
 public:
     CTxMemPoolEntry(const CTransactionRef& _tx, const CAmount& _nFee,
@@ -121,6 +130,7 @@ public:
     const CAmount& GetFee() const { return nFee; }
     size_t GetTxSize() const;
     size_t GetTxWeight() const { return nTxWeight; }
+    size_t GetMWEBWeight() const { return mweb_weight; }
     std::chrono::seconds GetTime() const { return std::chrono::seconds{nTime}; }
     unsigned int GetHeight() const { return entryHeight; }
     int64_t GetSigOpCost() const { return sigOpCost; }
@@ -129,9 +139,9 @@ public:
     const LockPoints& GetLockPoints() const { return lockPoints; }
 
     // Adjusts the descendant state.
-    void UpdateDescendantState(int64_t modifySize, CAmount modifyFee, int64_t modifyCount);
+    void UpdateDescendantState(int64_t modifySize, CAmount modifyFee, int64_t modifyCount, int64_t modifyMWEBWeight);
     // Adjusts the ancestor state
-    void UpdateAncestorState(int64_t modifySize, CAmount modifyFee, int64_t modifyCount, int64_t modifySigOps);
+    void UpdateAncestorState(int64_t modifySize, CAmount modifyFee, int64_t modifyCount, int64_t modifySigOps, int64_t modifyMWEBWeight);
     // Updates the fee delta used for mining priority score, and the
     // modified fees with descendants.
     void UpdateFeeDelta(int64_t feeDelta);
@@ -141,6 +151,7 @@ public:
     uint64_t GetCountWithDescendants() const { return nCountWithDescendants; }
     uint64_t GetSizeWithDescendants() const { return nSizeWithDescendants; }
     CAmount GetModFeesWithDescendants() const { return nModFeesWithDescendants; }
+    uint64_t GetMWEBWeightWithDescendants() const { return nMWEBWeightWithDescendants; }
 
     bool GetSpendsCoinbase() const { return spendsCoinbase; }
 
@@ -148,6 +159,7 @@ public:
     uint64_t GetSizeWithAncestors() const { return nSizeWithAncestors; }
     CAmount GetModFeesWithAncestors() const { return nModFeesWithAncestors; }
     int64_t GetSigOpCostWithAncestors() const { return nSigOpCostWithAncestors; }
+    uint64_t GetMWEBWeightWithAncestors() const { return nMWEBWeightWithAncestors; }
 
     const Parents& GetMemPoolParentsConst() const { return m_parents; }
     const Children& GetMemPoolChildrenConst() const { return m_children; }
@@ -161,33 +173,35 @@ public:
 // Helpers for modifying CTxMemPool::mapTx, which is a boost multi_index.
 struct update_descendant_state
 {
-    update_descendant_state(int64_t _modifySize, CAmount _modifyFee, int64_t _modifyCount) :
-        modifySize(_modifySize), modifyFee(_modifyFee), modifyCount(_modifyCount)
+    update_descendant_state(int64_t _modifySize, CAmount _modifyFee, int64_t _modifyCount, int64_t _modifyMWEBWeight) :
+        modifySize(_modifySize), modifyFee(_modifyFee), modifyCount(_modifyCount), modifyMWEBWeight(_modifyMWEBWeight)
     {}
 
     void operator() (CTxMemPoolEntry &e)
-        { e.UpdateDescendantState(modifySize, modifyFee, modifyCount); }
+        { e.UpdateDescendantState(modifySize, modifyFee, modifyCount, modifyMWEBWeight); }
 
     private:
         int64_t modifySize;
         CAmount modifyFee;
         int64_t modifyCount;
+        int64_t modifyMWEBWeight;
 };
 
 struct update_ancestor_state
 {
-    update_ancestor_state(int64_t _modifySize, CAmount _modifyFee, int64_t _modifyCount, int64_t _modifySigOpsCost) :
-        modifySize(_modifySize), modifyFee(_modifyFee), modifyCount(_modifyCount), modifySigOpsCost(_modifySigOpsCost)
+    update_ancestor_state(int64_t _modifySize, CAmount _modifyFee, int64_t _modifyCount, int64_t _modifySigOpsCost, int64_t _modifyMWEBWeight) :
+        modifySize(_modifySize), modifyFee(_modifyFee), modifyCount(_modifyCount), modifySigOpsCost(_modifySigOpsCost), modifyMWEBWeight(_modifyMWEBWeight)
     {}
 
     void operator() (CTxMemPoolEntry &e)
-        { e.UpdateAncestorState(modifySize, modifyFee, modifyCount, modifySigOpsCost); }
+        { e.UpdateAncestorState(modifySize, modifyFee, modifyCount, modifySigOpsCost, modifyMWEBWeight); }
 
     private:
         int64_t modifySize;
         CAmount modifyFee;
         int64_t modifyCount;
         int64_t modifySigOpsCost;
+        int64_t modifyMWEBWeight;
 };
 
 struct update_fee_delta
@@ -381,6 +395,9 @@ struct TxMempoolInfo
 
     /** Virtual size of the transaction. */
     size_t vsize;
+
+    /** MWEB weight */
+    uint64_t mweb_weight;
 
     /** The fee delta. */
     int64_t nFeeDelta;
@@ -597,7 +614,21 @@ private:
     std::set<uint256> m_unbroadcast_txids GUARDED_BY(cs);
 
 public:
-    indirectmap<COutPoint, const CTransaction*> mapNextTx GUARDED_BY(cs);
+    /**
+     * Maps outputs to mempool transactions that spend them.
+     */
+    std::map<OutputIndex, const CTransaction*> mapNextTx GUARDED_BY(cs);
+
+    /**
+     * Maps MWEB output IDs to mempool transactions that create them.
+     */
+    std::map<mw::Hash, const CTransaction*> mapTxOutputs_MWEB GUARDED_BY(cs);
+
+    /**
+     * FIFO cache of txs recently removed from the mempool keyed by kernel ID.
+     */
+    FIFOCache<mw::Hash, CTransactionRef> recentTxsByKernel GUARDED_BY(cs){DEFAULT_MEMPOOL_MWEB_CACHE_SIZE};
+	
     std::map<uint256, CAmount> mapDeltas;
 
     /** Create a new CTxMemPool.
@@ -626,13 +657,13 @@ public:
     void removeRecursive(const CTransaction& tx, MemPoolRemovalReason reason) EXCLUSIVE_LOCKS_REQUIRED(cs);
     void removeForReorg(const CCoinsViewCache* pcoins, unsigned int nMemPoolHeight, int flags) EXCLUSIVE_LOCKS_REQUIRED(cs, cs_main);
     void removeConflicts(const CTransaction& tx) EXCLUSIVE_LOCKS_REQUIRED(cs);
-    void removeForBlock(const std::vector<CTransactionRef>& vtx, unsigned int nBlockHeight) EXCLUSIVE_LOCKS_REQUIRED(cs);
+    void removeForBlock(const CBlock& block, unsigned int nBlockHeight, DisconnectedBlockTransactions* disconnectpool) EXCLUSIVE_LOCKS_REQUIRED(cs);
 
     void clear();
     void _clear() EXCLUSIVE_LOCKS_REQUIRED(cs); //lock free
     bool CompareDepthAndScore(const uint256& hasha, const uint256& hashb, bool wtxid=false);
     void queryHashes(std::vector<uint256>& vtxid) const;
-    bool isSpent(const COutPoint& outpoint) const;
+    bool isSpent(const OutputIndex& outpoint) const;
     unsigned int GetTransactionsUpdated() const;
     void AddTransactionsUpdated(unsigned int n);
     /**
@@ -647,10 +678,13 @@ public:
     void ClearPrioritisation(const uint256& hash) EXCLUSIVE_LOCKS_REQUIRED(cs);
 
     /** Get the transaction in the pool that spends the same prevout */
-    const CTransaction* GetConflictTx(const COutPoint& prevout) const EXCLUSIVE_LOCKS_REQUIRED(cs);
+    const CTransaction* GetConflictTx(const OutputIndex& prevout) const EXCLUSIVE_LOCKS_REQUIRED(cs);
 
     /** Returns an iterator to the given hash, if found */
     Optional<txiter> GetIter(const uint256& txid) const EXCLUSIVE_LOCKS_REQUIRED(cs);
+
+    /** Returns an iterator to the transaction the input spends from, if found */
+    Optional<txiter> GetIter(const CTxInput& input) const EXCLUSIVE_LOCKS_REQUIRED(cs);
 
     /** Translate a set of hashes into a set of pool iterators to avoid repeated lookups */
     setEntries GetIterSet(const std::set<uint256>& hashes) const EXCLUSIVE_LOCKS_REQUIRED(cs);
@@ -742,6 +776,17 @@ public:
         return (mapTx.count(gtxid.GetHash()) != 0);
     }
     bool exists(const uint256& txid) const { return exists(GenTxid{false, txid}); }
+
+    bool GetCreatedTx(const mw::Hash& output_id, uint256& hash) const
+    {
+        LOCK(cs);
+        auto iter = mapTxOutputs_MWEB.find(output_id);
+        if (iter != mapTxOutputs_MWEB.end()) {
+            hash = iter->second->GetHash();
+            return true;
+        }
+        return false;
+    }
 
     CTransactionRef get(const uint256& hash) const;
     txiter get_iter_from_wtxid(const uint256& wtxid) const EXCLUSIVE_LOCKS_REQUIRED(cs)
@@ -898,6 +943,8 @@ protected:
 public:
     CCoinsViewMemPool(CCoinsView* baseIn, const CTxMemPool& mempoolIn);
     bool GetCoin(const COutPoint &outpoint, Coin &coin) const override;
+    bool HaveCoin(const OutputIndex& index) const override;
+    bool GetMWEBCoin(const mw::Hash& output_id, Output& coin) const override;
 };
 
 /**
@@ -957,8 +1004,10 @@ struct DisconnectedBlockTransactions {
 
     void addTransaction(const CTransactionRef& tx)
     {
-        queuedTx.insert(tx);
-        cachedInnerUsage += RecursiveDynamicUsage(tx);
+        if (queuedTx.find(tx->GetHash()) == queuedTx.end()) {
+            queuedTx.insert(tx);
+            cachedInnerUsage += RecursiveDynamicUsage(tx);
+        }
     }
 
     // Remove entries based on txid_index, and update memory usage.

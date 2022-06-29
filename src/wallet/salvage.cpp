@@ -1,17 +1,15 @@
-// Copyright (c) 2009-2010 Sever Neacsu
-// Copyright (c) 2009-2021 The Bitcoin Core developers
+// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2009-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <fs.h>
 #include <streams.h>
 #include <util/translation.h>
-#include <wallet/bdb.h>
 #include <wallet/salvage.h>
 #include <wallet/wallet.h>
 #include <wallet/walletdb.h>
 
-namespace wallet {
 /* End of headers, beginning of key/value data */
 static const char *HEADER_END = "HEADER=END";
 /* End of key/value data */
@@ -29,13 +27,11 @@ bool RecoverDatabaseFile(const fs::path& file_path, bilingual_str& error, std::v
     DatabaseStatus status;
     options.require_existing = true;
     options.verify = false;
-    options.require_format = DatabaseFormat::BERKELEY;
     std::unique_ptr<WalletDatabase> database = MakeDatabase(file_path, options, status, error);
     if (!database) return false;
 
-    BerkeleyDatabase& berkeley_database = static_cast<BerkeleyDatabase&>(*database);
-    std::string filename = berkeley_database.Filename();
-    std::shared_ptr<BerkeleyEnvironment> env = berkeley_database.env;
+    std::string filename;
+    std::shared_ptr<BerkeleyEnvironment> env = GetWalletEnv(file_path, filename);
 
     if (!env->Open(error)) {
         return false;
@@ -46,7 +42,7 @@ bool RecoverDatabaseFile(const fs::path& file_path, bilingual_str& error, std::v
     // Call Salvage with fAggressive=true to
     // get as much data as possible.
     // Rewrite salvaged data to fresh wallet file
-    // Rescan so any missing transactions will be
+    // Set -rescan so any missing transactions will be
     // found.
     int64_t now = GetTime();
     std::string newFilename = strprintf("%s.%d.bak", filename, now);
@@ -120,7 +116,7 @@ bool RecoverDatabaseFile(const fs::path& file_path, bilingual_str& error, std::v
         return false;
     }
 
-    std::unique_ptr<Db> pdbCopy = std::make_unique<Db>(env->dbenv.get(), 0);
+    std::unique_ptr<Db> pdbCopy = MakeUnique<Db>(env->dbenv.get(), 0);
     int ret = pdbCopy->open(nullptr,               // Txn pointer
                             filename.c_str(),   // Filename
                             "main",             // Logical db name
@@ -134,7 +130,7 @@ bool RecoverDatabaseFile(const fs::path& file_path, bilingual_str& error, std::v
     }
 
     DbTxn* ptxn = env->TxnBegin();
-    CWallet dummyWallet(nullptr, "", gArgs, CreateDummyWalletDatabase());
+    CWallet dummyWallet(nullptr, "", CreateDummyWalletDatabase());
     for (KeyValPair& row : salvagedData)
     {
         /* Filter for only private key type KV pairs to be added to the salvaged wallet */
@@ -155,8 +151,8 @@ bool RecoverDatabaseFile(const fs::path& file_path, bilingual_str& error, std::v
             warnings.push_back(strprintf(Untranslated("WARNING: WalletBatch::Recover skipping %s: %s"), strType, strErr));
             continue;
         }
-        Dbt datKey(row.first.data(), row.first.size());
-        Dbt datValue(row.second.data(), row.second.size());
+        Dbt datKey(&row.first[0], row.first.size());
+        Dbt datValue(&row.second[0], row.second.size());
         int ret2 = pdbCopy->put(ptxn, &datKey, &datValue, DB_NOOVERWRITE);
         if (ret2 > 0)
             fSuccess = false;
@@ -166,4 +162,3 @@ bool RecoverDatabaseFile(const fs::path& file_path, bilingual_str& error, std::v
 
     return fSuccess;
 }
-} // namespace wallet
