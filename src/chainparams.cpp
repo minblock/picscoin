@@ -125,8 +125,9 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
         bech32_hrp = "pic";
-
-        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
+        mweb_hrp = "picmweb";
+        
+        vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_main), std::end(chainparams_seed_main));
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
@@ -154,18 +155,19 @@ public:
                {  116251, uint256S("0xbafcbdbc01043208daa2ac7f94eab3d32062fc4d76556420b0480b2a005344ed")},
                {  123337, uint256S("0x47e873b5af91c291037a37033cf2aa8765f098fafce8de1944ba4b5823d9ec06")},
                {  133337, uint256S("0xedffab16cf04d55971b77445ecfab4f12ebd17e58686c57a346acdb8e14c22f8")},
-	       {  147751, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
+	           {  147751, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
                {  286932, uint256S("0xc0222c5b5dc517379f2db7a0f8cd12301830002b276612afeda6a84abe4d0af9")},
                {  304604, uint256S("0x662567587304e7df1c1e0694e92b35ae8c2c242b83d5bbf0fd356ce4e5049d93")},
                {  374493, uint256S("0x5b58b4dd79a637080e7b5305f5d0a185abafe5d8f40821d725dd4b109ce6ee1f")},
+               {  468256, uint256S("0x578efb54e0da1f04a0fc80167b4249ef0764bd511567b24fae2992a7d7908960")},
 	    }
         };
 		
         chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats 4096 a601455787cb65ffc325dda4751a99cf01d1567799ec4b04f45bb05f9ef0cbde
-            /* nTime    */ 1640733046,
-            /* nTxCount */ 453606,
-            /* dTxRate  */ 0.08
+            /* nTime    */ 1656524596,
+            /* nTxCount */ 552824,
+            /* dTxRate  */ 201.40
         };
     }
 };
@@ -236,8 +238,9 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
         bech32_hrp = "tpic";
+        mweb_hrp = "tmweb";
 
-        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
+        vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_test), std::end(chainparams_seed_test));
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
@@ -339,7 +342,8 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        bech32_hrp = "rltc";
+        bech32_hrp = "rpic";
+        mweb_hrp = "tmweb";
     }
 
     /**
