@@ -100,10 +100,10 @@ public:
 
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000035a40d452684e");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000003583ed7f45dfc");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x83275c7af68da129f5be38e2f21feee241049fc6be42a4f91b6adc160b2dffca"); //4032
+        consensus.defaultAssumeValid = uint256S("0xc0222c5b5dc517379f2db7a0f8cd12301830002b276612afeda6a84abe4d0af9"); //286932
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -124,7 +124,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x2cc06d170c33cdbf144e3e597a97a8786fcd84b04a0b3283c054c559646dc855"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("seed.picsco.in");
+        vSeeds.emplace_back("seed.pgn.one");
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
@@ -156,24 +156,25 @@ public:
                 {  28695, uint256S("0xf3180985dd4ac67374980979c48bef060ea6f409e42b064ceee77e5b7b7f772c")},
                 {  32301, uint256S("0xf5837e12c2f022b2c3691e5dd48d1eb030ed94a6186fac433f3840c2173185ea")},
                 {  41337, uint256S("0x5547e972db634e9a19f7a633c1abab500dbf015a792cd7c1ca893302bdf8898d")},
-                {  51337, uint256S("0xcaaa8492dd084eacd6cd6390435428a9a0581fd9b6873923baa19d32cebfee1a")},
-                {  58462, uint256S("0xe1dd389dce130474da90a36b4b4a07aa51690934bb540dff1e9e32508547aa79")},
+                {  51337, uint256S("0xcaaa8492dd084eacd6cd6390435428a9a0581fd9b6873923baa19d32cebfee1a")},    
+                {  58462, uint256S("0xe1dd389dce130474da90a36b4b4a07aa51690934bb540dff1e9e32508547aa79")},                    
                 {  60032, uint256S("0x9250a2c237c601f68040dda54443f7d28638d730bbbe2dab35773ca3907f9da3")},
                 {  90036, uint256S("0x5930aa967e17ca7e157184e99b769ee3861607890cca12685928d4beee3499fc")},
-               {  116251, uint256S("0xbafcbdbc01043208daa2ac7f94eab3d32062fc4d76556420b0480b2a005344ed")},
-               {  123337, uint256S("0x47e873b5af91c291037a37033cf2aa8765f098fafce8de1944ba4b5823d9ec06")},
-               {  133337, uint256S("0xedffab16cf04d55971b77445ecfab4f12ebd17e58686c57a346acdb8e14c22f8")},
-	       {  147751, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
-               { 286932, uint256S("0xc0222c5b5dc517379f2db7a0f8cd12301830002b276612afeda6a84abe4d0af9")},
-               { 304604, uint256S("0x662567587304e7df1c1e0694e92b35ae8c2c242b83d5bbf0fd356ce4e5049d93")},
+                {  116251, uint256S("0xbafcbdbc01043208daa2ac7f94eab3d32062fc4d76556420b0480b2a005344ed")},
+                {  123337, uint256S("0x47e873b5af91c291037a37033cf2aa8765f098fafce8de1944ba4b5823d9ec06")},
+                {  133337, uint256S("0xedffab16cf04d55971b77445ecfab4f12ebd17e58686c57a346acdb8e14c22f8")},
+                {  147751, uint256S("0xb724f64bd0be875897149eae19e69cf0b13967384a91382b22345dc983bd3f02")},
+                {  148890, uint256S("0x9f9b282944bb6ab5ae436dadf6b9ccabbb442f513ceb5bcb96f679570dde384b")},
+                { 149150, uint256S("0xed9b5354e6a2a1f756c525662c6b2bbbfdec5ade90f07e5e38ef0da62607479e")},
+                { 286932, uint256S("0xc0222c5b5dc517379f2db7a0f8cd12301830002b276612afeda6a84abe4d0af9")},
 	    }
         };
 		
         chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats 4096 a601455787cb65ffc325dda4751a99cf01d1567799ec4b04f45bb05f9ef0cbde
-            /* nTime    */ 1629464538,
-            /* nTxCount */ 380162,
-            /* dTxRate  */ 0.03
+            /* nTime    */ 1626026590,
+            /* nTxCount */ 135982,
+            /* dTxRate  */ 0.0014
         };
 
         /* enable fallback fee on mainnet */
