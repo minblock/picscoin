@@ -1427,7 +1427,7 @@ libmultiprocess_found=no
 if test "x$with_libmultiprocess" = xyes || test "x$with_libmultiprocess" = xauto; then
   m4_ifdef([PKG_CHECK_MODULES], [PKG_CHECK_MODULES([LIBMULTIPROCESS], [libmultiprocess], [
      libmultiprocess_found=yes;
-     libmultiprocess_prefix=`$PKG_CONFIG --variable=prefix libmultiprocess`;
+5     libmultiprocess_prefix=`$PKG_CONFIG --variable=prefix libmultiprocess`;
   ], [true])])
 elif test "x$with_libmultiprocess" != xno; then
   AC_MSG_ERROR([--with-libmultiprocess=$with_libmultiprocess value is not yes, auto, or no])
@@ -1483,7 +1483,7 @@ AC_MSG_CHECKING([whether to build libraries])
 AM_CONDITIONAL([BUILD_BITCOIN_LIBS], [test x$build_picscoin_libs = xyes])
 if test x$build_picscoin_libs = xyes; then
   AC_DEFINE(HAVE_CONSENSUS_LIB, 1, [Define this symbol if the consensus lib has been built])
-  AC_CONFIG_FILES([libpicscoinconsensus.pc:libpicscoinconsensus.pc.in])
+  AC_CONFIG_FILES([libbitcoinconsensus.pc:libbitcoinconsensus.pc.in])
 fi
 AC_MSG_RESULT($build_picscoin_libs)
 
@@ -1702,7 +1702,7 @@ AC_CONFIG_LINKS([contrib/devtools/test-security-check.py:contrib/devtools/test-s
 AC_CONFIG_LINKS([contrib/filter-lcov.py:contrib/filter-lcov.py])
 AC_CONFIG_LINKS([test/functional/test_runner.py:test/functional/test_runner.py])
 AC_CONFIG_LINKS([test/fuzz/test_runner.py:test/fuzz/test_runner.py])
-AC_CONFIG_LINKS([test/util/picscoin-util-test.py:test/util/picscoin-util-test.py])
+AC_CONFIG_LINKS([test/util/bitcoin-util-test.py:test/util/bitcoin-util-test.py])
 AC_CONFIG_LINKS([test/util/rpcauth-test.py:test/util/rpcauth-test.py])
 
 dnl boost's m4 checks do something really nasty: they export these vars. As a
