@@ -122,7 +122,7 @@ public:
         vSeeds.emplace_back("seed.picsco.in");
 
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,75); // Regular addresses will now begin with X
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55); //Revert to Regular P addresses because of collusion
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
         base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,15); // 7
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,176);
