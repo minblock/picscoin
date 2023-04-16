@@ -88,13 +88,8 @@ public:
 
         // Deployment of Taproot (BIPs 340-342)
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].bit = 2;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nStartHeight = 1671828298;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeoutHeight = 1735554074;
-
-        // Deployment of MWEB (LIP-0002, LIP-0003, and LIP-0004)
-        consensus.vDeployments[Consensus::DEPLOYMENT_MWEB].bit = 3;
-        consensus.vDeployments[Consensus::DEPLOYMENT_MWEB].nStartHeight = 1671828298;
-        consensus.vDeployments[Consensus::DEPLOYMENT_MWEB].nTimeoutHeight = 1735554074;
+        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nStartHeight = 1641013200; // January 1 2022
+        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeoutHeight = 1672287351; // 365 days later
 
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000003632754cda29c");
         consensus.defaultAssumeValid = uint256S("0x5b58b4dd79a637080e7b5305f5d0a185abafe5d8f40821d725dd4b109ce6ee1f"); // 374493
@@ -122,7 +117,7 @@ public:
         vSeeds.emplace_back("seed.picsco.in");
 
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55); //Revert to Regular P addresses because of collusion
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,75); // Regular addresses will now begin with X
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
         base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,15); // 7
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,176);
@@ -131,7 +126,7 @@ public:
 
         bech32_hrp = "pic";
         mweb_hrp = "picmweb";
-
+        
         vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_main), std::end(chainparams_seed_main));
 
         fDefaultConsistencyChecks = false;
