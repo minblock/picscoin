@@ -88,8 +88,13 @@ public:
 
         // Deployment of Taproot (BIPs 340-342)
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].bit = 2;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nStartHeight = 1641013200; // January 1 2022
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeoutHeight = 1672287351; // 365 days later
+        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nStartHeight = 1671828298;
+        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeoutHeight = 1735554074;
+
+        // Deployment of MWEB (LIP-0002, LIP-0003, and LIP-0004)
+        consensus.vDeployments[Consensus::DEPLOYMENT_MWEB].bit = 3;
+        consensus.vDeployments[Consensus::DEPLOYMENT_MWEB].nStartHeight = 1671828298;
+        consensus.vDeployments[Consensus::DEPLOYMENT_MWEB].nTimeoutHeight = 1735554074;
 
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000003632754cda29c");
         consensus.defaultAssumeValid = uint256S("0x5b58b4dd79a637080e7b5305f5d0a185abafe5d8f40821d725dd4b109ce6ee1f"); // 374493
@@ -126,7 +131,7 @@ public:
 
         bech32_hrp = "pic";
         mweb_hrp = "picmweb";
-        
+
         vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_main), std::end(chainparams_seed_main));
 
         fDefaultConsistencyChecks = false;
