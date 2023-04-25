@@ -88,8 +88,13 @@ public:
 
         // Deployment of Taproot (BIPs 340-342)
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].bit = 2;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nStartHeight = 1641013200; // January 1 2022
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeoutHeight = 1672287351; // 365 days later
+        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nStartHeight = 1671828298;
+        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeoutHeight = 1735554074;
+
+        // Deployment of MWEB (LIP-0002, LIP-0003, and LIP-0004)
+        consensus.vDeployments[Consensus::DEPLOYMENT_MWEB].bit = 3;
+        consensus.vDeployments[Consensus::DEPLOYMENT_MWEB].nStartHeight = 1671828298;
+        consensus.vDeployments[Consensus::DEPLOYMENT_MWEB].nTimeoutHeight = 1735554074;
 
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000003632754cda29c");
         consensus.defaultAssumeValid = uint256S("0x5b58b4dd79a637080e7b5305f5d0a185abafe5d8f40821d725dd4b109ce6ee1f"); // 374493
@@ -116,8 +121,7 @@ public:
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.emplace_back("seed.picsco.in");
 
-
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,75); // Regular addresses will now begin with X
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55); // Regular addresses will now begin with X
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
         base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,15); // 7
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,176);
@@ -126,7 +130,7 @@ public:
 
         bech32_hrp = "pic";
         mweb_hrp = "picmweb";
-        
+
         vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_main), std::end(chainparams_seed_main));
 
         fDefaultConsistencyChecks = false;
@@ -159,7 +163,6 @@ public:
                {  148703, uint256S("0x28fba9838ff57700721267626856d69a85a4cc42fbca2df5f1bc86f2961b39ef")},
             }
         };
-		
         chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats 4096 a601455787cb65ffc325dda4751a99cf01d1567799ec4b04f45bb05f9ef0cbde
             /* nTime    */ 1656524596,
