@@ -1,6 +1,0 @@
-Making all in src
-make[1]: Entering directory '/home/stevecat/picscoin/src'
-make[2]: Entering directory '/home/stevecat/picscoin/src'
-  CXX      picscoind-bitcoind.o
-make[2]: Leaving directory '/home/stevecat/picscoin/src'
-make[1]: Leaving directory '/home/stevecat/picscoin/src'
