@@ -1,10 +1,10 @@
-prefix=/usr/local
-exec_prefix=${prefix}
-libdir=${exec_prefix}/lib
-includedir=${prefix}/include
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
 
-Name: Picscoin Core consensus library
+Name: @PACKAGE_NAME@ consensus library
 Description: Library for the Bitcoin consensus protocol.
-Version: 0.21.2.2
+Version: @PACKAGE_VERSION@
 Libs: -L${libdir} -lbitcoinconsensus
 Cflags: -I${includedir}

@@ -4,8 +4,10 @@
 
 #include <chain.h>
 #include <chainparams.h>
+#include <common/args.h>
 #include <consensus/params.h>
 #include <primitives/block.h>
+#include <util/chaintype.h>
 #include <versionbits.h>
 
 #include <test/fuzz/FuzzedDataProvider.h>
@@ -29,16 +31,16 @@ public:
     const int64_t m_end;
     const int m_period;
     const int m_threshold;
-    const int64_t m_begin_height;
-    const int64_t m_end_height;
+    const int m_min_activation_height;
     const int m_bit;
 
-    TestConditionChecker(int64_t begin, int64_t end, int period, int threshold, int64_t begin_height, int64_t end_height, int bit)
-        : m_begin{begin}, m_end{end}, m_period{period}, m_threshold{threshold}, m_begin_height{begin_height}, m_end_height{end_height}, m_bit{bit}
+    TestConditionChecker(int64_t begin, int64_t end, int period, int threshold, int min_activation_height, int bit)
+        : m_begin{begin}, m_end{end}, m_period{period}, m_threshold{threshold}, m_min_activation_height{min_activation_height}, m_bit{bit}
     {
         assert(m_period > 0);
         assert(0 <= m_threshold && m_threshold <= m_period);
         assert(0 <= m_bit && m_bit < 32 && m_bit < VERSIONBITS_NUM_BITS);
+        assert(0 <= m_min_activation_height);
     }
 
     bool Condition(const CBlockIndex* pindex, const Consensus::Params& params) const override { return Condition(pindex->nVersion); }
@@ -46,16 +48,15 @@ public:
     int64_t EndTime(const Consensus::Params& params) const override { return m_end; }
     int Period(const Consensus::Params& params) const override { return m_period; }
     int Threshold(const Consensus::Params& params) const override { return m_threshold; }
-    int64_t BeginHeight(const Consensus::Params& params) const override { return m_begin_height; }
-    int64_t EndHeight(const Consensus::Params& params) const override { return m_end_height; }
+    int MinActivationHeight(const Consensus::Params& params) const override { return m_min_activation_height; }
 
     ThresholdState GetStateFor(const CBlockIndex* pindexPrev) const { return AbstractThresholdConditionChecker::GetStateFor(pindexPrev, dummy_params, m_cache); }
     int GetStateSinceHeightFor(const CBlockIndex* pindexPrev) const { return AbstractThresholdConditionChecker::GetStateSinceHeightFor(pindexPrev, dummy_params, m_cache); }
-    BIP9Stats GetStateStatisticsFor(const CBlockIndex* pindexPrev) const { return AbstractThresholdConditionChecker::GetStateStatisticsFor(pindexPrev, dummy_params); }
+    BIP9Stats GetStateStatisticsFor(const CBlockIndex* pindex, std::vector<bool>* signals=nullptr) const { return AbstractThresholdConditionChecker::GetStateStatisticsFor(pindex, dummy_params, signals); }
 
     bool Condition(int32_t version) const
     {
-        uint32_t mask = ((uint32_t)1) << m_bit;
+        uint32_t mask = (uint32_t{1}) << m_bit;
         return (((version & VERSIONBITS_TOP_MASK) == VERSIONBITS_TOP_BITS) && (version & mask) != 0);
     }
 
@@ -98,20 +99,19 @@ public:
         return m_blocks.emplace_back(std::move(current_block)).get();
     }
 };
-} // namespace
 
 std::unique_ptr<const CChainParams> g_params;
 
 void initialize()
 {
     // this is actually comparatively slow, so only do it once
-    g_params = CreateChainParams(ArgsManager{}, CBaseChainParams::MAIN);
+    g_params = CreateChainParams(ArgsManager{}, ChainType::MAIN);
     assert(g_params != nullptr);
 }
 
 constexpr uint32_t MAX_START_TIME = 4102444800; // 2100-01-01
 
-void test_one_input(const std::vector<uint8_t>& buffer)
+FUZZ_TARGET_INIT(versionbits, initialize)
 {
     const CChainParams& params = *g_params;
     const int64_t interval = params.GetConsensus().nPowTargetSpacing;
@@ -145,8 +145,6 @@ void test_one_input(const std::vector<uint8_t>& buffer)
     bool never_active_test = false;
     int64_t start_time;
     int64_t timeout;
-    int64_t start_height = 0;
-    int64_t end_height = 0;
     if (fuzzed_data_provider.ConsumeBool()) {
         // pick the timestamp to switch based on a block
         // note states will change *after* these blocks because mediantime lags
@@ -169,8 +167,9 @@ void test_one_input(const std::vector<uint8_t>& buffer)
         }
         timeout = fuzzed_data_provider.ConsumeBool() ? Consensus::BIP9Deployment::NO_TIMEOUT : fuzzed_data_provider.ConsumeIntegral<int64_t>();
     }
+    int min_activation = fuzzed_data_provider.ConsumeIntegralInRange<int>(0, period * max_periods);
 
-    TestConditionChecker checker(start_time, timeout, period, threshold, start_height, end_height, bit);
+    TestConditionChecker checker(start_time, timeout, period, threshold, min_activation, bit);
 
     // Early exit if the versions don't signal sensibly for the deployment
     if (!checker.Condition(ver_signal)) return;
@@ -201,7 +200,7 @@ void test_one_input(const std::vector<uint8_t>& buffer)
     const uint32_t signalling_mask = fuzzed_data_provider.ConsumeIntegral<uint32_t>();
 
     // mine prior periods
-    while (fuzzed_data_provider.remaining_bytes() > 0) {
+    while (fuzzed_data_provider.remaining_bytes() > 0) { // early exit; no need for LIMITED_WHILE
         // all blocks in these periods either do or don't signal
         bool signal = fuzzed_data_provider.ConsumeBool();
         for (int b = 0; b < period; ++b) {
@@ -222,7 +221,14 @@ void test_one_input(const std::vector<uint8_t>& buffer)
     CBlockIndex* prev = blocks.tip();
     const int exp_since = checker.GetStateSinceHeightFor(prev);
     const ThresholdState exp_state = checker.GetStateFor(prev);
-    BIP9Stats last_stats = checker.GetStateStatisticsFor(prev);
+
+    // get statistics from end of previous period, then reset
+    BIP9Stats last_stats;
+    last_stats.period = period;
+    last_stats.threshold = threshold;
+    last_stats.count = last_stats.elapsed = 0;
+    last_stats.possible = (period >= threshold);
+    std::vector<bool> last_signals{};
 
     int prev_next_height = (prev == nullptr ? 0 : prev->nHeight + 1);
     assert(exp_since <= prev_next_height);
@@ -243,17 +249,25 @@ void test_one_input(const std::vector<uint8_t>& buffer)
         assert(state == exp_state);
         assert(since == exp_since);
 
-        // GetStateStatistics may crash when state is not STARTED
-        if (state != ThresholdState::STARTED) continue;
-
         // check that after mining this block stats change as expected
-        const BIP9Stats stats = checker.GetStateStatisticsFor(current_block);
+        std::vector<bool> signals;
+        const BIP9Stats stats = checker.GetStateStatisticsFor(current_block, &signals);
+        const BIP9Stats stats_no_signals = checker.GetStateStatisticsFor(current_block);
+        assert(stats.period == stats_no_signals.period && stats.threshold == stats_no_signals.threshold
+               && stats.elapsed == stats_no_signals.elapsed && stats.count == stats_no_signals.count
+               && stats.possible == stats_no_signals.possible);
+
         assert(stats.period == period);
         assert(stats.threshold == threshold);
         assert(stats.elapsed == b);
         assert(stats.count == last_stats.count + (signal ? 1 : 0));
         assert(stats.possible == (stats.count + period >= stats.elapsed + threshold));
         last_stats = stats;
+
+        assert(signals.size() == last_signals.size() + 1);
+        assert(signals.back() == signal);
+        last_signals.push_back(signal);
+        assert(signals == last_signals);
     }
 
     if (exp_state == ThresholdState::STARTED) {
@@ -267,14 +281,12 @@ void test_one_input(const std::vector<uint8_t>& buffer)
     CBlockIndex* current_block = blocks.mine_block(signal);
     assert(checker.Condition(current_block) == signal);
 
-    // GetStateStatistics is safe on a period boundary
-    // and has progressed to a new period
     const BIP9Stats stats = checker.GetStateStatisticsFor(current_block);
     assert(stats.period == period);
     assert(stats.threshold == threshold);
-    assert(stats.elapsed == 0);
-    assert(stats.count == 0);
-    assert(stats.possible == true);
+    assert(stats.elapsed == period);
+    assert(stats.count == blocks_sig);
+    assert(stats.possible == (stats.count + period >= stats.elapsed + threshold));
 
     // More interesting is whether the state changed.
     const ThresholdState state = checker.GetStateFor(current_block);
@@ -306,12 +318,15 @@ void test_one_input(const std::vector<uint8_t>& buffer)
         }
         break;
     case ThresholdState::LOCKED_IN:
-        if (exp_state != ThresholdState::LOCKED_IN) {
+        if (exp_state == ThresholdState::LOCKED_IN) {
+            assert(current_block->nHeight + 1 < min_activation);
+        } else {
             assert(exp_state == ThresholdState::STARTED);
             assert(blocks_sig >= threshold);
         }
         break;
     case ThresholdState::ACTIVE:
+        assert(always_active_test || min_activation <= current_block->nHeight + 1);
         assert(exp_state == ThresholdState::ACTIVE || exp_state == ThresholdState::LOCKED_IN);
         break;
     case ThresholdState::FAILED:
@@ -347,3 +362,4 @@ void test_one_input(const std::vector<uint8_t>& buffer)
         assert(exp_since > 0 || exp_state == ThresholdState::DEFINED);
     }
 }
+} // namespace

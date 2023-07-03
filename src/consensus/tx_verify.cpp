@@ -1,29 +1,34 @@
-// Copyright (c) 2017-2019 The Bitcoin Core developers
+// Copyright (c) 2017-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <consensus/tx_verify.h>
 
-#include <consensus/consensus.h>
-#include <primitives/transaction.h>
-#include <script/interpreter.h>
-#include <consensus/validation.h>
-
-// TODO remove the following dependencies
 #include <chain.h>
 #include <coins.h>
+#include <consensus/amount.h>
+#include <consensus/consensus.h>
+#include <consensus/validation.h>
+#include <primitives/transaction.h>
+#include <script/interpreter.h>
+#include <util/check.h>
 #include <util/moneystr.h>
 
 bool IsFinalTx(const CTransaction &tx, int nBlockHeight, int64_t nBlockTime)
 {
-    // MWEB: Check kernel lock heights
-    if (tx.mweb_tx.GetLockHeight() > nBlockHeight)
-        return false;
-
     if (tx.nLockTime == 0)
         return true;
     if ((int64_t)tx.nLockTime < ((int64_t)tx.nLockTime < LOCKTIME_THRESHOLD ? (int64_t)nBlockHeight : nBlockTime))
         return true;
+
+    // Even if tx.nLockTime isn't satisfied by nBlockHeight/nBlockTime, a
+    // transaction is still considered final if all inputs' nSequence ==
+    // SEQUENCE_FINAL (0xffffffff), in which case nLockTime is ignored.
+    //
+    // Because of this behavior OP_CHECKLOCKTIMEVERIFY/CheckLockTime() will
+    // also check that the spending input's nSequence != SEQUENCE_FINAL,
+    // ensuring that an unsatisfied nLockTime value will actually cause
+    // IsFinalTx() to return false here:
     for (const auto& txin : tx.vin) {
         if (!(txin.nSequence == CTxIn::SEQUENCE_FINAL))
             return false;
@@ -70,7 +75,7 @@ std::pair<int, int64_t> CalculateSequenceLocks(const CTransaction &tx, int flags
         int nCoinHeight = prevHeights[txinIndex];
 
         if (txin.nSequence & CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG) {
-            int64_t nCoinTime = block.GetAncestor(std::max(nCoinHeight-1, 0))->GetMedianTimePast();
+            const int64_t nCoinTime{Assert(block.GetAncestor(std::max(nCoinHeight - 1, 0)))->GetMedianTimePast()};
             // NOTE: Subtract 1 to maintain nLockTime semantics
             // BIP 68 relative lock times have the semantics of calculating
             // the first block or time at which the transaction would be
@@ -119,12 +124,6 @@ unsigned int GetLegacySigOpCount(const CTransaction& tx)
     {
         nSigOps += txout.scriptPubKey.GetSigOpCount(false);
     }
-
-    // MWEB: Include pegout scripts
-    for (const PegOutCoin& pegout : tx.mweb_tx.GetPegOuts()) {
-        nSigOps += pegout.GetScriptPubKey().GetSigOpCount(false);
-    }
-
     return nSigOps;
 }
 
@@ -145,7 +144,7 @@ unsigned int GetP2SHSigOpCount(const CTransaction& tx, const CCoinsViewCache& in
     return nSigOps;
 }
 
-int64_t GetTransactionSigOpCost(const CTransaction& tx, const CCoinsViewCache& inputs, int flags)
+int64_t GetTransactionSigOpCost(const CTransaction& tx, const CCoinsViewCache& inputs, uint32_t flags)
 {
     int64_t nSigOps = GetLegacySigOpCount(tx) * WITNESS_SCALE_FACTOR;
 
@@ -186,12 +185,6 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, 
                 strprintf("tried to spend coinbase at depth %d", nSpendHeight - coin.nHeight));
         }
 
-        // If coin is a pegout, check that it's matured
-        if (coin.IsPegout() && nSpendHeight - coin.nHeight < PEGOUT_MATURITY) {
-            return state.Invalid(TxValidationResult::TX_PREMATURE_SPEND, "bad-txns-premature-spend-of-pegout",
-                strprintf("tried to spend pegout output at depth %d", nSpendHeight - coin.nHeight));
-        }
-
         // Check for negative or overflow input values
         nValueIn += coin.out.nValue;
         if (!MoneyRange(coin.out.nValue) || !MoneyRange(nValueIn)) {
@@ -206,32 +199,9 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, 
     }
 
     // Tally transaction fees
-    CAmount txfee_aux = nValueIn - value_out;
+    const CAmount txfee_aux = nValueIn - value_out;
     if (!MoneyRange(txfee_aux)) {
         return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-fee-outofrange");
-    }
-
-    // MWEB
-    if (tx.HasMWEBTx()) {
-        for (const Input& input : tx.mweb_tx.m_transaction->GetInputs()) {
-            Output utxo;
-            if (!inputs.GetMWEBCoin(input.GetOutputID(), utxo)) {
-                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-inputs-missing",
-                    strprintf("%s: MWEB inputs missing", __func__));
-            }
-
-            if (utxo.GetReceiverPubKey() != input.GetOutputPubKey() || utxo.GetCommitment() != input.GetCommitment()) {
-                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-input-mismatch",
-                                     strprintf("%s: MWEB input doesn't match UTXO", __func__));
-            }
-        }
-
-        CAmount mweb_fee = tx.mweb_tx.GetFee();
-        txfee_aux += mweb_fee;
-
-        if (!MoneyRange(mweb_fee) || !MoneyRange(txfee_aux)) {
-            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-mwebfee-outofrange");
-        }
     }
 
     txfee = txfee_aux;

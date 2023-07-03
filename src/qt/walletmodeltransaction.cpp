@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2019 The Bitcoin Core developers
+// Copyright (c) 2011-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,9 +10,8 @@
 
 #include <policy/policy.h>
 
-WalletModelTransaction::WalletModelTransaction(const QList<SendCoinsRecipient> &_recipients) :
-    recipients(_recipients),
-    fee(0)
+WalletModelTransaction::WalletModelTransaction(const QList<SendCoinsRecipient>& _recipients)
+    : recipients(_recipients)
 {
 }
 
@@ -24,6 +23,11 @@ QList<SendCoinsRecipient> WalletModelTransaction::getRecipients() const
 CTransactionRef& WalletModelTransaction::getWtx()
 {
     return wtx;
+}
+
+void WalletModelTransaction::setWtx(const CTransactionRef& newTx)
+{
+    wtx = newTx;
 }
 
 unsigned int WalletModelTransaction::getTransactionSize()
@@ -41,30 +45,17 @@ void WalletModelTransaction::setTransactionFee(const CAmount& newFee)
     fee = newFee;
 }
 
-void WalletModelTransaction::reassignAmounts(interfaces::Wallet& wallet, int nChangePosRet)
+void WalletModelTransaction::reassignAmounts(int nChangePosRet)
 {
-    std::vector<CTxOutput> outputs = wtx->GetOutputs();
-    std::vector<PegOutCoin> pegouts = wtx->mweb_tx.GetPegOuts();
-
-    size_t i = 0;
+    const CTransaction* walletTransaction = wtx.get();
+    int i = 0;
     for (QList<SendCoinsRecipient>::iterator it = recipients.begin(); it != recipients.end(); ++it)
     {
         SendCoinsRecipient& rcp = (*it);
         {
-            while (i < outputs.size()) {
-                if (wallet.isChange(outputs[i]) || (!outputs[i].IsMWEB() && outputs[i].GetScriptPubKey().IsMWEBPegin())) {
-                    i++;
-                } else {
-                    break;
-                }
-            }
-
-            if (i < outputs.size()) {
-                rcp.amount = wallet.getValue(outputs[i]);
-            } else if (pegouts.size() > (i - outputs.size())) {
-                rcp.amount = pegouts[i - outputs.size()].GetAmount();
-            }
-
+            if (i == nChangePosRet)
+                i++;
+            rcp.amount = walletTransaction->vout[i].nValue;
             i++;
         }
     }

@@ -1,48 +1,40 @@
 Picscoin Core integration/staging tree
 =====================================
 
-[![Build Status](https://travis-ci.org/minblock/picscoin.svg?branch=master)](https://travis-ci.org/minblock/picscoin)
-
 https://picsco.in
 
-What is Picscoin?
-----------------
+For an immediately usable, binary version of the Bitcoin Core software, see
+https://bitcoincore.org/en/download/.
 
-Picscoin is an experimental digital currency that enables instant payments to
-anyone, anywhere in the world. Picscoin uses peer-to-peer technology to operate
-with no central authority: managing transactions and issuing money are carried
-out collectively by the network. Picscoin Core is the name of open source
-software which enables the use of this currency.
+What is a Bitcoin Core?
+---------------------
 
-For more information, as well as an immediately useable, binary version of
-the Picscoin Core software, see [https://picsco.in](https://picsco.in).
+Bitcoin Core connects to the Bitcoin peer-to-peer network to download and fully
+validate blocks and transactions. It also includes a wallet and graphical user
+interface, which can be optionally built.
+
+Further information about Bitcoin Core is available in the [doc folder](/doc).
 
 License
 -------
 
-Picscoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Bitcoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
 The `master` branch is regularly built (see `doc/build-*.md` for instructions) and tested, but it is not guaranteed to be
-completely stable. [Tags](https://github.com/minblock/picscoin/tags) are created
-regularly from release branches to indicate new official, stable release versions of Picscoin Core.
+completely stable. [Tags](https://github.com/bitcoin/bitcoin/tags) are created
+regularly from release branches to indicate new official, stable release versions of Bitcoin Core.
 
-The https://github.com/minblock/gui repository is used exclusively for the
+The https://github.com/bitcoin-core/gui repository is used exclusively for the
 development of the GUI. Its master branch is identical in all monotree
 repositories. Release branches and tags do not exist, so please do not fork
 that repository unless it is for development reasons.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md)
 and useful hints for developers can be found in [doc/developer-notes.md](doc/developer-notes.md).
-
-The developer [mailing list](https://groups.google.com/forum/#!forum/picscoin-dev)
-should be used to discuss complicated or controversial changes before working
-on a patch set.
-
-Developer IRC can be found on Freenode at #picscoin-dev.
 
 Testing
 -------
@@ -60,10 +52,11 @@ submit new unit tests for old code. Unit tests can be compiled and run
 and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
 
 There are also [regression and integration tests](/test), written
-in Python, that are run automatically on the build server.
+in Python.
 These tests can be run (if the [test dependencies](/test) are installed) with: `test/functional/test_runner.py`
 
-The Travis CI system makes sure that every pull request is built for Windows, Linux, and macOS, and that unit/sanity tests are run automatically.
+The CI (Continuous Integration) systems make sure that every pull request is built for Windows, Linux, and macOS,
+and that unit/sanity tests are run automatically.
 
 ### Manual Quality Assurance (QA) Testing
 
@@ -75,8 +68,8 @@ not straightforward.
 Translations
 ------------
 
-We only accept translation fixes that are submitted through [Bitcoin Core's Transifex page](https://www.transifex.com/projects/p/bitcoin/).
-Translations are converted to Picscoin periodically.
+Changes to translations as well as new translations can be submitted to
+[Bitcoin Core's Transifex page](https://www.transifex.com/bitcoin/bitcoin/).
 
 Translations are periodically pulled from Transifex and merged into the git repository. See the
 [translation process](doc/translation_process.md) for details on how this works.

@@ -100,7 +100,7 @@ P2P and network changes
 - This release adds support for serving
   [BIP157](https://github.com/bitcoin/bips/blob/master/bip-0157.mediawiki) compact
   filters to peers on the network when enabled using
-  `-blockfilterindex=1 -peercfilters=1`. (#16442)
+  `-blockfilterindex=1 -peerblockfilters=1`. (#16442)
 
 - This release adds support for signets
   ([BIP325](https://github.com/bitcoin/bips/blob/master/bip-0325.mediawiki)) in
@@ -676,7 +676,7 @@ Tests
 - #19441 walletdb: Don't reinitialize desc cache with multiple cache entries (achow101)
 - #18907 walletdb: Don't remove database transaction logs and instead error (achow101)
 - #19334 Introduce WalletDatabase abstract class (achow101)
-- #11336 Cleanup and separate BerkeleyDatabase and BerkeleyBatch (achow101)
+- #19335 Cleanup and separate BerkeleyDatabase and BerkeleyBatch (achow101)
 - #19102 Introduce and use DummyDatabase instead of dummy BerkeleyDatabase (achow101)
 - #19568 Wallet should not override signing errors (fjahr)
 - #17204 Do not turn `OP_1NEGATE` in scriptSig into `0x0181` in signing code (sipa) (meshcollider)

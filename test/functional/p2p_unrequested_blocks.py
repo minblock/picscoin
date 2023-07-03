@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2020 The Bitcoin Core developers
+# Copyright (c) 2015-2022 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test processing of unrequested blocks.
@@ -72,12 +72,19 @@ class AcceptBlockTest(BitcoinTestFramework):
     def setup_network(self):
         self.setup_nodes()
 
+    def check_hash_in_chaintips(self, node, blockhash):
+        tips = node.getchaintips()
+        for x in tips:
+            if x["hash"] == blockhash:
+                return True
+        return False
+
     def run_test(self):
         test_node = self.nodes[0].add_p2p_connection(P2PInterface())
         min_work_node = self.nodes[1].add_p2p_connection(P2PInterface())
 
         # 1. Have nodes mine a block (leave IBD)
-        [n.generatetoaddress(1, n.get_deterministic_priv_key().address) for n in self.nodes]
+        [self.generate(n, 1, sync_fun=self.no_op) for n in self.nodes]
         tips = [int("0x" + n.getbestblockhash(), 0) for n in self.nodes]
 
         # 2. Send one block that builds on each tip.
@@ -86,19 +93,22 @@ class AcceptBlockTest(BitcoinTestFramework):
         block_time = int(time.time()) + 1
         for i in range(2):
             blocks_h2.append(create_block(tips[i], create_coinbase(2), block_time))
-            blocks_h2[i].nVersion = 0x20000000
             blocks_h2[i].solve()
             block_time += 1
         test_node.send_and_ping(msg_block(blocks_h2[0]))
-        min_work_node.send_and_ping(msg_block(blocks_h2[1]))
+
+        with self.nodes[1].assert_debug_log(expected_msgs=[f"AcceptBlockHeader: not adding new block header {blocks_h2[1].hash}, missing anti-dos proof-of-work validation"]):
+            min_work_node.send_and_ping(msg_block(blocks_h2[1]))
 
         assert_equal(self.nodes[0].getblockcount(), 2)
         assert_equal(self.nodes[1].getblockcount(), 1)
+
+        # Ensure that the header of the second block was also not accepted by node1
+        assert_equal(self.check_hash_in_chaintips(self.nodes[1], blocks_h2[1].hash), False)
         self.log.info("First height 2 block accepted by node0; correctly rejected by node1")
 
         # 3. Send another block that builds on genesis.
         block_h1f = create_block(int("0x" + self.nodes[0].getblockhash(0), 0), create_coinbase(1), block_time)
-        block_h1f.nVersion = 0x20000000
         block_time += 1
         block_h1f.solve()
         test_node.send_and_ping(msg_block(block_h1f))
@@ -113,7 +123,6 @@ class AcceptBlockTest(BitcoinTestFramework):
 
         # 4. Send another two block that build on the fork.
         block_h2f = create_block(block_h1f.sha256, create_coinbase(2), block_time)
-        block_h2f.nVersion = 0x20000000
         block_time += 1
         block_h2f.solve()
         test_node.send_and_ping(msg_block(block_h2f))
@@ -133,7 +142,6 @@ class AcceptBlockTest(BitcoinTestFramework):
 
         # 4b. Now send another block that builds on the forking chain.
         block_h3 = create_block(block_h2f.sha256, create_coinbase(3), block_h2f.nTime+1)
-        block_h3.nVersion = 0x20000000
         block_h3.solve()
         test_node.send_and_ping(msg_block(block_h3))
 
@@ -157,7 +165,6 @@ class AcceptBlockTest(BitcoinTestFramework):
         all_blocks = []
         for i in range(288):
             next_block = create_block(tip.sha256, create_coinbase(i + 4), tip.nTime+1)
-            next_block.nVersion = 0x20000000
             next_block.solve()
             all_blocks.append(next_block)
             tip = next_block
@@ -227,19 +234,14 @@ class AcceptBlockTest(BitcoinTestFramework):
         # 8. Create a chain which is invalid at a height longer than the
         # current chain, but which has more blocks on top of that
         block_289f = create_block(all_blocks[284].sha256, create_coinbase(289), all_blocks[284].nTime+1)
-        block_289f.nVersion = 0x20000000
         block_289f.solve()
         block_290f = create_block(block_289f.sha256, create_coinbase(290), block_289f.nTime+1)
-        block_290f.nVersion = 0x20000000
         block_290f.solve()
-        block_291 = create_block(block_290f.sha256, create_coinbase(291), block_290f.nTime+1)
-        block_291.nVersion = 0x20000000
         # block_291 spends a coinbase below maturity!
-        block_291.vtx.append(create_tx_with_script(block_290f.vtx[0], 0, script_sig=b"42", amount=1))
-        block_291.hashMerkleRoot = block_291.calc_merkle_root()
+        tx_to_add = create_tx_with_script(block_290f.vtx[0], 0, script_sig=b"42", amount=1)
+        block_291 = create_block(block_290f.sha256, create_coinbase(291), block_290f.nTime+1, txlist=[tx_to_add])
         block_291.solve()
         block_292 = create_block(block_291.sha256, create_coinbase(292), block_291.nTime+1)
-        block_292.nVersion = 0x20000000
         block_292.solve()
 
         # Now send all the headers on the chain and enough blocks to trigger reorg
@@ -267,16 +269,11 @@ class AcceptBlockTest(BitcoinTestFramework):
         test_node.send_message(msg_block(block_291))
 
         # At this point we've sent an obviously-bogus block, wait for full processing
-        # without assuming whether we will be disconnected or not
-        try:
-            # Only wait a short while so the test doesn't take forever if we do get
-            # disconnected
-            test_node.sync_with_ping(timeout=1)
-        except AssertionError:
-            test_node.wait_for_disconnect()
+        # and assume disconnection
+        test_node.wait_for_disconnect()
 
-            self.nodes[0].disconnect_p2ps()
-            test_node = self.nodes[0].add_p2p_connection(P2PInterface())
+        self.nodes[0].disconnect_p2ps()
+        test_node = self.nodes[0].add_p2p_connection(P2PInterface())
 
         # We should have failed reorg and switched back to 290 (but have block 291)
         assert_equal(self.nodes[0].getblockcount(), 290)
@@ -285,7 +282,6 @@ class AcceptBlockTest(BitcoinTestFramework):
 
         # Now send a new header on the invalid chain, indicating we're forked off, and expect to get disconnected
         block_293 = create_block(block_292.sha256, create_coinbase(293), block_292.nTime+1)
-        block_293.nVersion = 0x20000000
         block_293.solve()
         headers_message = msg_headers()
         headers_message.headers.append(CBlockHeader(block_293))

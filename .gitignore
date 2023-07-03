@@ -2,17 +2,18 @@
 
 *.exe
 *.pdb
-src/picscoin
-src/picscoind
-src/picscoin-cli
-src/picscoin-gui
-src/picscoin-node
-src/picscoin-tx
-src/picscoin-wallet
-src/test/fuzz/*
-!src/test/fuzz/*.*
-src/test/test_picscoin
-src/qt/test/test_picscoin-qt
+src/bitcoin
+src/bitcoind
+src/bitcoin-cli
+src/bitcoin-gui
+src/bitcoin-node
+src/bitcoin-tx
+src/bitcoin-util
+src/bitcoin-chainstate
+src/bitcoin-wallet
+src/test/fuzz/fuzz
+src/test/test_bitcoin
+src/qt/test/test_bitcoin-qt
 
 # autoreconf
 Makefile.in
@@ -43,8 +44,6 @@ src/obj
 share/setup.nsi
 share/qt/Info.plist
 
-src/univalue/gen
-
 src/qt/*.moc
 src/qt/moc_*.cpp
 src/qt/forms/ui_*.h
@@ -60,9 +59,8 @@ src/qt/bitcoin-qt.includes
 .deps
 .dirstamp
 .libs
-.vscode
 .*.swp
-*.*~*
+*~
 *.bak
 *.rej
 *.orig
@@ -77,13 +75,13 @@ src/qt/bitcoin-qt.includes
 *.log
 *.trs
 *.dmg
-*.iso
 
 *.json.h
 *.raw.h
 
 # Only ignore unexpected patches
 *.patch
+!contrib/guix/patches/*.patch
 !depends/patches/**/*.patch
 
 #libtool object files
@@ -94,19 +92,19 @@ src/qt/bitcoin-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-src/qt/picscoin-qt
-Picscoin-Qt.app
-background.tiff*
+src/qt/bitcoin-qt
+Bitcoin-Qt.app
 
 # Qt Creator
 Makefile.am.user
 
 # Unit-tests
 Makefile.test
-picscoin-qt_test
+bitcoin-qt_test
 
 # Resources cpp
 qrc_*.cpp
+
 # Mac specific
 .DS_Store
 build
@@ -118,7 +116,7 @@ releases
 *.gcno
 *.gcda
 /*.info
-test_picscoin.coverage/
+test_bitcoin.coverage/
 total.coverage/
 fuzz.coverage/
 coverage_percent.txt
@@ -148,4 +146,7 @@ db4/
 
 osx_volname
 dist/
-*.background.tiff
+
+/guix-build-*
+
+/ci/scratch/

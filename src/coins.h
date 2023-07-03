@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2020 The Bitcoin Core developers
+// Copyright (c) 2009-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,12 +8,12 @@
 
 #include <compressor.h>
 #include <core_memusage.h>
-#include <crypto/siphash.h>
 #include <memusage.h>
-#include <mw/node/CoinsView.h>
 #include <primitives/transaction.h>
 #include <serialize.h>
+#include <support/allocators/pool.h>
 #include <uint256.h>
+#include <util/hasher.h>
 
 #include <assert.h>
 #include <stdint.h>
@@ -40,35 +40,27 @@ public:
     //! at which height this containing transaction was included in the active block chain
     uint32_t nHeight : 31;
 
-    //! whether output was a pegout from a hogex transaction
-    bool fPegout;
-
     //! construct a Coin from a CTxOut and height/coinbase information.
-    Coin(CTxOut&& outIn, int nHeightIn, bool fCoinBaseIn, bool fPegoutIn) : out(std::move(outIn)), fCoinBase(fCoinBaseIn), nHeight(nHeightIn), fPegout(fPegoutIn) {}
-    Coin(const CTxOut& outIn, int nHeightIn, bool fCoinBaseIn, bool fPegoutIn) : out(outIn), fCoinBase(fCoinBaseIn), nHeight(nHeightIn), fPegout(fPegoutIn) {}
+    Coin(CTxOut&& outIn, int nHeightIn, bool fCoinBaseIn) : out(std::move(outIn)), fCoinBase(fCoinBaseIn), nHeight(nHeightIn) {}
+    Coin(const CTxOut& outIn, int nHeightIn, bool fCoinBaseIn) : out(outIn), fCoinBase(fCoinBaseIn),nHeight(nHeightIn) {}
 
     void Clear() {
         out.SetNull();
         fCoinBase = false;
-        fPegout = false;
         nHeight = 0;
     }
 
     //! empty constructor
-    Coin() : fCoinBase(false), nHeight(0), fPegout(false) {}
+    Coin() : fCoinBase(false), nHeight(0) { }
 
     bool IsCoinBase() const {
         return fCoinBase;
     }
 
-    bool IsPegout() const {
-        return fPegout;
-    }
-
     template<typename Stream>
     void Serialize(Stream &s) const {
         assert(!IsSpent());
-        uint32_t code = nHeight * uint32_t{2} + fCoinBase + (fPegout ? (uint32_t{1} << 31) : uint32_t{0});
+        uint32_t code = nHeight * uint32_t{2} + fCoinBase;
         ::Serialize(s, VARINT(code));
         ::Serialize(s, Using<TxOutCompression>(out));
     }
@@ -77,45 +69,20 @@ public:
     void Unserialize(Stream &s) {
         uint32_t code = 0;
         ::Unserialize(s, VARINT(code));
-        fPegout = code >> 31;
-        nHeight = (code & ~(uint32_t{1} << 31)) >> 1;
+        nHeight = code >> 1;
         fCoinBase = code & 1;
         ::Unserialize(s, Using<TxOutCompression>(out));
     }
 
+    /** Either this coin never existed (see e.g. coinEmpty in coins.cpp), or it
+      * did exist and has been spent.
+      */
     bool IsSpent() const {
         return out.IsNull();
     }
 
     size_t DynamicMemoryUsage() const {
         return memusage::DynamicUsage(out.scriptPubKey);
-    }
-};
-
-class SaltedOutpointHasher
-{
-private:
-    /** Salt */
-    const uint64_t k0, k1;
-
-public:
-    SaltedOutpointHasher();
-
-    /**
-     * This *must* return size_t. With Boost 1.46 on 32-bit systems the
-     * unordered_map will behave unpredictably if the custom hasher returns a
-     * uint64_t, resulting in failures when syncing the chain (#4634).
-     *
-     * Having the hash noexcept allows libstdc++'s unordered_map to recalculate
-     * the hash during rehash, so it does not have to cache the value. This
-     * reduces node's memory by sizeof(size_t). The required recalculation has
-     * a slight performance penalty (around 1.6%), but this is compensated by
-     * memory savings of about 9% which allow for a larger dbcache setting.
-     *
-     * @see https://gcc.gnu.org/onlinedocs/gcc-9.2.0/libstdc++/manual/manual/unordered_associative.html
-     */
-    size_t operator()(const COutPoint& id) const noexcept {
-        return SipHashUint256Extra(k0, k1, id.hash, id.n);
     }
 };
 
@@ -162,9 +129,26 @@ struct CCoinsCacheEntry
 
     CCoinsCacheEntry() : flags(0) {}
     explicit CCoinsCacheEntry(Coin&& coin_) : coin(std::move(coin_)), flags(0) {}
+    CCoinsCacheEntry(Coin&& coin_, unsigned char flag) : coin(std::move(coin_)), flags(flag) {}
 };
 
-typedef std::unordered_map<COutPoint, CCoinsCacheEntry, SaltedOutpointHasher> CCoinsMap;
+/**
+ * PoolAllocator's MAX_BLOCK_SIZE_BYTES parameter here uses sizeof the data, and adds the size
+ * of 4 pointers. We do not know the exact node size used in the std::unordered_node implementation
+ * because it is implementation defined. Most implementations have an overhead of 1 or 2 pointers,
+ * so nodes can be connected in a linked list, and in some cases the hash value is stored as well.
+ * Using an additional sizeof(void*)*4 for MAX_BLOCK_SIZE_BYTES should thus be sufficient so that
+ * all implementations can allocate the nodes from the PoolAllocator.
+ */
+using CCoinsMap = std::unordered_map<COutPoint,
+                                     CCoinsCacheEntry,
+                                     SaltedOutpointHasher,
+                                     std::equal_to<COutPoint>,
+                                     PoolAllocator<std::pair<const COutPoint, CCoinsCacheEntry>,
+                                                   sizeof(std::pair<const COutPoint, CCoinsCacheEntry>) + sizeof(void*) * 4,
+                                                   alignof(void*)>>;
+
+using CCoinsMapMemoryResource = CCoinsMap::allocator_type::ResourceType;
 
 /** Cursor for iterating over CoinsView state */
 class CCoinsViewCursor
@@ -175,7 +159,6 @@ public:
 
     virtual bool GetKey(COutPoint &key) const = 0;
     virtual bool GetValue(Coin &coin) const = 0;
-    virtual unsigned int GetValueSize() const = 0;
 
     virtual bool Valid() const = 0;
     virtual void Next() = 0;
@@ -197,7 +180,7 @@ public:
     virtual bool GetCoin(const COutPoint &outpoint, Coin &coin) const;
 
     //! Just check whether a given outpoint is unspent.
-    virtual bool HaveCoin(const OutputIndex& index) const;
+    virtual bool HaveCoin(const COutPoint &outpoint) const;
 
     //! Retrieve the block hash whose state this CCoinsView currently represents
     virtual uint256 GetBestBlock() const;
@@ -210,20 +193,16 @@ public:
 
     //! Do a bulk modification (multiple Coin changes + BestBlock change).
     //! The passed mapCoins can be modified.
-    virtual bool BatchWrite(CCoinsMap& mapCoins, const uint256& hashBlock, const mw::CoinsViewCache::Ptr& derivedView);
+    virtual bool BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock, bool erase = true);
 
     //! Get a cursor to iterate over the whole state
-    virtual CCoinsViewCursor *Cursor() const;
+    virtual std::unique_ptr<CCoinsViewCursor> Cursor() const;
 
     //! As we use CCoinsViews polymorphically, have a virtual destructor
     virtual ~CCoinsView() {}
 
     //! Estimate database size (0 if not implemented)
     virtual size_t EstimateSize() const { return 0; }
-
-    virtual mw::ICoinsView::Ptr GetMWEBView() const { return nullptr; }
-    
-    virtual bool GetMWEBCoin(const mw::Hash& output_id, Output& coin) const { return false; }
 };
 
 
@@ -236,36 +215,36 @@ protected:
 public:
     CCoinsViewBacked(CCoinsView *viewIn);
     bool GetCoin(const COutPoint &outpoint, Coin &coin) const override;
-    bool HaveCoin(const OutputIndex& index) const override;
+    bool HaveCoin(const COutPoint &outpoint) const override;
     uint256 GetBestBlock() const override;
     std::vector<uint256> GetHeadBlocks() const override;
-    virtual void SetBackend(CCoinsView &viewIn);
-    bool BatchWrite(CCoinsMap& mapCoins, const uint256& hashBlock, const mw::CoinsViewCache::Ptr& derivedView) override;
-    CCoinsViewCursor *Cursor() const override;
+    void SetBackend(CCoinsView &viewIn);
+    bool BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock, bool erase = true) override;
+    std::unique_ptr<CCoinsViewCursor> Cursor() const override;
     size_t EstimateSize() const override;
-    mw::ICoinsView::Ptr GetMWEBView() const override;
-    bool GetMWEBCoin(const mw::Hash& output_id, Output& coin) const override;
 };
 
 
 /** CCoinsView that adds a memory cache for transactions to another CCoinsView */
 class CCoinsViewCache : public CCoinsViewBacked
 {
+private:
+    const bool m_deterministic;
+
 protected:
     /**
      * Make mutable so that we can "fill the cache" even from Get-methods
      * declared as "const".
      */
     mutable uint256 hashBlock;
+    mutable CCoinsMapMemoryResource m_cache_coins_memory_resource{};
     mutable CCoinsMap cacheCoins;
 
     /* Cached dynamic memory usage for the inner Coin objects. */
-    mutable size_t cachedCoinsUsage;
-
-    mw::CoinsViewCache::Ptr mweb_view;
+    mutable size_t cachedCoinsUsage{0};
 
 public:
-    CCoinsViewCache(CCoinsView *baseIn);
+    CCoinsViewCache(CCoinsView *baseIn, bool deterministic = false);
 
     /**
      * By deleting the copy constructor, we prevent accidentally using it when one intends to create a cache on top of a base cache.
@@ -274,26 +253,20 @@ public:
 
     // Standard CCoinsView methods
     bool GetCoin(const COutPoint &outpoint, Coin &coin) const override;
-    bool HaveCoin(const OutputIndex& outpoint) const override;
+    bool HaveCoin(const COutPoint &outpoint) const override;
     uint256 GetBestBlock() const override;
-    void SetBestBlock(const uint256& hashBlock);
-    void SetBackend(CCoinsView& viewIn) override;
-    bool BatchWrite(CCoinsMap& mapCoins, const uint256& hashBlock, const mw::CoinsViewCache::Ptr& derivedView) override;
-    CCoinsViewCursor* Cursor() const override {
+    void SetBestBlock(const uint256 &hashBlock);
+    bool BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock, bool erase = true) override;
+    std::unique_ptr<CCoinsViewCursor> Cursor() const override {
         throw std::logic_error("CCoinsViewCache cursor iteration not supported.");
     }
-
-    mw::ICoinsView::Ptr GetMWEBView() const final { return mweb_view; }
-    mw::CoinsViewCache::Ptr GetMWEBCacheView() const { return mweb_view; }
-
-    bool GetMWEBCoin(const mw::Hash& output_id, Output& coin) const final;
 
     /**
      * Check if we have the given utxo already loaded in this cache.
      * The semantics are the same as HaveCoin(), but no calls to
      * the backing CCoinsView are made.
      */
-    bool HaveCoinInCache(const OutputIndex& outpoint) const;
+    bool HaveCoinInCache(const COutPoint &outpoint) const;
 
     /**
      * Return a reference to Coin in the cache, or coinEmpty if not found. This is
@@ -314,6 +287,15 @@ public:
     void AddCoin(const COutPoint& outpoint, Coin&& coin, bool possible_overwrite);
 
     /**
+     * Emplace a coin into cacheCoins without performing any checks, marking
+     * the emplaced coin as dirty.
+     *
+     * NOT FOR GENERAL USE. Used only when loading coins from a UTXO snapshot.
+     * @sa ChainstateManager::PopulateAndValidateSnapshot()
+     */
+    void EmplaceCoinInternalDANGER(COutPoint&& outpoint, Coin&& coin);
+
+    /**
      * Spend a coin. Pass moveto in order to get the deleted data.
      * If no unspent output exists for the passed outpoint, this call
      * has no effect.
@@ -321,17 +303,27 @@ public:
     bool SpendCoin(const COutPoint &outpoint, Coin* moveto = nullptr);
 
     /**
-     * Push the modifications applied to this cache to its base.
-     * Failure to call this method before destruction will cause the changes to be forgotten.
+     * Push the modifications applied to this cache to its base and wipe local state.
+     * Failure to call this method or Sync() before destruction will cause the changes
+     * to be forgotten.
      * If false is returned, the state of this cache (and its backing view) will be undefined.
      */
     bool Flush();
 
     /**
+     * Push the modifications applied to this cache to its base while retaining
+     * the contents of this cache (except for spent coins, which we erase).
+     * Failure to call this method or Flush() before destruction will cause the changes
+     * to be forgotten.
+     * If false is returned, the state of this cache (and its backing view) will be undefined.
+     */
+    bool Sync();
+
+    /**
      * Removes the UTXO with the given outpoint from the cache, if it is
      * not modified.
      */
-    void Uncache(const OutputIndex& outpoint);
+    void Uncache(const COutPoint &outpoint);
 
     //! Calculate the size of the cache (in number of transaction outputs)
     unsigned int GetCacheSize() const;
@@ -348,6 +340,9 @@ public:
     //!
     //! See: https://stackoverflow.com/questions/42114044/how-to-release-unordered-map-memory
     void ReallocateCache();
+
+    //! Run an internal sanity check on the cache data structure. */
+    void SanityCheck() const;
 
 private:
     /**

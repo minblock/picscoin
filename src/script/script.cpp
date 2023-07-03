@@ -1,11 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Bitcoin Core developers
+// Copyright (c) 2009-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <script/script.h>
 
-#include <mw/models/crypto/Hash.h>
 #include <util/strencodings.h>
 
 #include <string>
@@ -234,40 +233,6 @@ bool CScript::IsWitnessProgram(int& version, std::vector<unsigned char>& program
     return false;
 }
 
-bool CScript::IsMWEBPegin(mw::Hash* const kernel_id) const
-{
-    int version;
-    std::vector<uint8_t> program;
-    if (IsWitnessProgram(version, program)) {
-        if (version == MWEB_PEGIN_WITNESS_VERSION && program.size() == WITNESS_MWEB_PEGIN_SIZE) {
-            if (kernel_id != nullptr) {
-                *kernel_id = mw::Hash(std::move(program));
-            }
-
-            return true;
-        }
-    }
-
-    return false;
-}
-
-bool CScript::IsMWEBHogAddr(mw::Hash* const header_hash) const
-{
-    int version;
-    std::vector<uint8_t> program;
-    if (IsWitnessProgram(version, program)) {
-        if (version == MWEB_HOG_ADDR_WITNESS_VERSION && program.size() == WITNESS_MWEB_HEADERHASH_SIZE) {
-            if (header_hash != nullptr) {
-                *header_hash = mw::Hash(std::move(program));
-            }
-
-            return true;
-        }
-    }
-
-    return false;
-}
-
 bool CScript::IsPushOnly(const_iterator pc) const
 {
     while (pc < end())
@@ -373,4 +338,29 @@ bool IsOpSuccess(const opcodetype& opcode)
            (opcode >= 131 && opcode <= 134) || (opcode >= 137 && opcode <= 138) ||
            (opcode >= 141 && opcode <= 142) || (opcode >= 149 && opcode <= 153) ||
            (opcode >= 187 && opcode <= 254);
+}
+
+bool CheckMinimalPush(const std::vector<unsigned char>& data, opcodetype opcode) {
+    // Excludes OP_1NEGATE, OP_1-16 since they are by definition minimal
+    assert(0 <= opcode && opcode <= OP_PUSHDATA4);
+    if (data.size() == 0) {
+        // Should have used OP_0.
+        return opcode == OP_0;
+    } else if (data.size() == 1 && data[0] >= 1 && data[0] <= 16) {
+        // Should have used OP_1 .. OP_16.
+        return false;
+    } else if (data.size() == 1 && data[0] == 0x81) {
+        // Should have used OP_1NEGATE.
+        return false;
+    } else if (data.size() <= 75) {
+        // Must have used a direct push (opcode indicating number of bytes pushed + those bytes).
+        return opcode == data.size();
+    } else if (data.size() <= 255) {
+        // Must have used OP_PUSHDATA.
+        return opcode == OP_PUSHDATA1;
+    } else if (data.size() <= 65535) {
+        // Must have used OP_PUSHDATA2.
+        return opcode == OP_PUSHDATA2;
+    }
+    return true;
 }

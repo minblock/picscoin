@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2019 The Bitcoin Core developers
+// Copyright (c) 2014-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,23 +6,22 @@
 
 #include <qt/guiconstants.h>
 
-#include <chainparamsbase.h>
 #include <tinyformat.h>
+#include <util/chaintype.h>
 
 #include <QApplication>
 
 static const struct {
-    const char *networkId;
+    const ChainType networkId;
     const char *appName;
     const int iconColorHueShift;
     const int iconColorSaturationReduction;
 } network_styles[] = {
-    {"main", QAPP_APP_NAME_DEFAULT, 0, 0},
-    {"test", QAPP_APP_NAME_TESTNET, 0, 0},
-    {"signet", QAPP_APP_NAME_SIGNET, 35, 15},
-    {"regtest", QAPP_APP_NAME_REGTEST, 60, 1},
+    {ChainType::MAIN, QAPP_APP_NAME_DEFAULT, 0, 0},
+    {ChainType::TESTNET, QAPP_APP_NAME_TESTNET, 70, 30},
+    {ChainType::SIGNET, QAPP_APP_NAME_SIGNET, 35, 15},
+    {ChainType::REGTEST, QAPP_APP_NAME_REGTEST, 160, 30},
 };
-static const unsigned network_styles_count = sizeof(network_styles)/sizeof(*network_styles);
 
 // titleAddText needs to be const char* for tr()
 NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift, const int iconColorSaturationReduction, const char *_titleAddText):
@@ -30,12 +29,7 @@ NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift,
     titleAddText(qApp->translate("SplashScreen", _titleAddText))
 {
     // load pixmap
-    QPixmap pixmap;
-    if (std::char_traits<char>::length(_titleAddText) == 0) {
-        pixmap.load(":/icons/bitcoin");
-    } else {
-        pixmap.load(":/icons/picscoin_splash");
-    }
+    QPixmap pixmap(":/icons/bitcoin");
 
     if(iconColorHueShift != 0 && iconColorSaturationReduction != 0)
     {
@@ -83,17 +77,15 @@ NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift,
     trayAndWindowIcon   = QIcon(pixmap.scaled(QSize(256,256)));
 }
 
-const NetworkStyle* NetworkStyle::instantiate(const std::string& networkId)
+const NetworkStyle* NetworkStyle::instantiate(const ChainType networkId)
 {
-    std::string titleAddText = networkId == CBaseChainParams::MAIN ? "" : strprintf("[%s]", networkId);
-    for (unsigned x=0; x<network_styles_count; ++x)
-    {
-        if (networkId == network_styles[x].networkId)
-        {
+    std::string titleAddText = networkId == ChainType::MAIN ? "" : strprintf("[%s]", ChainTypeToString(networkId));
+    for (const auto& network_style : network_styles) {
+        if (networkId == network_style.networkId) {
             return new NetworkStyle(
-                    network_styles[x].appName,
-                    network_styles[x].iconColorHueShift,
-                    network_styles[x].iconColorSaturationReduction,
+                    network_style.appName,
+                    network_style.iconColorHueShift,
+                    network_style.iconColorSaturationReduction,
                     titleAddText.c_str());
         }
     }

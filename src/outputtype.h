@@ -1,17 +1,16 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Bitcoin Core developers
+// Copyright (c) 2009-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_OUTPUTTYPE_H
 #define BITCOIN_OUTPUTTYPE_H
 
-#include <attributes.h>
-#include <mw/models/crypto/SecretKey.h>
 #include <script/signingprovider.h>
 #include <script/standard.h>
 
 #include <array>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -19,22 +18,28 @@ enum class OutputType {
     LEGACY,
     P2SH_SEGWIT,
     BECH32,
-    MWEB
+    BECH32M,
+    UNKNOWN,
 };
 
-extern const std::array<OutputType, 4> OUTPUT_TYPES;
+static constexpr auto OUTPUT_TYPES = std::array{
+    OutputType::LEGACY,
+    OutputType::P2SH_SEGWIT,
+    OutputType::BECH32,
+    OutputType::BECH32M,
+};
 
-NODISCARD bool ParseOutputType(const std::string& str, OutputType& output_type);
+std::optional<OutputType> ParseOutputType(const std::string& str);
 const std::string& FormatOutputType(OutputType type);
 
 /**
  * Get a destination of the requested type (if possible) to the specified key.
  * The caller must make sure LearnRelatedScripts has been called beforehand.
  */
-CTxDestination GetDestinationForKey(const CPubKey& key, OutputType type, const SecretKey& scan_secret);
+CTxDestination GetDestinationForKey(const CPubKey& key, OutputType);
 
 /** Get all destinations (potentially) supported by the wallet for the given key. */
-std::vector<CTxDestination> GetAllDestinationsForKey(const CPubKey& key, const SecretKey& scan_secret);
+std::vector<CTxDestination> GetAllDestinationsForKey(const CPubKey& key);
 
 /**
  * Get a destination of the requested type (if possible) to the specified script.
@@ -42,5 +47,8 @@ std::vector<CTxDestination> GetAllDestinationsForKey(const CPubKey& key, const S
  * necessary scripts) to the keystore.
  */
 CTxDestination AddAndGetDestinationForScript(FillableSigningProvider& keystore, const CScript& script, OutputType);
+
+/** Get the OutputType for a CTxDestination */
+std::optional<OutputType> OutputTypeFromDestination(const CTxDestination& dest);
 
 #endif // BITCOIN_OUTPUTTYPE_H

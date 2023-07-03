@@ -1,15 +1,13 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2020 The Bitcoin Core developers
+// Copyright (c) 2009-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_WALLET_WALLETDB_H
 #define BITCOIN_WALLET_WALLETDB_H
 
-#include <amount.h>
-#include <mw/models/wallet/Coin.h>
 #include <script/sign.h>
-#include <wallet/bdb.h>
+#include <script/standard.h>
 #include <wallet/db.h>
 #include <wallet/walletutil.h>
 #include <key.h>
@@ -18,7 +16,17 @@
 #include <string>
 #include <vector>
 
-#include <boost/optional.hpp>
+class CScript;
+class uint160;
+class uint256;
+struct CBlockLocator;
+
+namespace wallet {
+class CKeyPool;
+class CMasterKey;
+class CWallet;
+class CWalletTx;
+struct WalletContext;
 
 /**
  * Overview of wallet database classes:
@@ -34,24 +42,21 @@
 
 static const bool DEFAULT_FLUSHWALLET = true;
 
-struct CBlockLocator;
-class CKeyPool;
-class CMasterKey;
-class CScript;
-class CWallet;
-class CWalletTx;
-class uint160;
-class uint256;
-
-/** Error statuses for the wallet database */
-enum class DBErrors
+/** Error statuses for the wallet database.
+ * Values are in order of severity. When multiple errors occur, the most severe (highest value) will be returned.
+ */
+enum class DBErrors : int
 {
-    LOAD_OK,
-    CORRUPT,
-    NONCRITICAL_ERROR,
-    TOO_NEW,
-    LOAD_FAIL,
-    NEED_REWRITE
+    LOAD_OK = 0,
+    NEED_RESCAN = 1,
+    NEED_REWRITE = 2,
+    EXTERNAL_SIGNER_SUPPORT_REQUIRED = 3,
+    NONCRITICAL_ERROR = 4,
+    TOO_NEW = 5,
+    UNKNOWN_DESCRIPTOR = 6,
+    LOAD_FAIL = 7,
+    UNEXPECTED_LEGACY_ENTRY = 8,
+    CORRUPT = 9,
 };
 
 namespace DBKeys {
@@ -68,6 +73,7 @@ extern const std::string FLAGS;
 extern const std::string HDCHAIN;
 extern const std::string KEY;
 extern const std::string KEYMETA;
+extern const std::string LOCKED_UTXO;
 extern const std::string MASTER_KEY;
 extern const std::string MINVERSION;
 extern const std::string NAME;
@@ -83,6 +89,9 @@ extern const std::string WALLETDESCRIPTORCKEY;
 extern const std::string WALLETDESCRIPTORKEY;
 extern const std::string WATCHMETA;
 extern const std::string WATCHS;
+
+// Keys in this set pertain only to the legacy wallet (LegacyScriptPubKeyMan) and are removed during migration from legacy to descriptors.
+extern const std::unordered_set<std::string> LEGACY_TYPES;
 } // namespace DBKeys
 
 /* simple HD chain data model */
@@ -91,15 +100,13 @@ class CHDChain
 public:
     uint32_t nExternalChainCounter;
     uint32_t nInternalChainCounter;
-    uint32_t nMWEBIndexCounter;
     CKeyID seed_id; //!< seed hash160
-    boost::optional<SecretKey> mweb_scan_key;
+    int64_t m_next_external_index{0}; // Next index in the keypool to be used. Memory only.
+    int64_t m_next_internal_index{0}; // Next index in the keypool to be used. Memory only.
 
     static const int VERSION_HD_BASE        = 1;
     static const int VERSION_HD_CHAIN_SPLIT = 2;
-    static const int VERSION_HD_MWEB        = 3;
-    static const int VERSION_HD_MWEB_WATCH  = 4;
-    static const int CURRENT_VERSION        = VERSION_HD_MWEB_WATCH;
+    static const int CURRENT_VERSION        = VERSION_HD_CHAIN_SPLIT;
     int nVersion;
 
     CHDChain() { SetNull(); }
@@ -110,14 +117,6 @@ public:
         if (obj.nVersion >= VERSION_HD_CHAIN_SPLIT) {
             READWRITE(obj.nInternalChainCounter);
         }
-
-        if (obj.nVersion >= VERSION_HD_MWEB) {
-            READWRITE(obj.nMWEBIndexCounter);
-        }
-
-        if (obj.nVersion >= VERSION_HD_MWEB_WATCH) {
-            READWRITE(obj.mweb_scan_key);
-        }
     }
 
     void SetNull()
@@ -125,9 +124,7 @@ public:
         nVersion = CHDChain::CURRENT_VERSION;
         nExternalChainCounter = 0;
         nInternalChainCounter = 0;
-        nMWEBIndexCounter = 0;
         seed_id.SetNull();
-        mweb_scan_key = boost::none;
     }
 
     bool operator==(const CHDChain& chain) const
@@ -142,15 +139,13 @@ public:
     static const int VERSION_BASIC=1;
     static const int VERSION_WITH_HDDATA=10;
     static const int VERSION_WITH_KEY_ORIGIN = 12;
-    static const int VERSION_WITH_MWEB_INDEX = 14;
-    static const int CURRENT_VERSION = VERSION_WITH_MWEB_INDEX;
+    static const int CURRENT_VERSION=VERSION_WITH_KEY_ORIGIN;
     int nVersion;
     int64_t nCreateTime; // 0 means unknown
     std::string hdKeypath; //optional HD/bip32 keypath. Still used to determine whether a key is a seed. Also kept for backwards compatibility
     CKeyID hd_seed_id; //id of the HD seed used to derive this key
     KeyOriginInfo key_origin; // Key origin info with path and fingerprint
     bool has_key_origin = false; //!< Whether the key_origin is useful
-    boost::optional<uint32_t> mweb_index = boost::none;
 
     CKeyMetadata()
     {
@@ -173,9 +168,6 @@ public:
             READWRITE(obj.key_origin);
             READWRITE(obj.has_key_origin);
         }
-        if (obj.nVersion >= VERSION_WITH_MWEB_INDEX) {
-            READWRITE(obj.mweb_index);
-        }
     }
 
     void SetNull()
@@ -186,7 +178,6 @@ public:
         hd_seed_id.SetNull();
         key_origin.clear();
         has_key_origin = false;
-        mweb_index = boost::none;
     }
 };
 
@@ -250,7 +241,6 @@ public:
     bool WriteMasterKey(unsigned int nID, const CMasterKey& kMasterKey);
 
     bool WriteCScript(const uint160& hash, const CScript& redeemScript);
-    bool WriteMWEBCoin(const mw::Coin& coin);
 
     bool WriteWatchOnly(const CScript &script, const CKeyMetadata &keymeta);
     bool EraseWatchOnly(const CScript &script);
@@ -271,22 +261,29 @@ public:
     bool WriteDescriptor(const uint256& desc_id, const WalletDescriptor& descriptor);
     bool WriteDescriptorDerivedCache(const CExtPubKey& xpub, const uint256& desc_id, uint32_t key_exp_index, uint32_t der_index);
     bool WriteDescriptorParentCache(const CExtPubKey& xpub, const uint256& desc_id, uint32_t key_exp_index);
+    bool WriteDescriptorLastHardenedCache(const CExtPubKey& xpub, const uint256& desc_id, uint32_t key_exp_index);
+    bool WriteDescriptorCacheItems(const uint256& desc_id, const DescriptorCache& cache);
 
-    /// Write destination data key,value tuple to database
-    bool WriteDestData(const std::string &address, const std::string &key, const std::string &value);
-    /// Erase destination data tuple from wallet database
-    bool EraseDestData(const std::string &address, const std::string &key);
+    bool WriteLockedUTXO(const COutPoint& output);
+    bool EraseLockedUTXO(const COutPoint& output);
+
+    bool WriteAddressPreviouslySpent(const CTxDestination& dest, bool previously_spent);
+    bool WriteAddressReceiveRequest(const CTxDestination& dest, const std::string& id, const std::string& receive_request);
+    bool EraseAddressReceiveRequest(const CTxDestination& dest, const std::string& id);
+    bool EraseAddressData(const CTxDestination& dest);
 
     bool WriteActiveScriptPubKeyMan(uint8_t type, const uint256& id, bool internal);
+    bool EraseActiveScriptPubKeyMan(uint8_t type, bool internal);
 
     DBErrors LoadWallet(CWallet* pwallet);
-    DBErrors FindWalletTx(std::vector<uint256>& vTxHash, std::list<CWalletTx>& vWtx);
+    DBErrors FindWalletTxHashes(std::vector<uint256>& tx_hashes);
     DBErrors ZapSelectTx(std::vector<uint256>& vHashIn, std::vector<uint256>& vHashOut);
-    /* Function to determine if a certain KV/key-type is a key (cryptographical key) type */
-    static bool IsKeyType(const std::string& strType);
 
     //! write the hdchain model (external chain child index counter)
     bool WriteHDChain(const CHDChain& chain);
+
+    //! Delete records of the given types
+    bool EraseRecords(const std::unordered_set<std::string>& types);
 
     bool WriteWalletFlags(const uint64_t flags);
     //! Begin a new transaction
@@ -301,18 +298,12 @@ private:
 };
 
 //! Compacts BDB state so that wallet.dat is self-contained (if there are changes)
-void MaybeCompactWalletDB();
+void MaybeCompactWalletDB(WalletContext& context);
 
-//! Callback for filtering key types to deserialize in ReadKeyValue
-using KeyFilterFn = std::function<bool(const std::string&)>;
-
-//! Unserialize a given Key-Value pair and load it into the wallet
-bool ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue, std::string& strType, std::string& strErr, const KeyFilterFn& filter_fn = nullptr);
-
-/** Return object for accessing dummy database with no read/write capabilities. */
-std::unique_ptr<WalletDatabase> CreateDummyWalletDatabase();
-
-/** Return object for accessing temporary in-memory database. */
-std::unique_ptr<WalletDatabase> CreateMockWalletDatabase();
+bool LoadKey(CWallet* pwallet, DataStream& ssKey, DataStream& ssValue, std::string& strErr);
+bool LoadCryptedKey(CWallet* pwallet, DataStream& ssKey, DataStream& ssValue, std::string& strErr);
+bool LoadEncryptionKey(CWallet* pwallet, DataStream& ssKey, DataStream& ssValue, std::string& strErr);
+bool LoadHDChain(CWallet* pwallet, DataStream& ssValue, std::string& strErr);
+} // namespace wallet
 
 #endif // BITCOIN_WALLET_WALLETDB_H

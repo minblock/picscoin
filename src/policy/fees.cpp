@@ -1,29 +1,67 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Bitcoin Core developers
+// Copyright (c) 2009-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <policy/fees.h>
 
 #include <clientversion.h>
+#include <common/system.h>
+#include <consensus/amount.h>
+#include <kernel/mempool_entry.h>
+#include <logging.h>
+#include <policy/feerate.h>
+#include <primitives/transaction.h>
+#include <random.h>
+#include <serialize.h>
 #include <streams.h>
-#include <txmempool.h>
-#include <util/system.h>
+#include <sync.h>
+#include <tinyformat.h>
+#include <uint256.h>
+#include <util/fs.h>
+#include <util/serfloat.h>
+#include <util/time.h>
+
+#include <algorithm>
+#include <cassert>
+#include <chrono>
+#include <cmath>
+#include <cstddef>
+#include <cstdint>
+#include <exception>
+#include <stdexcept>
+#include <utility>
 
 static constexpr double INF_FEERATE = 1e99;
 
-std::string StringForFeeEstimateHorizon(FeeEstimateHorizon horizon) {
-    static const std::map<FeeEstimateHorizon, std::string> horizon_strings = {
-        {FeeEstimateHorizon::SHORT_HALFLIFE, "short"},
-        {FeeEstimateHorizon::MED_HALFLIFE, "medium"},
-        {FeeEstimateHorizon::LONG_HALFLIFE, "long"},
-    };
-    auto horizon_string = horizon_strings.find(horizon);
-
-    if (horizon_string == horizon_strings.end()) return "unknown";
-
-    return horizon_string->second;
+std::string StringForFeeEstimateHorizon(FeeEstimateHorizon horizon)
+{
+    switch (horizon) {
+    case FeeEstimateHorizon::SHORT_HALFLIFE: return "short";
+    case FeeEstimateHorizon::MED_HALFLIFE: return "medium";
+    case FeeEstimateHorizon::LONG_HALFLIFE: return "long";
+    } // no default case, so the compiler can warn about missing cases
+    assert(false);
 }
+
+namespace {
+
+struct EncodedDoubleFormatter
+{
+    template<typename Stream> void Ser(Stream &s, double v)
+    {
+        s << EncodeDouble(v);
+    }
+
+    template<typename Stream> void Unser(Stream& s, double& v)
+    {
+        uint64_t encoded;
+        s >> encoded;
+        v = DecodeDouble(encoded);
+    }
+};
+
+} // namespace
 
 /**
  * We will instantiate an instance of this class to track transactions that were
@@ -124,13 +162,13 @@ public:
     unsigned int GetMaxConfirms() const { return scale * confAvg.size(); }
 
     /** Write state of estimation data to a file*/
-    void Write(CAutoFile& fileout) const;
+    void Write(AutoFile& fileout) const;
 
     /**
      * Read saved state of estimation data from a file and replace all internal data structures and
      * variables with this state.
      */
-    void Read(CAutoFile& filein, int nFileVersion, size_t numBuckets);
+    void Read(AutoFile& filein, int nFileVersion, size_t numBuckets);
 };
 
 
@@ -353,17 +391,17 @@ double TxConfirmStats::EstimateMedianVal(int confTarget, double sufficientTxVal,
     return median;
 }
 
-void TxConfirmStats::Write(CAutoFile& fileout) const
+void TxConfirmStats::Write(AutoFile& fileout) const
 {
-    fileout << decay;
+    fileout << Using<EncodedDoubleFormatter>(decay);
     fileout << scale;
-    fileout << m_feerate_avg;
-    fileout << txCtAvg;
-    fileout << confAvg;
-    fileout << failAvg;
+    fileout << Using<VectorFormatter<EncodedDoubleFormatter>>(m_feerate_avg);
+    fileout << Using<VectorFormatter<EncodedDoubleFormatter>>(txCtAvg);
+    fileout << Using<VectorFormatter<VectorFormatter<EncodedDoubleFormatter>>>(confAvg);
+    fileout << Using<VectorFormatter<VectorFormatter<EncodedDoubleFormatter>>>(failAvg);
 }
 
-void TxConfirmStats::Read(CAutoFile& filein, int nFileVersion, size_t numBuckets)
+void TxConfirmStats::Read(AutoFile& filein, int nFileVersion, size_t numBuckets)
 {
     // Read data file and do some very basic sanity checking
     // buckets and bucketMap are not updated yet, so don't access them
@@ -371,7 +409,7 @@ void TxConfirmStats::Read(CAutoFile& filein, int nFileVersion, size_t numBuckets
     size_t maxConfirms, maxPeriods;
 
     // The current version will store the decay with each individual TxConfirmStats and also keep a scale factor
-    filein >> decay;
+    filein >> Using<EncodedDoubleFormatter>(decay);
     if (decay <= 0 || decay >= 1) {
         throw std::runtime_error("Corrupt estimates file. Decay must be between 0 and 1 (non-inclusive)");
     }
@@ -380,15 +418,15 @@ void TxConfirmStats::Read(CAutoFile& filein, int nFileVersion, size_t numBuckets
         throw std::runtime_error("Corrupt estimates file. Scale must be non-zero");
     }
 
-    filein >> m_feerate_avg;
+    filein >> Using<VectorFormatter<EncodedDoubleFormatter>>(m_feerate_avg);
     if (m_feerate_avg.size() != numBuckets) {
         throw std::runtime_error("Corrupt estimates file. Mismatch in feerate average bucket count");
     }
-    filein >> txCtAvg;
+    filein >> Using<VectorFormatter<EncodedDoubleFormatter>>(txCtAvg);
     if (txCtAvg.size() != numBuckets) {
         throw std::runtime_error("Corrupt estimates file. Mismatch in tx count bucket count");
     }
-    filein >> confAvg;
+    filein >> Using<VectorFormatter<VectorFormatter<EncodedDoubleFormatter>>>(confAvg);
     maxPeriods = confAvg.size();
     maxConfirms = scale * maxPeriods;
 
@@ -401,7 +439,7 @@ void TxConfirmStats::Read(CAutoFile& filein, int nFileVersion, size_t numBuckets
         }
     }
 
-    filein >> failAvg;
+    filein >> Using<VectorFormatter<VectorFormatter<EncodedDoubleFormatter>>>(failAvg);
     if (maxPeriods != failAvg.size()) {
         throw std::runtime_error("Corrupt estimates file. Mismatch in confirms tracked for failures");
     }
@@ -472,6 +510,12 @@ void TxConfirmStats::removeTx(unsigned int entryHeight, unsigned int nBestSeenHe
 bool CBlockPolicyEstimator::removeTx(uint256 hash, bool inBlock)
 {
     LOCK(m_cs_fee_estimator);
+    return _removeTx(hash, inBlock);
+}
+
+bool CBlockPolicyEstimator::_removeTx(const uint256& hash, bool inBlock)
+{
+    AssertLockHeld(m_cs_fee_estimator);
     std::map<uint256, TxStatsInfo>::iterator pos = mapMemPoolTxs.find(hash);
     if (pos != mapMemPoolTxs.end()) {
         feeStats->removeTx(pos->second.blockHeight, nBestSeenHeight, pos->second.bucketIndex, inBlock);
@@ -484,11 +528,12 @@ bool CBlockPolicyEstimator::removeTx(uint256 hash, bool inBlock)
     }
 }
 
-CBlockPolicyEstimator::CBlockPolicyEstimator()
-    : nBestSeenHeight(0), firstRecordedHeight(0), historicalFirst(0), historicalBest(0), trackedTxs(0), untrackedTxs(0)
+CBlockPolicyEstimator::CBlockPolicyEstimator(const fs::path& estimation_filepath, const bool read_stale_estimates)
+    : m_estimation_filepath{estimation_filepath}
 {
     static_assert(MIN_BUCKET_FEERATE > 0, "Min feerate must be nonzero");
     size_t bucketIndex = 0;
+
     for (double bucketBoundary = MIN_BUCKET_FEERATE; bucketBoundary <= MAX_BUCKET_FEERATE; bucketBoundary *= FEE_SPACING, bucketIndex++) {
         buckets.push_back(bucketBoundary);
         bucketMap[bucketBoundary] = bucketIndex;
@@ -500,11 +545,28 @@ CBlockPolicyEstimator::CBlockPolicyEstimator()
     feeStats = std::unique_ptr<TxConfirmStats>(new TxConfirmStats(buckets, bucketMap, MED_BLOCK_PERIODS, MED_DECAY, MED_SCALE));
     shortStats = std::unique_ptr<TxConfirmStats>(new TxConfirmStats(buckets, bucketMap, SHORT_BLOCK_PERIODS, SHORT_DECAY, SHORT_SCALE));
     longStats = std::unique_ptr<TxConfirmStats>(new TxConfirmStats(buckets, bucketMap, LONG_BLOCK_PERIODS, LONG_DECAY, LONG_SCALE));
+
+    AutoFile est_file{fsbridge::fopen(m_estimation_filepath, "rb")};
+
+    // Whenever the fee estimation file is not present return early
+    if (est_file.IsNull()) {
+        LogPrintf("%s is not found. Continue anyway.\n", fs::PathToString(m_estimation_filepath));
+        return;
+    }
+
+    std::chrono::hours file_age = GetFeeEstimatorFileAge();
+    // fee estimate file must not be too old to avoid wrong fee estimates.
+    if (file_age > MAX_FILE_AGE && !read_stale_estimates) {
+        LogPrintf("Fee estimation file %s too old (age=%lld > %lld hours) and will not be used to avoid serving stale estimates.\n", fs::PathToString(m_estimation_filepath), Ticks<std::chrono::hours>(file_age), Ticks<std::chrono::hours>(MAX_FILE_AGE));
+        return;
+    }
+
+    if (!Read(est_file)) {
+        LogPrintf("Failed to read fee estimates from %s. Continue anyway.\n", fs::PathToString(m_estimation_filepath));
+    }
 }
 
-CBlockPolicyEstimator::~CBlockPolicyEstimator()
-{
-}
+CBlockPolicyEstimator::~CBlockPolicyEstimator() = default;
 
 void CBlockPolicyEstimator::processTransaction(const CTxMemPoolEntry& entry, bool validFeeEstimate)
 {
@@ -520,7 +582,7 @@ void CBlockPolicyEstimator::processTransaction(const CTxMemPoolEntry& entry, boo
     if (txHeight != nBestSeenHeight) {
         // Ignore side chains and re-orgs; assuming they are random they don't
         // affect the estimate.  We'll potentially double count transactions in 1-block reorgs.
-        // Ignore txs if BlockPolicyEstimator is not in sync with ::ChainActive().Tip().
+        // Ignore txs if BlockPolicyEstimator is not in sync with ActiveChain().Tip().
         // It will be synced next time a block is processed.
         return;
     }
@@ -534,7 +596,7 @@ void CBlockPolicyEstimator::processTransaction(const CTxMemPoolEntry& entry, boo
     trackedTxs++;
 
     // Feerates are stored and reported as BTC-per-kb:
-    CFeeRate feeRate(entry.GetFee(), entry.GetTxSize(), entry.GetMWEBWeight());
+    CFeeRate feeRate(entry.GetFee(), entry.GetTxSize());
 
     mapMemPoolTxs[hash].blockHeight = txHeight;
     unsigned int bucketIndex = feeStats->NewTx(txHeight, (double)feeRate.GetFeePerK());
@@ -547,7 +609,8 @@ void CBlockPolicyEstimator::processTransaction(const CTxMemPoolEntry& entry, boo
 
 bool CBlockPolicyEstimator::processBlockTx(unsigned int nBlockHeight, const CTxMemPoolEntry* entry)
 {
-    if (!removeTx(entry->GetTx().GetHash(), true)) {
+    AssertLockHeld(m_cs_fee_estimator);
+    if (!_removeTx(entry->GetTx().GetHash(), true)) {
         // This transaction wasn't being tracked for fee estimation
         return false;
     }
@@ -564,7 +627,7 @@ bool CBlockPolicyEstimator::processBlockTx(unsigned int nBlockHeight, const CTxM
     }
 
     // Feerates are stored and reported as BTC-per-kb:
-    CFeeRate feeRate(entry->GetFee(), entry->GetTxSize(), entry->GetMWEBWeight());
+    CFeeRate feeRate(entry->GetFee(), entry->GetTxSize());
 
     feeStats->Record(blocksToConfirm, (double)feeRate.GetFeePerK());
     shortStats->Record(blocksToConfirm, (double)feeRate.GetFeePerK());
@@ -632,7 +695,7 @@ CFeeRate CBlockPolicyEstimator::estimateFee(int confTarget) const
 
 CFeeRate CBlockPolicyEstimator::estimateRawFee(int confTarget, double successThreshold, FeeEstimateHorizon horizon, EstimationResult* result) const
 {
-    TxConfirmStats* stats;
+    TxConfirmStats* stats = nullptr;
     double sufficientTxs = SUFFICIENT_FEETXS;
     switch (horizon) {
     case FeeEstimateHorizon::SHORT_HALFLIFE: {
@@ -648,10 +711,8 @@ CFeeRate CBlockPolicyEstimator::estimateRawFee(int confTarget, double successThr
         stats = longStats.get();
         break;
     }
-    default: {
-        throw std::out_of_range("CBlockPolicyEstimator::estimateRawFee unknown FeeEstimateHorizon");
-    }
-    }
+    } // no default case, so the compiler can warn about missing cases
+    assert(stats);
 
     LOCK(m_cs_fee_estimator);
     // Return failure if trying to analyze a target we're not tracking
@@ -681,10 +742,8 @@ unsigned int CBlockPolicyEstimator::HighestTargetTracked(FeeEstimateHorizon hori
     case FeeEstimateHorizon::LONG_HALFLIFE: {
         return longStats->GetMaxConfirms();
     }
-    default: {
-        throw std::out_of_range("CBlockPolicyEstimator::HighestTargetTracked unknown FeeEstimateHorizon");
-    }
-    }
+    } // no default case, so the compiler can warn about missing cases
+    assert(false);
 }
 
 unsigned int CBlockPolicyEstimator::BlockSpan() const
@@ -856,8 +915,22 @@ CFeeRate CBlockPolicyEstimator::estimateSmartFee(int confTarget, FeeCalculation 
     return CFeeRate(llround(median));
 }
 
+void CBlockPolicyEstimator::Flush() {
+    FlushUnconfirmed();
+    FlushFeeEstimates();
+}
 
-bool CBlockPolicyEstimator::Write(CAutoFile& fileout) const
+void CBlockPolicyEstimator::FlushFeeEstimates()
+{
+    AutoFile est_file{fsbridge::fopen(m_estimation_filepath, "wb")};
+    if (est_file.IsNull() || !Write(est_file)) {
+        LogPrintf("Failed to write fee estimates to %s. Continue anyway.\n", fs::PathToString(m_estimation_filepath));
+    } else {
+        LogPrintf("Flushed fee estimates to %s.\n", fs::PathToString(m_estimation_filepath.filename()));
+    }
+}
+
+bool CBlockPolicyEstimator::Write(AutoFile& fileout) const
 {
     try {
         LOCK(m_cs_fee_estimator);
@@ -870,7 +943,7 @@ bool CBlockPolicyEstimator::Write(CAutoFile& fileout) const
         else {
             fileout << historicalFirst << historicalBest;
         }
-        fileout << buckets;
+        fileout << Using<VectorFormatter<EncodedDoubleFormatter>>(buckets);
         feeStats->Write(fileout);
         shortStats->Write(fileout);
         longStats->Write(fileout);
@@ -882,14 +955,15 @@ bool CBlockPolicyEstimator::Write(CAutoFile& fileout) const
     return true;
 }
 
-bool CBlockPolicyEstimator::Read(CAutoFile& filein)
+bool CBlockPolicyEstimator::Read(AutoFile& filein)
 {
     try {
         LOCK(m_cs_fee_estimator);
         int nVersionRequired, nVersionThatWrote;
         filein >> nVersionRequired >> nVersionThatWrote;
-        if (nVersionRequired > CLIENT_VERSION)
-            return error("CBlockPolicyEstimator::Read(): up-version (%d) fee estimate file", nVersionRequired);
+        if (nVersionRequired > CLIENT_VERSION) {
+            throw std::runtime_error(strprintf("up-version (%d) fee estimate file", nVersionRequired));
+        }
 
         // Read fee estimates file into temporary variables so existing data
         // structures aren't corrupted if there is an exception.
@@ -905,10 +979,11 @@ bool CBlockPolicyEstimator::Read(CAutoFile& filein)
                 throw std::runtime_error("Corrupt estimates file. Historical block range for estimates is invalid");
             }
             std::vector<double> fileBuckets;
-            filein >> fileBuckets;
+            filein >> Using<VectorFormatter<EncodedDoubleFormatter>>(fileBuckets);
             size_t numBuckets = fileBuckets.size();
-            if (numBuckets <= 1 || numBuckets > 1000)
+            if (numBuckets <= 1 || numBuckets > 1000) {
                 throw std::runtime_error("Corrupt estimates file. Must have between 2 and 1000 feerate buckets");
+            }
 
             std::unique_ptr<TxConfirmStats> fileFeeStats(new TxConfirmStats(buckets, bucketMap, MED_BLOCK_PERIODS, MED_DECAY, MED_SCALE));
             std::unique_ptr<TxConfirmStats> fileShortStats(new TxConfirmStats(buckets, bucketMap, SHORT_BLOCK_PERIODS, SHORT_DECAY, SHORT_SCALE));
@@ -942,33 +1017,58 @@ bool CBlockPolicyEstimator::Read(CAutoFile& filein)
     return true;
 }
 
-void CBlockPolicyEstimator::FlushUnconfirmed() {
-    int64_t startclear = GetTimeMicros();
+void CBlockPolicyEstimator::FlushUnconfirmed()
+{
+    const auto startclear{SteadyClock::now()};
     LOCK(m_cs_fee_estimator);
     size_t num_entries = mapMemPoolTxs.size();
     // Remove every entry in mapMemPoolTxs
     while (!mapMemPoolTxs.empty()) {
         auto mi = mapMemPoolTxs.begin();
-        removeTx(mi->first, false); // this calls erase() on mapMemPoolTxs
+        _removeTx(mi->first, false); // this calls erase() on mapMemPoolTxs
     }
-    int64_t endclear = GetTimeMicros();
-    LogPrint(BCLog::ESTIMATEFEE, "Recorded %u unconfirmed txs from mempool in %gs\n", num_entries, (endclear - startclear)*0.000001);
+    const auto endclear{SteadyClock::now()};
+    LogPrint(BCLog::ESTIMATEFEE, "Recorded %u unconfirmed txs from mempool in %gs\n", num_entries, Ticks<SecondsDouble>(endclear - startclear));
+}
+
+std::chrono::hours CBlockPolicyEstimator::GetFeeEstimatorFileAge()
+{
+    auto file_time = std::filesystem::last_write_time(m_estimation_filepath);
+    auto now = std::filesystem::file_time_type::clock::now();
+    return std::chrono::duration_cast<std::chrono::hours>(now - file_time);
+}
+
+static std::set<double> MakeFeeSet(const CFeeRate& min_incremental_fee,
+                                   double max_filter_fee_rate,
+                                   double fee_filter_spacing)
+{
+    std::set<double> fee_set;
+
+    const CAmount min_fee_limit{std::max(CAmount(1), min_incremental_fee.GetFeePerK() / 2)};
+    fee_set.insert(0);
+    for (double bucket_boundary = min_fee_limit;
+         bucket_boundary <= max_filter_fee_rate;
+         bucket_boundary *= fee_filter_spacing) {
+
+        fee_set.insert(bucket_boundary);
+    }
+
+    return fee_set;
 }
 
 FeeFilterRounder::FeeFilterRounder(const CFeeRate& minIncrementalFee)
+    : m_fee_set{MakeFeeSet(minIncrementalFee, MAX_FILTER_FEERATE, FEE_FILTER_SPACING)}
 {
-    CAmount minFeeLimit = std::max(CAmount(1), minIncrementalFee.GetFeePerK() / 2);
-    feeset.insert(0);
-    for (double bucketBoundary = minFeeLimit; bucketBoundary <= MAX_FILTER_FEERATE; bucketBoundary *= FEE_FILTER_SPACING) {
-        feeset.insert(bucketBoundary);
-    }
 }
 
 CAmount FeeFilterRounder::round(CAmount currentMinFee)
 {
-    std::set<double>::iterator it = feeset.lower_bound(currentMinFee);
-    if ((it != feeset.begin() && insecure_rand.rand32() % 3 != 0) || it == feeset.end()) {
-        it--;
+    AssertLockNotHeld(m_insecure_rand_mutex);
+    std::set<double>::iterator it = m_fee_set.lower_bound(currentMinFee);
+    if (it == m_fee_set.end() ||
+        (it != m_fee_set.begin() &&
+         WITH_LOCK(m_insecure_rand_mutex, return insecure_rand.rand32()) % 3 != 0)) {
+        --it;
     }
     return static_cast<CAmount>(*it);
 }

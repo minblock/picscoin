@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2019 The Bitcoin Core developers
+// Copyright (c) 2011-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,7 +7,7 @@
 
 #include <qt/sendcoinsrecipient.h>
 
-#include <QStackedWidget>
+#include <QWidget>
 
 class WalletModel;
 class PlatformStyle;
@@ -22,10 +22,8 @@ namespace Ui {
 
 /**
  * A single entry in the dialog for sending bitcoins.
- * Stacked widget, with different UIs for payment requests
- * with a strong payee identity.
  */
-class SendCoinsEntry : public QStackedWidget
+class SendCoinsEntry : public QWidget
 {
     Q_OBJECT
 
@@ -43,9 +41,6 @@ public:
     void setValue(const SendCoinsRecipient &value);
     void setAddress(const QString &address);
     void setAmount(const CAmount &amount);
-
-    void setPegInAddress(const std::string& address);
-    void setPegOut(const bool pegout_set);
 
     /** Set up the tab chain manually, as Qt messes up the tab chain by default in some cases
      *  (issue https://bugreports.qt-project.org/browse/QTBUG-10907).
@@ -72,13 +67,14 @@ private Q_SLOTS:
     void on_pasteButton_clicked();
     void updateDisplayUnit();
 
+protected:
+    void changeEvent(QEvent* e) override;
+
 private:
     SendCoinsRecipient recipient;
     Ui::SendCoinsEntry *ui;
-    WalletModel *model;
+    WalletModel* model{nullptr};
     const PlatformStyle *platformStyle;
-    std::string pegInAddress;
-    bool pegout;
 
     bool updateLabel(const QString &address);
 };

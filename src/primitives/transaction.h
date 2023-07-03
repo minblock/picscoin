@@ -1,21 +1,27 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Bitcoin Core developers
+// Copyright (c) 2009-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_PRIMITIVES_TRANSACTION_H
 #define BITCOIN_PRIMITIVES_TRANSACTION_H
 
-#include <stdint.h>
-#include <amount.h>
+#include <consensus/amount.h>
+#include <prevector.h>
 #include <script/script.h>
 #include <serialize.h>
 #include <uint256.h>
-#include <mweb/mweb_models.h>
-#include <boost/optional.hpp>
-#include <boost/variant.hpp>
 
+#include <cstddef>
+#include <cstdint>
+#include <ios>
+#include <limits>
+#include <memory>
+#include <numeric>
+#include <string>
 #include <tuple>
+#include <utility>
+#include <vector>
 
 /**
  * A flag that is ORed into the protocol version to designate that a transaction
@@ -24,7 +30,6 @@
  * or with `ADDRV2_FORMAT`.
  */
 static const int SERIALIZE_TRANSACTION_NO_WITNESS = 0x40000000;
-static const int SERIALIZE_NO_MWEB = 0x20000000;
 
 /** An outpoint - a combination of a transaction hash and an index n into its vout */
 class COutPoint
@@ -74,25 +79,45 @@ public:
     uint32_t nSequence;
     CScriptWitness scriptWitness; //!< Only serialized through CTransaction
 
-    /* Setting nSequence to this value for every input in a transaction
-     * disables nLockTime. */
+    /**
+     * Setting nSequence to this value for every input in a transaction
+     * disables nLockTime/IsFinalTx().
+     * It fails OP_CHECKLOCKTIMEVERIFY/CheckLockTime() for any input that has
+     * it set (BIP 65).
+     * It has SEQUENCE_LOCKTIME_DISABLE_FLAG set (BIP 68/112).
+     */
     static const uint32_t SEQUENCE_FINAL = 0xffffffff;
+    /**
+     * This is the maximum sequence number that enables both nLockTime and
+     * OP_CHECKLOCKTIMEVERIFY (BIP 65).
+     * It has SEQUENCE_LOCKTIME_DISABLE_FLAG set (BIP 68/112).
+     */
+    static const uint32_t MAX_SEQUENCE_NONFINAL{SEQUENCE_FINAL - 1};
 
-    /* Below flags apply in the context of BIP 68*/
-    /* If this flag set, CTxIn::nSequence is NOT interpreted as a
-     * relative lock-time. */
+    // Below flags apply in the context of BIP 68. BIP 68 requires the tx
+    // version to be set to 2, or higher.
+    /**
+     * If this flag is set, CTxIn::nSequence is NOT interpreted as a
+     * relative lock-time.
+     * It skips SequenceLocks() for any input that has it set (BIP 68).
+     * It fails OP_CHECKSEQUENCEVERIFY/CheckSequence() for any input that has
+     * it set (BIP 112).
+     */
     static const uint32_t SEQUENCE_LOCKTIME_DISABLE_FLAG = (1U << 31);
 
-    /* If CTxIn::nSequence encodes a relative lock-time and this flag
+    /**
+     * If CTxIn::nSequence encodes a relative lock-time and this flag
      * is set, the relative lock-time has units of 512 seconds,
      * otherwise it specifies blocks with a granularity of 1. */
     static const uint32_t SEQUENCE_LOCKTIME_TYPE_FLAG = (1 << 22);
 
-    /* If CTxIn::nSequence encodes a relative lock-time, this mask is
+    /**
+     * If CTxIn::nSequence encodes a relative lock-time, this mask is
      * applied to extract that lock-time from the sequence field. */
     static const uint32_t SEQUENCE_LOCKTIME_MASK = 0x0000ffff;
 
-    /* In order to use the same number of bits to encode roughly the
+    /**
+     * In order to use the same number of bits to encode roughly the
      * same wall-clock duration, and because blocks are naturally
      * limited to occur every 600s on average, the minimum granularity
      * for time-based relative lock-time is fixed at 512 seconds.
@@ -124,46 +149,6 @@ public:
     }
 
     std::string ToString() const;
-};
-
-typedef boost::variant<COutPoint, mw::Hash> OutputIndex;
-
-/// <summary>
-/// A generic transaction input that could either be an MWEB input hash or a canonical CTxIn.
-/// </summary>
-class CTxInput
-{
-public:
-    CTxInput(mw::Hash output_id)
-        : m_input(std::move(output_id)) {}
-    CTxInput(CTxIn txin)
-        : m_input(std::move(txin)) {}
-
-    bool IsMWEB() const noexcept { return m_input.type() == typeid(mw::Hash); }
-    OutputIndex GetIndex() const noexcept
-    {
-        return IsMWEB() ? OutputIndex{ToMWEB()} : OutputIndex{GetTxIn().prevout};
-    }
-
-    std::string ToString() const
-    {
-        return IsMWEB() ? ToMWEB().ToHex() : GetTxIn().ToString();
-    }
-
-    const mw::Hash& ToMWEB() const noexcept
-    {
-        assert(IsMWEB());
-        return boost::get<mw::Hash>(m_input);
-    }
-
-    const CTxIn& GetTxIn() const noexcept
-    {
-        assert(!IsMWEB());
-        return boost::get<CTxIn>(m_input);
-    }
-
-private:
-    boost::variant<CTxIn, mw::Hash> m_input;
 };
 
 /** An output of a transaction.  It contains the public key that the next input
@@ -209,52 +194,6 @@ public:
     std::string ToString() const;
 };
 
-class CTransaction;
-
-/// <summary>
-/// A generic transaction output that could either be an MWEB output ID or a canonical CTxOut.
-/// </summary>
-class CTxOutput
-{
-public:
-    CTxOutput() = default;
-    CTxOutput(mw::Hash output_id)
-        : m_idx(std::move(output_id)), m_txout(boost::none) {}
-    CTxOutput(OutputIndex idx, CTxOut txout)
-        : m_idx(std::move(idx)), m_txout(std::move(txout)) {}
-
-    bool IsMWEB() const noexcept { return m_idx.type() == typeid(mw::Hash); }
-
-    const OutputIndex& GetIndex() const noexcept { return m_idx; }
-
-    std::string ToString() const
-    {
-        return IsMWEB() ? ToMWEB().ToHex() : GetTxOut().ToString();
-    }
-    
-    const mw::Hash& ToMWEB() const noexcept
-    {
-        assert(IsMWEB());
-        return boost::get<mw::Hash>(m_idx);
-    }
-
-    const CTxOut& GetTxOut() const noexcept
-    {
-        assert(!IsMWEB() && !!m_txout);
-        return *m_txout;
-    }
-
-    const CScript& GetScriptPubKey() const noexcept
-    {
-        assert(!IsMWEB());
-        return GetTxOut().scriptPubKey;
-    }
-
-private:
-    OutputIndex m_idx;
-    boost::optional<CTxOut> m_txout;
-};
-
 struct CMutableTransaction;
 
 /**
@@ -271,13 +210,12 @@ struct CMutableTransaction;
  * - std::vector<CTxIn> vin
  * - std::vector<CTxOut> vout
  * - if (flags & 1):
- *   - CTxWitness wit;
+ *   - CScriptWitness scriptWitness; (deserialized into CTxIn)
  * - uint32_t nLockTime
  */
 template<typename Stream, typename TxType>
 inline void UnserializeTransaction(TxType& tx, Stream& s) {
     const bool fAllowWitness = !(s.GetVersion() & SERIALIZE_TRANSACTION_NO_WITNESS);
-    const bool fAllowMWEB = !(s.GetVersion() & SERIALIZE_NO_MWEB);
 
     s >> tx.nVersion;
     unsigned char flags = 0;
@@ -307,21 +245,6 @@ inline void UnserializeTransaction(TxType& tx, Stream& s) {
             throw std::ios_base::failure("Superfluous witness record");
         }
     }
-    if ((flags & 8) && fAllowMWEB) {
-        /* The MWEB flag is present, and we support MWEB. */
-        flags ^= 8;
-
-        s >> tx.mweb_tx;
-        if (tx.mweb_tx.IsNull()) {
-            if (tx.vout.empty()) {
-                /* It's illegal to include a HogEx with no outputs. */
-                throw std::ios_base::failure("Missing HogEx output");
-            }
-
-            /* If the MWEB flag is set, but there are no MWEB txs, assume HogEx txn. */
-            tx.m_hogEx = true;
-        }
-    }
     if (flags) {
         /* Unknown flag in the serialization */
         throw std::ios_base::failure("Unknown transaction optional data");
@@ -332,7 +255,6 @@ inline void UnserializeTransaction(TxType& tx, Stream& s) {
 template<typename Stream, typename TxType>
 inline void SerializeTransaction(const TxType& tx, Stream& s) {
     const bool fAllowWitness = !(s.GetVersion() & SERIALIZE_TRANSACTION_NO_WITNESS);
-    const bool fAllowMWEB = !(s.GetVersion() & SERIALIZE_NO_MWEB);
 
     s << tx.nVersion;
     unsigned char flags = 0;
@@ -343,12 +265,6 @@ inline void SerializeTransaction(const TxType& tx, Stream& s) {
             flags |= 1;
         }
     }
-    if (fAllowMWEB) {
-        if (tx.m_hogEx || !tx.mweb_tx.IsNull()) {
-            flags |= 8;
-        }
-    }
-
     if (flags) {
         /* Use extended format in case witnesses are to be serialized. */
         std::vector<CTxIn> vinDummy;
@@ -362,10 +278,13 @@ inline void SerializeTransaction(const TxType& tx, Stream& s) {
             s << tx.vin[i].scriptWitness.stack;
         }
     }
-    if (flags & 8) {
-        s << tx.mweb_tx;
-    }
     s << tx.nLockTime;
+}
+
+template<typename TxType>
+inline CAmount CalculateOutputValue(const TxType& tx)
+{
+    return std::accumulate(tx.vout.cbegin(), tx.vout.cend(), CAmount{0}, [](CAmount sum, const auto& txout) { return sum + txout.nValue; });
 }
 
 
@@ -378,12 +297,6 @@ public:
     // Default transaction version.
     static const int32_t CURRENT_VERSION=2;
 
-    // Changing the default transaction version requires a two step process: first
-    // adapting relay policy by bumping MAX_STANDARD_VERSION, and then later date
-    // bumping the default CURRENT_VERSION at which point both CURRENT_VERSION and
-    // MAX_STANDARD_VERSION will be equal.
-    static const int32_t MAX_STANDARD_VERSION=2;
-
     // The local variables are made const to prevent unintended modification
     // without updating the cached hash value. However, CTransaction is not
     // actually immutable; deserialization and assignment are implemented,
@@ -393,10 +306,6 @@ public:
     const std::vector<CTxOut> vout;
     const int32_t nVersion;
     const uint32_t nLockTime;
-    const MWEB::Tx mweb_tx;
-    
-    /** Memory only. */
-    const bool m_hogEx;
 
 private:
     /** Memory only. */
@@ -407,12 +316,9 @@ private:
     uint256 ComputeWitnessHash() const;
 
 public:
-    /** Construct a CTransaction that qualifies as IsNull() */
-    CTransaction();
-
     /** Convert a CMutableTransaction into a CTransaction. */
-    explicit CTransaction(const CMutableTransaction &tx);
-    CTransaction(CMutableTransaction &&tx);
+    explicit CTransaction(const CMutableTransaction& tx);
+    explicit CTransaction(CMutableTransaction&& tx);
 
     template <typename Stream>
     inline void Serialize(Stream& s) const {
@@ -467,41 +373,6 @@ public:
         }
         return false;
     }
-
-    bool HasMWEBTx() const noexcept { return !mweb_tx.IsNull(); }
-    bool IsHogEx() const noexcept { return m_hogEx; }
-
-    /// <summary>
-    /// Determines whether the transaction is strictly MWEB-to-MWEB, with no canonical transaction data.
-    /// </summary>
-    /// <returns>True if the tx is MWEB-to-MWEB only.</returns>
-    bool IsMWEBOnly() const noexcept { return HasMWEBTx() && vin.empty() && vout.empty(); }
-
-    /// <summary>
-    /// Builds a vector of CTxInputs, starting with the canoncial inputs (CTxIn), followed by the MWEB input hashes.
-    /// </summary>
-    /// <returns>A vector of all of the transaction's inputs.</returns>
-    std::vector<CTxInput> GetInputs() const noexcept;
-
-    /// <summary>
-    /// Constructs a CTxOutput for the specified canonical output.
-    /// </summary>
-    /// <param name="index">The index of the CTxOut. This must be a valid index.</param>
-    /// <returns>The CTxOutput object.</returns>
-    CTxOutput GetOutput(const size_t index) const noexcept;
-
-    /// <summary>
-    /// Constructs a CTxOutput for the specified output.
-    /// </summary>
-    /// <param name="idx">The index of the output. This could either be an output ID or a valid canonical output index.</param>
-    /// <returns>The CTxOutput object.</returns>
-    CTxOutput GetOutput(const OutputIndex& idx) const noexcept;
-
-    /// <summary>
-    /// Builds a vector of CTxOutputs, starting with the canoncial outputs (CTxOut), followed by the MWEB output IDs.
-    /// </summary>
-    /// <returns>A vector of all of the transaction's outputs.</returns>
-    std::vector<CTxOutput> GetOutputs() const noexcept;
 };
 
 /** A mutable version of CTransaction. */
@@ -511,12 +382,8 @@ struct CMutableTransaction
     std::vector<CTxOut> vout;
     int32_t nVersion;
     uint32_t nLockTime;
-    MWEB::Tx mweb_tx;
 
-    /** Memory only. */
-    bool m_hogEx = false;
-
-    CMutableTransaction();
+    explicit CMutableTransaction();
     explicit CMutableTransaction(const CTransaction& tx);
 
     template <typename Stream>
@@ -549,28 +416,21 @@ struct CMutableTransaction
         }
         return false;
     }
-
-    bool HasMWEBTx() const noexcept { return !mweb_tx.IsNull(); }
-    bool IsMWEBOnly() const noexcept { return HasMWEBTx() && vin.empty() && vout.empty(); }
 };
 
 typedef std::shared_ptr<const CTransaction> CTransactionRef;
-static inline CTransactionRef MakeTransactionRef() { return std::make_shared<const CTransaction>(); }
 template <typename Tx> static inline CTransactionRef MakeTransactionRef(Tx&& txIn) { return std::make_shared<const CTransaction>(std::forward<Tx>(txIn)); }
-
-template <typename Stream>
-void Unserialize(Stream& is, std::shared_ptr<const CTransaction>& p)
-{
-    p = std::make_shared<const CTransaction>(deserialize, is);
-}
 
 /** A generic txid reference (txid or wtxid). */
 class GenTxid
 {
     bool m_is_wtxid;
     uint256 m_hash;
-public:
     GenTxid(bool is_wtxid, const uint256& hash) : m_is_wtxid(is_wtxid), m_hash(hash) {}
+
+public:
+    static GenTxid Txid(const uint256& hash) { return GenTxid{false, hash}; }
+    static GenTxid Wtxid(const uint256& hash) { return GenTxid{true, hash}; }
     bool IsWtxid() const { return m_is_wtxid; }
     const uint256& GetHash() const { return m_hash; }
     friend bool operator==(const GenTxid& a, const GenTxid& b) { return a.m_is_wtxid == b.m_is_wtxid && a.m_hash == b.m_hash; }
