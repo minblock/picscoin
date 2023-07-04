@@ -29,11 +29,11 @@ if test -n "$PKG_CONFIG_LIBDIR"; then
   PKG_CONFIG="env PKG_CONFIG_LIBDIR=$PKG_CONFIG_LIBDIR $PKG_CONFIG"
 fi
 
-BITCOIN_DAEMON_NAME=bitcoind
-BITCOIN_GUI_NAME=bitcoin-qt
+BITCOIN_DAEMON_NAME=picscoind
+BITCOIN_GUI_NAME=picscoin-qt
 BITCOIN_TEST_NAME=test_bitcoin
-BITCOIN_CLI_NAME=bitcoin-cli
-BITCOIN_TX_NAME=bitcoin-tx
+BITCOIN_CLI_NAME=picscoin-cli
+BITCOIN_TX_NAME=picscoin-tx
 BITCOIN_UTIL_NAME=bitcoin-util
 BITCOIN_CHAINSTATE_NAME=bitcoin-chainstate
 BITCOIN_WALLET_TOOL_NAME=bitcoin-wallet
