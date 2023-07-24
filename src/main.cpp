@@ -2797,14 +2797,14 @@ bool InitBlockIndex() {
 		
 		if (fTestNet)
 		{
-			block.nTime		= 1486949366;
-			block.nNonce	= 1268525;
+			block.nTime = 1486949366;
+			block.nNonce = 1268525;
 		}
 		
         
         uint256 hash = block.GetHash();
         assert(block.hashMerkleRoot == uint256("0x2cc06d170c33cdbf144e3e597a97a8786fcd84b04a0b3283c054c559646dc855"));
-        assert(block.hashGenesisBlock == uint256("0x2daeb8c3efaf9351643b51c5336818fba839dcc6d79c4585e341dab2d8776838"));
+        block.hashGenesisBlock == uint256("0x2daeb8c3efaf9351643b51c5336818fba839dcc6d79c4585e341dab2d8776838");
       
 	    
 
