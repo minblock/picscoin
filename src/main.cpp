@@ -2801,14 +2801,14 @@ bool InitBlockIndex() {
 			block.nNonce	= 1268525;
 		}
 		
-        //// debug print
+        
         uint256 hash = block.GetHash();
         printf("%s\n", hash.ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
         assert(block.hashMerkleRoot == uint256("0x2cc06d170c33cdbf144e3e597a97a8786fcd84b04a0b3283c054c559646dc855"));
         block.print();
-        assert(hash == hashGenesisBlock);
+        assert(hash == 0x2daeb8c3efaf9351643b51c5336818fba839dcc6d79c4585e341dab2d8776838);
 
         // Start new block file
         try {
