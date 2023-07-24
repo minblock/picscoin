@@ -273,7 +273,7 @@ public:
     enum
     {
         PUBKEY_ADDRESS = 55, // Picscoin addresses start with P
-        SCRIPT_ADDRESS = 5,
+        SCRIPT_ADDRESS = 15, // Picscoin segwit addresses begin with 7
         PUBKEY_ADDRESS_TEST = 117,
         SCRIPT_ADDRESS_TEST = 196,
     };
