@@ -2769,64 +2769,6 @@ bool InitBlockIndex() {
     pblocktree->WriteFlag("txindex", fTxIndex);
     printf("Initializing databases...\n");
 
-    // Only add the genesis block if not reindexing (in which case we reuse the one already on disk)
-    if (!fReindex) {
-        // Genesis Block:
-        // CBlock(hash=12a765e31ffd4059bada, PoW=0000050c34a64b415b6b, ver=1, hashPrevBlock=00000000000000000000, hashMerkleRoot=97ddfbbae6, nTime=1317972665, nBits=1e0ffff0, nNonce=2084524493, vtx=1)
-        //   CTransaction(hash=97ddfbbae6, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-        //     CTxIn(COutPoint(0000000000, -1), coinbase 04ffff001d0104404e592054696d65732030352f4f63742f32303131205374657665204a6f62732c204170706c65e280997320566973696f6e6172792c2044696573206174203536)
-        //     CTxOut(nValue=50.00000000, scriptPubKey=040184710fa689ad5023690c80f3a4)
-        //   vMerkleTree: 97ddfbbae6
-
-        // Genesis block
-        const char* pszTimestamp = "International Business Machines purchases Red Hat Enterprise Linux on 10/30/2018";
-        CTransaction txNew;
-        txNew.vin.resize(1);
-        txNew.vout.resize(1);
-        txNew.vin[0].scriptSig = CScript() << 486604799 << CBigNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 1000000 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("044e0d4bc823e20e14d66396a64960c993585400c53f1e6decb273f249bfeba0e71f140ffa7316f2cdaaae574e7d72620538c3e7791ae9861dfe84dd2955fc85e8") << OP_CHECKSIG;
-        CBlock block;
-        block.vtx.push_back(txNew);
-        block.hashPrevBlock = 0;
-        block.hashMerkleRoot = block.BuildMerkleTree();
-        block.nVersion = 1;
-        block.nTime    = 1545183172;
-        block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 3633462;
-		
-		if (fTestNet)
-		{
-			block.nTime		= 1486949366;
-			block.nNonce	= 1268525;
-		}
-		
-        //// debug print
-        uint256 hash = block.GetHash();
-        printf("%s\n", hash.ToString().c_str());
-        printf("%s\n", hashGenesisBlock.ToString().c_str());
-        printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x2cc06d170c33cdbf144e3e597a97a8786fcd84b04a0b3283c054c559646dc855"));
-        block.print();
-        assert(hash == hashGenesisBlock);
-
-        // Start new block file
-        try {
-            unsigned int nBlockSize = ::GetSerializeSize(block, SER_DISK, CLIENT_VERSION);
-            CDiskBlockPos blockPos;
-            CValidationState state;
-            if (!FindBlockPos(state, blockPos, nBlockSize+8, 0, block.nTime))
-                return error("LoadBlockIndex() : FindBlockPos failed");
-            if (!block.WriteToDisk(blockPos))
-                return error("LoadBlockIndex() : writing genesis block to disk failed");
-            if (!block.AddToBlockIndex(state, blockPos))
-                return error("LoadBlockIndex() : genesis block not accepted");
-        } catch(std::runtime_error &e) {
-            return error("LoadBlockIndex() : failed to initialize block database: %s", e.what());
-        }
-    }
-
-    return true;
 }
 
 
